@@ -12,7 +12,7 @@ type Rec<T> = Record<string, T>;
 const sync = <T,>(crops: string[], prev: Rec<T>, init: T): Rec<T> =>
   Object.fromEntries(crops.map((c) => [c, prev[c] ?? init]));
 
-const field = "w-full rounded-[12px] border border-hair bg-white px-3.5 py-3 text-[15px] outline-none focus:border-leaf";
+const field = "w-full rounded-[14px] border border-hair bg-white px-5 py-4 text-[18px] outline-none focus:border-leaf";
 
 export default function OrderWizard() {
   const router = useRouter();
@@ -45,31 +45,31 @@ export default function OrderWizard() {
       title: "What are you growing?",
       sub: "Select every crop in your operation. Type to search or add your own.",
       valid: crops.length > 0,
-      body: <MultiCombobox value={crops} onChange={setCrops} options={CROP_NAMES} placeholder="e.g. Almond, Wheat, Strawberry…" />,
+      body: <MultiCombobox size="lg" value={crops} onChange={setCrops} options={CROP_NAMES} placeholder="e.g. Almond, Wheat, Strawberry…" />,
     },
     {
       title: "How many acres of each crop?",
       sub: "Set the acreage for every crop — this drives your custom quote.",
       valid: crops.every((c) => (acres[c] || 0) >= 1),
       body: (
-        <div className="flex flex-col gap-5">
+        <div className="grid gap-5 md:grid-cols-2">
           {crops.map((c) => (
-            <div key={c} className="rounded-[14px] border border-hair bg-white p-4">
-              <div className="mb-2 flex items-center justify-between">
-                <span className="font-display text-[16px] font-extrabold text-forest">{c}</span>
+            <div key={c} className="rounded-[16px] border border-hair bg-white p-5">
+              <div className="mb-3 flex items-center justify-between">
+                <span className="font-display text-[20px] font-extrabold text-forest">{c}</span>
                 <div className="flex items-center gap-2">
                   <input
                     type="number" min={1} max={5000} value={acres[c] ?? 0}
                     onChange={(e) => setAcres((p) => ({ ...p, [c]: Math.max(0, parseInt(e.target.value || "0", 10)) }))}
-                    className="w-[90px] rounded-[10px] border border-hair px-2.5 py-1.5 text-right font-mono text-[15px] outline-none focus:border-leaf"
+                    className="w-[110px] rounded-[12px] border border-hair px-3 py-2.5 text-right font-mono text-[19px] outline-none focus:border-leaf"
                   />
-                  <span className="text-[13px] text-fg3">acres</span>
+                  <span className="text-[15px] text-fg3">acres</span>
                 </div>
               </div>
               <input
                 type="range" min={1} max={2000} step={5} value={Math.min(acres[c] ?? 0, 2000)}
                 onChange={(e) => setAcres((p) => ({ ...p, [c]: parseInt(e.target.value, 10) }))}
-                className="w-full accent-leaf"
+                className="h-2 w-full accent-leaf"
               />
             </div>
           ))}
@@ -80,24 +80,24 @@ export default function OrderWizard() {
       title: "Any soil problems or deficiencies?",
       sub: "Search and select all that apply, add your own, or mark none.",
       valid: soil.length > 0,
-      body: <MultiCombobox value={soil} onChange={setSoil} options={SOIL_PROBLEMS} placeholder="e.g. Nitrogen deficiency, Low pH…" noneLabel={NONE.soil} />,
+      body: <MultiCombobox size="lg" value={soil} onChange={setSoil} options={SOIL_PROBLEMS} placeholder="e.g. Nitrogen deficiency, Low pH…" noneLabel={NONE.soil} />,
     },
     {
       title: "Any weed problems?",
       sub: "Tell us which weeds you fight — search, add custom, or mark none.",
       valid: weeds.length > 0,
-      body: <MultiCombobox value={weeds} onChange={setWeeds} options={WEEDS} placeholder="e.g. Pigweed, Nutsedge…" noneLabel={NONE.weeds} />,
+      body: <MultiCombobox size="lg" value={weeds} onChange={setWeeds} options={WEEDS} placeholder="e.g. Pigweed, Nutsedge…" noneLabel={NONE.weeds} />,
     },
     {
       title: "Pest problems by crop",
       sub: "Select the pests affecting each crop, or mark none.",
       valid: crops.every((c) => (pests[c] || []).length > 0),
       body: (
-        <div className="flex flex-col gap-6">
+        <div className="grid gap-7 md:grid-cols-2">
           {crops.map((c) => (
             <div key={c}>
-              <div className="mb-2 font-display text-[15px] font-extrabold text-forest">{c}</div>
-              <MultiCombobox value={pests[c] || []} onChange={(v) => setPests((p) => ({ ...p, [c]: v }))} options={PESTS} placeholder="e.g. Aphids, Spider mites…" noneLabel={NONE.pests} />
+              <div className="mb-2.5 font-display text-[18px] font-extrabold text-forest">{c}</div>
+              <MultiCombobox size="lg" value={pests[c] || []} onChange={(v) => setPests((p) => ({ ...p, [c]: v }))} options={PESTS} placeholder="e.g. Aphids, Spider mites…" noneLabel={NONE.pests} />
             </div>
           ))}
         </div>
@@ -108,11 +108,11 @@ export default function OrderWizard() {
       sub: "Select the diseases affecting each crop, or mark none.",
       valid: crops.every((c) => (diseases[c] || []).length > 0),
       body: (
-        <div className="flex flex-col gap-6">
+        <div className="grid gap-7 md:grid-cols-2">
           {crops.map((c) => (
             <div key={c}>
-              <div className="mb-2 font-display text-[15px] font-extrabold text-forest">{c}</div>
-              <MultiCombobox value={diseases[c] || []} onChange={(v) => setDiseases((p) => ({ ...p, [c]: v }))} options={DISEASES} placeholder="e.g. Powdery mildew, Mosaic virus…" noneLabel={NONE.diseases} />
+              <div className="mb-2.5 font-display text-[18px] font-extrabold text-forest">{c}</div>
+              <MultiCombobox size="lg" value={diseases[c] || []} onChange={(v) => setDiseases((p) => ({ ...p, [c]: v }))} options={DISEASES} placeholder="e.g. Powdery mildew, Mosaic virus…" noneLabel={NONE.diseases} />
             </div>
           ))}
         </div>
@@ -123,13 +123,13 @@ export default function OrderWizard() {
       sub: "Are you seeing yield or quality loss in any of these crops?",
       valid: true,
       body: (
-        <div className="flex flex-col gap-3">
+        <div className="grid gap-4 md:grid-cols-2">
           {crops.map((c) => (
-            <div key={c} className="flex items-center justify-between rounded-[14px] border border-hair bg-white px-4 py-3">
-              <span className="font-display text-[15px] font-extrabold text-forest">{c}</span>
-              <div className="flex rounded-full bg-[#EDEAE0] p-1 text-[13px] font-bold">
-                <button onClick={() => setYieldP((p) => ({ ...p, [c]: true }))} className={`rounded-full px-4 py-1.5 ${yieldP[c] ? "bg-forest text-white" : "text-fg2"}`}>Yes</button>
-                <button onClick={() => setYieldP((p) => ({ ...p, [c]: false }))} className={`rounded-full px-4 py-1.5 ${!yieldP[c] ? "bg-leaf text-[#04230B]" : "text-fg2"}`}>No</button>
+            <div key={c} className="flex items-center justify-between rounded-[16px] border border-hair bg-white px-5 py-4">
+              <span className="font-display text-[19px] font-extrabold text-forest">{c}</span>
+              <div className="flex rounded-full bg-[#EDEAE0] p-1 text-[15px] font-bold">
+                <button onClick={() => setYieldP((p) => ({ ...p, [c]: true }))} className={`rounded-full px-5 py-2 ${yieldP[c] ? "bg-forest text-white" : "text-fg2"}`}>Yes</button>
+                <button onClick={() => setYieldP((p) => ({ ...p, [c]: false }))} className={`rounded-full px-5 py-2 ${!yieldP[c] ? "bg-leaf text-[#04230B]" : "text-fg2"}`}>No</button>
               </div>
             </div>
           ))}
@@ -143,12 +143,12 @@ export default function OrderWizard() {
         customer.name.trim() !== "" && /\S+@\S+\.\S+/.test(customer.email) &&
         customer.phone.trim() !== "" && customer.business.trim() !== "" && customer.address.trim() !== "",
       body: (
-        <div className="grid grid-cols-2 gap-3.5">
+        <div className="grid gap-5 md:grid-cols-2">
           <input className={field} placeholder="Full name" value={customer.name} onChange={(e) => setCustomer({ ...customer, name: e.target.value })} />
           <input className={field} placeholder="Email address" value={customer.email} onChange={(e) => setCustomer({ ...customer, email: e.target.value })} />
           <input className={field} placeholder="Phone number" value={customer.phone} onChange={(e) => setCustomer({ ...customer, phone: e.target.value })} />
           <input className={field} placeholder="Business name" value={customer.business} onChange={(e) => setCustomer({ ...customer, business: e.target.value })} />
-          <input className={`col-span-2 ${field}`} placeholder="Farm address" value={customer.address} onChange={(e) => setCustomer({ ...customer, address: e.target.value })} />
+          <input className={`md:col-span-2 ${field}`} placeholder="Farm address" value={customer.address} onChange={(e) => setCustomer({ ...customer, address: e.target.value })} />
         </div>
       ),
     },
@@ -180,57 +180,58 @@ export default function OrderWizard() {
   };
 
   return (
-    <div className="mx-auto max-w-[760px] px-6 pb-24 pt-12">
-      <div className="text-center">
-        <div className="text-xs font-bold uppercase tracking-[0.14em] text-leaf">Order now · custom formulation</div>
-        <h1 className="mt-2 font-display text-[clamp(32px,5vw,44px)] font-black tracking-[-0.02em] text-forest">
-          Build your program
-        </h1>
-      </div>
-
-      {/* progress */}
-      <div className="mt-7 flex items-center justify-center gap-1.5">
-        {STEPS.map((_, i) => (
-          <span key={i} className={`h-1.5 rounded-full transition-all ${i === step ? "w-8 bg-leaf" : i < step ? "w-5 bg-leaf-600" : "w-5 bg-hair"}`} />
-        ))}
-      </div>
-      <div className="mt-2 text-center font-mono text-[11px] uppercase tracking-[0.1em] text-fg3">
-        Step {step + 1} of {STEPS.length}
-      </div>
-
-      {/* card */}
-      <div className="mt-6 rounded-panel border border-hair bg-paper-2 p-7 shadow-g-sm">
-        <h2 className="font-display text-[24px] font-extrabold tracking-[-0.02em] text-forest">{cur.title}</h2>
-        <p className="mt-1.5 text-[15px] text-fg2">{cur.sub}</p>
-        <div className="mt-6">{cur.body}</div>
-        {error && <div className="mt-4 text-sm font-semibold text-[#B23A1E]">{error}</div>}
-      </div>
-
-      {/* running estimate */}
-      {totalAcres > 0 && step >= 1 && (
-        <div className="mt-4 flex items-center justify-between rounded-[14px] border border-hair bg-white px-5 py-3 text-[14px]">
-          <span className="text-fg2">{totalAcres.toLocaleString()} acres · {q.bundles} × 6-gal bundles</span>
-          <span className="font-mono font-semibold text-forest">est. {money(q.total)} · {money(q.effective)}/ac</span>
+    <div className="mx-auto flex min-h-[calc(100vh-72px)] max-w-container flex-col px-6 pb-12 pt-9 sm:px-10">
+      {/* header */}
+      <div className="flex-none">
+        <div className="flex items-baseline justify-between">
+          <div className="text-xs font-bold uppercase tracking-[0.14em] text-leaf">Order now · custom formulation</div>
+          <div className="font-mono text-[13px] uppercase tracking-[0.1em] text-fg3">Step {step + 1} of {STEPS.length}</div>
         </div>
-      )}
+        <div className="mt-4 flex gap-2">
+          {STEPS.map((_, i) => (
+            <span key={i} className={`h-2 flex-1 rounded-full transition-all ${i < step ? "bg-leaf-600" : i === step ? "bg-leaf" : "bg-hair"}`} />
+          ))}
+        </div>
+      </div>
 
-      {/* nav */}
-      <div className="mt-6 flex items-center justify-between">
-        <button
-          onClick={() => (step === 0 ? router.push("/products") : setStep(step - 1))}
-          className="btn-ghost px-6 py-3 text-sm"
-        >
-          <ArrowLeft size={16} /> Back
-        </button>
-        {step < last ? (
-          <button onClick={() => cur.valid && setStep(step + 1)} disabled={!cur.valid} className="btn-primary px-7 py-3 text-sm">
-            {step === last - 1 ? "Get custom quote" : "Continue"} <ArrowRight size={16} />
-          </button>
-        ) : (
-          <button onClick={submit} disabled={!cur.valid || submitting} className="btn-leaf px-7 py-3 text-sm">
-            {submitting ? "Creating your quote…" : "Get my quote"} <Check size={16} strokeWidth={2.6} />
-          </button>
+      {/* body — fills the screen */}
+      <div className="flex flex-1 flex-col justify-center py-10">
+        <h1 className="font-display text-[clamp(34px,5vw,56px)] font-black leading-[1.05] tracking-[-0.02em] text-forest">
+          {cur.title}
+        </h1>
+        <p className="mt-3 max-w-[760px] text-[clamp(17px,2.2vw,21px)] leading-[1.5] text-fg2">{cur.sub}</p>
+
+        <div className="mt-9">{cur.body}</div>
+
+        {error && <div className="mt-5 text-[16px] font-semibold text-[#B23A1E]">{error}</div>}
+      </div>
+
+      {/* footer — full-width rail */}
+      <div className="flex-none border-t border-hair pt-6">
+        {totalAcres > 0 && step >= 1 && (
+          <div className="mb-5 flex flex-wrap items-center justify-between gap-2 rounded-[16px] border border-hair bg-white px-6 py-4 text-[17px]">
+            <span className="text-fg2">{totalAcres.toLocaleString()} acres · {q.bundles} × 6-gal bundles</span>
+            <span className="font-mono text-[19px] font-semibold text-forest">est. {money(q.total)} <span className="text-[15px] font-normal text-fg3">· {money(q.effective)}/ac</span></span>
+          </div>
         )}
+
+        <div className="flex items-center justify-between">
+          <button
+            onClick={() => (step === 0 ? router.push("/products") : setStep(step - 1))}
+            className="btn-ghost px-7 py-4 text-[16px]"
+          >
+            <ArrowLeft size={18} /> Back
+          </button>
+          {step < last ? (
+            <button onClick={() => cur.valid && setStep(step + 1)} disabled={!cur.valid} className="btn-primary px-9 py-4 text-[16px]">
+              {step === last - 1 ? "Get custom quote" : "Continue"} <ArrowRight size={18} />
+            </button>
+          ) : (
+            <button onClick={submit} disabled={!cur.valid || submitting} className="btn-leaf px-9 py-4 text-[16px]">
+              {submitting ? "Creating your quote…" : "Get my quote"} <Check size={18} strokeWidth={2.6} />
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
