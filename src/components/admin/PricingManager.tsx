@@ -58,10 +58,10 @@ export default function PricingManager({ initial }: { initial: PricingProgram })
             {program.tiers.map((t, i) => (
               <FragmentRow key={i}>
                 <div className="bg-white px-3 py-2">
-                  <input className={num} type="number" value={t.from} onChange={(e) => setTier(i, { from: Number(e.target.value) })} />
+                  <input className={num} type="number" min={0} step={25} value={t.from} onChange={(e) => setTier(i, { from: Number(e.target.value) })} />
                 </div>
                 <div className="bg-white px-3 py-2">
-                  <input className={num} type="number" placeholder="∞ (and up)" value={t.to ?? ""} onChange={(e) => setTier(i, { to: e.target.value === "" ? null : Number(e.target.value) })} />
+                  <input className={num} type="number" min={25} step={25} placeholder="∞ (and up)" value={t.to ?? ""} onChange={(e) => setTier(i, { to: e.target.value === "" ? null : Number(e.target.value) })} />
                 </div>
                 <div className="bg-white px-3 py-2">
                   <input className={num} type="number" value={t.rate} onChange={(e) => setTier(i, { rate: Number(e.target.value) })} />
@@ -107,7 +107,7 @@ export default function PricingManager({ initial }: { initial: PricingProgram })
                 <input className={`${field} mt-1 block w-full font-mono`} type="number" value={b.gallons} onChange={(e) => setBundle(i, { gallons: Number(e.target.value) })} />
               </label>
               <label className="text-[11px] font-bold uppercase tracking-[0.06em] text-fg3">Covers (ac)
-                <input className={`${field} mt-1 block w-full font-mono`} type="number" value={b.acres} onChange={(e) => setBundle(i, { acres: Number(e.target.value) })} />
+                <input className={`${field} mt-1 block w-full font-mono`} type="number" min={25} step={25} value={b.acres} onChange={(e) => setBundle(i, { acres: Number(e.target.value) })} />
               </label>
               <label className="text-[11px] font-bold uppercase tracking-[0.06em] text-fg3">Note
                 <input className={`${field} mt-1 block w-full`} value={b.note} onChange={(e) => setBundle(i, { note: e.target.value })} />

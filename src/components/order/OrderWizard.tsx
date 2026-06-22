@@ -12,6 +12,10 @@ type Rec<T> = Record<string, T>;
 const sync = <T,>(crops: string[], prev: Rec<T>, init: T): Rec<T> =>
   Object.fromEntries(crops.map((c) => [c, prev[c] ?? init]));
 
+// Acreage is sold/priced in 25-acre increments.
+const ACRE_STEP = 25;
+const snapAcres = (n: number) => Math.max(ACRE_STEP, Math.round(n / ACRE_STEP) * ACRE_STEP);
+
 const field = "w-full rounded-[14px] border border-hair bg-white px-5 py-4 text-[18px] outline-none focus:border-leaf";
 
 export default function OrderWizard() {
@@ -49,8 +53,8 @@ export default function OrderWizard() {
     },
     {
       title: "How many acres of each crop?",
-      sub: "Set the acreage for every crop — this drives your custom quote.",
-      valid: crops.every((c) => (acres[c] || 0) >= 1),
+      sub: "Set the acreage for every crop, in 25-acre increments — this drives your custom quote.",
+      valid: crops.every((c) => (acres[c] || 0) >= ACRE_STEP),
       body: (
         <div className="grid gap-5 md:grid-cols-2">
           {crops.map((c) => (
@@ -59,15 +63,16 @@ export default function OrderWizard() {
                 <span className="font-display text-[20px] font-extrabold text-forest">{c}</span>
                 <div className="flex items-center gap-2">
                   <input
-                    type="number" min={1} max={5000} value={acres[c] ?? 0}
+                    type="number" min={ACRE_STEP} max={5000} step={ACRE_STEP} value={acres[c] ?? 0}
                     onChange={(e) => setAcres((p) => ({ ...p, [c]: Math.max(0, parseInt(e.target.value || "0", 10)) }))}
+                    onBlur={(e) => setAcres((p) => ({ ...p, [c]: snapAcres(parseInt(e.target.value || "0", 10)) }))}
                     className="w-[110px] rounded-[12px] border border-hair px-3 py-2.5 text-right font-mono text-[19px] outline-none focus:border-leaf"
                   />
                   <span className="text-[15px] text-fg3">acres</span>
                 </div>
               </div>
               <input
-                type="range" min={1} max={2000} step={5} value={Math.min(acres[c] ?? 0, 2000)}
+                type="range" min={ACRE_STEP} max={2000} step={ACRE_STEP} value={Math.min(acres[c] ?? ACRE_STEP, 2000)}
                 onChange={(e) => setAcres((p) => ({ ...p, [c]: parseInt(e.target.value, 10) }))}
                 className="h-2 w-full accent-leaf"
               />

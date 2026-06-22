@@ -238,16 +238,22 @@ export function getPricingProgram(): PricingProgram {
 }
 
 export function savePricingProgram(input: PricingProgram): PricingProgram {
+  // Acreage is priced in 25-acre increments — snap all acreage values to 25.
+  const snap25 = (n: number) => Math.round(n / 25) * 25;
   // normalize + sort tiers by floor; coerce numbers
   const tiers = (input.tiers ?? [])
-    .map((t) => ({ from: Math.max(0, Math.round(Number(t.from) || 0)), to: t.to == null || t.to === ("" as unknown) ? null : Math.round(Number(t.to)), rate: Math.max(0, Math.round(Number(t.rate) || 0)) }))
+    .map((t) => ({
+      from: Math.max(0, snap25(Number(t.from) || 0)),
+      to: t.to == null || t.to === ("" as unknown) ? null : Math.max(25, snap25(Number(t.to))),
+      rate: Math.max(0, Math.round(Number(t.rate) || 0)),
+    }))
     .sort((a, b) => a.from - b.from);
   if (!tiers.length) throw new Error("At least one pricing tier is required");
   const bundles = (input.bundles ?? DEFAULT_PROGRAM.bundles).map((b) => ({
     id: String(b.id || b.label || "bundle").toLowerCase().replace(/[^a-z0-9]+/g, "") || "bundle",
     label: String(b.label || "Bundle"),
     gallons: Math.max(0, Number(b.gallons) || 0),
-    acres: Math.max(1, Math.round(Number(b.acres) || 1)),
+    acres: Math.max(25, snap25(Number(b.acres) || 25)),
     note: String(b.note || ""),
     best: !!b.best,
   }));
