@@ -32,8 +32,9 @@ yarn-error.log*
 .env.production
 !.env.example
 
-# local sqlite database
-/data
+# local sqlite database — track the db snapshot, ignore transient WAL/SHM runtime files
+/data/*.db-wal
+/data/*.db-shm
 
 # vercel
 .vercel
