@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import Experience3D from "@/components/experience/Experience3D";
+import HeroDrone from "@/components/experience/HeroDrone";
 import { listProducts } from "@/lib/repo";
 import { bottleSrc } from "@/lib/products";
 
@@ -11,8 +11,8 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO — drone-shot scroll sequence (unchanged) */}
-      <Experience3D />
+      {/* HERO — single-screen drone shot (no scroll sequence) */}
+      <HeroDrone />
 
       {/* INTRO to the process */}
       <section className="border-y border-hair bg-white px-8 py-16 text-center">
