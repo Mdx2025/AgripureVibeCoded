@@ -50,7 +50,7 @@ export default function Nav() {
           </Link>
           <Link
             href="/order-now"
-            className="flex items-center gap-2 rounded-full bg-leaf px-[20px] py-2.5 text-sm font-bold text-[#04230B] shadow-[0_4px_14px_rgba(111,174,82,.4)] transition-colors hover:bg-leaf-hover"
+            className="flex items-center gap-2 rounded-full bg-leaf px-[20px] py-2.5 text-sm font-bold text-white shadow-[0_4px_14px_rgba(111,174,82,.4)] transition-colors hover:bg-leaf-hover"
           >
             Order Now <ArrowRight size={16} strokeWidth={2.4} />
           </Link>

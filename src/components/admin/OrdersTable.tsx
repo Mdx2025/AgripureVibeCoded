@@ -85,7 +85,7 @@ export default function OrdersTable({ orders, compact = false }: { orders: Order
             </select>
           </div>
           <div className="flex rounded-full bg-[#EDEAE0] p-1 text-[13px] font-bold">
-            <button onClick={() => setRecurringOnly(true)} className={`rounded-full px-3 py-1 ${recurringOnly ? "bg-leaf text-forest-sidebar" : "text-fg2"}`}>Recurring</button>
+            <button onClick={() => setRecurringOnly(true)} className={`rounded-full px-3 py-1 ${recurringOnly ? "bg-leaf text-white" : "text-fg2"}`}>Recurring</button>
             <button onClick={() => setRecurringOnly(false)} className={`rounded-full px-3 py-1 ${!recurringOnly ? "bg-forest text-white" : "text-fg2"}`}>All Orders</button>
           </div>
         </div>

@@ -134,7 +134,7 @@ export default function OrderWizard() {
               <span className="font-display text-[19px] font-extrabold text-forest">{c}</span>
               <div className="flex rounded-full bg-[#EDEAE0] p-1 text-[15px] font-bold">
                 <button onClick={() => setYieldP((p) => ({ ...p, [c]: true }))} className={`rounded-full px-5 py-2 ${yieldP[c] ? "bg-forest text-white" : "text-fg2"}`}>Yes</button>
-                <button onClick={() => setYieldP((p) => ({ ...p, [c]: false }))} className={`rounded-full px-5 py-2 ${!yieldP[c] ? "bg-leaf text-[#04230B]" : "text-fg2"}`}>No</button>
+                <button onClick={() => setYieldP((p) => ({ ...p, [c]: false }))} className={`rounded-full px-5 py-2 ${!yieldP[c] ? "bg-leaf text-white" : "text-fg2"}`}>No</button>
               </div>
             </div>
           ))}

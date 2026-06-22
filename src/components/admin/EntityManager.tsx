@@ -157,7 +157,7 @@ export default function EntityManager({
         <div className="flex items-center gap-3">
           {recurringToggle && (
             <div className="flex rounded-full bg-[#EDEAE0] p-1 text-[13px] font-bold">
-              <button onClick={() => setRecurringOnly(true)} className={`rounded-full px-3 py-1 ${recurringOnly ? "bg-leaf text-forest-sidebar" : "text-fg2"}`}>Recurring</button>
+              <button onClick={() => setRecurringOnly(true)} className={`rounded-full px-3 py-1 ${recurringOnly ? "bg-leaf text-white" : "text-fg2"}`}>Recurring</button>
               <button onClick={() => setRecurringOnly(false)} className={`rounded-full px-3 py-1 ${!recurringOnly ? "bg-forest text-white" : "text-fg2"}`}>All</button>
             </div>
           )}

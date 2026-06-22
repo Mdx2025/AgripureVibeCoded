@@ -60,7 +60,7 @@ body {
   }
   .btn-leaf {
     @apply btn bg-leaf;
-    color: #04230b;
+    color: #fff;
   }
   .btn-leaf:hover {
     background: #8bc06f;
