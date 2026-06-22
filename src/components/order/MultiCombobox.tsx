@@ -10,6 +10,7 @@ export default function MultiCombobox({
   placeholder = "Type to search…",
   allowCustom = true,
   noneLabel,
+  size = "md",
 }: {
   value: string[];
   onChange: (v: string[]) => void;
@@ -17,7 +18,17 @@ export default function MultiCombobox({
   placeholder?: string;
   allowCustom?: boolean;
   noneLabel?: string;
+  size?: "md" | "lg";
 }) {
+  const lg = size === "lg";
+  const sz = {
+    chip: lg ? "px-4 py-2 text-[15px]" : "px-3 py-1.5 text-[13px]",
+    box: lg ? "px-4 py-4" : "px-3.5 py-2.5",
+    input: lg ? "text-[18px]" : "text-[15px]",
+    icon: lg ? 20 : 16,
+    opt: lg ? "px-3.5 py-3 text-[16px]" : "px-3 py-2 text-[14px]",
+    none: lg ? "px-4 py-2 text-[15px]" : "px-3.5 py-1.5 text-[13px]",
+  };
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const id = useId();
@@ -50,7 +61,7 @@ export default function MultiCombobox({
           {value.map((v) => (
             <span
               key={v}
-              className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-semibold ${
+              className={`inline-flex items-center gap-1.5 rounded-full font-semibold ${sz.chip} ${
                 v === noneLabel ? "bg-[#F0EDE3] text-fg2" : "bg-[#E9F0E0] text-leaf-700"
               }`}
             >
@@ -63,8 +74,8 @@ export default function MultiCombobox({
         </div>
       )}
 
-      <div className="flex items-center gap-2 rounded-[12px] border border-hair bg-white px-3.5 py-2.5 focus-within:border-leaf">
-        <Search size={16} className="text-fg3" />
+      <div className={`flex items-center gap-2 rounded-[12px] border border-hair bg-white focus-within:border-leaf ${sz.box}`}>
+        <Search size={sz.icon} className="text-fg3" />
         <input
           id={id}
           value={query}
@@ -80,7 +91,7 @@ export default function MultiCombobox({
             }
           }}
           placeholder={noneSelected ? "Clear the option below to add items" : placeholder}
-          className="w-full bg-transparent text-[15px] outline-none disabled:cursor-not-allowed"
+          className={`w-full bg-transparent outline-none disabled:cursor-not-allowed ${sz.input}`}
         />
       </div>
 
@@ -91,7 +102,7 @@ export default function MultiCombobox({
               key={o}
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => add(o)}
-              className="block w-full rounded-lg px-3 py-2 text-left text-[14px] text-[#3F463E] hover:bg-[#FAF8F2]"
+              className={`block w-full rounded-lg text-left text-[#3F463E] hover:bg-[#FAF8F2] ${sz.opt}`}
             >
               {o}
             </button>
@@ -100,7 +111,7 @@ export default function MultiCombobox({
             <button
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => add(q)}
-              className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-[14px] font-semibold text-leaf-700 hover:bg-[#FAF8F2]"
+              className={`flex w-full items-center gap-2 rounded-lg text-left font-semibold text-leaf-700 hover:bg-[#FAF8F2] ${sz.opt}`}
             >
               <Plus size={15} strokeWidth={2.4} /> Add &ldquo;{q}&rdquo;
             </button>
@@ -111,7 +122,7 @@ export default function MultiCombobox({
       {noneLabel && (
         <button
           onClick={() => (noneSelected ? onChange([]) : add(noneLabel))}
-          className={`mt-2.5 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[13px] font-semibold transition-colors ${
+          className={`mt-2.5 inline-flex items-center gap-2 rounded-full border font-semibold transition-colors ${sz.none} ${
             noneSelected ? "border-forest bg-forest text-white" : "border-hair-strong bg-white text-fg2 hover:border-forest"
           }`}
         >
