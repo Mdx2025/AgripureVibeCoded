@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/agripure-design-system-dfc568a3-3159-439a-a212-cdcc17a291d0/colors_and_type.css">
+<script src="_ds/agripure-design-system-dfc568a3-3159-439a-a212-cdcc17a291d0/_ds_bundle.js"></script>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#EDEAE0}
+  ::selection{background:#C4E0B6}
+  .dx-nav{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;cursor:pointer;color:#9FC08A;font-weight:600;font-size:14.5px;transition:all .18s}
+  .dx-nav:hover{background:rgba(255,255,255,.06);color:#fff}
+  .dx-row:hover{background:#FAF8F2}
+  input,select,textarea{font-family:'Hanken Grotesk',sans-serif}
+  .dx-sc::-webkit-scrollbar{width:8px;height:8px}
+  .dx-sc::-webkit-scrollbar-thumb{background:#C7CBB8;border-radius:9px}
+</style>
+</helmet>
+
+<div style="font-family:'Hanken Grotesk',sans-serif;color:#1E251F;display:flex;min-height:100vh;background:#EDEAE0">
+
+  <!-- SIDEBAR -->
+  <aside style="width:248px;flex:none;background:#04210B;display:flex;flex-direction:column;padding:22px 16px;position:sticky;top:0;height:100vh">
+    <div style="display:flex;align-items:center;gap:10px;padding:6px 8px 22px">
+      <img src="assets/logo-white.png" style="height:26px" />
+    </div>
+    <nav style="display:flex;flex-direction:column;gap:4px;flex:1">
+      <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="5">
+        <div class="dx-nav" onClick="{{ n.go }}" style="{{ n.style }}">
+          <span style="display:flex">{{ n.icon }}</span>
+          <span style="flex:1">{{ n.label }}</span>
+          <sc-if value="{{ n.badge }}"><span style="font-family:'JetBrains Mono';font-size:11px;background:#6FAE52;color:#04210B;padding:2px 8px;border-radius:999px;font-weight:700">{{ n.badge }}</span></sc-if>
+        </div>
+      </sc-for>
+    </nav>
+    <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:14px;margin-top:14px">
+      <div style="display:flex;align-items:center;gap:11px;padding:6px 8px">
+        <div style="width:36px;height:36px;border-radius:50%;background:#6FAE52;color:#04210B;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:'Nunito'">MR</div>
+        <div style="flex:1;min-width:0"><div style="font-size:13.5px;font-weight:700;color:#fff">Maya Reyes</div><div style="font-size:12px;color:#7FA06C">Operations</div></div>
+        <span onClick="{{ goSignin }}" title="Sign out" style="cursor:pointer;color:#7FA06C;display:flex"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5V3h4M16 17l5-5-5-5M21 12H9"/></svg></span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div style="flex:1;display:flex;flex-direction:column;min-width:0">
+
+    <!-- SIGN IN (full takeover) -->
+    <sc-if value="{{ isSignin }}">
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:40px;background:radial-gradient(120% 90% at 50% 0%, #DCEFC8 0%, #EDEAE0 55%)">
+        <div style="width:400px;background:#fff;border:1px solid #E2DFD2;border-radius:22px;padding:40px;box-shadow:0 16px 40px rgba(0,40,8,.12)">
+          <img src="assets/logo-forest.png" style="height:28px" />
+          <h1 style="font-family:'Nunito';font-weight:900;font-size:26px;color:#063A12;margin:24px 0 4px">Dashboard sign-in</h1>
+          <p style="font-size:14px;color:#7A8076;margin:0 0 24px">Manage orders, inventory, and customers.</p>
+          <div style="display:flex;flex-direction:column;gap:13px">
+            <input placeholder="Email" style="padding:14px 16px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+            <input placeholder="Password" type="password" style="padding:14px 16px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+          </div>
+          <button onClick="{{ goOverview }}" style="width:100%;margin-top:20px;height:50px;border-radius:999px;border:none;background:#063A12;color:#fff;font-weight:700;font-size:15px;cursor:pointer">Sign in</button>
+          <div style="text-align:center;font-size:13px;color:#A6A293;margin-top:16px;font-family:'JetBrains Mono'">superadmin@agripure.com</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ inApp }}">
+    <!-- TOPBAR -->
+    <header style="height:72px;background:rgba(237,234,224,.86);backdrop-filter:blur(12px);border-bottom:1px solid #D9D6C7;display:flex;align-items:center;gap:20px;padding:0 30px;position:sticky;top:0;z-index:20">
+      <div><h1 style="font-family:'Nunito';font-weight:800;font-size:24px;color:#063A12;margin:0;letter-spacing:-.01em">{{ pageTitle }}</h1></div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:12px">
+        <div style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #D9D6C7;border-radius:999px;padding:9px 16px;width:240px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A958B" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+          <input placeholder="Search…" style="border:none;outline:none;background:none;font-size:14px;width:100%" />
+        </div>
+        <button style="position:relative;width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid #D9D6C7;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#5A6157"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9a6 6 0 0 1 12 0c0 7 3 7 3 7H3s3 0 3-7"/><path d="M10 21a2 2 0 0 0 4 0"/></svg><span style="position:absolute;top:8px;right:9px;width:8px;height:8px;border-radius:50%;background:#C0531C;border:2px solid #fff"></span></button>
+      </div>
+    </header>
+
+    <main class="dx-sc" style="flex:1;overflow-y:auto;padding:30px">
+
+      <!-- ===== OVERVIEW ===== -->
+      <sc-if value="{{ isOverview }}">
+      <div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px">
+          <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+            <div style="background:#fff;border:1px solid #E2DFD2;border-radius:18px;padding:22px;box-shadow:0 1px 3px rgba(0,40,8,.05)">
+              <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:13px;color:#7A8076">{{ k.label }}</span><span style="color:#A6A293">{{ k.icon }}</span></div>
+              <div style="font-family:'JetBrains Mono';font-size:30px;font-weight:600;color:#063A12;margin-top:12px">{{ k.value }}</div>
+              <div style="font-size:13px;margin-top:6px;color:{{ k.trendColor }}">{{ k.trend }} <span style="color:#A6A293">vs last month</span></div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:18px;margin-top:18px">
+          <!-- revenue chart -->
+          <div style="background:#fff;border:1px solid #E2DFD2;border-radius:18px;padding:24px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+              <div><div style="font-family:'Nunito';font-weight:800;font-size:18px;color:#063A12">Revenue</div><div style="font-size:13px;color:#8A958B">Last 12 months</div></div>
+              <div style="font-family:'JetBrains Mono';font-size:22px;color:#063A12">$284,920</div>
+            </div>
+            <div style="display:flex;align-items:flex-end;gap:10px;height:180px">
+              <sc-for list="{{ revBars }}" as="b" hint-placeholder-count="12">
+                <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end">
+                  <div style="width:100%;border-radius:6px 6px 0 0;background:{{ b.color }};height:{{ b.h }}"></div>
+                  <span style="font-size:10px;color:#A6A293;font-family:'JetBrains Mono'">{{ b.m }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <!-- category split -->
+          <div style="background:#fff;border:1px solid #E2DFD2;border-radius:18px;padding:24px">
+            <div style="font-family:'Nunito';font-weight:800;font-size:18px;color:#063A12;margin-bottom:18px">Sales by category</div>
+            <div style="display:flex;flex-direction:column;gap:16px">
+              <sc-for list="{{ catSplit }}" as="c" hint-placeholder-count="4">
+                <div>
+                  <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span style="color:#3F463E;font-weight:600">{{ c.label }}</span><span style="font-family:'JetBrains Mono';color:#7A8076">{{ c.pct }}</span></div>
+                  <div style="height:8px;background:#F0EDE3;border-radius:999px;overflow:hidden"><div style="height:100%;width:{{ c.pct }};background:{{ c.color }};border-radius:999px"></div></div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:18px;margin-top:18px">
+          <!-- recent orders -->
+          <div style="background:#fff;border:1px solid #E2DFD2;border-radius:18px;overflow:hidden">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid #EFece2"><div style="font-family:'Nunito';font-weight:800;font-size:18px;color:#063A12">Recent orders</div><span onClick="{{ goOrders }}" style="cursor:pointer;font-size:13px;color:#538B3C;font-weight:600">View all</span></div>
+            <table style="width:100%;border-collapse:collapse">
+              <tbody>
+              <sc-for list="{{ recentOrders }}" as="o" hint-placeholder-count="5">
+                <tr class="dx-row" style="border-bottom:1px solid #F2EFE6">
+                  <td style="padding:13px 24px;font-family:'JetBrains Mono';font-size:13px;color:#063A12">{{ o.id }}</td>
+                  <td style="padding:13px 8px;font-size:14px;color:#3F463E">{{ o.customer }}</td>
+                  <td style="padding:13px 8px;font-size:13px;color:#8A958B">{{ o.product }}</td>
+                  <td style="padding:13px 8px;font-family:'JetBrains Mono';font-size:14px;color:#063A12">{{ o.total }}</td>
+                  <td style="padding:13px 24px"><span style="{{ o.statusStyle }}">{{ o.status }}</span></td>
+                </tr>
+              </sc-for>
+              </tbody>
+            </table>
+          </div>
+          <!-- low stock -->
+          <div style="background:#fff;border:1px solid #E2DFD2;border-radius:18px;padding:24px">
+            <div style="font-family:'Nunito';font-weight:800;font-size:18px;color:#063A12;margin-bottom:16px">Inventory watch</div>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <sc-for list="{{ lowStock }}" as="p" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:12px">
+                  <img src="{{ p.bottle }}" style="height:40px"/>
+                  <div style="flex:1"><div style="font-weight:700;font-size:14px;color:#063A12">{{ p.name }}</div><div style="height:6px;background:#F0EDE3;border-radius:999px;margin-top:5px;overflow:hidden"><div style="height:100%;width:{{ p.pct }};background:{{ p.color }};border-radius:999px"></div></div></div>
+                  <span style="font-family:'JetBrains Mono';font-size:13px;color:{{ p.color }}">{{ p.stock }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ===== ORDERS ===== -->
+      <sc-if value="{{ isOrders }}">
+      <div>
+        <div style="display:flex;gap:8px;margin-bottom:18px">
+          <sc-for list="{{ orderTabs }}" as="t" hint-placeholder-count="5">
+            <button onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }} <span style="opacity:.6">{{ t.count }}</span></button>
+          </sc-for>
+        </div>
+        <div style="background:#fff;border:1px solid #E2DFD2;border-radius:18px;overflow:hidden">
+          <table style="width:100%;border-collapse:collapse">
+            <thead><tr style="background:#FAF8F2;border-bottom:1px solid #EFece2">
+              <th style="text-align:left;padding:14px 24px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">Order</th>
+              <th style="text-align:left;padding:14px 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">Customer</th>
+              <th style="text-align:left;padding:14px 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">Items</th>
+              <th style="text-align:left;padding:14px 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">Date</th>
+              <th style="text-align:left;padding:14px 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">Total</th>
+              <th style="text-align:left;padding:14px 24px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">Status</th>
+            </tr></thead>
+            <tbody>
+            <sc-for list="{{ orders }}" as="o" hint-placeholder-count="8">
+              <tr class="dx-row" style="border-bottom:1px solid #F2EFE6;cursor:pointer">
+                <td style="padding:15px 24px;font-family:'JetBrains Mono';font-size:13px;color:#063A12">{{ o.id }}</td>
+                <td style="padding:15px 8px"><div style="font-size:14px;font-weight:600;color:#063A12">{{ o.customer }}</div><div style="font-size:12px;color:#A6A293">{{ o.op }}</div></td>
+                <td style="padding:15px 8px;font-size:13px;color:#5A6157">{{ o.product }}</td>
+                <td style="padding:15px 8px;font-size:13px;color:#8A958B;font-family:'JetBrains Mono'">{{ o.date }}</td>
+                <td style="padding:15px 8px;font-family:'JetBrains Mono';font-size:14px;color:#063A12">{{ o.total }}</td>
+                <td style="padding:15px 24px"><span style="{{ o.statusStyle }}">{{ o.status }}</span></td>
+              </tr>
+            </sc-for>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ===== PRODUCTS ===== -->
+      <sc-if value="{{ isProducts }}">
+      <div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+          <div style="font-size:14px;color:#7A8076">7 active products · 6-gallon standard</div>
+          <button style="display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;border:none;background:#063A12;color:#fff;font-weight:700;font-size:14px;cursor:pointer"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Add product</button>
+        </div>
+        <div style="background:#fff;border:1px solid #E2DFD2;border-radius:18px;overflow:hidden">
+          <table style="width:100%;border-collapse:collapse">
+            <thead><tr style="background:#FAF8F2;border-bottom:1px solid #EFece2">
+              <th style="text-align:left;padding:14px 24px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">Product</th>
+              <th style="text-align:left;padding:14px 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">SKU</th>
+              <th style="text-align:left;padding:14px 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">Category</th>
+              <th style="text-align:left;padding:14px 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">Price</th>
+              <th style="text-align:left;padding:14px 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">Stock</th>
+              <th style="text-align:left;padding:14px 24px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">Status</th>
+            </tr></thead>
+            <tbody>
+            <sc-for list="{{ productRows }}" as="p" hint-placeholder-count="7">
+              <tr class="dx-row" style="border-bottom:1px solid #F2EFE6">
+                <td style="padding:13px 24px"><div style="display:flex;align-items:center;gap:14px"><div style="width:42px;height:52px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 70%, {{ p.accentSoft }} 0%, #FAF8F2 75%);border-radius:9px;flex:none"><img src="{{ p.bottle }}" style="height:48px"/></div><div><div style="font-family:'JetBrains Mono';font-size:11px;color:{{ p.accent }}">{{ p.numLabel }}</div><div style="font-family:'Nunito';font-weight:800;font-size:16px;color:#063A12">{{ p.name }}</div></div></div></td>
+                <td style="padding:13px 8px;font-family:'JetBrains Mono';font-size:12.5px;color:#7A8076">{{ p.sku }}</td>
+                <td style="padding:13px 8px;font-size:13px;color:#5A6157">{{ p.type }}</td>
+                <td style="padding:13px 8px;font-family:'JetBrains Mono';font-size:14px;color:#063A12">{{ p.priceFmt }}</td>
+                <td style="padding:13px 8px"><div style="display:flex;align-items:center;gap:10px"><div style="width:70px;height:6px;background:#F0EDE3;border-radius:999px;overflow:hidden"><div style="height:100%;width:{{ p.pct }};background:{{ p.stockColor }};border-radius:999px"></div></div><span style="font-family:'JetBrains Mono';font-size:13px;color:#5A6157">{{ p.stock }}</span></div></td>
+                <td style="padding:13px 24px"><span style="{{ p.statusStyle }}">{{ p.statusLabel }}</span></td>
+              </tr>
+            </sc-for>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </sc-if>
+
+      <!-- ===== CUSTOMERS ===== -->
+      <sc-if value="{{ isCustomers }}">
+      <div style="background:#fff;border:1px solid #E2DFD2;border-radius:18px;overflow:hidden">
+        <table style="width:100%;border-collapse:collapse">
+          <thead><tr style="background:#FAF8F2;border-bottom:1px solid #EFece2">
+            <th style="text-align:left;padding:14px 24px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">Customer</th>
+            <th style="text-align:left;padding:14px 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">Location</th>
+            <th style="text-align:left;padding:14px 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">Crop</th>
+            <th style="text-align:left;padding:14px 8px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">Orders</th>
+            <th style="text-align:left;padding:14px 24px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8A958B;font-weight:700">Lifetime value</th>
+          </tr></thead>
+          <tbody>
+          <sc-for list="{{ customers }}" as="c" hint-placeholder-count="8">
+            <tr class="dx-row" style="border-bottom:1px solid #F2EFE6;cursor:pointer">
+              <td style="padding:14px 24px"><div style="display:flex;align-items:center;gap:12px"><div style="width:38px;height:38px;border-radius:50%;background:{{ c.avColor }};color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:'Nunito';font-size:14px">{{ c.initials }}</div><div><div style="font-size:14px;font-weight:700;color:#063A12">{{ c.name }}</div><div style="font-size:12px;color:#A6A293">{{ c.op }}</div></div></div></td>
+              <td style="padding:14px 8px;font-size:13px;color:#5A6157">{{ c.location }}</td>
+              <td style="padding:14px 8px;font-size:13px;color:#5A6157">{{ c.crop }}</td>
+              <td style="padding:14px 8px;font-family:'JetBrains Mono';font-size:14px;color:#063A12">{{ c.orders }}</td>
+              <td style="padding:14px 24px;font-family:'JetBrains Mono';font-size:14px;color:#063A12">{{ c.ltv }}</td>
+            </tr>
+          </sc-for>
+          </tbody>
+        </table>
+      </div>
+      </sc-if>
+
+      <!-- ===== SETTINGS ===== -->
+      <sc-if value="{{ isSettings }}">
+      <div style="max-width:760px;display:flex;flex-direction:column;gap:18px">
+        <div style="background:#fff;border:1px solid #E2DFD2;border-radius:18px;padding:26px">
+          <div style="font-family:'Nunito';font-weight:800;font-size:18px;color:#063A12;margin-bottom:18px">Store profile</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <div><label style="font-size:13px;color:#7A8076;display:block;margin-bottom:6px">Store name</label><input value="AgriPure" style="width:100%;padding:12px 14px;border:1px solid #D9D6C7;border-radius:10px;font-size:14px" /></div>
+            <div><label style="font-size:13px;color:#7A8076;display:block;margin-bottom:6px">Support email</label><input value="grow@agripure.com" style="width:100%;padding:12px 14px;border:1px solid #D9D6C7;border-radius:10px;font-size:14px" /></div>
+            <div style="grid-column:span 2"><label style="font-size:13px;color:#7A8076;display:block;margin-bottom:6px">Field office</label><input value="1820 Vineyard Rd, Napa, CA 94558" style="width:100%;padding:12px 14px;border:1px solid #D9D6C7;border-radius:10px;font-size:14px" /></div>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid #E2DFD2;border-radius:18px;padding:26px">
+          <div style="font-family:'Nunito';font-weight:800;font-size:18px;color:#063A12;margin-bottom:6px">Shipping &amp; notifications</div>
+          <sc-for list="{{ toggles }}" as="t" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid #F2EFE6">
+              <div><div style="font-weight:600;font-size:14.5px;color:#063A12">{{ t.label }}</div><div style="font-size:13px;color:#8A958B">{{ t.desc }}</div></div>
+              <div onClick="{{ t.toggle }}" style="{{ t.trackStyle }}"><div style="{{ t.knobStyle }}"></div></div>
+            </div>
+          </sc-for>
+        </div>
+        <div><button style="padding:13px 26px;border-radius:999px;border:none;background:#063A12;color:#fff;font-weight:700;font-size:14px;cursor:pointer">Save changes</button></div>
+      </div>
+      </sc-if>
+
+    </main>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:860}}">
+class Component extends DCLogic {
+  state = { route:'overview', orderTab:'All', toggles:{stock:true,ship:true,marketing:false,net30:true} };
+
+  P = [
+    {id:'restore',num:'01',name:'Restore',type:'Soil Amendment',accent:'#4E8A3A',accentSoft:'#E9F0E0',price:249,sku:'AP-01-RST-6G',stock:142,cap:200},
+    {id:'cleanse',num:'02',name:'Cleanse',type:'Pre-emergent',accent:'#BE8A1E',accentSoft:'#F4ECD6',price:219,sku:'AP-02-CLN-6G',stock:88,cap:200},
+    {id:'strength',num:'03',name:'Strength',type:'Root Stimulant',accent:'#2F6FB0',accentSoft:'#E2ECF5',price:239,sku:'AP-03-STR-6G',stock:121,cap:200},
+    {id:'grow',num:'04',name:'Grow',type:'Foliar Nutrient',accent:'#5BA03C',accentSoft:'#E8F2DE',price:229,sku:'AP-04-GRW-6G',stock:167,cap:200},
+    {id:'protect',num:'05',name:'Protect',type:'Biopesticide',accent:'#C0531C',accentSoft:'#F4E2D6',price:279,sku:'AP-05-PRT-6G',stock:34,cap:200},
+    {id:'prevent',num:'06',name:'Prevent',type:'Biofungicide',accent:'#6E4FA0',accentSoft:'#EAE4F2',price:299,sku:'AP-06-PRV-6G',stock:18,cap:200},
+    {id:'boost',num:'07',name:'Boost',type:'Bloom & Fruit',accent:'#B8860B',accentSoft:'#F4ECD6',price:269,sku:'AP-07-BST-6G',stock:134,cap:200},
+  ];
+
+  ORDERS = [
+    {id:'#AP-28411',customer:'Carter Vineyards',op:'Carter Family Estate',product:'Prevent · Restore',date:'Jun 18',total:'$548',status:'Processing'},
+    {id:'#AP-28410',customer:'Sunridge Orchards',op:'Sunridge LLC',product:'Boost ×2',date:'Jun 18',total:'$538',status:'Shipped'},
+    {id:'#AP-28409',customer:'Del Rio Farms',op:'Del Rio Produce',product:'Grow · Strength',date:'Jun 17',total:'$468',status:'Delivered'},
+    {id:'#AP-28408',customer:'Brookside Berry Co.',op:'Brookside Inc.',product:'Boost · Prevent',date:'Jun 17',total:'$568',status:'Processing'},
+    {id:'#AP-28407',customer:'Maple Hill Acres',op:'Maple Hill',product:'Restore ×1',date:'Jun 16',total:'$249',status:'Pending'},
+    {id:'#AP-28406',customer:'Verde Valley Co-op',op:'Verde Co-op',product:'Cleanse · Grow',date:'Jun 16',total:'$448',status:'Delivered'},
+    {id:'#AP-28405',customer:'Highland Cattle &amp; Crop',op:'Highland Ag',product:'Protect ×2',date:'Jun 15',total:'$558',status:'Shipped'},
+    {id:'#AP-28404',customer:'Willow Creek Greens',op:'Willow Creek',product:'Strength · Grow',date:'Jun 15',total:'$468',status:'Cancelled'},
+    {id:'#AP-28403',customer:'Goldfield Almonds',op:'Goldfield Nut Co.',product:'Boost · Restore',date:'Jun 14',total:'$518',status:'Delivered'},
+    {id:'#AP-28402',customer:'Cedar Ridge Vines',op:'Cedar Ridge',product:'Prevent ×1',date:'Jun 14',total:'$299',status:'Delivered'},
+  ];
+
+  CUSTOMERS = [
+    {name:'Elena Carter',op:'Carter Vineyards',location:'Napa, CA',crop:'Wine grapes',orders:14,ltv:'$8,240',avColor:'#4E8A3A'},
+    {name:'Tom Sunridge',op:'Sunridge Orchards',location:'Yakima, WA',crop:'Apples',orders:11,ltv:'$6,910',avColor:'#B8860B'},
+    {name:'Maria Del Rio',op:'Del Rio Farms',location:'Salinas, CA',crop:'Lettuce',orders:9,ltv:'$5,120',avColor:'#2F6FB0'},
+    {name:'Jonas Brook',op:'Brookside Berry Co.',location:'Hood River, OR',crop:'Strawberries',orders:8,ltv:'$4,880',avColor:'#C0531C'},
+    {name:'Priya Anand',op:'Maple Hill Acres',location:'Lodi, CA',crop:'Almonds',orders:7,ltv:'$3,940',avColor:'#6E4FA0'},
+    {name:'Greg Verde',op:'Verde Valley Co-op',location:'Mesa, AZ',crop:'Citrus',orders:6,ltv:'$3,310',avColor:'#356A26'},
+    {name:'Hana Kim',op:'Willow Creek Greens',location:'Eugene, OR',crop:'Greenhouse veg',orders:5,ltv:'$2,680',avColor:'#5BA03C'},
+    {name:'Sam Goldfield',op:'Goldfield Almonds',location:'Modesto, CA',crop:'Almonds',orders:5,ltv:'$2,540',avColor:'#BE8A1E'},
+  ];
+
+  statusColor(s){ return ({Processing:'#2F6FB0',Shipped:'#538B3C',Delivered:'#356A26',Pending:'#C97A06',Cancelled:'#B23A1E'})[s]||'#5A6157'; }
+  statusBg(s){ return ({Processing:'#E2ECF5',Shipped:'#E9F0E0',Delivered:'#E9F0E0',Pending:'#FBEFD9',Cancelled:'#F8E3DC'})[s]||'#F0EDE3'; }
+  statusStyle(s){ return 'display:inline-block;font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px;color:'+this.statusColor(s)+';background:'+this.statusBg(s); }
+  go(route){ this.setState({route}); }
+  H(s){ return React.createElement('span',{dangerouslySetInnerHTML:{__html:s},style:{display:'contents'}}); }
+
+  renderVals(){
+    const st=this.state;
+    const icon=(p)=>this.H('<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">'+p+'</svg>');
+    const items=[
+      {key:'overview',label:'Overview',icon:'<path d="M4 13h6V4H4zM14 20h6v-9h-6zM14 4v4h6V4zM4 20h6v-4H4z"/>'},
+      {key:'orders',label:'Orders',icon:'<path d="M6 7h12l-1 13H7zM9 7a3 3 0 0 1 6 0"/>',badge:'12'},
+      {key:'products',label:'Products',icon:'<path d="M3 9l9-5 9 5-9 5zM3 9v6l9 5 9-5V9"/>'},
+      {key:'customers',label:'Customers',icon:'<circle cx="9" cy="8" r="3"/><path d="M3 21c0-3 3-5 6-5s6 2 6 5"/><path d="M16 6a3 3 0 0 1 0 6M21 21c0-2-1-3.5-3-4.5"/>'},
+      {key:'settings',label:'Settings',icon:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/>'},
+    ];
+    const navItems=items.map(it=>({label:it.label, badge:it.badge||'', icon:icon(it.icon), go:()=>this.go(it.key),
+      style:st.route===it.key?'background:rgba(111,174,82,.16);color:#fff':'' }));
+    const titles={overview:'Overview',orders:'Orders',products:'Products',customers:'Customers',settings:'Settings'};
+
+    const bottle=(id)=>'assets/bottles/'+id+'.png';
+    const m=(n)=>'$'+Math.round(n).toLocaleString('en-US');
+
+    const kpis=[
+      {label:'Revenue',value:'$284,920',trend:'▲ 12.4%',trendColor:'#356A26',icon:icon('<path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h6v6"/>')},
+      {label:'Orders',value:'1,284',trend:'▲ 8.1%',trendColor:'#356A26',icon:icon('<path d="M6 7h12l-1 13H7zM9 7a3 3 0 0 1 6 0"/>')},
+      {label:'Avg. order',value:'$221',trend:'▲ 3.2%',trendColor:'#356A26',icon:icon('<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 10h4a2 2 0 0 1 0 4H9"/>')},
+      {label:'Customers',value:'1,412',trend:'▲ 5.6%',trendColor:'#356A26',icon:icon('<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5"/>')},
+    ];
+    const revVals=[42,48,45,53,58,55,64,69,66,74,81,88];
+    const months=['Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun'];
+    const revBars=revVals.map((v,i)=>({h:Math.round(v/88*100)+'%', m:months[i], color:i===11?'#6FAE52':'#C9DFB6'}));
+
+    const catSplit=[
+      {label:'Nutrients (Grow, Boost, Strength)',pct:'46%',color:'#6FAE52'},
+      {label:'Protection (Protect, Prevent)',pct:'29%',color:'#C0531C'},
+      {label:'Soil (Restore, Cleanse)',pct:'25%',color:'#BE8A1E'},
+    ];
+
+    const recentOrders=this.ORDERS.slice(0,5).map(o=>({...o, statusStyle:this.statusStyle(o.status)}));
+
+    const lowStock=this.P.filter(p=>p.stock<140).sort((a,b)=>a.stock-b.stock).slice(0,4).map(p=>{
+      const pct=Math.round(p.stock/p.cap*100); const color=p.stock<40?'#B23A1E':p.stock<90?'#C97A06':'#538B3C';
+      return {name:p.name, bottle:bottle(p.id), stock:p.stock+' u', pct:pct+'%', color};
+    });
+
+    // orders tab filter
+    const tabs=['All','Processing','Shipped','Delivered','Pending'];
+    const orderTabs=tabs.map(t=>({label:t, count:t==='All'?this.ORDERS.length:this.ORDERS.filter(o=>o.status===t).length,
+      pick:()=>this.setState({orderTab:t}),
+      style:'cursor:pointer;padding:9px 16px;border-radius:999px;font-weight:600;font-size:13.5px;font-family:Hanken Grotesk;transition:all .18s;'+(st.orderTab===t?'background:#063A12;color:#fff;border:1.5px solid #063A12':'background:#fff;color:#3F463E;border:1.5px solid #D9D6C7')}));
+    const orders=this.ORDERS.filter(o=>st.orderTab==='All'||o.status===st.orderTab).map(o=>({...o, statusStyle:this.statusStyle(o.status)}));
+
+    const productRows=this.P.map(p=>{
+      const pct=Math.round(p.stock/p.cap*100); const stockColor=p.stock<40?'#B23A1E':p.stock<90?'#C97A06':'#538B3C';
+      const status=p.stock<40?'Low stock':'Active'; const sc=p.stock<40?'#C97A06':'#356A26'; const sbg=p.stock<40?'#FBEFD9':'#E9F0E0';
+      return {...p, numLabel:'No. '+p.num, bottle:bottle(p.id), priceFmt:m(p.price), stock:p.stock+' u', pct:pct+'%', stockColor,
+        statusLabel:status, statusStyle:'display:inline-block;font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px;color:'+sc+';background:'+sbg};
+    });
+
+    const customers=this.CUSTOMERS.map(c=>({...c, initials:c.name.split(' ').map(w=>w[0]).join('')}));
+
+    const tg=st.toggles;
+    const mkToggle=(key,label,desc)=>({label,desc, toggle:()=>this.setState(s=>({toggles:{...s.toggles,[key]:!s.toggles[key]}})),
+      trackStyle:'width:46px;height:26px;border-radius:999px;cursor:pointer;padding:3px;transition:background .2s;background:'+(tg[key]?'#6FAE52':'#D2CFC1'),
+      knobStyle:'width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:transform .2s;transform:translateX('+(tg[key]?'20px':'0')+')'});
+    const toggles=[
+      mkToggle('stock','Low-stock alerts','Email when any SKU drops below 40 units'),
+      mkToggle('ship','Free freight over $750','Auto-apply free palletized freight'),
+      mkToggle('net30','Net-30 terms','Offer Net-30 to verified operations'),
+      mkToggle('marketing','Marketing emails','Seasonal program reminders to customers'),
+    ];
+
+    return {
+      isSignin:st.route==='signin', inApp:st.route!=='signin',
+      isOverview:st.route==='overview', isOrders:st.route==='orders', isProducts:st.route==='products',
+      isCustomers:st.route==='customers', isSettings:st.route==='settings',
+      pageTitle:titles[st.route]||'Overview',
+      navItems, goSignin:()=>this.go('signin'), goOverview:()=>this.go('overview'), goOrders:()=>this.go('orders'),
+      kpis, revBars, catSplit, recentOrders, lowStock,
+      orderTabs, orders, productRows, customers, toggles,
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/agripure-design-system-dfc568a3-3159-439a-a212-cdcc17a291d0/colors_and_type.css">
+<script src="_ds/agripure-design-system-dfc568a3-3159-439a-a212-cdcc17a291d0/_ds_bundle.js"></script>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:#EDEAE0}
+  ::selection{background:#C4E0B6}
+  .ap-link{position:relative;cursor:pointer;color:#26302A;font-weight:600;font-size:15px;font-family:'Hanken Grotesk',sans-serif;transition:color .2s}
+  .ap-link:hover{color:#063A12}
+  .ap-pp{transition:transform .35s cubic-bezier(.16,1,.3,1),box-shadow .35s}
+  .ap-pp:hover{transform:translateY(-6px)}
+  .ap-rise{opacity:0;transform:translateY(16px);animation:apRise .7s cubic-bezier(.16,1,.3,1) forwards}
+  @keyframes apRise{to{opacity:1;transform:none}}
+  @keyframes apFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  @keyframes apDraw{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
+  .ap-sc::-webkit-scrollbar{height:8px}
+  .ap-sc::-webkit-scrollbar-thumb{background:#C7CBB8;border-radius:9px}
+  input,select,textarea{font-family:'Hanken Grotesk',sans-serif}
+</style>
+</helmet>
+
+<div style="font-family:'Hanken Grotesk',sans-serif;color:#1E251F;background:#EDEAE0;min-height:100vh;display:flex;flex-direction:column">
+
+  <!-- ANNOUNCEMENT -->
+  <div style="background:#001706;color:#CFE3C2;text-align:center;font-size:13px;letter-spacing:.04em;padding:9px 16px;font-weight:500">
+    Free freight on orders over $750 · Every formula custom-matched to your crop, soil &amp; pressure
+  </div>
+
+  <!-- NAV -->
+  <header style="position:sticky;top:0;z-index:40;background:rgba(237,234,224,.86);backdrop-filter:blur(14px);border-bottom:1px solid #D9D6C7">
+    <div style="max-width:1240px;margin:0 auto;padding:0 32px;height:74px;display:flex;align-items:center;gap:32px">
+      <img src="assets/logo-forest.png" alt="AgriPure" onClick="{{ goHome }}" style="height:30px;cursor:pointer" />
+      <nav style="display:flex;gap:28px;margin-left:14px" class="ap-desk">
+        <span class="ap-link" onClick="{{ goShop }}">Shop</span>
+        <span class="ap-link" onClick="{{ goFormula }}">Find your formula</span>
+        <span class="ap-link" onClick="{{ goLearn }}">Learn</span>
+        <span class="ap-link" onClick="{{ goAbout }}">About</span>
+        <span class="ap-link" onClick="{{ goContact }}">Contact</span>
+      </nav>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:6px">
+        <button onClick="{{ goAuth }}" title="Account" style="display:flex;align-items:center;gap:7px;background:none;border:none;cursor:pointer;color:#26302A;font-family:'Hanken Grotesk';font-weight:600;font-size:14px;padding:8px 10px;border-radius:999px">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>
+          Account
+        </button>
+        <button onClick="{{ toggleCart }}" title="Cart" style="position:relative;display:flex;align-items:center;gap:8px;background:#063A12;border:none;cursor:pointer;color:#fff;font-family:'Hanken Grotesk';font-weight:700;font-size:14px;padding:10px 18px;border-radius:999px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+          <span>{{ cartCount }}</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main style="flex:1">
+
+    <!-- ============ HOME ============ -->
+    <sc-if value="{{ isHome }}">
+    <div>
+      <!-- HERO · 3D scroll-driven crop experience -->
+      <dc-import name="AgriPureExperience" hint-size="100%,100vh"></dc-import>
+
+      <!-- THE SEVEN -->
+      <section style="padding:30px 32px 80px">
+        <div style="max-width:1240px;margin:0 auto">
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:16px">
+            <div>
+              <div style="font-family:'Hanken Grotesk';font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6FAE52">The line</div>
+              <h2 style="font-family:'Nunito';font-weight:800;font-size:38px;letter-spacing:-.02em;color:#063A12;margin:8px 0 0">Seven inputs. One system.</h2>
+            </div>
+            <span class="ap-link" onClick="{{ goShop }}" style="color:#538B3C;display:inline-flex;align-items:center;gap:6px">View all<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+          <div class="ap-sc" style="display:grid;grid-template-columns:repeat(7,minmax(150px,1fr));gap:14px;overflow-x:auto;padding-bottom:8px">
+            <sc-for list="{{ products }}" as="p">
+              <div class="ap-pp" onClick="{{ p.open }}" style="cursor:pointer;background:#fff;border:1px solid #E2DFD2;border-radius:16px;padding:14px 14px 18px;text-align:center;box-shadow:0 1px 3px rgba(0,40,8,.05)">
+                <div style="height:150px;display:flex;align-items:flex-end;justify-content:center;background:radial-gradient(circle at 50% 70%, #F2EFE6 0%, rgba(255,255,255,0) 70%);border-radius:12px">
+                  {{ p.img148 }}
+                </div>
+                <div style="font-family:'JetBrains Mono';font-size:11px;color:#A6A293;margin-top:12px">{{ p.numLabel }}</div>
+                <div style="font-family:'Nunito';font-weight:800;font-size:18px;color:#063A12;margin-top:3px">{{ p.name }}</div>
+                <div style="font-size:11.5px;color:#7A8076;margin-top:3px;line-height:1.35">{{ p.cat }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES -->
+      <section style="padding:0 32px 84px">
+        <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+          <sc-for list="{{ features }}" as="f" hint-placeholder-count="3">
+            <div style="background:#fff;border:1px solid #E2DFD2;border-radius:18px;padding:30px;box-shadow:0 1px 3px rgba(0,40,8,.05)">
+              <div style="width:52px;height:52px;border-radius:14px;background:#E9F0E0;display:flex;align-items:center;justify-content:center;color:#356A26">{{ f.icon }}</div>
+              <h3 style="font-family:'Nunito';font-weight:800;font-size:21px;color:#063A12;margin:18px 0 8px">{{ f.title }}</h3>
+              <p style="font-size:15px;line-height:1.6;color:#5A6157;margin:0">{{ f.body }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- SPOTLIGHT (dark) -->
+      <section style="padding:0 32px 84px">
+        <div style="max-width:1240px;margin:0 auto;position:relative;overflow:hidden;border-radius:26px;background:linear-gradient(160deg,#063A12 0%,#001706 100%)">
+          <div style="position:absolute;inset:0;background:radial-gradient(110% 90% at 50% 130%, #BFE89A 0%, rgba(111,174,82,.25) 30%, rgba(0,23,6,0) 70%)"></div>
+          <div style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;padding:56px">
+            <div>
+              <div style="font-family:'Hanken Grotesk';font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9FD27E">Spotlight · No. 07</div>
+              <h2 style="font-family:'Nunito';font-weight:900;font-size:48px;letter-spacing:-.02em;color:#fff;margin:12px 0 0">Boost</h2>
+              <p style="font-size:17px;line-height:1.6;color:#C9DBC0;max-width:430px;margin:14px 0 0">The finishing input. Drives flowering, fruit set, and fill for a bigger, cleaner harvest — measured in marketable yield.</p>
+              <div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap">
+                <span style="font-family:'JetBrains Mono';font-size:13px;color:#CFE3C2;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:8px 14px;border-radius:999px">N-P-K 2–4–8</span>
+                <span style="font-family:'JetBrains Mono';font-size:13px;color:#CFE3C2;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:8px 14px;border-radius:999px">pH 6.4</span>
+                <span style="font-family:'JetBrains Mono';font-size:13px;color:#CFE3C2;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:8px 14px;border-radius:999px">OMRI-style</span>
+              </div>
+              <button onClick="{{ goBoost }}" style="margin-top:30px;display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:999px;border:none;background:#6FAE52;color:#04230B;font-weight:800;font-size:15px;cursor:pointer" onmouseover="this.style.background='#8BC06F'" onmouseout="this.style.background='#6FAE52'">View Boost<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            </div>
+            <div style="display:flex;justify-content:center;position:relative">
+              <img src="assets/bottles/boost.png" alt="Boost" style="height:420px;filter:drop-shadow(0 24px 44px rgba(0,0,0,.4))" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FORMULATOR TEASER -->
+      <section style="padding:0 32px 90px">
+        <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;background:#fff;border:1px solid #E2DFD2;border-radius:26px;padding:52px;box-shadow:0 4px 12px rgba(0,40,8,.06)">
+          <div>
+            <div style="font-family:'Hanken Grotesk';font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6FAE52">Custom-formulated</div>
+            <h2 style="font-family:'Nunito';font-weight:800;font-size:36px;letter-spacing:-.02em;color:#063A12;margin:10px 0 0">Tell us your crop. We'll build the program.</h2>
+            <p style="font-size:16px;line-height:1.6;color:#5A6157;max-width:440px;margin:14px 0 0">Answer three questions — crop, pressure, stage — and we'll match a custom program from the seven, tuned to your acreage with rates and an estimate.</p>
+            <button onClick="{{ goFormula }}" style="margin-top:26px;display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:999px;border:none;background:#063A12;color:#fff;font-weight:700;font-size:15px;cursor:pointer" onmouseover="this.style.background='#004800'" onmouseout="this.style.background='#063A12'">Build my formula<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+          <div style="background:#F4F1E8;border:1px solid #E2DFD2;border-radius:18px;padding:24px">
+            <div style="font-family:'JetBrains Mono';font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8A958B">Example · Wine grapes · Napa, CA</div>
+            <div style="margin-top:14px;display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E2DFD2;border-radius:12px;padding:10px 14px"><img src="assets/bottles/prevent.png" style="height:40px"/><div><div style="font-family:'Nunito';font-weight:800;color:#063A12">Prevent</div><div style="font-size:12px;color:#7A8076">Powdery-mildew pressure</div></div><span style="margin-left:auto;font-family:'JetBrains Mono';font-size:12px;color:#6E4FA0">0.75 gal/ac</span></div>
+              <div style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E2DFD2;border-radius:12px;padding:10px 14px"><img src="assets/bottles/restore.png" style="height:40px"/><div><div style="font-family:'Nunito';font-weight:800;color:#063A12">Restore</div><div style="font-size:12px;color:#7A8076">Soil &amp; root support</div></div><span style="margin-left:auto;font-family:'JetBrains Mono';font-size:12px;color:#4E8A3A">1 gal/ac</span></div>
+            </div>
+            <div style="font-family:'JetBrains Mono';font-size:12px;color:#8A958B;margin-top:14px;text-align:center">FORMULA AP-WG-PM-0518</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section style="padding:0 32px 96px">
+        <div style="max-width:1240px;margin:0 auto;text-align:center;background:radial-gradient(120% 130% at 50% -20%, #DCEFC8 0%, #EDEAE0 60%);border:1px solid #D9D6C7;border-radius:26px;padding:64px 40px">
+          <h2 style="font-family:'Nunito';font-weight:900;font-size:42px;letter-spacing:-.02em;color:#063A12;margin:0">Soil to harvest.</h2>
+          <p style="font-size:17px;color:#4A524B;max-width:520px;margin:14px auto 0">Talk to an agronomist about what you're fighting this season. We'll formulate for your operation.</p>
+          <div style="display:flex;gap:14px;justify-content:center;margin-top:28px;flex-wrap:wrap">
+            <button onClick="{{ goShop }}" style="padding:15px 28px;border-radius:999px;border:none;background:#063A12;color:#fff;font-weight:700;font-size:15px;cursor:pointer">Shop the line</button>
+            <button onClick="{{ goContact }}" style="padding:15px 28px;border-radius:999px;border:1.5px solid #C7CBB8;background:#fff;color:#063A12;font-weight:700;font-size:15px;cursor:pointer">Talk to us</button>
+          </div>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+
+    <!-- ============ SHOP ============ -->
+    <sc-if value="{{ isShop }}">
+    <div style="max-width:1240px;margin:0 auto;padding:56px 32px 90px">
+      <div style="font-family:'Hanken Grotesk';font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6FAE52">The full line</div>
+      <h1 style="font-family:'Nunito';font-weight:900;font-size:52px;letter-spacing:-.02em;color:#063A12;margin:8px 0 0">Shop AgriPure</h1>
+      <p style="font-size:17px;color:#5A6157;max-width:560px;margin:12px 0 0">Seven custom-formulated inputs covering the full season — soil, germination, growth, protection, and yield. All 6-gallon standard; trial and drum sizes available.</p>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;margin:34px 0 22px;flex-wrap:wrap;gap:14px">
+        <div style="display:flex;gap:9px;flex-wrap:wrap">
+          <sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+            <button onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:13px;color:#8A958B">Sort</span>
+          <select onChange="{{ setSort }}" value="{{ shopSort }}" style="padding:9px 14px;border-radius:999px;border:1px solid #D9D6C7;background:#fff;font-size:14px;color:#26302A;cursor:pointer">
+            <option value="featured">Featured</option>
+            <option value="low">Price: low to high</option>
+            <option value="high">Price: high to low</option>
+            <option value="rating">Top rated</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+        <sc-for list="{{ shopProducts }}" as="p" hint-placeholder-count="6">
+          <div class="ap-pp" style="background:#fff;border:1px solid #E2DFD2;border-radius:20px;overflow:hidden;box-shadow:0 1px 3px rgba(0,40,8,.05);display:flex;flex-direction:column">
+            <div onClick="{{ p.open }}" style="cursor:pointer;position:relative;height:280px;display:flex;align-items:flex-end;justify-content:center;background:radial-gradient(circle at 50% 75%, {{ p.accentSoft }} 0%, #FAF8F2 70%)">
+              <span style="position:absolute;top:14px;left:16px;font-family:'JetBrains Mono';font-size:12px;color:{{ p.accent }};font-weight:600">{{ p.numLabel }}</span>
+              <span style="position:absolute;top:14px;right:16px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#5A6157;background:#fff;border:1px solid #E2DFD2;padding:5px 10px;border-radius:999px">{{ p.type }}</span>
+              {{ p.img248 }}
+            </div>
+            <div style="padding:20px 22px 22px;display:flex;flex-direction:column;flex:1">
+              <h3 onClick="{{ p.open }}" style="cursor:pointer;font-family:'Nunito';font-weight:800;font-size:23px;color:#063A12;margin:0">{{ p.name }}</h3>
+              <div style="font-size:13px;color:#7A8076;margin-top:3px">{{ p.cat }}</div>
+              <p style="font-size:14px;line-height:1.55;color:#5A6157;margin:12px 0 0;flex:1">{{ p.blurb }}</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:18px">
+                <div><span style="font-family:'JetBrains Mono';font-size:22px;font-weight:600;color:#063A12">{{ p.priceFmt }}</span><span style="font-size:12px;color:#8A958B;margin-left:6px">/ 6 gal</span></div>
+                <button onClick="{{ p.addQuick }}" title="Add to cart" style="width:44px;height:44px;border-radius:50%;border:none;background:#063A12;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center" onmouseover="this.style.background='#004800'" onmouseout="this.style.background='#063A12'">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ============ PRODUCT DETAIL ============ -->
+    <sc-if value="{{ isProduct }}">
+    <div style="max-width:1240px;margin:0 auto;padding:32px 32px 90px">
+      <div style="font-size:13px;color:#8A958B;margin-bottom:24px">
+        <span class="ap-link" onClick="{{ goShop }}" style="color:#8A958B;font-weight:500">Shop</span> &nbsp;/&nbsp; <span style="color:#5A6157">{{ pdp.name }}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+        <!-- gallery -->
+        <div style="position:sticky;top:100px">
+          <div style="position:relative;border-radius:24px;background:radial-gradient(circle at 50% 60%, {{ pdp.accentSoft }} 0%, #FAF8F2 72%);border:1px solid #E2DFD2;height:540px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+            {{ pdp.mainImgHtml }}
+          </div>
+          <div style="display:flex;gap:12px;margin-top:14px">
+            <sc-for list="{{ pdp.thumbs }}" as="t" hint-placeholder-count="3">
+              <div onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.imgHtml }}</div>
+            </sc-for>
+          </div>
+        </div>
+        <!-- info -->
+        <div>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span style="font-family:'JetBrains Mono';font-size:14px;color:{{ pdp.accent }};font-weight:600">{{ pdp.numLabel }}</span>
+            <span style="font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#5A6157;background:#F0EDE3;border:1px solid #E2DFD2;padding:5px 11px;border-radius:999px">{{ pdp.type }}</span>
+          </div>
+          <h1 style="font-family:'Nunito';font-weight:900;font-size:56px;letter-spacing:-.02em;color:#063A12;margin:10px 0 0">{{ pdp.name }}</h1>
+          <div style="font-size:17px;color:#7A8076;margin-top:2px">{{ pdp.cat }}</div>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:14px">
+            <span>{{ pdp.stars }}</span>
+            <span style="font-size:13px;color:#7A8076">{{ pdp.ratingFmt }} · {{ pdp.reviews }} reviews</span>
+          </div>
+          <p style="font-size:17px;line-height:1.65;color:#3F463E;margin:20px 0 0">{{ pdp.long }}</p>
+
+          <div style="font-family:'JetBrains Mono';font-size:34px;font-weight:600;color:#063A12;margin:24px 0 0">{{ pdp.curUnitFmt }}<span style="font-size:14px;color:#8A958B;margin-left:8px;font-weight:400">/ {{ pdp.curSizeLabel }}</span></div>
+
+          <div style="font-size:13px;font-weight:700;color:#5A6157;margin:22px 0 10px">Size</div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <sc-for list="{{ pdp.sizes }}" as="s" hint-placeholder-count="3">
+              <button onClick="{{ s.choose }}" style="{{ s.style }}">
+                <div style="font-weight:700;font-size:15px">{{ s.label }}</div>
+                <div style="font-size:12px;opacity:.7;margin-top:2px">{{ s.note }} · {{ s.unitFmt }}</div>
+              </button>
+            </sc-for>
+          </div>
+
+          <div style="display:flex;gap:14px;margin-top:26px;align-items:center">
+            <div style="display:flex;align-items:center;border:1px solid #C7CBB8;border-radius:999px;background:#fff">
+              <button onClick="{{ pdp.dec }}" style="width:46px;height:50px;border:none;background:none;cursor:pointer;font-size:20px;color:#26302A">−</button>
+              <span style="width:30px;text-align:center;font-family:'JetBrains Mono';font-size:16px">{{ pdp.qty }}</span>
+              <button onClick="{{ pdp.inc }}" style="width:46px;height:50px;border:none;background:none;cursor:pointer;font-size:20px;color:#26302A">+</button>
+            </div>
+            <button onClick="{{ pdp.addNow }}" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:9px;height:52px;border-radius:999px;border:none;background:#063A12;color:#fff;font-weight:700;font-size:16px;cursor:pointer" onmouseover="this.style.background='#004800'" onmouseout="this.style.background='#063A12'">
+              Add to cart — {{ pdp.lineFmt }}
+            </button>
+          </div>
+
+          <div style="display:flex;gap:18px;margin-top:20px;flex-wrap:wrap">
+            <span style="display:flex;align-items:center;gap:7px;font-size:13px;color:#5A6157"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#538B3C" stroke-width="1.8"><path d="M3 7h13v10H3zM16 10h4l1 3v4h-5"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>Free freight over $750</span>
+            <span style="display:flex;align-items:center;gap:7px;font-size:13px;color:#5A6157"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#538B3C" stroke-width="1.8"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg>OMRI-style · copper-free</span>
+          </div>
+
+          <!-- specs -->
+          <div style="margin-top:30px;border-top:1px solid #E2DFD2;padding-top:24px">
+            <div style="font-family:'Nunito';font-weight:800;font-size:18px;color:#063A12;margin-bottom:14px">Specs</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#E2DFD2;border:1px solid #E2DFD2;border-radius:12px;overflow:hidden">
+              <div style="background:#fff;padding:14px 16px"><div style="font-size:12px;color:#8A958B;text-transform:uppercase;letter-spacing:.06em">N-P-K</div><div style="font-family:'JetBrains Mono';font-size:16px;color:#063A12;margin-top:3px">{{ pdp.npk }}</div></div>
+              <div style="background:#fff;padding:14px 16px"><div style="font-size:12px;color:#8A958B;text-transform:uppercase;letter-spacing:.06em">pH</div><div style="font-family:'JetBrains Mono';font-size:16px;color:#063A12;margin-top:3px">{{ pdp.ph }}</div></div>
+              <div style="background:#fff;padding:14px 16px"><div style="font-size:12px;color:#8A958B;text-transform:uppercase;letter-spacing:.06em">Application rate</div><div style="font-family:'JetBrains Mono';font-size:16px;color:#063A12;margin-top:3px">{{ pdp.rate }}</div></div>
+              <div style="background:#fff;padding:14px 16px"><div style="font-size:12px;color:#8A958B;text-transform:uppercase;letter-spacing:.06em">SKU</div><div style="font-family:'JetBrains Mono';font-size:16px;color:#063A12;margin-top:3px">{{ pdp.sku }}</div></div>
+            </div>
+            <div style="font-size:12px;color:#8A958B;text-transform:uppercase;letter-spacing:.06em;margin:22px 0 10px">Formulated for</div>
+            <div style="display:flex;gap:9px;flex-wrap:wrap">
+              <sc-for list="{{ pdp.crops }}" as="crop" hint-placeholder-count="4">
+                <span style="font-size:13px;color:#3F463E;background:#F0EDE3;border:1px solid #E2DFD2;padding:7px 13px;border-radius:999px">{{ crop }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- related -->
+      <div style="margin-top:80px">
+        <h2 style="font-family:'Nunito';font-weight:800;font-size:28px;color:#063A12;margin:0 0 22px">Pairs well with</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px">
+          <sc-for list="{{ pdp.related }}" as="p" hint-placeholder-count="3">
+            <div class="ap-pp" onClick="{{ p.open }}" style="cursor:pointer;background:#fff;border:1px solid #E2DFD2;border-radius:18px;padding:20px;display:flex;gap:18px;align-items:center;box-shadow:0 1px 3px rgba(0,40,8,.05)">
+              <div style="width:90px;height:110px;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 70%, {{ p.accentSoft }} 0%, #FAF8F2 75%);border-radius:12px;flex:none">{{ p.img104 }}</div>
+              <div><div style="font-family:'JetBrains Mono';font-size:11px;color:{{ p.accent }}">{{ p.numLabel }}</div><div style="font-family:'Nunito';font-weight:800;font-size:20px;color:#063A12;margin-top:2px">{{ p.name }}</div><div style="font-size:13px;color:#7A8076;margin-top:2px">{{ p.cat }}</div><div style="font-family:'JetBrains Mono';font-size:15px;color:#063A12;margin-top:8px">{{ p.priceFmt }}</div></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ============ FORMULATOR ============ -->
+    <sc-if value="{{ isFormula }}">
+    <div style="max-width:1240px;margin:0 auto;padding:56px 32px 90px">
+      <div style="text-align:center;max-width:640px;margin:0 auto">
+        <div style="font-family:'Hanken Grotesk';font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6FAE52">Custom-formulated</div>
+        <h1 style="font-family:'Nunito';font-weight:900;font-size:48px;letter-spacing:-.02em;color:#063A12;margin:8px 0 0">Find your formula</h1>
+        <p style="font-size:17px;color:#5A6157;margin:12px 0 0">Three questions. We'll build a custom program from the seven — matched to your crop, your pressure, and your acreage.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1.05fr;gap:34px;margin-top:46px;align-items:start">
+        <!-- form -->
+        <div style="background:#fff;border:1px solid #E2DFD2;border-radius:22px;padding:32px;box-shadow:0 4px 12px rgba(0,40,8,.06)">
+          <div style="font-family:'JetBrains Mono';font-size:12px;color:#8A958B;letter-spacing:.08em">STEP 01</div>
+          <label style="display:block;font-family:'Nunito';font-weight:800;font-size:18px;color:#063A12;margin:6px 0 12px">What's your crop?</label>
+          <div style="display:flex;flex-wrap:wrap;gap:9px">
+            <sc-for list="{{ fCrops }}" as="c" hint-placeholder-count="8">
+              <button onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button>
+            </sc-for>
+          </div>
+          <div style="font-family:'JetBrains Mono';font-size:12px;color:#8A958B;letter-spacing:.08em;margin-top:26px">STEP 02</div>
+          <label style="display:block;font-family:'Nunito';font-weight:800;font-size:18px;color:#063A12;margin:6px 0 12px">What are you fighting?</label>
+          <div style="display:flex;flex-wrap:wrap;gap:9px">
+            <sc-for list="{{ fPressures }}" as="c" hint-placeholder-count="9">
+              <button onClick="{{ c.pick }}" style="{{ c.style }}">{{ c.label }}</button>
+            </sc-for>
+          </div>
+          <div style="font-family:'JetBrains Mono';font-size:12px;color:#8A958B;letter-spacing:.08em;margin-top:26px">STEP 03</div>
+          <label style="display:block;font-family:'Nunito';font-weight:800;font-size:18px;color:#063A12;margin:6px 0 12px">How many acres?</label>
+          <div style="display:flex;align-items:center;gap:16px">
+            <input type="range" min="5" max="500" step="5" value="{{ fAcres }}" onInput="{{ setAcres }}" style="flex:1;accent-color:#6FAE52" />
+            <span style="font-family:'JetBrains Mono';font-size:20px;color:#063A12;min-width:90px;text-align:right">{{ fAcres }} ac</span>
+          </div>
+        </div>
+        <!-- result -->
+        <div style="background:linear-gradient(160deg,#063A12 0%,#001706 100%);border-radius:22px;padding:34px;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:radial-gradient(110% 80% at 50% 130%, rgba(111,174,82,.32) 0%, rgba(0,23,6,0) 65%)"></div>
+          <div style="position:relative">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div style="font-family:'Hanken Grotesk';font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9FD27E">Your custom program</div>
+              <div style="font-family:'JetBrains Mono';font-size:12px;color:#8FB97A">{{ fCode }}</div>
+            </div>
+            <div style="font-family:'Nunito';font-weight:400;font-size:15px;color:#C9DBC0;margin-top:14px">For <strong style="color:#fff;font-weight:800">{{ fCrop }}</strong> · fighting <strong style="color:#fff;font-weight:800">{{ fPressure }}</strong> · <strong style="color:#fff;font-weight:800">{{ fAcres }} ac</strong></div>
+            <div style="display:flex;flex-direction:column;gap:12px;margin-top:22px">
+              <sc-for list="{{ fProgram }}" as="p" hint-placeholder-count="3">
+                <div style="display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px 16px">
+                  {{ p.imgHtml }}
+                  <div style="flex:1">
+                    <div style="display:flex;align-items:center;gap:8px"><span style="font-family:'Nunito';font-weight:800;font-size:18px;color:#fff">{{ p.name }}</span><span style="font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#04230B;background:#9FD27E;padding:3px 8px;border-radius:999px">{{ p.role }}</span></div>
+                    <div style="font-size:13px;color:#A9C4A0;margin-top:3px">{{ p.cat }}</div>
+                  </div>
+                  <div style="text-align:right"><div style="font-family:'JetBrains Mono';font-size:13px;color:#CFE3C2">{{ p.rate }}</div><div style="font-family:'JetBrains Mono';font-size:13px;color:#fff;margin-top:3px">{{ p.estFmt }}</div></div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:22px;padding-top:18px;border-top:1px solid rgba(255,255,255,.16)">
+              <div><div style="font-size:13px;color:#A9C4A0">Est. season total</div><div style="font-family:'JetBrains Mono';font-size:26px;color:#fff;margin-top:2px">{{ fTotalFmt }}</div></div>
+              <button onClick="{{ addProgram }}" style="display:inline-flex;align-items:center;gap:9px;padding:15px 26px;border-radius:999px;border:none;background:#6FAE52;color:#04230B;font-weight:800;font-size:15px;cursor:pointer" onmouseover="this.style.background='#8BC06F'" onmouseout="this.style.background='#6FAE52'">Add program to cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ============ CART PAGE ============ -->
+    <sc-if value="{{ isCart }}">
+    <div style="max-width:1240px;margin:0 auto;padding:56px 32px 90px">
+      <h1 style="font-family:'Nunito';font-weight:900;font-size:48px;letter-spacing:-.02em;color:#063A12;margin:0 0 30px">Your cart</h1>
+      <sc-if value="{{ cartEmpty }}">
+        <div style="background:#fff;border:1px solid #E2DFD2;border-radius:20px;padding:64px;text-align:center">
+          <p style="font-size:18px;color:#5A6157;margin:0 0 22px">Your cart is empty.</p>
+          <button onClick="{{ goShop }}" style="padding:15px 28px;border-radius:999px;border:none;background:#063A12;color:#fff;font-weight:700;font-size:15px;cursor:pointer">Shop the line</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ cartHas }}">
+      <div style="display:grid;grid-template-columns:1fr 380px;gap:34px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <sc-for list="{{ cartItems }}" as="it" hint-placeholder-count="2">
+            <div style="display:flex;gap:20px;background:#fff;border:1px solid #E2DFD2;border-radius:18px;padding:20px">
+              <div style="width:90px;height:120px;flex:none;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 70%, {{ it.accentSoft }} 0%, #FAF8F2 75%);border-radius:12px">{{ it.img112 }}</div>
+              <div style="flex:1">
+                <div style="display:flex;justify-content:space-between"><div><div style="font-family:'JetBrains Mono';font-size:11px;color:{{ it.accent }}">{{ it.numLabel }}</div><div style="font-family:'Nunito';font-weight:800;font-size:21px;color:#063A12;margin-top:2px">{{ it.name }}</div><div style="font-size:13px;color:#7A8076;margin-top:2px">{{ it.sizeLabel }}</div></div>
+                <button onClick="{{ it.remove }}" style="background:none;border:none;cursor:pointer;color:#A6A293;height:24px" title="Remove"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 6h14M9 6V4h6v2M8 6l1 14h6l1-14"/></svg></button></div>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:16px">
+                  <div style="display:flex;align-items:center;border:1px solid #C7CBB8;border-radius:999px;background:#fff">
+                    <button onClick="{{ it.dec }}" style="width:40px;height:42px;border:none;background:none;cursor:pointer;font-size:18px;color:#26302A">−</button>
+                    <span style="width:26px;text-align:center;font-family:'JetBrains Mono';font-size:15px">{{ it.qty }}</span>
+                    <button onClick="{{ it.inc }}" style="width:40px;height:42px;border:none;background:none;cursor:pointer;font-size:18px;color:#26302A">+</button>
+                  </div>
+                  <div style="font-family:'JetBrains Mono';font-size:20px;font-weight:600;color:#063A12">{{ it.lineFmt }}</div>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="background:#fff;border:1px solid #E2DFD2;border-radius:20px;padding:28px;position:sticky;top:100px">
+          <div style="font-family:'Nunito';font-weight:800;font-size:20px;color:#063A12;margin-bottom:18px">Order summary</div>
+          <div style="display:flex;justify-content:space-between;font-size:15px;color:#3F463E;padding:8px 0"><span>Subtotal</span><span style="font-family:'JetBrains Mono'">{{ subtotalFmt }}</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:15px;color:#3F463E;padding:8px 0"><span>Freight</span><span style="font-family:'JetBrains Mono'">{{ shippingFmt }}</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:18px;font-weight:800;color:#063A12;padding:14px 0 6px;border-top:1px solid #E2DFD2;margin-top:8px"><span style="font-family:'Nunito'">Total</span><span style="font-family:'JetBrains Mono'">{{ totalFmt }}</span></div>
+          <button onClick="{{ goCheckout }}" style="width:100%;margin-top:18px;height:52px;border-radius:999px;border:none;background:#063A12;color:#fff;font-weight:700;font-size:16px;cursor:pointer">Checkout</button>
+          <button onClick="{{ goShop }}" style="width:100%;margin-top:10px;height:46px;border-radius:999px;border:1.5px solid #C7CBB8;background:#fff;color:#063A12;font-weight:700;font-size:14px;cursor:pointer">Continue shopping</button>
+        </div>
+      </div>
+      </sc-if>
+    </div>
+    </sc-if>
+
+    <!-- ============ CHECKOUT ============ -->
+    <sc-if value="{{ isCheckout }}">
+    <div style="max-width:1100px;margin:0 auto;padding:48px 32px 90px">
+      <sc-if value="{{ coPlaced }}">
+        <div style="background:#fff;border:1px solid #E2DFD2;border-radius:22px;padding:72px;text-align:center;max-width:640px;margin:0 auto">
+          <div style="width:72px;height:72px;border-radius:50%;background:#E9F0E0;display:flex;align-items:center;justify-content:center;margin:0 auto"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4E8A3A" stroke-width="2.2"><path d="M5 13l4 4 10-11"/></svg></div>
+          <h1 style="font-family:'Nunito';font-weight:900;font-size:36px;color:#063A12;margin:22px 0 0">Order confirmed</h1>
+          <p style="font-size:16px;color:#5A6157;margin:12px 0 0">Thank you. Your order <span style="font-family:'JetBrains Mono';color:#063A12">{{ orderNum }}</span> is being prepared. An agronomist will reach out to confirm application timing.</p>
+          <button onClick="{{ goHome }}" style="margin-top:26px;padding:15px 28px;border-radius:999px;border:none;background:#063A12;color:#fff;font-weight:700;font-size:15px;cursor:pointer">Back to home</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ coActive }}">
+      <h1 style="font-family:'Nunito';font-weight:900;font-size:40px;letter-spacing:-.02em;color:#063A12;margin:0 0 6px">Checkout</h1>
+      <div style="display:flex;gap:8px;margin:18px 0 30px">
+        <sc-for list="{{ coSteps }}" as="s" hint-placeholder-count="3">
+          <div style="{{ s.style }}"><span style="font-family:'JetBrains Mono';font-size:12px">{{ s.num }}</span> {{ s.label }}</div>
+        </sc-for>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:34px;align-items:start">
+        <div style="background:#fff;border:1px solid #E2DFD2;border-radius:20px;padding:30px">
+          <!-- step 1 -->
+          <sc-if value="{{ coIs1 }}">
+            <div style="font-family:'Nunito';font-weight:800;font-size:20px;color:#063A12;margin-bottom:18px">Contact &amp; shipping</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <input placeholder="First name" style="grid-column:span 1;padding:13px 15px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+              <input placeholder="Last name" style="padding:13px 15px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+              <input placeholder="Email" style="grid-column:span 2;padding:13px 15px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+              <input placeholder="Farm / operation name" style="grid-column:span 2;padding:13px 15px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+              <input placeholder="Street address" style="grid-column:span 2;padding:13px 15px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+              <input placeholder="City" style="padding:13px 15px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+              <input placeholder="State / ZIP" style="padding:13px 15px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+            </div>
+          </sc-if>
+          <!-- step 2 -->
+          <sc-if value="{{ coIs2 }}">
+            <div style="font-family:'Nunito';font-weight:800;font-size:20px;color:#063A12;margin-bottom:18px">Delivery method</div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;align-items:center;gap:14px;border:1.5px solid #6FAE52;background:#F2F7EC;border-radius:12px;padding:16px"><div style="width:18px;height:18px;border-radius:50%;border:5px solid #6FAE52"></div><div style="flex:1"><div style="font-weight:700;color:#063A12">Standard freight</div><div style="font-size:13px;color:#7A8076">5–7 business days · palletized</div></div><span style="font-family:'JetBrains Mono';color:#063A12">{{ shippingFmt }}</span></div>
+              <div style="display:flex;align-items:center;gap:14px;border:1px solid #D9D6C7;border-radius:12px;padding:16px"><div style="width:18px;height:18px;border-radius:50%;border:2px solid #C7CBB8"></div><div style="flex:1"><div style="font-weight:700;color:#063A12">Expedited</div><div style="font-size:13px;color:#7A8076">2–3 business days</div></div><span style="font-family:'JetBrains Mono';color:#063A12">$185</span></div>
+            </div>
+          </sc-if>
+          <!-- step 3 -->
+          <sc-if value="{{ coIs3 }}">
+            <div style="font-family:'Nunito';font-weight:800;font-size:20px;color:#063A12;margin-bottom:18px">Payment</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <input placeholder="Card number" style="grid-column:span 2;padding:13px 15px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+              <input placeholder="MM / YY" style="padding:13px 15px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+              <input placeholder="CVC" style="padding:13px 15px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+              <input placeholder="Name on card" style="grid-column:span 2;padding:13px 15px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+            </div>
+            <div style="font-size:13px;color:#8A958B;margin-top:14px;display:flex;align-items:center;gap:7px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8A958B" stroke-width="1.8"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Net-30 terms available for verified operations.</div>
+          </sc-if>
+          <div style="display:flex;justify-content:space-between;margin-top:26px">
+            <button onClick="{{ coBack }}" style="padding:13px 24px;border-radius:999px;border:1.5px solid #C7CBB8;background:#fff;color:#063A12;font-weight:700;font-size:14px;cursor:pointer">Back</button>
+            <button onClick="{{ coNext }}" style="padding:13px 28px;border-radius:999px;border:none;background:#063A12;color:#fff;font-weight:700;font-size:14px;cursor:pointer">{{ coNextLabel }}</button>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid #E2DFD2;border-radius:20px;padding:26px;position:sticky;top:100px">
+          <div style="font-family:'Nunito';font-weight:800;font-size:18px;color:#063A12;margin-bottom:16px">Summary</div>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px">
+            <sc-for list="{{ cartItems }}" as="it" hint-placeholder-count="2">
+              <div style="display:flex;align-items:center;gap:12px"><div style="position:relative">{{ it.img44 }}<span style="position:absolute;top:-6px;right:-8px;width:20px;height:20px;border-radius:50%;background:#063A12;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono'">{{ it.qty }}</span></div><div style="flex:1"><div style="font-weight:700;font-size:14px;color:#063A12">{{ it.name }}</div><div style="font-size:12px;color:#8A958B">{{ it.sizeLabel }}</div></div><span style="font-family:'JetBrains Mono';font-size:14px;color:#063A12">{{ it.lineFmt }}</span></div>
+            </sc-for>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;color:#3F463E;padding:6px 0;border-top:1px solid #E2DFD2"><span>Subtotal</span><span style="font-family:'JetBrains Mono'">{{ subtotalFmt }}</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;color:#3F463E;padding:6px 0"><span>Freight</span><span style="font-family:'JetBrains Mono'">{{ shippingFmt }}</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:17px;font-weight:800;color:#063A12;padding:10px 0 0;border-top:1px solid #E2DFD2;margin-top:6px"><span style="font-family:'Nunito'">Total</span><span style="font-family:'JetBrains Mono'">{{ totalFmt }}</span></div>
+        </div>
+      </div>
+      </sc-if>
+    </div>
+    </sc-if>
+
+    <!-- ============ ABOUT ============ -->
+    <sc-if value="{{ isAbout }}">
+    <div>
+      <section style="position:relative;overflow:hidden;padding:80px 32px 60px;text-align:center">
+        <div style="position:absolute;inset:0;background:radial-gradient(100% 80% at 50% 0%, #DCEFC8 0%, rgba(237,234,224,0) 60%)"></div>
+        <div style="position:relative;max-width:760px;margin:0 auto">
+          <img src="assets/mark-forest.png" style="height:48px;margin-bottom:18px"/>
+          <h1 style="font-family:'Nunito';font-weight:900;font-size:54px;letter-spacing:-.02em;color:#063A12;margin:0;line-height:1.04">We formulate for one operation at a time.</h1>
+          <p style="font-size:19px;line-height:1.6;color:#4A524B;margin:20px 0 0">AgriPure makes natural pesticides, fungicides, and nutrients custom-matched to your crop, your soil, and the pressures you actually face. Not a catalog of off-the-shelf chemistry — a program built for your block.</p>
+        </div>
+      </section>
+      <section style="padding:30px 32px 60px">
+        <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#E2DFD2;border:1px solid #E2DFD2;border-radius:18px;overflow:hidden">
+          <div style="background:#fff;padding:28px;text-align:center"><div style="font-family:'JetBrains Mono';font-size:32px;font-weight:600;color:#063A12">2014</div><div style="font-size:13px;color:#7A8076;margin-top:4px">Founded</div></div>
+          <div style="background:#fff;padding:28px;text-align:center"><div style="font-family:'JetBrains Mono';font-size:32px;font-weight:600;color:#063A12">1,400+</div><div style="font-size:13px;color:#7A8076;margin-top:4px">Operations served</div></div>
+          <div style="background:#fff;padding:28px;text-align:center"><div style="font-family:'JetBrains Mono';font-size:32px;font-weight:600;color:#063A12">−38%</div><div style="font-size:13px;color:#7A8076;margin-top:4px">Avg. disease incidence</div></div>
+          <div style="background:#fff;padding:28px;text-align:center"><div style="font-family:'JetBrains Mono';font-size:32px;font-weight:600;color:#063A12">100%</div><div style="font-size:13px;color:#7A8076;margin-top:4px">Copper-free</div></div>
+        </div>
+      </section>
+      <section style="padding:20px 32px 70px">
+        <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px">
+          <sc-for list="{{ values }}" as="v" hint-placeholder-count="3">
+            <div style="background:#fff;border:1px solid #E2DFD2;border-radius:18px;padding:30px"><div style="width:48px;height:48px;border-radius:13px;background:#E9F0E0;display:flex;align-items:center;justify-content:center;color:#356A26">{{ v.icon }}</div><h3 style="font-family:'Nunito';font-weight:800;font-size:20px;color:#063A12;margin:16px 0 8px">{{ v.title }}</h3><p style="font-size:15px;line-height:1.6;color:#5A6157;margin:0">{{ v.body }}</p></div>
+          </sc-for>
+        </div>
+      </section>
+      <section style="padding:0 32px 90px">
+        <div style="max-width:1100px;margin:0 auto;background:linear-gradient(160deg,#063A12,#001706);border-radius:24px;padding:54px;text-align:center;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:0;background:radial-gradient(110% 90% at 50% 130%, rgba(111,174,82,.3) 0%, rgba(0,23,6,0) 65%)"></div>
+          <div style="position:relative"><h2 style="font-family:'Nunito';font-weight:900;font-size:36px;color:#fff;margin:0">Naturally resistant crops.</h2><p style="font-size:16px;color:#C9DBC0;max-width:520px;margin:14px auto 24px">Make plants resistant before problems start, restore the soil underneath them, and bring what's already struggling back to vigor.</p><button onClick="{{ goShop }}" style="padding:15px 28px;border-radius:999px;border:none;background:#6FAE52;color:#04230B;font-weight:800;font-size:15px;cursor:pointer">Explore the line</button></div>
+        </div>
+      </section>
+    </div>
+    </sc-if>
+
+    <!-- ============ LEARN ============ -->
+    <sc-if value="{{ isLearn }}">
+    <div style="max-width:1240px;margin:0 auto;padding:56px 32px 90px">
+      <div style="font-family:'Hanken Grotesk';font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6FAE52">Field notes</div>
+      <h1 style="font-family:'Nunito';font-weight:900;font-size:52px;letter-spacing:-.02em;color:#063A12;margin:8px 0 0">Learn</h1>
+      <p style="font-size:17px;color:#5A6157;max-width:560px;margin:12px 0 0">Practical, agronomist-written guides on building resistance, restoring soil, and timing your program.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px">
+        <sc-for list="{{ articles }}" as="a" hint-placeholder-count="6">
+          <div class="ap-pp" style="background:#fff;border:1px solid #E2DFD2;border-radius:18px;overflow:hidden;cursor:pointer;box-shadow:0 1px 3px rgba(0,40,8,.05)">
+            <div style="height:150px;background:radial-gradient(circle at 50% 60%, {{ a.tint }} 0%, #FAF8F2 75%);display:flex;align-items:center;justify-content:center">{{ a.imgHtml }}</div>
+            <div style="padding:22px"><div style="font-family:'JetBrains Mono';font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8A958B">{{ a.tag }} · {{ a.read }}</div><h3 style="font-family:'Nunito';font-weight:800;font-size:20px;color:#063A12;margin:8px 0 8px;line-height:1.25">{{ a.title }}</h3><p style="font-size:14px;line-height:1.55;color:#5A6157;margin:0">{{ a.excerpt }}</p></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ============ CONTACT ============ -->
+    <sc-if value="{{ isContact }}">
+    <div style="max-width:1100px;margin:0 auto;padding:56px 32px 90px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+        <div>
+          <div style="font-family:'Hanken Grotesk';font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6FAE52">Talk to an agronomist</div>
+          <h1 style="font-family:'Nunito';font-weight:900;font-size:48px;letter-spacing:-.02em;color:#063A12;margin:8px 0 0">Let's build your program.</h1>
+          <p style="font-size:17px;color:#5A6157;margin:14px 0 0">Tell us what you're growing and what you're up against this season. We'll get back within one business day.</p>
+          <div style="margin-top:34px;display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:42px;height:42px;border-radius:12px;background:#E9F0E0;display:flex;align-items:center;justify-content:center;flex:none;color:#356A26"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v12H4zM4 7l8 6 8-6"/></svg></div><div><div style="font-weight:700;color:#063A12">Sales &amp; formulation</div><div style="font-size:14px;color:#7A8076">grow@agripure.com · (800) 555-0142</div></div></div>
+            <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:42px;height:42px;border-radius:12px;background:#E9F0E0;display:flex;align-items:center;justify-content:center;flex:none;color:#356A26"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div><div style="font-weight:700;color:#063A12">Field office</div><div style="font-size:14px;color:#7A8076">1820 Vineyard Rd, Napa, CA 94558</div></div></div>
+          </div>
+        </div>
+        <div style="background:#fff;border:1px solid #E2DFD2;border-radius:20px;padding:30px;box-shadow:0 4px 12px rgba(0,40,8,.06)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <input placeholder="First name" style="padding:13px 15px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+            <input placeholder="Last name" style="padding:13px 15px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+            <input placeholder="Email" style="grid-column:span 2;padding:13px 15px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+            <input placeholder="Crop & acreage" style="grid-column:span 2;padding:13px 15px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+            <textarea placeholder="What are you fighting this season?" rows="4" style="grid-column:span 2;padding:13px 15px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px;resize:vertical"></textarea>
+          </div>
+          <button style="width:100%;margin-top:16px;height:52px;border-radius:999px;border:none;background:#063A12;color:#fff;font-weight:700;font-size:16px;cursor:pointer">Send message</button>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+    <!-- ============ AUTH ============ -->
+    <sc-if value="{{ isAuth }}">
+    <div style="max-width:1080px;margin:0 auto;padding:48px 32px 90px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid #E2DFD2;border-radius:24px;overflow:hidden;box-shadow:0 12px 32px rgba(0,40,8,.1);min-height:540px">
+        <div style="position:relative;background:linear-gradient(160deg,#063A12,#001706);padding:48px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden">
+          <div style="position:absolute;inset:0;background:radial-gradient(110% 80% at 50% 130%, rgba(111,174,82,.32) 0%, rgba(0,23,6,0) 65%)"></div>
+          <img src="assets/logo-white.png" style="height:30px;position:relative"/>
+          <div style="position:relative"><h2 style="font-family:'Nunito';font-weight:900;font-size:34px;color:#fff;margin:0;line-height:1.1">Your operation's command center.</h2><p style="font-size:15px;color:#C9DBC0;margin:14px 0 0">Track orders, reorder by season, manage application schedules, and reach your agronomist.</p></div>
+          <img src="assets/bottles/restore.png" style="height:170px;position:absolute;bottom:-10px;right:-20px;opacity:.9;filter:drop-shadow(0 20px 30px rgba(0,0,0,.4))"/>
+        </div>
+        <div style="background:#fff;padding:48px;display:flex;flex-direction:column;justify-content:center">
+          <h1 style="font-family:'Nunito';font-weight:900;font-size:32px;color:#063A12;margin:0">{{ authTitle }}</h1>
+          <p style="font-size:15px;color:#7A8076;margin:8px 0 26px">{{ authSub }}</p>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <sc-if value="{{ authIsRegister }}"><input placeholder="Full name" style="padding:14px 16px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" /></sc-if>
+            <input placeholder="Email" style="padding:14px 16px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+            <input placeholder="Password" type="password" style="padding:14px 16px;border:1px solid #D9D6C7;border-radius:10px;font-size:15px" />
+          </div>
+          <button style="margin-top:20px;height:52px;border-radius:999px;border:none;background:#063A12;color:#fff;font-weight:700;font-size:16px;cursor:pointer">{{ authCta }}</button>
+          <div style="text-align:center;font-size:14px;color:#7A8076;margin-top:18px">{{ authSwitchText }} <span class="ap-link" onClick="{{ toggleAuth }}" style="color:#538B3C">{{ authSwitchCta }}</span></div>
+        </div>
+      </div>
+    </div>
+    </sc-if>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="background:#001706;color:#A9C4A0;padding:60px 32px 32px">
+    <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px">
+      <div>
+        <img src="assets/logo-white.png" style="height:30px"/>
+        <p style="font-size:14px;line-height:1.6;color:#8FB97A;max-width:280px;margin:16px 0 0">Natural pesticides, fungicides, and nutrients — custom-formulated for your crop, soil, and pressures.</p>
+      </div>
+      <div><div style="font-family:'Hanken Grotesk';font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6FAE52;margin-bottom:14px">Shop</div><div style="display:flex;flex-direction:column;gap:10px"><span class="ap-link" onClick="{{ goShop }}" style="color:#C9DBC0;font-weight:500;font-size:14px">All products</span><span class="ap-link" onClick="{{ goFormula }}" style="color:#C9DBC0;font-weight:500;font-size:14px">Find your formula</span></div></div>
+      <div><div style="font-family:'Hanken Grotesk';font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6FAE52;margin-bottom:14px">Company</div><div style="display:flex;flex-direction:column;gap:10px"><span class="ap-link" onClick="{{ goAbout }}" style="color:#C9DBC0;font-weight:500;font-size:14px">About</span><span class="ap-link" onClick="{{ goLearn }}" style="color:#C9DBC0;font-weight:500;font-size:14px">Learn</span><span class="ap-link" onClick="{{ goContact }}" style="color:#C9DBC0;font-weight:500;font-size:14px">Contact</span></div></div>
+      <div><div style="font-family:'Hanken Grotesk';font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6FAE52;margin-bottom:14px">Account</div><div style="display:flex;flex-direction:column;gap:10px"><span class="ap-link" onClick="{{ goAuth }}" style="color:#C9DBC0;font-weight:500;font-size:14px">Sign in</span><span class="ap-link" onClick="{{ goCart }}" style="color:#C9DBC0;font-weight:500;font-size:14px">Cart</span></div></div>
+    </div>
+    <div style="max-width:1240px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:#6E8B6A">
+      <span>© 2026 AgriPure. All rights reserved.</span>
+      <span>Privacy · Terms · OMRI-style inputs</span>
+    </div>
+  </footer>
+
+  <!-- CART DRAWER -->
+  <sc-if value="{{ cartOpen }}">
+    <div onClick="{{ closeCart }}" style="position:fixed;inset:0;background:rgba(0,23,6,.45);z-index:60;animation:apRise .25s ease"></div>
+    <div style="position:fixed;top:0;right:0;bottom:0;width:420px;max-width:92vw;background:#EDEAE0;z-index:61;display:flex;flex-direction:column;box-shadow:-12px 0 40px rgba(0,40,8,.2);animation:apDraw .3s cubic-bezier(.16,1,.3,1)">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid #D9D6C7">
+        <div style="font-family:'Nunito';font-weight:800;font-size:20px;color:#063A12">Your cart · {{ cartCount }}</div>
+        <button onClick="{{ closeCart }}" style="background:none;border:none;cursor:pointer;color:#5A6157"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <sc-if value="{{ cartEmpty }}">
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center"><p style="color:#7A8076;margin:0 0 18px">Your cart is empty.</p><button onClick="{{ goShopFromDrawer }}" style="padding:13px 24px;border-radius:999px;border:none;background:#063A12;color:#fff;font-weight:700;font-size:14px;cursor:pointer">Shop the line</button></div>
+      </sc-if>
+      <sc-if value="{{ cartHas }}">
+        <div style="flex:1;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column;gap:14px">
+          <sc-for list="{{ cartItems }}" as="it" hint-placeholder-count="2">
+            <div style="display:flex;gap:14px;background:#fff;border:1px solid #E2DFD2;border-radius:14px;padding:14px">
+              <div style="width:54px;height:70px;flex:none;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 70%, {{ it.accentSoft }} 0%, #FAF8F2 75%);border-radius:9px">{{ it.img66 }}</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-family:'Nunito';font-weight:800;font-size:16px;color:#063A12">{{ it.name }}</div>
+                <div style="font-size:12px;color:#8A958B">{{ it.sizeLabel }}</div>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px">
+                  <div style="display:flex;align-items:center;border:1px solid #C7CBB8;border-radius:999px"><button onClick="{{ it.dec }}" style="width:30px;height:30px;border:none;background:none;cursor:pointer;font-size:16px;color:#26302A">−</button><span style="width:22px;text-align:center;font-family:'JetBrains Mono';font-size:13px">{{ it.qty }}</span><button onClick="{{ it.inc }}" style="width:30px;height:30px;border:none;background:none;cursor:pointer;font-size:16px;color:#26302A">+</button></div>
+                  <span style="font-family:'JetBrains Mono';font-size:15px;color:#063A12">{{ it.lineFmt }}</span>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="padding:20px 24px;border-top:1px solid #D9D6C7;background:#EDEAE0">
+          <div style="display:flex;justify-content:space-between;font-size:14px;color:#5A6157;margin-bottom:6px"><span>Subtotal</span><span style="font-family:'JetBrains Mono'">{{ subtotalFmt }}</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:18px;font-weight:800;color:#063A12;margin-bottom:14px"><span style="font-family:'Nunito'">Total</span><span style="font-family:'JetBrains Mono'">{{ totalFmt }}</span></div>
+          <button onClick="{{ goCheckoutFromDrawer }}" style="width:100%;height:50px;border-radius:999px;border:none;background:#063A12;color:#fff;font-weight:700;font-size:16px;cursor:pointer">Checkout</button>
+          <button onClick="{{ goCartFromDrawer }}" style="width:100%;margin-top:9px;height:44px;border-radius:999px;border:1.5px solid #C7CBB8;background:#fff;color:#063A12;font-weight:700;font-size:14px;cursor:pointer">View cart</button>
+        </div>
+      </sc-if>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:860}}">
+class Component extends DCLogic {
+  state = {
+    route:'home', pid:'grow',
+    cart:[], cartOpen:false,
+    shopFilter:'All', shopSort:'featured',
+    pdpSize:'6g', pdpQty:1, pdpTab:'bottle',
+    authMode:'signin',
+    coStep:1, coPlaced:false,
+    fCrop:'Wine grapes', fPressure:'Powdery mildew', fAcres:40,
+  };
+
+  P = [
+    {id:'restore',num:'01',name:'Restore',cat:'Soil Restoration & Health',type:'Soil Amendment',group:'Soil',accent:'#4E8A3A',accentSoft:'#E9F0E0',price:249,sku:'AP-01-RST-6G',rating:4.9,reviews:214,npk:'2–1–3',ph:'6.6',rate:'1–2 gal / acre',crops:['Row crops','Vineyards','Orchards','Vegetables'],blurb:'Rebuilds living soil from the ground up — feeding the microbiome that feeds the plant.',long:'Restore is a regenerative soil input that rebuilds organic matter and reactivates the microbial life under your crop. Applied early, it improves structure, water-holding, and nutrient cycling so roots establish faster and the whole system gets more resilient.'},
+    {id:'cleanse',num:'02',name:'Cleanse',cat:'Weed Seed Growth Inhibitor',type:'Pre-emergent',group:'Soil',accent:'#BE8A1E',accentSoft:'#F4ECD6',price:219,sku:'AP-02-CLN-6G',rating:4.7,reviews:158,npk:'0–0–1',ph:'6.2',rate:'1.5 gal / acre',crops:['Row crops','Vegetables','Turf','Orchards'],blurb:'A botanical pre-emergent that stops weed pressure before it starts — no synthetic residue.',long:'Cleanse interrupts weed-seed germination and early root growth in the top layer of soil, knocking back competition during the window that matters most — without the persistence or runoff concerns of conventional pre-emergents.'},
+    {id:'strength',num:'03',name:'Strength',cat:'Seed Germination & Root Stimulant',type:'Root Stimulant',group:'Growth',accent:'#2F6FB0',accentSoft:'#E2ECF5',price:239,sku:'AP-03-STR-6G',rating:4.8,reviews:176,npk:'3–4–2',ph:'6.5',rate:'1 gal / acre',crops:['Cereals','Vegetables','Legumes','Cover crops'],blurb:'Drives fast, even germination and deep root architecture for a vigorous stand.',long:'Strength pairs germination triggers with root-zone biostimulants so seeds wake up evenly and push roots deep, fast. A stronger root system early means better access to water and nutrients all season.'},
+    {id:'grow',num:'04',name:'Grow',cat:'Growth Stimulant',type:'Foliar Nutrient',group:'Growth',accent:'#5BA03C',accentSoft:'#E8F2DE',price:229,sku:'AP-04-GRW-6G',rating:4.9,reviews:263,npk:'4–3–6',ph:'6.5',rate:'1–2 gal / acre',crops:['Vegetables','Cannabis','Vineyards','Greenhouse'],blurb:'Our flagship vegetative driver — lush canopy, balanced growth, more photosynthetic area.',long:'Grow fuels the vegetative phase with a balanced nutrient and biostimulant profile that builds canopy and leaf area without forcing soft, disease-prone tissue. More photosynthetic surface, captured early, sets the ceiling for everything that follows.'},
+    {id:'protect',num:'05',name:'Protect',cat:'Pesticide',type:'Biopesticide',group:'Protection',accent:'#C0531C',accentSoft:'#F4E2D6',price:279,sku:'AP-05-PRT-6G',rating:4.8,reviews:191,npk:'0–0–0',ph:'6.0',rate:'0.5–1 gal / acre',crops:['Vegetables','Orchards','Vineyards','Ornamentals'],blurb:'Broad insect control from plant-derived actives — tough on pests, soft on beneficials.',long:'Protect uses botanical actives to disrupt feeding and reproduction in the pests that hit hardest — aphids, beetles, mites and more — while sparing pollinators and beneficial insects when applied as directed. Copper-free and residue-conscious.'},
+    {id:'prevent',num:'06',name:'Prevent',cat:'Fungicide',type:'Biofungicide',group:'Protection',accent:'#6E4FA0',accentSoft:'#EAE4F2',price:299,sku:'AP-06-PRV-6G',rating:4.7,reviews:144,npk:'0–0–0',ph:'6.3',rate:'0.75–1.5 gal / acre',crops:['Vineyards','Orchards','Vegetables','Berries'],blurb:'Preventative, broad-spectrum defense against powdery mildew, botrytis, and rusts.',long:'Prevent builds a protective barrier and primes the plant\u2019s own defenses against the fungal pressures that cost the most yield — powdery mildew, botrytis, downy mildew and rusts. Best applied ahead of pressure as part of a rotation program.'},
+    {id:'boost',num:'07',name:'Boost',cat:'Yield Enhancer',type:'Bloom & Fruit',group:'Yield',accent:'#B8860B',accentSoft:'#F4ECD6',price:269,sku:'AP-07-BST-6G',rating:5.0,reviews:308,npk:'2–4–8',ph:'6.4',rate:'1–2 gal / acre',crops:['Orchards','Berries','Vineyards','Row crops'],blurb:'The finishing input — drives flowering, fruit set, and fill for a bigger, cleaner harvest.',long:'Boost shifts the plant into reproductive overdrive, supporting flower initiation, fruit set, and sizing through bloom and fill. The result is heavier, more uniform fruit and a measurable lift in marketable yield at harvest.'},
+  ];
+  S = [
+    {id:'1g',label:'1 Gallon',factor:0.22,note:'Trial'},
+    {id:'6g',label:'6 Gallon',factor:1,note:'22.7 L'},
+    {id:'55g',label:'55 Gal Drum',factor:8.4,note:'Operation'},
+  ];
+  CATS = ['All','Soil','Growth','Protection','Yield'];
+
+  m(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
+  imgH(u,css){ return '<img src="'+u+'" alt="" style="'+css+'"/>'; }
+  H(s){ return React.createElement('span',{dangerouslySetInnerHTML:{__html:s},style:{display:'contents'}}); }
+  wi(arr){ return arr.map(x=>({...x,icon:this.H(x.icon)})); }
+  find(id){ return this.P.find(p=>p.id===id); }
+  unit(p,sizeId){ const s=this.S.find(x=>x.id===sizeId)||this.S[1]; return Math.round(p.price*s.factor); }
+  sizeLabel(id){ const s=this.S.find(x=>x.id===id); return s?s.label:''; }
+
+  bottle(id){ return 'assets/bottles/'+id+'.png'; }
+  go(route,pid){ this.setState({route, pid:pid||this.state.pid, cartOpen:false, coStep:1, coPlaced:false, pdpSize:'6g', pdpQty:1, pdpTab:'bottle'}); if(typeof window!=='undefined'&&window.scrollTo) window.scrollTo(0,0); }
+  openProduct(id){ this.go('product', id); }
+  toggleCart(){ this.setState(s=>({cartOpen:!s.cartOpen})); }
+  closeCart(){ this.setState({cartOpen:false}); }
+
+  add(id,sizeId,qty){ this.setState(s=>{ const cart=s.cart.map(c=>({...c})); const i=cart.findIndex(c=>c.id===id&&c.size===sizeId); if(i>=0) cart[i].qty+=qty; else cart.push({id,size:sizeId,qty}); return {cart, cartOpen:true}; }); }
+  setQty(id,sizeId,qty){ this.setState(s=>({cart:s.cart.map(c=>(c.id===id&&c.size===sizeId)?{...c,qty:Math.max(1,qty)}:c)})); }
+  removeItem(id,sizeId){ this.setState(s=>({cart:s.cart.filter(c=>!(c.id===id&&c.size===sizeId))})); }
+
+  stars(r){ const full=Math.round(r); let s=''; for(let i=0;i<5;i++){ s+='<svg width="15" height="15" viewBox="0 0 24 24" fill="'+(i<full?'#E0A92E':'none')+'" stroke="#E0A92E" stroke-width="1.5" style="display:inline-block"><path d="M12 3l2.6 5.6 6 .7-4.5 4.2 1.2 6L12 16.8 6.7 19.5l1.2-6L3.4 9.3l6-.7z"/></svg>'; } return s; }
+  chip(active,base){ return base+';cursor:pointer;border-radius:999px;font-family:Hanken Grotesk;font-weight:600;font-size:14px;transition:all .18s;'+(active?'background:#063A12;color:#fff;border:1.5px solid #063A12':'background:#fff;color:#3F463E;border:1.5px solid #D9D6C7'); }
+
+  // ---- formulator logic ----
+  pressureMap = {
+    'Powdery mildew':'prevent','Botrytis / mold':'prevent','Aphids & mites':'protect','Beetles':'protect',
+    'Weed pressure':'cleanse','Poor / depleted soil':'restore','Slow growth':'grow','Weak roots':'strength','Low yield':'boost'
+  };
+  program(){
+    const pid=this.pressureMap[this.state.fPressure]||'grow';
+    const primary=this.find(pid);
+    const support=['restore','grow','boost'].filter(x=>x!==pid).map(x=>this.find(x));
+    let list=[{p:primary,role:'Primary'},{p:support[0],role:'Support'}];
+    if(['protect','prevent','boost'].includes(pid)) list.push({p:support[1],role:'Finisher'});
+    return list;
+  }
+
+  renderVals(){
+    const st=this.state;
+    const mapP=(p)=>{ const b=this.bottle(p.id); return {
+      ...p, numLabel:'No. '+p.num, priceFmt:this.m(p.price), bottle:b,
+      cat:p.cat, ratingFmt:p.rating.toFixed(1),
+      img148:this.H(this.imgH(b,'height:148px;filter:drop-shadow(0 8px 14px rgba(0,40,8,.2))')),
+      img248:this.H(this.imgH(b,'height:248px;filter:drop-shadow(0 14px 22px rgba(0,40,8,.22))')),
+      img104:this.H(this.imgH(b,'height:104px')),
+      open:()=>this.openProduct(p.id), addQuick:()=>this.add(p.id,'6g',1),
+    }; };
+    const all=this.P.map(mapP);
+
+    // shop
+    let shop=this.P.filter(p=>st.shopFilter==='All'||p.group===st.shopFilter);
+    if(st.shopSort==='low') shop=[...shop].sort((a,b)=>a.price-b.price);
+    else if(st.shopSort==='high') shop=[...shop].sort((a,b)=>b.price-a.price);
+    else if(st.shopSort==='rating') shop=[...shop].sort((a,b)=>b.rating-a.rating);
+    const shopProducts=shop.map(mapP);
+    const cats=this.CATS.map(c=>({label:c, pick:()=>this.setState({shopFilter:c}), style:this.chip(st.shopFilter===c,'padding:9px 18px')}));
+
+    // pdp
+    const p=this.find(st.pid);
+    const imgs={bottle:this.bottle(p.id),label:'assets/labels/'+p.id+'.png',botanical:p.botanical||('assets/botanical/'+p.id+'.png')};
+    const pdp={
+      ...mapP(p), long:p.long, stars:this.H(this.stars(p.rating)),
+      mainImg: imgs[st.pdpTab], mainImgHtml:this.H(this.imgH(imgs[st.pdpTab],'max-height:500px;max-width:88%;filter:drop-shadow(0 20px 36px rgba(0,40,8,.22))')),
+      thumbs:['bottle','label','botanical'].map(k=>({img:imgs[k], imgHtml:this.H(this.imgH(imgs[k],'max-height:62px;max-width:80%')), pick:()=>this.setState({pdpTab:k}),
+        style:'cursor:pointer;flex:1;height:84px;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:12px;border:1.5px solid '+(st.pdpTab===k?'#063A12':'#E2DFD2')})),
+      sizes:this.S.map(s=>({...s, sel:s.id===st.pdpSize, unitFmt:this.m(this.unit(p,s.id)), choose:()=>this.setState({pdpSize:s.id}),
+        style:'cursor:pointer;text-align:left;padding:12px 16px;border-radius:14px;background:'+(s.id===st.pdpSize?'#F2F7EC':'#fff')+';color:#063A12;border:1.5px solid '+(s.id===st.pdpSize?'#6FAE52':'#D9D6C7')})),
+      qty:st.pdpQty, curSizeLabel:this.sizeLabel(st.pdpSize), curUnitFmt:this.m(this.unit(p,st.pdpSize)),
+      lineFmt:this.m(this.unit(p,st.pdpSize)*st.pdpQty),
+      inc:()=>this.setState(s=>({pdpQty:s.pdpQty+1})), dec:()=>this.setState(s=>({pdpQty:Math.max(1,s.pdpQty-1)})),
+      addNow:()=>this.add(p.id,st.pdpSize,st.pdpQty),
+      crops:p.crops,
+      related:this.P.filter(x=>x.group===p.group&&x.id!==p.id).concat(this.P.filter(x=>x.group!==p.group)).slice(0,3).map(mapP),
+    };
+
+    // cart
+    const cartItems=st.cart.map(c=>{ const pp=this.find(c.id); const b=this.bottle(pp.id); const unit=this.unit(pp,c.size); return {
+      key:c.id+c.size, name:pp.name, numLabel:'No. '+pp.num, cat:pp.cat, sizeLabel:this.sizeLabel(c.size),
+      accent:pp.accent, accentSoft:pp.accentSoft, bottle:b, img112:this.H(this.imgH(b,'height:112px')), img66:this.H(this.imgH(b,'height:66px')), img44:this.H(this.imgH(b,'height:44px')), qty:c.qty,
+      unitFmt:this.m(unit), lineFmt:this.m(unit*c.qty),
+      inc:()=>this.setQty(pp.id,c.size,c.qty+1), dec:()=>this.setQty(pp.id,c.size,c.qty-1),
+      remove:()=>this.removeItem(pp.id,c.size), open:()=>this.openProduct(pp.id),
+    }; });
+    const subtotal=st.cart.reduce((t,c)=>t+this.unit(this.find(c.id),c.size)*c.qty,0);
+    const count=st.cart.reduce((t,c)=>t+c.qty,0);
+    const shipping=subtotal>0&&subtotal<750?85:0;
+    const total=subtotal+shipping;
+
+    // checkout
+    const coLabels=['Information','Delivery','Payment'];
+    const coSteps=coLabels.map((l,i)=>({num:String(i+1).padStart(2,'0'),label:l,
+      style:'display:flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-weight:700;font-size:13px;'+((i+1)===st.coStep?'background:#063A12;color:#fff':(i+1)<st.coStep?'background:#E9F0E0;color:#356A26':'background:#fff;color:#A6A293;border:1px solid #E2DFD2')}));
+
+    // formulator
+    const fCropsArr=['Wine grapes','Almonds','Lettuce','Tomatoes','Strawberries','Corn','Cannabis','Citrus'];
+    const fPressArr=Object.keys(this.pressureMap);
+    const fCrops=fCropsArr.map(c=>({label:c, pick:()=>this.setState({fCrop:c}), style:this.chip(st.fCrop===c,'padding:9px 15px')}));
+    const fPressures=fPressArr.map(c=>({label:c, pick:()=>this.setState({fPressure:c}), style:this.chip(st.fPressure===c,'padding:9px 15px')}));
+    const prog=this.program();
+    const fProgram=prog.map(x=>({name:x.p.name, cat:x.p.cat, bottle:this.bottle(x.p.id), imgHtml:this.H(this.imgH(this.bottle(x.p.id),'height:54px')), role:x.role, rate:x.p.rate.split(' ')[0]+' gal/ac',
+      estFmt:this.m(x.p.price*Math.max(1,Math.round(st.fAcres/40)))}));
+    const fTotal=prog.reduce((t,x)=>t+x.p.price*Math.max(1,Math.round(st.fAcres/40)),0);
+    const cropAbbr=st.fCrop.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+    const presAbbr=st.fPressure.replace(/[^A-Za-z]/g,'').slice(0,2).toUpperCase();
+    const fCode='AP-'+cropAbbr+'-'+presAbbr+'-'+String((st.fAcres*7)%9000+1000);
+
+    return {
+      cartCount:count,
+      isHome:st.route==='home', isShop:st.route==='shop', isProduct:st.route==='product',
+      isFormula:st.route==='formula', isCart:st.route==='cart', isCheckout:st.route==='checkout',
+      isAbout:st.route==='about', isLearn:st.route==='learn', isContact:st.route==='contact', isAuth:st.route==='auth',
+      goHome:()=>this.go('home'), goShop:()=>this.go('shop'), goFormula:()=>this.go('formula'),
+      goAbout:()=>this.go('about'), goLearn:()=>this.go('learn'), goContact:()=>this.go('contact'),
+      goAuth:()=>this.go('auth'), goCart:()=>this.go('cart'), goCheckout:()=>this.go('checkout'),
+      goBoost:()=>this.openProduct('boost'),
+      toggleCart:()=>this.toggleCart(), closeCart:()=>this.closeCart(),
+      goShopFromDrawer:()=>this.go('shop'), goCartFromDrawer:()=>this.go('cart'), goCheckoutFromDrawer:()=>this.go('checkout'),
+
+      products:all, shopProducts, cats, shopSort:st.shopSort, setSort:(e)=>this.setState({shopSort:e.target.value}),
+
+      features:this.wi([
+        {icon:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><path d="M12 21V8"/></svg>', title:'Naturally resistant', body:'Inputs that make plants resistant before problems start — not just react to them once damage is done.'},
+        {icon:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 17h18M5 17c0-4 3-7 7-7s7 3 7 7M12 10V4"/></svg>', title:'Living soil', body:'Restore the microbiome underneath the crop. Healthier soil means stronger roots and better yields, season over season.'},
+        {icon:'<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h10"/></svg>', title:'Custom-formulated', body:'Every formula is mixed for one crop, one soil, one set of pressures. Matched to your block, with rates and timing.'},
+      ]),
+      values:this.wi([
+        {icon:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3v18M5 8l7-5 7 5"/></svg>', title:'Grounded expertise', body:'We sound like a trusted agronomist standing in the field — confidence without hype, warmth with precision.'},
+        {icon:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>', title:'Proof, not promises', body:'Rates, ratios, pH, and measured outcomes. Numbers are how we earn trust — we don\u2019t invent stats.'},
+        {icon:'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22c5-3 8-7 8-12V5l-8-3-8 3v5c0 5 3 9 8 12z"/></svg>', title:'Soil-positive', body:'Copper-free, OMRI-style chemistry that solves problems calmly — no fear-mongering, no residue worries.'},
+      ]),
+      articles:[
+        {tag:'Soil',read:'6 min',title:'Reading your soil before you plant',excerpt:'A field guide to structure, pH, and the microbial signals that tell you what to fix first.',img:this.bottle('restore'),imgHtml:this.H(this.imgH(this.bottle('restore'),'height:120px;filter:drop-shadow(0 8px 14px rgba(0,40,8,.15))')),tint:'#E9F0E0'},
+        {tag:'Disease',read:'8 min',title:'Building a preventative mildew program',excerpt:'Why timing beats spraying, and how to stay ahead of powdery mildew on grapes.',img:this.bottle('prevent'),imgHtml:this.H(this.imgH(this.bottle('prevent'),'height:120px;filter:drop-shadow(0 8px 14px rgba(0,40,8,.15))')),tint:'#EAE4F2'},
+        {tag:'Pests',read:'5 min',title:'Botanical pest control that spares beneficials',excerpt:'Knocking back aphids and beetles without collateral damage to pollinators.',img:this.bottle('protect'),imgHtml:this.H(this.imgH(this.bottle('protect'),'height:120px;filter:drop-shadow(0 8px 14px rgba(0,40,8,.15))')),tint:'#F4E2D6'},
+        {tag:'Growth',read:'4 min',title:'Canopy management for vegetable crops',excerpt:'Capture photosynthetic area early without forcing soft, disease-prone tissue.',img:this.bottle('grow'),imgHtml:this.H(this.imgH(this.bottle('grow'),'height:120px;filter:drop-shadow(0 8px 14px rgba(0,40,8,.15))')),tint:'#E8F2DE'},
+        {tag:'Yield',read:'7 min',title:'Timing Boost for fruit set and fill',excerpt:'The bloom-to-fill window, and how to push marketable yield at the finish.',img:this.bottle('boost'),imgHtml:this.H(this.imgH(this.bottle('boost'),'height:120px;filter:drop-shadow(0 8px 14px rgba(0,40,8,.15))')),tint:'#F4ECD6'},
+        {tag:'Roots',read:'5 min',title:'Why early root architecture sets the ceiling',excerpt:'Even germination and deep roots are the cheapest yield you\u2019ll ever buy.',img:this.bottle('strength'),imgHtml:this.H(this.imgH(this.bottle('strength'),'height:120px;filter:drop-shadow(0 8px 14px rgba(0,40,8,.15))')),tint:'#E2ECF5'},
+      ],
+
+      pdp,
+      cartItems, cartEmpty:st.cart.length===0, cartHas:st.cart.length>0, cartOpen:st.cartOpen,
+      subtotalFmt:this.m(subtotal), shippingFmt:shipping===0?'Free':this.m(shipping), totalFmt:this.m(total),
+
+      coSteps, coActive:!st.coPlaced, coPlaced:st.coPlaced,
+      coIs1:st.coStep===1, coIs2:st.coStep===2, coIs3:st.coStep===3,
+      coNextLabel:st.coStep===3?'Place order':'Continue',
+      coNext:()=>{ if(st.coStep<3) this.setState({coStep:st.coStep+1}); else this.setState({coPlaced:true,cart:[]}); if(typeof window!=='undefined'&&window.scrollTo) window.scrollTo(0,0); },
+      coBack:()=>{ if(st.coStep>1) this.setState({coStep:st.coStep-1}); else this.go('cart'); },
+      orderNum:'#AP-'+String(28410+st.cart.length),
+
+      fCrop:st.fCrop, fPressure:st.fPressure, fAcres:st.fAcres, fCrops, fPressures,
+      setAcres:(e)=>this.setState({fAcres:parseInt(e.target.value,10)}),
+      fProgram, fTotalFmt:this.m(fTotal), fCode,
+      addProgram:()=>{ const qty=Math.max(1,Math.round(st.fAcres/40)); prog.forEach(x=>this.add(x.p.id,'6g',qty)); this.go('cart'); },
+
+      authMode:st.authMode, authIsRegister:st.authMode==='register',
+      authTitle:st.authMode==='register'?'Create your account':'Welcome back',
+      authSub:st.authMode==='register'?'Set up your operation\u2019s account to order and track.':'Sign in to manage orders and reorder by season.',
+      authCta:st.authMode==='register'?'Create account':'Sign in',
+      authSwitchText:st.authMode==='register'?'Already have an account?':'New to AgriPure?',
+      authSwitchCta:st.authMode==='register'?'Sign in':'Create one',
+      toggleAuth:()=>this.setState(s=>({authMode:s.authMode==='register'?'signin':'register'})),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #edeae0;
+  --ink: #1e251f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-hanken), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection {
+  background: #c4e0b6;
+}
+
+@layer components {
+  /* Animated underline-ish nav/footer link */
+  .ap-link {
+    @apply relative cursor-pointer font-semibold text-[15px] transition-colors duration-200;
+    color: #26302a;
+  }
+  .ap-link:hover {
+    color: #063a12;
+  }
+
+  /* Product card hover-rise */
+  .ap-card {
+    @apply transition-[transform,box-shadow] duration-300 ease-smooth;
+  }
+  .ap-card:hover {
+    transform: translateY(-6px);
+  }
+
+  /* Pill buttons — brand signature */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-bold
+      transition-colors duration-200 cursor-pointer disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-forest text-white;
+  }
+  .btn-primary:hover {
+    background: #004800;
+  }
+  .btn-leaf {
+    @apply btn bg-leaf;
+    color: #04230b;
+  }
+  .btn-leaf:hover {
+    background: #8bc06f;
+  }
+  .btn-ghost {
+    @apply btn bg-white text-forest;
+    border: 1.5px solid #c7cbb8;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  /* Thin warm scrollbar for horizontal strips */
+  .ap-sc::-webkit-scrollbar {
+    height: 8px;
+  }
+  .ap-sc::-webkit-scrollbar-thumb {
+    background: #c7cbb8;
+    border-radius: 9px;
+  }
+}
