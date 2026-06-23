@@ -43,7 +43,7 @@ export default function Home() {
         return (
           <section
             key={p.id}
-            className={`flex min-h-screen items-center px-8 py-20 ${flip ? "bg-white" : "bg-paper"}`}
+            className={`px-8 py-16 sm:py-20 ${flip ? "bg-white" : "bg-paper"}`}
           >
             <div className="mx-auto grid w-full max-w-container items-center gap-12 md:grid-cols-2 lg:gap-20">
               {/* visual */}
