@@ -75,6 +75,20 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  @keyframes apRise {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+  }
+  .ap-rise { animation: apRise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  @keyframes apFlow {
+    from { background-position: 0 0; }
+    to { background-position: 22px 0; }
+  }
+  .ap-flow {
+    background-image: linear-gradient(90deg, #6FAE52 0 55%, transparent 55% 100%);
+    background-size: 22px 100%;
+    animation: apFlow 0.9s linear infinite;
+  }
   /* Thin warm scrollbar for horizontal strips */
   .ap-sc::-webkit-scrollbar {
     height: 8px;
