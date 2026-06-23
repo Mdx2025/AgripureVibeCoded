@@ -231,6 +231,7 @@ export function getPricingProgram(): PricingProgram {
       organicPerAc: typeof p.organicPerAc === "number" ? p.organicPerAc : DEFAULT_PROGRAM.organicPerAc,
       conventionalPerAc: typeof p.conventionalPerAc === "number" ? p.conventionalPerAc : DEFAULT_PROGRAM.conventionalPerAc,
       bundles: Array.isArray(p.bundles) && p.bundles.length ? p.bundles : DEFAULT_PROGRAM.bundles,
+      soilSamplePrice: typeof p.soilSamplePrice === "number" ? p.soilSamplePrice : DEFAULT_PROGRAM.soilSamplePrice,
     };
   } catch {
     return DEFAULT_PROGRAM;
@@ -262,6 +263,7 @@ export function savePricingProgram(input: PricingProgram): PricingProgram {
     organicPerAc: Math.max(0, Math.round(Number(input.organicPerAc) || DEFAULT_PROGRAM.organicPerAc)),
     conventionalPerAc: Math.max(0, Math.round(Number(input.conventionalPerAc) || DEFAULT_PROGRAM.conventionalPerAc)),
     bundles,
+    soilSamplePrice: Math.max(0, Math.round(Number(input.soilSamplePrice ?? DEFAULT_PROGRAM.soilSamplePrice))),
   };
   getDb().prepare("INSERT INTO settings (key,value) VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value")
     .run(PRICING_KEY, JSON.stringify(program));
@@ -307,6 +309,7 @@ export interface QuoteInput {
 export interface QuoteRow {
   id: string; number: string; account_id: string; customer_name: string; customer_email: string;
   acres: number; total: number; effective: number; payload: QuoteInput;
+  soil_total: number; soil_price: number;
   status: string; payment_status: string; payment_method: string | null; created_at: string;
 }
 
@@ -317,7 +320,12 @@ export function createQuote(input: QuoteInput) {
   const db = getDb();
   const email = input.customer.email.trim().toLowerCase();
   const totalAcres = Object.values(input.acres).reduce((t, n) => t + (Number(n) || 0), 0);
-  const q = quoteForAcres(totalAcres, getPricingProgram());
+  const program = getPricingProgram();
+  const q = quoteForAcres(totalAcres, program);
+  // One required soil sample per crop (kit + lab analysis); added to the order total.
+  const soilPrice = program.soilSamplePrice;
+  const soilTotal = (input.crops?.length || 0) * soilPrice;
+  const grandTotal = q.total + soilTotal;
   const now = new Date().toISOString();
 
   // Upsert account by email.
@@ -339,12 +347,12 @@ export function createQuote(input: QuoteInput) {
   const id = `q-${Date.now().toString(36)}-${Math.floor(Math.random() * 1000)}`;
   const number = `AP-Q-${seq}`;
   db.prepare(`INSERT INTO quotes
-    (id,number,account_id,customer_name,customer_email,acres,total,effective,payload,status,payment_status,payment_method,created_at)
-    VALUES (@id,@number,@account_id,@customer_name,@customer_email,@acres,@total,@effective,@payload,'quote','unpaid',NULL,@created_at)`).run({
+    (id,number,account_id,customer_name,customer_email,acres,total,effective,payload,soil_total,soil_price,status,payment_status,payment_method,created_at)
+    VALUES (@id,@number,@account_id,@customer_name,@customer_email,@acres,@total,@effective,@payload,@soil_total,@soil_price,'quote','unpaid',NULL,@created_at)`).run({
     id, number, account_id: account.id,
     customer_name: input.customer.name, customer_email: email,
-    acres: totalAcres, total: q.total, effective: q.effective,
-    payload: JSON.stringify(input), created_at: now,
+    acres: totalAcres, total: grandTotal, effective: q.effective,
+    payload: JSON.stringify(input), soil_total: soilTotal, soil_price: soilPrice, created_at: now,
   });
 
   return { id, number, isNewAccount, accountEmail: email, tempPassword };

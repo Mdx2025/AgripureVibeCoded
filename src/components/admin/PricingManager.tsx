@@ -93,6 +93,18 @@ export default function PricingManager({ initial }: { initial: PricingProgram })
         </div>
       </section>
 
+      {/* Soil sample fee */}
+      <section className="mb-6 rounded-panel border border-hair bg-white p-6">
+        <div className="mb-1 font-display text-[18px] font-extrabold text-forest">Soil sample fee (per crop)</div>
+        <p className="mb-4 max-w-[620px] text-[13px] text-fg3">
+          Charged once per crop at checkout — covers the mailed soil-sample kit, lab analysis, and shipping. Required
+          before formulating. Added to every quote as <span className="font-mono">crops × this fee</span>.
+        </p>
+        <label className="text-[13px] font-semibold text-fg2">$ per soil sample
+          <input className={`${num} mt-1.5 block`} type="number" min={0} value={program.soilSamplePrice} onChange={(e) => set({ soilSamplePrice: Number(e.target.value) })} />
+        </label>
+      </section>
+
       {/* Bundles */}
       <section className="rounded-panel border border-hair bg-white p-6">
         <div className="mb-1 font-display text-[18px] font-extrabold text-forest">Bundles (3 &amp; 6 gallon)</div>

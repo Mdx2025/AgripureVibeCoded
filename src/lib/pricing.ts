@@ -22,6 +22,8 @@ export interface PricingProgram {
   organicPerAc: number;
   conventionalPerAc: number;
   bundles: PricingBundle[];
+  /** One-time soil-sample fee charged per crop (kit + lab analysis + shipping). */
+  soilSamplePrice: number;
 }
 
 export const DEFAULT_PROGRAM: PricingProgram = {
@@ -38,6 +40,7 @@ export const DEFAULT_PROGRAM: PricingProgram = {
     { id: "3g", label: "3-Gallon Set", gallons: 3, acres: 25, note: "3-gallon set of all 7 products" },
     { id: "6g", label: "6-Gallon Set", gallons: 6, acres: 50, note: "6-gallon set of all 7 products", best: true },
   ],
+  soilSamplePrice: 40,
 };
 
 // Back-compat scalar exports (the comparison page references these defaults).

@@ -18,7 +18,7 @@ const snapAcres = (n: number) => Math.max(ACRE_STEP, Math.round(n / ACRE_STEP) *
 
 const field = "w-full rounded-[14px] border border-hair bg-white px-5 py-4 text-[18px] outline-none focus:border-leaf";
 
-export default function OrderWizard() {
+export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: number }) {
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
@@ -31,6 +31,7 @@ export default function OrderWizard() {
   const [pests, setPests] = useState<Rec<string[]>>({});
   const [diseases, setDiseases] = useState<Rec<string[]>>({});
   const [yieldP, setYieldP] = useState<Rec<boolean>>({});
+  const [soilAck, setSoilAck] = useState(false);
   const [customer, setCustomer] = useState({ name: "", email: "", phone: "", business: "", address: "" });
 
   const setCrops = (next: string[]) => {
@@ -43,6 +44,7 @@ export default function OrderWizard() {
 
   const totalAcres = crops.reduce((t, c) => t + (acres[c] || 0), 0);
   const q = quoteForAcres(totalAcres);
+  const soilCost = crops.length * soilSamplePrice;
 
   const STEPS = [
     {
@@ -142,6 +144,41 @@ export default function OrderWizard() {
       ),
     },
     {
+      title: "Soil samples — one per crop",
+      sub: "We custom-formulate from your actual soil, so a soil test is required for every crop you grow.",
+      valid: soilAck,
+      body: (
+        <div className="flex flex-col gap-5">
+          <div className="rounded-[16px] border border-leaf bg-[#F2F7EC] p-6 text-[15.5px] leading-[1.65] text-fg2">
+            <div className="font-display text-[18px] font-extrabold text-forest">How your soil samples work</div>
+            <ol className="mt-3 ml-5 list-decimal space-y-2">
+              <li>A soil-sample tube kit ships to your address — <strong className="text-forest">one kit per crop</strong>.</li>
+              <li>You collect the sample in the area where that crop will be grown and mail it to the AgriPure lab.</li>
+              <li>Once your soil results come back, we formulate your seven products specifically for each crop.</li>
+            </ol>
+          </div>
+
+          <div className="overflow-hidden rounded-[16px] border border-hair">
+            {crops.map((c) => (
+              <div key={c} className="flex items-center justify-between border-b border-hair px-5 py-3.5 last:border-0">
+                <span className="text-[16px] font-semibold text-forest">{c} <span className="font-normal text-fg3">— soil sample kit</span></span>
+                <span className="font-mono text-[16px] text-fg2">{money(soilSamplePrice)}</span>
+              </div>
+            ))}
+            <div className="flex items-center justify-between bg-[#FAF8F2] px-5 py-4">
+              <span className="font-display text-[16px] font-extrabold text-forest">{crops.length} soil sample{crops.length === 1 ? "" : "s"}</span>
+              <span className="font-mono text-[20px] font-bold text-forest">{money(soilCost)}</span>
+            </div>
+          </div>
+
+          <label className="flex cursor-pointer items-start gap-3 text-[15px] text-fg2">
+            <input type="checkbox" checked={soilAck} onChange={(e) => setSoilAck(e.target.checked)} className="mt-1 h-5 w-5 accent-leaf" />
+            <span>I understand a soil sample is required for each crop, that a kit will ship to my address, and that I&apos;ll mail my samples to the lab so AgriPure can formulate my program.</span>
+          </label>
+        </div>
+      ),
+    },
+    {
       title: "Get your custom quote",
       sub: "Where should we send your quote? This creates your AgriPure account.",
       valid:
@@ -215,8 +252,14 @@ export default function OrderWizard() {
       <div className="flex-none border-t border-hair pt-6">
         {totalAcres > 0 && step >= 1 && (
           <div className="mb-5 flex flex-wrap items-center justify-between gap-2 rounded-[16px] border border-hair bg-white px-6 py-4 text-[17px]">
-            <span className="text-fg2">{totalAcres.toLocaleString()} acres · {q.bundles} × 6-gal bundles</span>
-            <span className="font-mono text-[19px] font-semibold text-forest">est. {money(q.total)} <span className="text-[15px] font-normal text-fg3">· {money(q.effective)}/ac</span></span>
+            <span className="text-fg2">
+              {totalAcres.toLocaleString()} acres · {q.bundles} × 6-gal bundles
+              {soilCost > 0 && <span className="text-fg3"> + {crops.length} soil sample{crops.length === 1 ? "" : "s"}</span>}
+            </span>
+            <span className="font-mono text-[19px] font-semibold text-forest">
+              est. {money(q.total + soilCost)}
+              <span className="text-[15px] font-normal text-fg3"> · {money(q.effective)}/ac + {money(soilCost)} soil</span>
+            </span>
           </div>
         )}
 

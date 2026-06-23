@@ -77,6 +77,7 @@ function migrate(db: Database.Database) {
     CREATE TABLE IF NOT EXISTS quotes (
       id TEXT PRIMARY KEY, number TEXT, account_id TEXT, customer_name TEXT, customer_email TEXT,
       acres INTEGER, total INTEGER, effective INTEGER, payload TEXT,
+      soil_total INTEGER DEFAULT 0, soil_price INTEGER DEFAULT 0,
       status TEXT, payment_status TEXT, payment_method TEXT, created_at TEXT
     );
     CREATE TABLE IF NOT EXISTS crop_formulas (
@@ -100,6 +101,11 @@ function migrate(db: Database.Database) {
   // Older databases: add the product image column if missing.
   const pcols = (db.prepare("PRAGMA table_info(products)").all() as { name: string }[]).map((c) => c.name);
   if (!pcols.includes("image")) db.exec(`ALTER TABLE products ADD COLUMN image TEXT`);
+
+  // Older databases: add the quote soil-sample columns if missing.
+  const qcols = (db.prepare("PRAGMA table_info(quotes)").all() as { name: string }[]).map((c) => c.name);
+  if (!qcols.includes("soil_total")) db.exec(`ALTER TABLE quotes ADD COLUMN soil_total INTEGER DEFAULT 0`);
+  if (!qcols.includes("soil_price")) db.exec(`ALTER TABLE quotes ADD COLUMN soil_price INTEGER DEFAULT 0`);
 }
 
 function seed(db: Database.Database) {

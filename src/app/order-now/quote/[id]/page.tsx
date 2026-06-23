@@ -80,15 +80,29 @@ export default function QuotePage({
                 <td className="px-7 py-3.5 text-right font-mono text-forest">{money(b.cost)}</td>
               </tr>
             ))}
-            <tr className="bg-[#FAF8F2]">
-              <td className="px-7 py-4 font-display text-[17px] font-extrabold text-forest">Total · {q.bundles} × 6-gal bundles</td>
-              <td className="px-2 py-4 text-right font-mono text-fg3">{money(q.effective)}/ac</td>
-              <td className="px-7 py-4 text-right font-mono text-[20px] font-bold text-forest">{money(q.total)}</td>
+            <tr className="border-b border-[#F2EFE6] bg-[#FAF8F2]">
+              <td className="px-7 py-3.5 font-display text-[15px] font-extrabold text-forest">Program subtotal · {q.bundles} × 6-gal bundles</td>
+              <td className="px-2 py-3.5 text-right font-mono text-fg3">{money(q.effective)}/ac</td>
+              <td className="px-7 py-3.5 text-right font-mono text-[16px] font-semibold text-forest">{money(q.total)}</td>
+            </tr>
+            <tr className="border-b border-[#F2EFE6]">
+              <td className="px-7 py-3.5 text-fg2">
+                Soil samples — {p.crops.length} crop{p.crops.length === 1 ? "" : "s"}
+                {quote.soil_price > 0 && <span className="text-fg3"> ({money(quote.soil_price)} each)</span>}
+              </td>
+              <td className="px-2 py-3.5 text-right font-mono text-fg3">required</td>
+              <td className="px-7 py-3.5 text-right font-mono text-forest">{money(quote.soil_total)}</td>
+            </tr>
+            <tr className="bg-[#F2F7EC]">
+              <td className="px-7 py-4 font-display text-[17px] font-extrabold text-forest">Total due</td>
+              <td className="px-2 py-4"></td>
+              <td className="px-7 py-4 text-right font-mono text-[20px] font-bold text-forest">{money(quote.total)}</td>
             </tr>
           </tbody>
         </table>
         <div className="px-7 py-4 text-[15px] text-leaf-700">
-          You save {money(q.saveVsOrganic)} vs a comparable organic program ({money(q.organicTotal)}).
+          You save {money(q.saveVsOrganic)} vs a comparable organic program ({money(q.organicTotal)}). A soil-sample kit
+          ships to your address for each crop — mail your samples to the lab and we&apos;ll formulate your program.
         </div>
       </div>
 

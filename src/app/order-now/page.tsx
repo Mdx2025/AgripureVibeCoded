@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import OrderWizard from "@/components/order/OrderWizard";
+import { getPricingProgram } from "@/lib/repo";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Order Now — AgriPure",
@@ -7,5 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function OrderNowPage() {
-  return <OrderWizard />;
+  return <OrderWizard soilSamplePrice={getPricingProgram().soilSamplePrice} />;
 }
