@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import HeroDrone from "@/components/experience/HeroDrone";
+import ComparisonTable from "@/components/ComparisonTable";
 import { listProducts } from "@/lib/repo";
 import { bottleSrc } from "@/lib/products";
 
@@ -123,6 +124,26 @@ export default function Home() {
           </section>
         );
       })}
+
+      {/* WHY CHOOSE US — comparison */}
+      <section className="bg-white px-8 py-20">
+        <div className="mx-auto max-w-container">
+          <div className="text-center">
+            <div className="text-xs font-bold uppercase tracking-[0.14em] text-leaf">Why growers choose AgriPure</div>
+            <h2 className="mt-3 font-display text-[clamp(28px,4.5vw,44px)] font-black tracking-[-0.02em] text-forest">
+              Conventional vs Organic vs AgriPure
+            </h2>
+          </div>
+          <div className="mt-10">
+            <ComparisonTable />
+          </div>
+          <div className="mt-6 text-center">
+            <Link href="/why-choose-us" className="ap-link inline-flex items-center gap-1.5 !text-leaf-600 text-[15px] font-semibold">
+              See all the reasons to switch <ArrowRight size={16} strokeWidth={2.2} />
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* CLOSING CTA */}
       <section className="bg-paper px-8 pb-24 pt-4">
