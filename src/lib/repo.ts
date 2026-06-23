@@ -399,6 +399,32 @@ export function listQuotesByAccount(accountId: string): QuoteRow[] {
     .map((r) => ({ ...r, payload: JSON.parse(r.payload) as QuoteInput }));
 }
 
+/* ---- Clients (real customers created when an order is placed) ---------- */
+export interface ClientSummary extends AccountRow {
+  orders: number; totalSpend: number; lastOrder: string | null;
+}
+
+/** Every customer account, with their order count + lifetime value. The admin Clients list. */
+export function listAccounts(): ClientSummary[] {
+  return getDb().prepare(`
+    SELECT a.id, a.name, a.email, a.phone, a.business, a.address, a.created_at,
+           COUNT(q.id) AS orders,
+           COALESCE(SUM(q.total), 0) AS totalSpend,
+           MAX(q.created_at) AS lastOrder
+    FROM accounts a
+    LEFT JOIN quotes q ON q.account_id = a.id
+    GROUP BY a.id
+    ORDER BY a.created_at DESC
+  `).all() as ClientSummary[];
+}
+
+/** A single client's full contact record plus every quote/order they've placed. */
+export function getClientWithQuotes(id: string): { account: AccountRow; quotes: QuoteRow[] } | null {
+  const account = getAccountById(id);
+  if (!account) return null;
+  return { account, quotes: listQuotesByAccount(id) };
+}
+
 /* ---- Crop formula library (lab-only blends, imported from CSV) --------- */
 export interface CropFormulaRow {
   id: string; crop: string; crop_id: string; line: string; line_code: string;

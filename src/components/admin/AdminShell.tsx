@@ -95,7 +95,11 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
     return <div className="min-h-screen">{children}</div>;
   }
 
-  const title = TITLES[pathname] ?? (pathname.startsWith("/admin/quotes") ? "Lab Formulation Sheet" : "Dashboard");
+  const title =
+    TITLES[pathname] ??
+    (pathname.startsWith("/admin/quotes") ? "Lab Formulation Sheet"
+      : pathname.startsWith("/admin/clients") ? "Client"
+      : "Dashboard");
 
   return (
     <div className="flex min-h-screen bg-paper text-ink">
