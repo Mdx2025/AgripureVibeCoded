@@ -68,7 +68,7 @@ export default function PricingPage() {
   const COLUMNS = [
     { key: "conv", name: "Conventional", tag: "Synthetic · single-purpose", perAcre: money(program.conventionalPerAc), note: "/ acre" },
     { key: "org", name: "Organic", tag: "Natural · multiple products", perAcre: money(program.organicPerAc), note: "/ acre" },
-    { key: "ap", name: "AgriPure", tag: "Natural · all-in-one · custom", perAcre: money(apPerAcre), note: `/ acre · ${sixGal.gallons}-gal bundle rate`, sub: `volume floor ${money(floor)}/ac`, best: true },
+    { key: "ap", name: "AgriPure", tag: "Natural · all-in-one · custom", perAcre: `from ${money(floor)}`, note: "/ acre at volume", sub: `${money(apPerAcre)}/ac at standard volume`, best: true },
   ];
 
   const BUNDLES = [
@@ -164,8 +164,8 @@ export default function PricingPage() {
                 <td className="px-5 py-4 text-center font-mono text-[17px] font-semibold text-ink">{money(program.conventionalPerAc)}</td>
                 <td className="px-5 py-4 text-center font-mono text-[17px] font-semibold text-ink">{money(program.organicPerAc)}</td>
                 <td className={`px-5 py-4 text-center ${apCol}`}>
-                  <div className="font-mono text-[17px] font-bold text-forest">{money(apPerAcre)}</div>
-                  <div className="text-[11px] text-leaf-700">volume from {money(floor)}/ac — see calculator</div>
+                  <div className="font-mono text-[17px] font-bold text-forest">from {money(floor)}/ac</div>
+                  <div className="text-[11px] text-leaf-700">at volume · {money(apPerAcre)}/ac at standard volume</div>
                 </td>
               </tr>
             </tbody>

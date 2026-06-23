@@ -68,8 +68,8 @@ export default function ComparisonTable() {
               <td className="px-5 py-4 text-center font-mono text-[16px] font-semibold text-ink">{money(program.conventionalPerAc)}</td>
               <td className="px-5 py-4 text-center font-mono text-[16px] font-semibold text-ink">{money(program.organicPerAc)}</td>
               <td className={`px-5 py-4 text-center ${apCol}`}>
-                <div className="font-mono text-[16px] font-bold text-forest">{money(apPerAcre)}</div>
-                <div className="text-[11px] text-leaf-700">from {money(floor)}/ac at volume</div>
+                <div className="font-mono text-[16px] font-bold text-forest">from {money(floor)}/ac</div>
+                <div className="text-[11px] text-leaf-700">at volume · {money(apPerAcre)}/ac standard</div>
               </td>
             </tr>
           </tbody>
