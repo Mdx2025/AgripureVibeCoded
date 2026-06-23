@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import Link from "next/link";
-import { ArrowRight, FlaskConical, Gauge, Droplets, Sprout, ShieldCheck, Clock, Beaker, Atom, Sparkles, TrendingUp, Ban } from "lucide-react";
+import { ArrowRight, FlaskConical, Gauge, Droplets, Sprout, ShieldCheck, Clock, Beaker, Atom, Sparkles, TrendingUp, Ban, ClipboardList, Package, Microscope } from "lucide-react";
 import { bottleSrc } from "@/lib/products";
 import type { ProductRow } from "@/lib/repo";
 
@@ -33,12 +33,12 @@ export default function HowItWorks({ products }: { products: ProductRow[] }) {
           <h1 className="mt-4 font-display text-[clamp(40px,7vw,72px)] font-black leading-[1.02] tracking-[-0.02em]">
             From custom formula to harvest.
           </h1>
-          <p className="mx-auto mt-5 max-w-[600px] text-[clamp(17px,2.2vw,21px)] leading-[1.6] text-[#D7E5CC]">
-            Seven natural inputs, custom-built for your crop, injected straight into your irrigation, and applied
-            across the whole lifecycle of the plant. Here&apos;s the entire process — start to finish.
+          <p className="mx-auto mt-5 max-w-[620px] text-[clamp(17px,2.2vw,21px)] leading-[1.6] text-[#D7E5CC]">
+            From your first order to harvest: order online, test your soil, get a custom-formulated program, and feed it
+            to your crops through your irrigation. Here&apos;s the entire process — start to finish.
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
-            {[["01", "Formulate"], ["02", "Deliver"], ["03", "Apply"]].map(([n, l]) => (
+            {[["01", "Order"], ["02", "Soil kit"], ["03", "Lab"], ["04", "Formulate"], ["05", "Grow"]].map(([n, l]) => (
               <div key={n} className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.07] px-4 py-2 text-sm font-semibold">
                 <span className="font-mono text-[#BFE89A]">{n}</span> {l}
               </div>
@@ -47,17 +47,50 @@ export default function HowItWorks({ products }: { products: ProductRow[] }) {
         </div>
       </section>
 
-      {/* STEP 1 — NANO POTENTIZATION */}
+      {/* GETTING STARTED — steps 1–3 (order, soil kit, lab) */}
       <section className="mx-auto max-w-container px-6 py-20 sm:px-10">
-        <StepHead n="01" title="Potentized with nano technology" />
+        <div className="text-center">
+          <div className="text-xs font-bold uppercase tracking-[0.14em] text-leaf">Getting started</div>
+          <h2 className="mt-3 font-display text-[clamp(28px,4.5vw,44px)] font-black tracking-[-0.02em] text-forest">It starts with your soil.</h2>
+          <p className="mx-auto mt-3 max-w-[620px] text-[17px] leading-[1.6] text-fg2">
+            Before we mix a thing, we get to know your ground. Three quick steps to your custom program.
+          </p>
+        </div>
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
+          {[
+            { n: "01", Icon: ClipboardList, t: "Place your custom order", d: "On the website, tell us the crops you grow, your acreage, and the problems you're fighting — then place your custom order." },
+            { n: "02", Icon: Package, t: "Get your soil sample kit", d: "We mail you an AgriPure soil-sample tube kit with everything you need to pull a clean sample from your ground." },
+            { n: "03", Icon: Microscope, t: "Send your soil to our lab", d: "Collect your sample and ship it back in the prepaid kit. Our lab reads your soil's chemistry and biology." },
+          ].map(({ n, Icon, t, d }) => (
+            <div key={n} className="relative rounded-panel border border-hair bg-paper-2 p-7">
+              <span className="absolute right-5 top-4 font-display text-[42px] font-black text-[#E2DFD2]">{n}</span>
+              <div className="flex h-14 w-14 items-center justify-center rounded-[16px] bg-forest text-white"><Icon size={26} /></div>
+              <h3 className="mt-4 font-display text-[20px] font-extrabold text-forest">{t}</h3>
+              <p className="mt-2 text-[15px] leading-[1.6] text-fg2">{d}</p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-8 text-center">
+          <Link href="/order-now" className="btn-leaf px-7 py-3.5 text-[15px]">Place your order <ArrowRight size={16} strokeWidth={2.2} /></Link>
+        </div>
+      </section>
+
+      {/* STEP 4 — CUSTOM FORMULATION (nano potentization) */}
+      <section className="bg-white px-6 py-20 sm:px-10">
+       <div className="mx-auto max-w-container">
+        <StepHead n="04" title="We create your custom formulas" />
         <div className="mt-8 grid items-center gap-10 lg:grid-cols-[1.05fr_1fr]">
           {/* explanation */}
           <div>
             <p className="text-[18px] leading-[1.75] text-fg2">
-              Every program starts with natural <strong className="text-forest">remedies</strong>. We run them through a
-              <strong className="text-forest"> potentization machine</strong> that uses nano technology to reduce each
-              remedy down to a nano scale — small enough for the plant to absorb it
-              <strong className="text-forest"> directly through water</strong>.
+              From your soil results and the crops you grow, our lab builds a <strong className="text-forest">custom,
+              proprietary formulation of all seven products</strong> — specific to every crop and tuned to each phase of
+              its lifecycle. No two operations get the same blend.
+            </p>
+            <p className="mt-4 text-[18px] leading-[1.75] text-fg2">
+              Each natural <strong className="text-forest">remedy</strong> is then run through a
+              <strong className="text-forest"> potentization machine</strong> that uses nano technology to shrink it to a
+              nano scale — small enough for the plant to absorb it <strong className="text-forest">directly through water</strong>.
             </p>
             <p className="mt-4 text-[18px] leading-[1.75] text-fg2">
               Carried in through irrigation, these nano-potentized inputs flood the crop with super nutrients and switch
@@ -115,16 +148,18 @@ export default function HowItWorks({ products }: { products: ProductRow[] }) {
             ))}
           </div>
         </div>
+        </div>
       </section>
 
-      {/* STEP 2 — FERTIGATION */}
-      <section className="bg-white px-6 py-20 sm:px-10">
+      {/* STEP 5 — FERTIGATION */}
+      <section className="px-6 py-20 sm:px-10">
         <div className="mx-auto max-w-container">
-          <StepHead n="02" title="Delivered through your irrigation — precisely dosed" />
+          <StepHead n="05" title="Feed your crops through fertigation" />
           <p className="mt-4 max-w-[680px] text-[18px] leading-[1.7] text-fg2">
-            There&apos;s no separate spray crew or guesswork. Each of the seven products is metered into your existing
-            irrigation through a <strong className="text-forest">fertigation system</strong> — the exact dose injected
-            into the water and carried to the plant by <strong className="text-forest">drip and/or spray</strong> lines.
+            Back on your farm, you feed all seven straight through your existing irrigation. A
+            <strong className="text-forest"> fertigation system</strong> meters the exact dose of each product into the
+            water and carries it to the plant by <strong className="text-forest">drip and/or spray</strong> lines — no
+            separate spray crew, no guesswork.
           </p>
 
           {/* flow diagram */}
@@ -149,11 +184,16 @@ export default function HowItWorks({ products }: { products: ProductRow[] }) {
       {/* STEP 3 — EVERY PRODUCT ACROSS THE LIFECYCLE (scroll-through) */}
       <section className="bg-paper-2 px-6 py-20 sm:px-10">
         <div className="mx-auto max-w-container">
-          <StepHead n="03" title="Every product, across the crop's lifecycle" />
-          <p className="mt-4 max-w-[700px] text-[18px] leading-[1.7] text-fg2">
-            The seven aren&apos;t a one-time treatment — they&apos;re a season-long program, applied in order from soil
-            prep to harvest. Here&apos;s exactly what each one does and when. Just scroll the season top to bottom.
-          </p>
+          <div className="text-center">
+            <div className="text-xs font-bold uppercase tracking-[0.14em] text-leaf">Inside step 05 · the seven</div>
+            <h2 className="mt-3 font-display text-[clamp(26px,4.5vw,40px)] font-black tracking-[-0.02em] text-forest">
+              Every product, across the crop&apos;s lifecycle
+            </h2>
+            <p className="mx-auto mt-4 max-w-[700px] text-[17px] leading-[1.7] text-fg2">
+              The seven aren&apos;t a one-time treatment — they&apos;re a season-long program, applied in order from soil
+              prep to harvest. Here&apos;s exactly what each one does and when.
+            </p>
+          </div>
 
           <div className="relative mt-12">
             {/* the season spine */}
