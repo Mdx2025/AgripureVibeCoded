@@ -1,10 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
-import { ArrowRight, Search, FlaskConical, Gauge, Droplets, Sprout, ShieldCheck, Check, Clock } from "lucide-react";
+import { ArrowRight, FlaskConical, Gauge, Droplets, Sprout, ShieldCheck, Clock, Beaker, Atom, Sparkles, TrendingUp, Ban } from "lucide-react";
 import { bottleSrc } from "@/lib/products";
-import { CROP_NAMES } from "@/lib/data/crop-names";
 import type { ProductRow } from "@/lib/repo";
 
 type Phase = { id: string; phase: string; timing: string; role: string };
@@ -22,20 +21,6 @@ const LIFECYCLE: Phase[] = [
 
 export default function HowItWorks({ products }: { products: ProductRow[] }) {
   const byId = useMemo(() => Object.fromEntries(products.map((p) => [p.id, p])), [products]);
-  const ordered = useMemo(
-    () => ["restore", "cleanse", "strength", "grow", "protect", "prevent", "boost"].map((id) => byId[id]).filter(Boolean),
-    [byId],
-  );
-
-  // Step 1 — crop picker
-  const [crop, setCrop] = useState("");
-  const [query, setQuery] = useState("");
-  const [open, setOpen] = useState(false);
-  const matches = useMemo(() => {
-    const n = query.trim().toLowerCase();
-    return (n ? CROP_NAMES.filter((c) => c.toLowerCase().includes(n)) : CROP_NAMES).slice(0, 8);
-  }, [query]);
-
   const img = (p: ProductRow) => p.image?.trim() || bottleSrc(p.id);
 
   return (
@@ -62,64 +47,73 @@ export default function HowItWorks({ products }: { products: ProductRow[] }) {
         </div>
       </section>
 
-      {/* STEP 1 — CUSTOM FORMULATION */}
+      {/* STEP 1 — NANO POTENTIZATION */}
       <section className="mx-auto max-w-container px-6 py-20 sm:px-10">
-        <StepHead n="01" title="We formulate all seven — for your exact crop" />
-        <p className="mt-4 max-w-[680px] text-[18px] leading-[1.7] text-fg2">
-          Every program starts in the lab. AgriPure creates a <strong className="text-forest">custom, proprietary
-          formulation of all seven products</strong>, specific to the crop you&apos;re growing — and tuned to each
-          phase of that crop&apos;s lifecycle. No two crops get the same blend.
-        </p>
+        <StepHead n="01" title="Potentized with nano technology" />
+        <div className="mt-8 grid items-center gap-10 lg:grid-cols-[1.05fr_1fr]">
+          {/* explanation */}
+          <div>
+            <p className="text-[18px] leading-[1.75] text-fg2">
+              Every program starts with natural <strong className="text-forest">remedies</strong>. We run them through a
+              <strong className="text-forest"> potentization machine</strong> that uses nano technology to reduce each
+              remedy down to a nano scale — small enough for the plant to absorb it
+              <strong className="text-forest"> directly through water</strong>.
+            </p>
+            <p className="mt-4 text-[18px] leading-[1.75] text-fg2">
+              Carried in through irrigation, these nano-potentized inputs flood the crop with super nutrients and switch
+              on the plant&apos;s own defenses — so it becomes naturally pest- and disease-resistant, soil health is
+              rebuilt, and yields climb toward nature&apos;s natural crop-loss rate. All with
+              <strong className="text-forest"> zero chemicals or pesticides</strong>.
+            </p>
 
-        {/* interactive crop picker */}
-        <div className="mt-8 rounded-panel border border-hair bg-white p-6 sm:p-8">
-          <div className="text-[13px] font-bold uppercase tracking-[0.1em] text-leaf">Try it — pick your crop</div>
-          <div className="relative mt-3 max-w-[460px]">
-            <div className="flex items-center gap-2 rounded-[14px] border border-hair bg-paper-2 px-4 py-3.5 focus-within:border-leaf">
-              <Search size={20} className="text-fg3" />
-              <input
-                value={query}
-                onChange={(e) => { setQuery(e.target.value); setOpen(true); }}
-                onFocus={() => setOpen(true)}
-                onBlur={() => setTimeout(() => setOpen(false), 150)}
-                placeholder="e.g. Almond, Wine grapes, Strawberry…"
-                className="w-full bg-transparent text-[17px] outline-none"
-              />
+            <div className="mt-7 flex flex-col gap-3">
+              {[
+                { Icon: Beaker, t: "Start with natural remedies", d: "Proven, plant-derived inputs — nothing synthetic." },
+                { Icon: Atom, t: "Potentize to nano scale", d: "The potentization machine shrinks them with nano technology." },
+                { Icon: Droplets, t: "Absorbed through water", d: "Suspended in irrigation and taken up straight by the plant." },
+              ].map(({ Icon, t, d }) => (
+                <div key={t} className="flex items-start gap-3.5">
+                  <div className="flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-[#E9F0E0] text-leaf-700"><Icon size={21} /></div>
+                  <div>
+                    <div className="font-display text-[16px] font-extrabold text-forest">{t}</div>
+                    <div className="text-[14px] text-fg2">{d}</div>
+                  </div>
+                </div>
+              ))}
             </div>
-            {open && matches.length > 0 && (
-              <div className="absolute z-30 mt-1.5 max-h-[260px] w-full overflow-y-auto rounded-[14px] border border-hair bg-white p-1.5 shadow-g-lg">
-                {matches.map((c) => (
-                  <button key={c} onMouseDown={(e) => e.preventDefault()} onClick={() => { setCrop(c); setQuery(c); setOpen(false); }}
-                    className="block w-full rounded-lg px-3.5 py-2.5 text-left text-[15px] text-[#3F463E] hover:bg-[#FAF8F2]">
-                    {c}
-                  </button>
-                ))}
-              </div>
-            )}
           </div>
 
-          {crop && (
-            <div className="mt-7">
-              <div className="flex items-center gap-2 text-[15px] font-semibold text-forest">
-                <Check size={18} className="text-leaf-700" /> Your custom 7-product program for <span className="text-leaf-700">{crop}</span>
-              </div>
-              <div key={crop} className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
-                {ordered.map((p, i) => (
-                  <div key={p.id} className="ap-rise rounded-[14px] border border-hair bg-paper-2 p-3 text-center" style={{ animationDelay: `${i * 70}ms` }}>
-                    <div className="flex h-[84px] items-end justify-center">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={img(p)} alt={p.name} className="h-[80px] w-auto object-contain" />
-                    </div>
-                    <div className="mt-2 font-mono text-[10px] text-fg3">No. {p.num}</div>
-                    <div className="font-display text-[14px] font-extrabold text-forest">{p.name}</div>
-                  </div>
-                ))}
-              </div>
-              <p className="mt-4 text-[13px] text-fg3">
-                Each blend is proprietary and crop-specific — formulated to the phase of {crop}&apos;s lifecycle it&apos;s used in.
+          {/* graphic */}
+          <div className="relative overflow-hidden rounded-panel border border-[#16361d] bg-forest p-8 text-center text-white">
+            <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_50%_35%,rgba(111,174,82,.28)_0%,rgba(0,23,6,0)_62%)]" />
+            <div className="relative">
+              <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#BFE89A]">The potentization machine</div>
+              <PotentizationGraphic />
+              <div className="mt-3 font-display text-[18px] font-extrabold">Remedy → potentized → into the water</div>
+              <p className="mx-auto mt-2 max-w-[380px] text-[13.5px] leading-[1.6] text-[#C9DBC0]">
+                Nano-scale particles stay suspended in irrigation water — absorbed directly by roots and leaves to deliver the remedy where the plant can use it.
               </p>
             </div>
-          )}
+          </div>
+        </div>
+
+        {/* outcomes */}
+        <div className="mt-12">
+          <div className="text-center text-[13px] font-bold uppercase tracking-[0.12em] text-leaf">What nano-potentization delivers</div>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {[
+              { Icon: Sparkles, t: "Super nutrients" },
+              { Icon: ShieldCheck, t: "Naturally pest & disease resistant" },
+              { Icon: Sprout, t: "Rebuilt soil health" },
+              { Icon: TrendingUp, t: "Higher yields & output" },
+              { Icon: Ban, t: "No chemicals or pesticides" },
+            ].map(({ Icon, t }) => (
+              <div key={t} className="flex flex-col items-center gap-3 rounded-[16px] border border-hair bg-white p-5 text-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#E9F0E0] text-leaf-700"><Icon size={24} /></div>
+                <div className="font-display text-[15px] font-extrabold leading-tight text-forest">{t}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -269,5 +263,52 @@ function Connector() {
     <div className="flex items-center justify-center lg:px-1">
       <div className="ap-flow h-[3px] w-10 rounded-full lg:w-full lg:min-w-[24px]" />
     </div>
+  );
+}
+
+/** Animated nano-potentization graphic: a remedy core emitting nano waves into the water. */
+function PotentizationGraphic() {
+  const orbits = [0, 60, 120];
+  const electrons = [
+    [228, 120], [189, 187], [111, 53],
+  ];
+  return (
+    <svg viewBox="0 0 300 240" className="mx-auto mt-5 h-[210px] w-full max-w-[360px]" role="img" aria-label="Remedies potentized to nano scale and carried in water">
+      <defs>
+        <radialGradient id="apCore" cx="50%" cy="45%" r="55%">
+          <stop offset="0%" stopColor="#E8FBD2" />
+          <stop offset="100%" stopColor="#6FAE52" />
+        </radialGradient>
+      </defs>
+
+      {/* nano waves emanating outward */}
+      {[0, 1, 2].map((i) => (
+        <circle key={i} cx="150" cy="120" r="26" fill="none" stroke="#6FAE52" strokeWidth="2">
+          <animate attributeName="r" values="26;96" dur="3s" begin={`${i}s`} repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.75;0" dur="3s" begin={`${i}s`} repeatCount="indefinite" />
+        </circle>
+      ))}
+
+      {/* electron orbits */}
+      {orbits.map((a) => (
+        <ellipse key={a} cx="150" cy="120" rx="80" ry="28" fill="none" stroke="#9FD27E" strokeWidth="1.5" opacity="0.5" transform={`rotate(${a} 150 120)`} />
+      ))}
+
+      {/* electrons (small nano particles) */}
+      {electrons.map(([x, y], i) => (
+        <circle key={i} cx={x} cy={y} r="4.5" fill="#BFE89A">
+          <animate attributeName="opacity" values="0.4;1;0.4" dur="2.2s" begin={`${i * 0.5}s`} repeatCount="indefinite" />
+        </circle>
+      ))}
+
+      {/* potentized remedy core */}
+      <circle cx="150" cy="120" r="20" fill="url(#apCore)" />
+      <circle cx="150" cy="120" r="20" fill="none" stroke="#EAF7DD" strokeWidth="1.5" opacity="0.7" />
+
+      {/* a falling water droplet feeding in from the top */}
+      <path d="M150 18 C158 30 164 38 164 46 a14 14 0 1 1 -28 0 c0 -8 6 -16 14 -28 z" fill="#BFE89A" opacity="0.85">
+        <animate attributeName="opacity" values="0.3;0.9;0.3" dur="2.4s" repeatCount="indefinite" />
+      </path>
+    </svg>
   );
 }
