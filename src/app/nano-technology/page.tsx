@@ -122,7 +122,7 @@ export default function NanoTechnologyPage() {
               {[
                 { label: "Source material", w: 22, note: "raw, full size" },
                 { label: "Low potency", w: 45, note: "few rounds" },
-                { label: "6C — our standard", w: 78, note: "field-proven for crops", on: true },
+                { label: "Six times potentized — our standard", w: 78, note: "field-proven for crops", on: true },
                 { label: "High potency", w: 100, note: "most rounds, smallest particles" },
               ].map((r) => (
                 <div key={r.label}>
@@ -140,17 +140,18 @@ export default function NanoTechnologyPage() {
           <div>
             <div className="text-xs font-bold uppercase tracking-[0.14em] text-leaf">Reading the label</div>
             <h2 className="mt-3 font-display text-[clamp(28px,4.5vw,44px)] font-black tracking-[-0.02em] text-forest">
-              What &ldquo;6C&rdquo; means
+              What &ldquo;six times potentized&rdquo; means
             </h2>
             <p className="mt-4 text-[18px] leading-[1.75] text-fg2">
-              Each AgriPure remedy lists a <strong className="text-forest">potency</strong> — like <strong className="text-forest">6C</strong>.
-              It simply tells you how many rounds of potentization the remedy went through. The more rounds, the
-              smaller and more uniform the nano particles become.
+              Each AgriPure remedy lists a <strong className="text-forest">potency</strong> — for example,
+              <strong className="text-forest"> six times potentized</strong>. It simply tells you how many rounds of
+              potentization the remedy went through. The more rounds, the smaller and more uniform the nano particles
+              become.
             </p>
             <p className="mt-4 text-[18px] leading-[1.75] text-fg2">
-              <strong className="text-forest">6C is our workhorse potency for crops</strong> — refined over years of
-              field use to be gentle on the plant and effective at the root and leaf. Different crops and stages call
-              for different potencies, which is why every formula is custom-built.
+              <strong className="text-forest">Six rounds is our workhorse potency for crops</strong> — refined over
+              years of field use to be gentle on the plant and effective at the root and leaf. Different crops and
+              stages call for different potencies, which is why every formula is custom-built.
             </p>
           </div>
         </div>
@@ -234,10 +235,10 @@ export default function NanoTechnologyPage() {
             </h2>
             <p className="mt-4 max-w-[680px] text-[17px] leading-[1.75] text-[#D7E5CC]">
               Potentized natural remedies have been used in farming for <strong className="text-white">hundreds of
-              years</strong> — across Europe and around the world (you may know the practice as agrohomeopathy, or
-              homeopathy for plants). Generations of growers have relied on it to build healthier, more resilient crops
-              without chemicals. AgriPure modernizes that tradition as <strong className="text-white">potentized nano
-              particles</strong> — measured, consistent, and custom-formulated to your crop and soil.
+              years</strong> — across Europe and around the world. Generations of growers have relied on them to build
+              healthier, more resilient crops without chemicals. AgriPure modernizes that tradition as
+              <strong className="text-white"> potentized nano particles</strong> — measured, consistent, and
+              custom-formulated to your crop and soil.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               {[
@@ -327,9 +328,9 @@ export default function NanoTechnologyPage() {
       {/* footnote */}
       <div className="mx-auto max-w-container px-6 pb-14 sm:px-10">
         <p className="text-[12px] leading-[1.6] text-fg3">
-          &ldquo;Potentized nano particles&rdquo; is AgriPure&apos;s plain-language name for potentized natural remedies
-          (traditionally known as agrohomeopathy). This page is educational; it describes a natural, traditional
-          approach to crop care and is not a medical or guaranteed-yield claim.
+          &ldquo;Potentized nano particles&rdquo; is AgriPure&apos;s plain-language name for our potentized natural
+          remedies. This page is educational; it describes a natural, traditional approach to crop care and is not a
+          medical or guaranteed-yield claim.
         </p>
       </div>
     </div>
