@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Nunito, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Announcement from "@/components/Announcement";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
@@ -38,7 +37,6 @@ export default function RootLayout({
       <body
         className={`${nunito.variable} ${hanken.variable} ${jetbrains.variable} flex min-h-screen flex-col bg-paper text-ink`}
       >
-        <Announcement />
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
