@@ -8,6 +8,7 @@ import { User, ArrowRight } from "lucide-react";
 const LINKS = [
   { href: "/shop", label: "Products" },
   { href: "/how-it-works", label: "How It Works" },
+  { href: "/why-choose-us", label: "Why Choose Us" },
   { href: "/pricing", label: "Pricing" },
   { href: "/learn", label: "Learn" },
   { href: "/about", label: "About" },
