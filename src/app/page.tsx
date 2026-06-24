@@ -2,8 +2,11 @@ import Link from "next/link";
 import { ArrowRight, ClipboardList, Package, Microscope, FlaskConical, Droplets } from "lucide-react";
 import HeroDrone from "@/components/experience/HeroDrone";
 import ComparisonTable from "@/components/ComparisonTable";
+import ProductFlowA from "@/components/home/ProductFlowA";
+import ProductFlowB from "@/components/home/ProductFlowB";
+import ProductFlowC from "@/components/home/ProductFlowC";
+import HomeVariationSwitcher from "@/components/home/HomeVariationSwitcher";
 import { listProducts } from "@/lib/repo";
-import { bottleSrc } from "@/lib/products";
 
 export const dynamic = "force-dynamic";
 
@@ -16,8 +19,11 @@ const JOURNEY = [
   { n: "05", Icon: Droplets, t: "Feed through irrigation", d: "Dose all seven products straight through your fertigation, soil prep to harvest." },
 ];
 
-export default function Home() {
+export default function Home({ searchParams }: { searchParams?: { v?: string } }) {
   const products = listProducts();
+
+  const v = searchParams?.v === "2" || searchParams?.v === "3" ? searchParams.v : "1";
+  const ProductFlow = v === "2" ? ProductFlowB : v === "3" ? ProductFlowC : ProductFlowA;
 
   return (
     <>
@@ -63,118 +69,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* INTRO to the seven products */}
-      <section className="border-b border-hair bg-white px-8 py-16 text-center">
-        <div className="mx-auto max-w-[680px]">
-          <div className="text-xs font-bold uppercase tracking-[0.14em] text-leaf">The seven products</div>
-          <h2 className="mt-3 font-display text-[clamp(32px,5vw,48px)] font-black tracking-[-0.02em] text-forest">
-            Seven inputs, soil to harvest.
-          </h2>
-          <p className="mt-4 text-[17px] leading-[1.6] text-fg2">
-            Your custom program runs the same seven natural inputs in sequence — restoring the soil,
-            clearing the field, building the plant, and finishing the harvest. Here&apos;s what each one does.
-          </p>
-        </div>
-      </section>
-
-      {/* SEVEN FULL-HEIGHT PRODUCT SECTIONS */}
-      {products.map((p, i) => {
-        const flip = i % 2 === 1;
-        const img = p.image?.trim() || bottleSrc(p.id);
-        const specs = [
-          p.npk && p.npk !== "—" ? `N-P-K ${p.npk}` : null,
-          p.ph && p.ph !== "—" ? `pH ${p.ph}` : null,
-          p.rate && p.rate !== "—" ? p.rate : null,
-          p.omri || null,
-        ].filter(Boolean) as string[];
-
-        return (
-          <section
-            key={p.id}
-            className={`px-8 py-16 sm:py-20 ${flip ? "bg-white" : "bg-paper"}`}
-          >
-            <div className="mx-auto grid w-full max-w-container items-center gap-12 md:grid-cols-2 lg:gap-20">
-              {/* visual */}
-              <div className={`flex justify-center ${flip ? "md:order-2" : ""}`}>
-                <div
-                  className="relative flex aspect-[4/5] w-full max-w-[440px] items-center justify-center overflow-hidden rounded-[32px] border border-hair"
-                  style={{ background: `radial-gradient(circle at 50% 62%, ${p.accentSoft} 0%, #FAF8F2 72%)` }}
-                >
-                  <span
-                    className="absolute left-7 top-6 font-mono text-[13px] font-semibold"
-                    style={{ color: p.accent }}
-                  >
-                    No. {p.num}
-                  </span>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={img}
-                    alt={p.name}
-                    className="max-h-[78%] w-auto max-w-[70%] object-contain drop-shadow-[0_28px_50px_rgba(0,40,8,.26)]"
-                  />
-                </div>
-              </div>
-
-              {/* copy */}
-              <div className={flip ? "md:order-1" : ""}>
-                <div className="flex items-center gap-3">
-                  <span
-                    className="rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em]"
-                    style={{ color: p.accent, background: p.accentSoft }}
-                  >
-                    Step {i + 1} of 7
-                  </span>
-                  <span className="rounded-full border border-hair bg-white px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-fg2">
-                    {p.type}
-                  </span>
-                </div>
-
-                <h2 className="mt-5 font-display text-[clamp(44px,6vw,68px)] font-black leading-[0.95] tracking-[-0.02em] text-forest">
-                  {p.name}
-                </h2>
-                <div className="mt-2 text-[18px] font-semibold" style={{ color: p.accent }}>
-                  {p.category}
-                </div>
-
-                <p className="mt-6 max-w-[520px] text-[17px] leading-[1.7] text-[#3F463E]">{p.long}</p>
-
-                {specs.length > 0 && (
-                  <div className="mt-7 flex flex-wrap gap-2.5">
-                    {specs.map((s) => (
-                      <span key={s} className="rounded-full border border-hair bg-white px-3.5 py-2 font-mono text-[13px] text-fg2">
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {p.crops.length > 0 && (
-                  <div className="mt-6">
-                    <div className="mb-2 text-xs font-bold uppercase tracking-[0.08em] text-fg3">Formulated for</div>
-                    <div className="flex flex-wrap gap-2">
-                      {p.crops.map((c) => (
-                        <span key={c} className="rounded-full bg-[#F0EDE3] px-3 py-1.5 text-[13px] text-[#3F463E]">{c}</span>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                <div className="mt-9 flex flex-wrap gap-3">
-                  <Link href={`/products/${p.id}`} className="btn-primary px-7 py-[14px] text-[15px]">
-                    Explore {p.name} <ArrowRight size={16} strokeWidth={2.2} />
-                  </Link>
-                  <Link href="/order-now" className="btn-ghost px-7 py-[14px] text-[15px]">
-                    Order Now
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </section>
-        );
-      })}
+      {/* THE SEVEN — scroll-driven video step flow (selectable layout) */}
+      <ProductFlow products={products} />
 
       {/* WHY CHOOSE US — comparison */}
-      <section className="bg-white px-8 py-20">
+      <section className="border-t border-hair bg-white px-8 py-20">
         <div className="mx-auto max-w-container">
           <div className="text-center">
             <div className="text-xs font-bold uppercase tracking-[0.14em] text-leaf">Why growers choose AgriPure</div>
@@ -210,6 +109,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <HomeVariationSwitcher current={v} />
     </>
   );
 }

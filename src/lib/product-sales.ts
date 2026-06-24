@@ -263,3 +263,30 @@ const SHARED_HERO_VIDEO = "/videos/product-hero.mp4";
 export const HERO_VIDEO_POSTER = "/videos/product-hero-poster.jpg";
 export const HERO_VIDEOS: Record<string, string> = {};
 export const heroVideoFor = (id: string) => HERO_VIDEOS[id] ?? SHARED_HERO_VIDEO;
+
+// Per-product explainer films for the homepage step flow. Real videos drop in
+// here as they're produced; everything else falls back to the shared placeholder.
+export const PRODUCT_VIDEOS: Record<string, string> = {
+  protect: "/videos/products/protect.mp4",
+  prevent: "/videos/products/prevent.mp4",
+};
+export const PRODUCT_POSTERS: Record<string, string> = {
+  protect: "/videos/products/protect-poster.jpg",
+  prevent: "/videos/products/prevent-poster.jpg",
+};
+export const productVideoFor = (id: string) => PRODUCT_VIDEOS[id] ?? SHARED_HERO_VIDEO;
+export const productPosterFor = (id: string) => PRODUCT_POSTERS[id] ?? HERO_VIDEO_POSTER;
+/** Whether a product has its real explainer film yet (vs. the shared placeholder). */
+export const hasRealVideo = (id: string) => id in PRODUCT_VIDEOS;
+
+// Where each product sits in the crop's lifecycle — drives the step flow labels.
+export const STEP_PHASE: Record<string, { phase: string; when: string }> = {
+  restore: { phase: "Soil preparation", when: "Before planting" },
+  cleanse: { phase: "Weed control", when: "Pre-emergent" },
+  strength: { phase: "Germination & rooting", when: "At planting" },
+  grow: { phase: "Vegetative growth", when: "As the canopy builds" },
+  protect: { phase: "Pest protection", when: "Through the season" },
+  prevent: { phase: "Disease prevention", when: "Ahead of pressure" },
+  boost: { phase: "Bloom, fruit & harvest", when: "Flowering to fill" },
+};
+export const stepPhaseFor = (id: string) => STEP_PHASE[id] ?? { phase: "", when: "" };
