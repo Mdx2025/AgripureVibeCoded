@@ -14,8 +14,8 @@ export default function AdminQuotesPage() {
       <div className="mb-[18px] text-sm text-[#7A8076]">
         {quotes.length} custom quote{quotes.length === 1 ? "" : "s"} received · open one to view the lab formulation
       </div>
-      <div className="overflow-hidden rounded-card border border-hair bg-white">
-        <table className="w-full border-collapse">
+      <div className="overflow-x-auto rounded-card border border-hair bg-white">
+        <table className="w-full min-w-[640px] border-collapse">
           <thead>
             <tr className="border-b border-[#EFECE2] bg-[#FAF8F2]">
               {["Quote", "Customer", "Crops", "Acres", "Total", "Status", ""].map((h) => (

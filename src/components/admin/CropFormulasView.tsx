@@ -54,8 +54,8 @@ export default function CropFormulasView({ formulas, crops }: { formulas: Row[];
         </select>
       </div>
 
-      <div className="overflow-hidden rounded-card border border-hair bg-white">
-        <table className="w-full border-collapse">
+      <div className="overflow-x-auto rounded-card border border-hair bg-white">
+        <table className="w-full min-w-[760px] border-collapse">
           <thead>
             <tr className="border-b border-[#EFECE2] bg-[#FAF8F2]">
               {["Crop", "Product Line", "Primary Remedy", "Potency", "Targets", "Rate", ""].map((h) => <th key={h} className={TH}>{h}</th>)}

@@ -139,7 +139,8 @@ export default function OverviewPage() {
               View all
             </Link>
           </div>
-          <table className="w-full border-collapse">
+          <div className="overflow-x-auto">
+          <table className="w-full min-w-[520px] border-collapse">
             <tbody>
               {recent.map((o) => (
                 <RowLink key={o.id} href="/admin/orders" className="border-b border-[#F2EFE6] transition-colors hover:bg-[#FAF8F2]">
@@ -154,6 +155,7 @@ export default function OverviewPage() {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
 
         <div className="rounded-card border border-hair bg-white p-6">

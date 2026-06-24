@@ -17,8 +17,8 @@ export default function AdminClientsPage() {
       <div className="mb-[18px] text-sm text-[#7A8076]">
         {clients.length} client{clients.length === 1 ? "" : "s"} · created automatically when an order is placed on the site
       </div>
-      <div className="overflow-hidden rounded-card border border-hair bg-white">
-        <table className="w-full border-collapse">
+      <div className="overflow-x-auto rounded-card border border-hair bg-white">
+        <table className="w-full min-w-[640px] border-collapse">
           <thead>
             <tr className="border-b border-[#EFECE2] bg-[#FAF8F2]">
               {["Client", "Contact", "Orders", "Lifetime value", "Joined", ""].map((h) => (

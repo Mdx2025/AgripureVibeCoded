@@ -50,8 +50,8 @@ export default function PricingManager({ initial }: { initial: PricingProgram })
       <section className="mb-6 rounded-panel border border-hair bg-white p-6">
         <div className="mb-1 font-display text-[18px] font-extrabold text-forest">Graduated per-acre tiers</div>
         <p className="mb-4 text-[13px] text-fg3">Banded like tax brackets — each acre is charged at the rate for its band. Leave the last tier&apos;s &ldquo;To&rdquo; blank for &ldquo;and up&rdquo;.</p>
-        <div className="overflow-hidden rounded-xl border border-hair">
-          <div className="grid grid-cols-[1fr_1fr_1fr_44px] gap-px bg-hair">
+        <div className="overflow-x-auto rounded-xl border border-hair">
+          <div className="grid min-w-[420px] grid-cols-[1fr_1fr_1fr_44px] gap-px bg-hair">
             {["From (ac)", "To (ac)", "Rate ($/ac)", ""].map((h, i) => (
               <div key={i} className="bg-[#FAF8F2] px-3 py-2 text-[11px] font-bold uppercase tracking-[0.06em] text-fg3">{h}</div>
             ))}

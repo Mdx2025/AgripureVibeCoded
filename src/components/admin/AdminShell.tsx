@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutGrid, ShoppingBag, Boxes, Users, UsersRound, Settings, LogOut, Search, Bell,
-  FlaskConical, Leaf, ShieldCheck, Award, HelpCircle, ChevronDown, Receipt, Microscope, Tag,
+  FlaskConical, Leaf, ShieldCheck, Award, HelpCircle, ChevronDown, Receipt, Microscope, Tag, Menu, X,
 } from "lucide-react";
 
 const NAVIGATION = [
@@ -84,6 +84,12 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   const [notifOpen, setNotifOpen] = useState(false);
   const [region, setRegion] = useState(REGIONS[0]);
   const [regionOpen, setRegionOpen] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
+
+  // Close the mobile sidebar whenever the route changes.
+  useEffect(() => {
+    setNavOpen(false);
+  }, [pathname]);
 
   const signOut = async () => {
     await fetch("/api/auth/logout", { method: "POST" });
@@ -103,10 +109,27 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
 
   return (
     <div className="flex min-h-screen bg-paper text-ink">
+      {/* mobile sidebar backdrop */}
+      {navOpen && (
+        <button
+          type="button"
+          aria-label="Close menu"
+          onClick={() => setNavOpen(false)}
+          className="fixed inset-0 z-40 bg-[rgba(0,23,6,.45)] lg:hidden"
+        />
+      )}
+
       {/* SIDEBAR */}
-      <aside className="ap-sc sticky top-0 flex h-screen w-[248px] flex-none flex-col overflow-y-auto bg-forest-sidebar p-[22px] px-4">
-        <div className="flex items-center gap-2.5 px-2 pb-5 pt-1.5">
-          <Image src="/assets/logo-white.png" alt="AgriPure" width={130} height={26} className="h-[26px] w-auto" />
+      <aside
+        className={`ap-sc fixed left-0 top-0 z-50 flex h-screen w-[248px] flex-none flex-col overflow-y-auto bg-forest-sidebar p-[22px] px-4 transition-transform duration-200 lg:sticky lg:translate-x-0 ${
+          navOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <div className="flex items-center justify-between gap-2.5 px-2 pb-5 pt-1.5">
+          <Image src="/assets/logo-white.png" alt="AgriPure" width={552} height={149} className="h-[26px] w-auto" />
+          <button onClick={() => setNavOpen(false)} aria-label="Close menu" className="text-[#7FA06C] hover:text-white lg:hidden">
+            <X size={22} strokeWidth={2} />
+          </button>
         </div>
 
         <div className="flex flex-1 flex-col gap-1">
@@ -145,11 +168,19 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
 
       {/* MAIN */}
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-20 flex h-[72px] items-center gap-5 border-b border-[#D9D6C7] bg-[rgba(237,234,224,.86)] px-[30px] backdrop-blur-[12px]">
-          <h1 className="m-0 font-display text-[24px] font-extrabold tracking-[-0.01em] text-forest">
+        <header className="sticky top-0 z-20 flex h-[72px] items-center gap-3 border-b border-[#D9D6C7] bg-[rgba(237,234,224,.86)] px-4 backdrop-blur-[12px] sm:gap-5 sm:px-[30px]">
+          <button
+            type="button"
+            aria-label="Open menu"
+            onClick={() => setNavOpen(true)}
+            className="flex h-10 w-10 flex-none items-center justify-center rounded-full text-forest hover:bg-black/5 lg:hidden"
+          >
+            <Menu size={22} strokeWidth={2} />
+          </button>
+          <h1 className="m-0 min-w-0 truncate font-display text-[19px] font-extrabold tracking-[-0.01em] text-forest sm:text-[24px]">
             {title}
           </h1>
-          <div className="ml-auto flex items-center gap-3">
+          <div className="ml-auto flex items-center gap-2 sm:gap-3">
             <div className="hidden w-[240px] items-center gap-2 rounded-full border border-[#D9D6C7] bg-white px-4 py-[9px] md:flex">
               <Search size={16} strokeWidth={1.8} className="text-fg3" />
               <input placeholder="Search…" className="w-full border-none bg-transparent text-sm outline-none" />
@@ -206,7 +237,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
             </div>
           </div>
         </header>
-        <main className="ap-sc flex-1 overflow-y-auto p-[30px]">{children}</main>
+        <main className="ap-sc flex-1 overflow-y-auto p-4 sm:p-[30px]">{children}</main>
       </div>
     </div>
   );

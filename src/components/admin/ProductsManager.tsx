@@ -171,8 +171,8 @@ export default function ProductsManager({ products }: { products: ProductRow[] }
         </div>
       )}
 
-      <div className="overflow-hidden rounded-card border border-hair bg-white">
-        <table className="w-full border-collapse">
+      <div className="overflow-x-auto rounded-card border border-hair bg-white">
+        <table className="w-full min-w-[640px] border-collapse">
           <thead>
             <tr className="border-b border-[#EFECE2] bg-[#FAF8F2]">
               <th className={TH}>Product</th><th className={TH}>SKU</th><th className={TH}>Category</th>
