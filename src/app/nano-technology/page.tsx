@@ -5,11 +5,13 @@ import {
   ArrowRight, Globe, History, Check,
 } from "lucide-react";
 
-export const metadata: Metadata = {
-  title: "Nano Technology — AgriPure",
-  description:
-    "How AgriPure's potentized nano-particle technology works: natural remedies reduced to nano scale so plants absorb them through water — a centuries-proven natural practice, explained simply.",
-};
+import { resolveSeoMetadata } from "@/lib/repo";
+
+export const dynamic = "force-dynamic";
+
+export function generateMetadata(): Metadata {
+  return resolveSeoMetadata("/nano-technology");
+}
 
 export default function NanoTechnologyPage() {
   return (

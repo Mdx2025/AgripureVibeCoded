@@ -2,16 +2,14 @@ import Link from "next/link";
 import { Check, X, Minus } from "lucide-react";
 import type { Metadata } from "next";
 import PricingCalculator from "@/components/PricingCalculator";
-import { getPricingProgram } from "@/lib/repo";
+import { getPricingProgram, resolveSeoMetadata } from "@/lib/repo";
 import { bundleQuote, floorRate, money } from "@/lib/pricing";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Pricing — AgriPure",
-  description:
-    "Conventional vs organic vs AgriPure cost per acre. One natural 7-function system at roughly organic cost — dropping below organic at volume.",
-};
+export function generateMetadata(): Metadata {
+  return resolveSeoMetadata("/pricing");
+}
 
 type Mark = "yes" | "no" | "partial";
 

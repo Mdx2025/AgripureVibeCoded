@@ -3,6 +3,7 @@ import { Nunito, Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { resolveSeoMetadata } from "@/lib/repo";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -23,11 +24,11 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "AgriPure — Natural pesticides, fungicides & nutrients",
-  description:
-    "Natural pesticides, fungicides, and nutrients — custom-formulated for your crop, soil, and pressures.",
-};
+// Site-wide default metadata (home entry) — editable in admin → SEO.
+// Each page overrides this via its own generateMetadata.
+export function generateMetadata(): Metadata {
+  return resolveSeoMetadata("/");
+}
 
 export default function RootLayout({
   children,

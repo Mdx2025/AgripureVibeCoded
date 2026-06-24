@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import { Mail, MapPin } from "lucide-react";
+import { resolveSeoMetadata } from "@/lib/repo";
+
+export const dynamic = "force-dynamic";
+
+export function generateMetadata(): Metadata {
+  return resolveSeoMetadata("/contact");
+}
 
 const inputCls =
   "rounded-[10px] border border-[#D9D6C7] px-[15px] py-[13px] text-[15px] outline-none focus:border-leaf";

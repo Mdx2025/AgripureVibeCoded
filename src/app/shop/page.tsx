@@ -1,10 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import ShopGrid from "@/components/ShopGrid";
-import { listProducts, getPricingProgram } from "@/lib/repo";
+import { listProducts, getPricingProgram, resolveSeoMetadata } from "@/lib/repo";
 import { bundleQuote, floorRate, money } from "@/lib/pricing";
 
 export const dynamic = "force-dynamic";
+
+export function generateMetadata(): Metadata {
+  return resolveSeoMetadata("/shop");
+}
 
 export default function ShopPage() {
   const products = listProducts();

@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { getDb } from "./db";
 import { SIZES } from "./products";
 import type { OrderStatus } from "./admin-data";
+import {
+  type SeoConfig, type SeoSite, type SeoEntry,
+  DEFAULT_SEO, DEFAULT_SITE, DEFAULT_PAGES, SEO_PAGES, PRODUCT_TEMPLATE_PATH,
+  buildMetadata, applyTokens,
+} from "./seo";
 
 export interface ProductRow {
   id: string; num: string; name: string; category: string; type: string; group: string;
@@ -268,6 +274,76 @@ export function savePricingProgram(input: PricingProgram): PricingProgram {
   getDb().prepare("INSERT INTO settings (key,value) VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value")
     .run(PRICING_KEY, JSON.stringify(program));
   return program;
+}
+
+/* ------------------------------- SEO config ------------------------------- */
+const SEO_KEY = "seo_config";
+
+export function getSeoConfig(): SeoConfig {
+  const row = getDb().prepare("SELECT value FROM settings WHERE key = ?").get(SEO_KEY) as { value: string } | undefined;
+  if (!row) return DEFAULT_SEO;
+  try {
+    const saved = JSON.parse(row.value) as Partial<SeoConfig>;
+    return {
+      site: { ...DEFAULT_SITE, ...(saved.site ?? {}) },
+      // Merge saved page entries over defaults so newly-added pages still appear.
+      pages: { ...DEFAULT_PAGES, ...(saved.pages ?? {}) },
+    };
+  } catch {
+    return DEFAULT_SEO;
+  }
+}
+
+export function saveSeoConfig(input: SeoConfig): SeoConfig {
+  const clean = (s: unknown) => String(s ?? "").trim();
+  const site: SeoSite = {
+    siteName: clean(input.site?.siteName) || DEFAULT_SITE.siteName,
+    baseUrl: clean(input.site?.baseUrl).replace(/\/$/, "") || DEFAULT_SITE.baseUrl,
+    defaultOgImage: clean(input.site?.defaultOgImage),
+    twitter: clean(input.site?.twitter),
+  };
+  const pages: Record<string, SeoEntry> = {};
+  for (const { path } of SEO_PAGES) {
+    const e = input.pages?.[path] ?? DEFAULT_PAGES[path];
+    pages[path] = {
+      title: clean(e?.title) || DEFAULT_PAGES[path]?.title || site.siteName,
+      description: clean(e?.description) || DEFAULT_PAGES[path]?.description || "",
+      keywords: clean(e?.keywords) || undefined,
+      ogImage: clean(e?.ogImage) || undefined,
+      noindex: !!e?.noindex,
+    };
+  }
+  const config: SeoConfig = { site, pages };
+  getDb().prepare("INSERT INTO settings (key,value) VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value")
+    .run(SEO_KEY, JSON.stringify(config));
+  return config;
+}
+
+/** Resolve a saved entry for a path, falling back to defaults. */
+export function getSeoEntry(path: string): { site: SeoSite; entry: SeoEntry } {
+  const cfg = getSeoConfig();
+  const entry = cfg.pages[path] ?? DEFAULT_PAGES[path] ?? { title: cfg.site.siteName, description: "" };
+  return { site: cfg.site, entry };
+}
+
+/** Build Next.js Metadata for a static page path from the editable SEO config. */
+export function resolveSeoMetadata(path: string): Metadata {
+  const { site, entry } = getSeoEntry(path);
+  return buildMetadata(site, entry, path);
+}
+
+/** Build Metadata for a product-detail page from the editable template + product data. */
+export function resolveProductMetadata(product: { id: string; name: string; category: string; tagline?: string; long?: string; image?: string }): Metadata {
+  const { site, entry } = getSeoEntry(PRODUCT_TEMPLATE_PATH);
+  const tokens = { name: product.name, category: product.category, tagline: product.tagline || product.long || "" };
+  const resolved: SeoEntry = {
+    title: applyTokens(entry.title, tokens),
+    description: applyTokens(entry.description, tokens) || product.tagline || product.long || "",
+    keywords: entry.keywords ? applyTokens(entry.keywords, tokens) : undefined,
+    ogImage: entry.ogImage || (product.image?.trim() ? product.image : `/assets/bottles/${product.id}.png`),
+    noindex: entry.noindex,
+  };
+  return buildMetadata(site, resolved, `/products/${product.id}`);
 }
 
 export type Settings = Record<string, string>;

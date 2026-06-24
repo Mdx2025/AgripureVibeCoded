@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutGrid, ShoppingBag, Boxes, Users, UsersRound, Settings, LogOut, Search, Bell,
-  FlaskConical, Leaf, ShieldCheck, Award, HelpCircle, ChevronDown, Receipt, Microscope, Tag, Menu, X,
+  FlaskConical, Leaf, ShieldCheck, Award, HelpCircle, ChevronDown, Receipt, Microscope, Tag, Menu, X, Globe,
 } from "lucide-react";
 
 const NAVIGATION = [
@@ -25,6 +25,7 @@ const SUPER_ADMIN = [
   { href: "/admin/proven", label: "Proven in the field", Icon: Award, badge: "" },
   { href: "/admin/team", label: "Team", Icon: UsersRound, badge: "" },
   { href: "/admin/faqs", label: "FAQs", Icon: HelpCircle, badge: "" },
+  { href: "/admin/seo", label: "SEO", Icon: Globe, badge: "" },
   { href: "/admin/settings", label: "Settings", Icon: Settings, badge: "" },
 ];
 
@@ -42,6 +43,7 @@ const TITLES: Record<string, string> = {
   "/admin/proven": "Proven in the field",
   "/admin/team": "Team",
   "/admin/faqs": "FAQs",
+  "/admin/seo": "SEO & Metadata",
   "/admin/settings": "Settings",
 };
 

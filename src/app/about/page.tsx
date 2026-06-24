@@ -1,6 +1,14 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Compass, BadgeCheck, ShieldCheck } from "lucide-react";
+import { resolveSeoMetadata } from "@/lib/repo";
+
+export const dynamic = "force-dynamic";
+
+export function generateMetadata(): Metadata {
+  return resolveSeoMetadata("/about");
+}
 
 const STATS = [
   { value: "2014", label: "Founded" },

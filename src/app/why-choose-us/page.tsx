@@ -6,14 +6,13 @@ import {
 } from "lucide-react";
 import CountUpStats from "@/components/CountUpStats";
 import ComparisonTable from "@/components/ComparisonTable";
+import { resolveSeoMetadata } from "@/lib/repo";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Why Choose AgriPure",
-  description:
-    "Why AgriPure: build natural pest & disease resistance before it strikes, recover the up-to-40% of crops lost each year, qualify for the organic premium, custom-formulated to your crop & soil, one program, applied through your irrigation.",
-};
+export function generateMetadata(): Metadata {
+  return resolveSeoMetadata("/why-choose-us");
+}
 
 const BENEFITS = [
   { Icon: ShieldCheck, title: "Resistance before it strikes", body: "AgriPure makes plants naturally resistant to pests and disease before they ever attack — you're not spraying to clean up damage, you're preventing it from starting." },
