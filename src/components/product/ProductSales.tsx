@@ -45,8 +45,6 @@ export default function ProductSales({ product, related, bundles }: { product: P
           {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
           <video className="absolute inset-0 h-full w-full object-cover" src={heroVideoFor(product.id)} poster={HERO_VIDEO_POSTER} autoPlay muted loop playsInline preload="auto" />
           <div className="pointer-events-none absolute inset-0" style={{ background: accent, opacity: 0.14 }} />
-          {/* feather the seam into the copy panel */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-24 lg:block" style={{ background: `linear-gradient(90deg, ${soft} 0%, rgba(255,255,255,0) 100%)` }} />
           <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-black/35 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-white backdrop-blur-sm">
             <span className="h-2 w-2 animate-pulse rounded-full bg-[#BFE89A]" /> In the field
           </div>
