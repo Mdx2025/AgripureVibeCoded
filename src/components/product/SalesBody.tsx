@@ -108,7 +108,7 @@ export default function SalesBody({ product, related, bundles }: { product: Prod
           <div>
             <div className="text-xs font-bold uppercase tracking-[0.16em]" style={{ color: accent }}>On the label</div>
             <h2 className="mt-3 font-display text-[clamp(24px,3.5vw,34px)] font-black tracking-[-0.02em] text-forest">Clear, honest, and crop-specific</h2>
-            <p className="mt-4 text-[16px] leading-[1.7] text-fg2">{s.sub}</p>
+            <p className="mt-4 text-[16px] leading-[1.7] text-fg2">{s.labelNote}</p>
           </div>
         </div>
       </section>
