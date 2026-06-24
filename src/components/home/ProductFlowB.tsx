@@ -38,7 +38,7 @@ export default function ProductFlowB({ products }: { products: ProductRow[] }) {
         <div className="mt-14 lg:grid lg:grid-cols-[250px_1fr] lg:gap-14">
           {/* sticky rail */}
           <nav className="hidden lg:block">
-            <ol className="sticky top-[100px] flex flex-col gap-1">
+            <ol className="sticky top-[50vh] flex -translate-y-1/2 flex-col gap-1">
               {products.map((p, i) => {
                 const isActive = i === active;
                 const phase = stepPhaseFor(p.id);
