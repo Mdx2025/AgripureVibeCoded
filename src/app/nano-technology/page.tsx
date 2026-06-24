@@ -7,6 +7,7 @@ import {
 
 import { resolveSeoMetadata } from "@/lib/repo";
 import NanoTechV2 from "@/components/nanotech/NanoTechV2";
+import NanoTechV3 from "@/components/nanotech/NanoTechV3";
 import VariationSwitcher from "@/components/ui/VariationSwitcher";
 
 export const dynamic = "force-dynamic";
@@ -16,15 +17,16 @@ export function generateMetadata(): Metadata {
 }
 
 const OPTIONS = [
+  { v: "3", name: "Split" },
   { v: "1", name: "Detailed" },
   { v: "2", name: "Cinematic" },
 ];
 
 export default function NanoTechnologyPage({ searchParams }: { searchParams?: { v?: string } }) {
-  const v = searchParams?.v === "2" ? "2" : "1";
+  const v = searchParams?.v === "1" || searchParams?.v === "2" ? searchParams.v : "3";
   return (
     <>
-      {v === "2" ? <NanoTechV2 /> : <V1 />}
+      {v === "1" ? <V1 /> : v === "2" ? <NanoTechV2 /> : <NanoTechV3 />}
       <VariationSwitcher current={v} options={OPTIONS} label="Nano tech" />
     </>
   );

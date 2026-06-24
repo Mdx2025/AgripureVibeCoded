@@ -7,6 +7,7 @@ import {
 import CountUpStats from "@/components/CountUpStats";
 import ComparisonTable from "@/components/ComparisonTable";
 import WhyChooseUsV2 from "@/components/whychooseus/WhyChooseUsV2";
+import WhyChooseUsV3 from "@/components/whychooseus/WhyChooseUsV3";
 import VariationSwitcher from "@/components/ui/VariationSwitcher";
 import { resolveSeoMetadata } from "@/lib/repo";
 
@@ -17,15 +18,16 @@ export function generateMetadata(): Metadata {
 }
 
 const OPTIONS = [
+  { v: "3", name: "Split" },
   { v: "1", name: "Detailed" },
   { v: "2", name: "Cinematic" },
 ];
 
 export default function WhyChooseUsPage({ searchParams }: { searchParams?: { v?: string } }) {
-  const v = searchParams?.v === "2" ? "2" : "1";
+  const v = searchParams?.v === "1" || searchParams?.v === "2" ? searchParams.v : "3";
   return (
     <>
-      {v === "2" ? <WhyChooseUsV2 /> : <V1 />}
+      {v === "1" ? <V1 /> : v === "2" ? <WhyChooseUsV2 /> : <WhyChooseUsV3 />}
       <VariationSwitcher current={v} options={OPTIONS} label="Why choose us" />
     </>
   );
