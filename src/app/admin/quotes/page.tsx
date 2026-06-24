@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { listQuotes } from "@/lib/repo";
 import { money } from "@/lib/pricing";
+import RowLink from "@/components/admin/RowLink";
 
 export const dynamic = "force-dynamic";
 
@@ -27,7 +27,7 @@ export default function AdminQuotesPage() {
             {quotes.length === 0 ? (
               <tr><td colSpan={7} className="py-14 text-center text-sm text-fg3">No quotes yet.</td></tr>
             ) : quotes.map((q) => (
-              <tr key={q.id} className="border-b border-[#F2EFE6] transition-colors hover:bg-[#FAF8F2]">
+              <RowLink key={q.id} href={`/admin/quotes/${q.id}`} className="border-b border-[#F2EFE6] transition-colors hover:bg-[#FAF8F2]">
                 <td className="px-6 py-3.5 font-mono text-[13px] text-forest">{q.number}</td>
                 <td className="px-3 py-3.5">
                   <div className="text-sm font-semibold text-forest">{q.customer_name}</div>
@@ -43,11 +43,11 @@ export default function AdminQuotesPage() {
                   </span>
                 </td>
                 <td className="px-6 py-3.5 text-right">
-                  <Link href={`/admin/quotes/${q.id}`} className="ap-link inline-flex items-center gap-1.5 !text-leaf-600 text-[13px]">
+                  <span className="ap-link inline-flex items-center gap-1.5 !text-leaf-600 text-[13px]">
                     Lab sheet <ArrowRight size={14} strokeWidth={2.2} />
-                  </Link>
+                  </span>
                 </td>
-              </tr>
+              </RowLink>
             ))}
           </tbody>
         </table>

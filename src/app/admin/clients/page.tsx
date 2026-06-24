@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { listAccounts } from "@/lib/repo";
 import { money } from "@/lib/pricing";
+import RowLink from "@/components/admin/RowLink";
 
 export const dynamic = "force-dynamic";
 
@@ -30,7 +30,7 @@ export default function AdminClientsPage() {
             {clients.length === 0 ? (
               <tr><td colSpan={6} className="py-14 text-center text-sm text-fg3">No clients yet — they appear here automatically when someone places an order.</td></tr>
             ) : clients.map((c) => (
-              <tr key={c.id} className="border-b border-[#F2EFE6] transition-colors hover:bg-[#FAF8F2]">
+              <RowLink key={c.id} href={`/admin/clients/${c.id}`} className="border-b border-[#F2EFE6] transition-colors hover:bg-[#FAF8F2]">
                 <td className="px-6 py-3.5">
                   <div className="text-sm font-semibold text-forest">{c.name}</div>
                   <div className="text-xs text-[#A6A293]">{c.business || "—"}</div>
@@ -43,11 +43,11 @@ export default function AdminClientsPage() {
                 <td className="px-3 py-3.5 font-mono text-sm text-forest">{money(c.totalSpend)}</td>
                 <td className="px-3 py-3.5 text-[13px] text-fg3">{fmtDate(c.created_at)}</td>
                 <td className="px-6 py-3.5 text-right">
-                  <Link href={`/admin/clients/${c.id}`} className="ap-link inline-flex items-center gap-1.5 !text-leaf-600 text-[13px]">
+                  <span className="ap-link inline-flex items-center gap-1.5 !text-leaf-600 text-[13px]">
                     View <ArrowRight size={14} strokeWidth={2.2} />
-                  </Link>
+                  </span>
                 </td>
-              </tr>
+              </RowLink>
             ))}
           </tbody>
         </table>

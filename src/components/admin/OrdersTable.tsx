@@ -109,7 +109,7 @@ export default function OrdersTable({ orders, compact = false }: { orders: Order
             {rows.length === 0 ? (
               <tr><td colSpan={8} className="py-14 text-center text-sm text-fg3">No orders found.</td></tr>
             ) : rows.map((o) => (
-              <tr key={o.id} className="border-b border-[#F2EFE6] transition-colors hover:bg-[#FAF8F2]">
+              <tr key={o.id} onClick={() => setView(o)} className="cursor-pointer border-b border-[#F2EFE6] transition-colors hover:bg-[#FAF8F2]">
                 <td className="px-6 py-3.5 font-mono text-[13px] text-forest">{o.id}</td>
                 <td className="px-2 py-3.5 font-mono text-[13px] text-fg3">{o.date}</td>
                 <td className="px-2 py-3.5"><Pill text={o.payment} map={PAYMENT_STYLE} /></td>
