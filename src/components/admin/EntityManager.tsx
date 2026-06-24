@@ -129,9 +129,9 @@ export default function EntityManager({
 
   const actionCell = (row: Row) => (
     <div className="flex items-center justify-end gap-1.5">
-      <button onClick={() => setViewing(row)} className="rounded-full bg-[#EDF3E6] p-1.5 text-[#356A26]" title="View"><Eye size={15} /></button>
-      <button onClick={() => startEdit(row)} className="rounded-full bg-[#E2ECF5] p-1.5 text-[#2F6FB0]" title="Edit"><Pencil size={15} /></button>
-      <button onClick={() => remove(row)} className="rounded-full bg-[#F8E3DC] p-1.5 text-[#B23A1E]" title="Delete"><Trash2 size={15} /></button>
+      <button onClick={(e) => { e.stopPropagation(); setViewing(row); }} className="rounded-full bg-[#EDF3E6] p-1.5 text-[#356A26]" title="View"><Eye size={15} /></button>
+      <button onClick={(e) => { e.stopPropagation(); startEdit(row); }} className="rounded-full bg-[#E2ECF5] p-1.5 text-[#2F6FB0]" title="Edit"><Pencil size={15} /></button>
+      <button onClick={(e) => { e.stopPropagation(); remove(row); }} className="rounded-full bg-[#F8E3DC] p-1.5 text-[#B23A1E]" title="Delete"><Trash2 size={15} /></button>
     </div>
   );
 
@@ -192,7 +192,7 @@ export default function EntityManager({
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={row.id} className="border-b border-[#F2EFE6] transition-colors hover:bg-[#FAF8F2]">
+                <tr key={row.id} onClick={() => setViewing(row)} className="cursor-pointer border-b border-[#F2EFE6] transition-colors hover:bg-[#FAF8F2]">
                   {columns.map((c) => (
                     <td key={c.key} className={`px-3 py-3.5 text-sm text-[#3F463E] first:pl-5 ${c.mono ? "font-mono" : ""}`}>
                       {c.render ? c.render(row) : String(row[c.key] ?? "")}

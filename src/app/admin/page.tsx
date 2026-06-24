@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { TrendingUp, ShoppingBag, CircleDollarSign, Users, Boxes, LifeBuoy, ArrowRight } from "lucide-react";
 import StatusPill from "@/components/admin/StatusPill";
+import RowLink from "@/components/admin/RowLink";
 import { bottleSrc } from "@/lib/products";
 import {
   KPIS,
@@ -141,7 +142,7 @@ export default function OverviewPage() {
           <table className="w-full border-collapse">
             <tbody>
               {recent.map((o) => (
-                <tr key={o.id} className="border-b border-[#F2EFE6] transition-colors hover:bg-[#FAF8F2]">
+                <RowLink key={o.id} href="/admin/orders" className="border-b border-[#F2EFE6] transition-colors hover:bg-[#FAF8F2]">
                   <td className="px-6 py-[13px] font-mono text-[13px] text-forest">{o.id}</td>
                   <td className="px-2 py-[13px] text-sm text-[#3F463E]">{o.customer}</td>
                   <td className="px-2 py-[13px] text-[13px] text-fg3">{o.product}</td>
@@ -149,7 +150,7 @@ export default function OverviewPage() {
                   <td className="px-6 py-[13px]">
                     <StatusPill status={o.status} />
                   </td>
-                </tr>
+                </RowLink>
               ))}
             </tbody>
           </table>

@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Search, ArrowRight } from "lucide-react";
 
 type Row = {
@@ -15,6 +16,7 @@ const sel = "rounded-full border border-hair bg-white px-3.5 py-2 text-sm text-f
 const CAP = 300;
 
 export default function CropFormulasView({ formulas, crops }: { formulas: Row[]; crops: string[] }) {
+  const router = useRouter();
   const [q, setQ] = useState("");
   const [crop, setCrop] = useState("");
   const [line, setLine] = useState("");
@@ -63,7 +65,7 @@ export default function CropFormulasView({ formulas, crops }: { formulas: Row[];
             {visible.length === 0 ? (
               <tr><td colSpan={7} className="py-14 text-center text-sm text-fg3">No formulas match.</td></tr>
             ) : visible.map((f) => (
-              <tr key={f.id} className="border-b border-[#F2EFE6] transition-colors hover:bg-[#FAF8F2]">
+              <tr key={f.id} onClick={() => router.push(`/admin/crop-library?crop=${encodeURIComponent(f.crop)}`)} className="cursor-pointer border-b border-[#F2EFE6] transition-colors hover:bg-[#FAF8F2]">
                 <td className="px-6 py-3 text-sm font-semibold text-forest">{f.crop}</td>
                 <td className="px-3 py-3"><span className={pill}>{f.line}</span></td>
                 <td className="px-3 py-3 text-[13px] text-fg2">{f.primary_remedy || "—"}</td>

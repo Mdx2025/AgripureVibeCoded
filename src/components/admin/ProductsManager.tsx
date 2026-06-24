@@ -183,7 +183,7 @@ export default function ProductsManager({ products }: { products: ProductRow[] }
             {products.map((p) => {
               const low = p.stock < 40;
               return (
-                <tr key={p.id} className="border-b border-[#F2EFE6] hover:bg-[#FAF8F2]">
+                <tr key={p.id} onClick={() => openEdit(p)} className="cursor-pointer border-b border-[#F2EFE6] hover:bg-[#FAF8F2]">
                   <td className="px-6 py-[13px]">
                     <div className="flex items-center gap-3.5">
                       <div className="flex h-[52px] w-[42px] flex-none items-center justify-center rounded-[9px]"
