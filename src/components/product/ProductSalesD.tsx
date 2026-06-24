@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ArrowDown } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { bottleSrc, labelSrc, botanicalSrc } from "@/lib/products";
 import { getSales } from "@/lib/product-sales";
+import { money } from "@/lib/pricing";
 import type { ProductRow } from "@/lib/repo";
 import InteractiveVideo from "./InteractiveVideo";
 import { BundlePricing, FaqList, SpecGrid, CropTags, RelatedRow, RatingInline, type Bundle } from "./sales-shared";
@@ -14,9 +15,10 @@ export default function ProductSalesD({ product, related, bundles }: { product: 
   const accent = product.accent;
   const soft = product.accentSoft;
   const bottle = product.image?.trim() || bottleSrc(product.id);
+  const fromPerAcre = bundles.length ? Math.min(...bundles.map((b) => b.perAcre)) : 0;
 
   return (
-    <div className="bg-white text-forest">
+    <div className="bg-white pb-20 text-forest">
       {/* HERO — full viewport, light accent wash */}
       <section className="relative flex min-h-[calc(100vh-74px)] items-center overflow-hidden px-6 sm:px-10" style={{ background: `linear-gradient(180deg, ${soft} 0%, #FFFFFF 88%)` }}>
         <div className="pointer-events-none absolute -right-40 top-1/2 h-[680px] w-[680px] -translate-y-1/2 rounded-full opacity-40 blur-3xl" style={{ background: accent }} />
@@ -42,7 +44,46 @@ export default function ProductSalesD({ product, related, bundles }: { product: 
             <img src={bottle} alt={product.name} className="h-[clamp(360px,52vh,560px)] w-auto object-contain drop-shadow-[0_40px_60px_rgba(0,40,8,.3)]" />
           </div>
         </div>
-        <a href="#explainer" className="absolute bottom-6 left-1/2 -translate-x-1/2 text-forest/40 hover:text-forest"><ArrowDown size={24} className="animate-bounce" /></a>
+      </section>
+
+      {/* STAT BAND — overlaps the hero for immediate proof */}
+      <section className="relative z-10 px-6 sm:px-10">
+        <div className="mx-auto -mt-10 grid max-w-container gap-4 rounded-panel border border-hair bg-white p-6 shadow-g-md sm:grid-cols-3">
+          {s.stats.map((st) => (
+            <div key={st.label} className="text-center">
+              <div className="font-mono text-[clamp(26px,4vw,38px)] font-semibold" style={{ color: accent }}>{st.value}</div>
+              <div className="mt-1 text-[12.5px] uppercase tracking-[0.06em] text-fg3">{st.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* WITHOUT / WITH — punchy sales comparison right below the hero */}
+      <section className="px-6 py-16 sm:px-10">
+        <div className="mx-auto max-w-container">
+          <div className="mb-8 text-center">
+            <div className="text-xs font-bold uppercase tracking-[0.16em]" style={{ color: accent }}>Why it matters</div>
+            <h2 className="mt-3 font-display text-[clamp(26px,4vw,40px)] font-black tracking-[-0.02em] text-forest">The difference {product.name} makes</h2>
+          </div>
+          <div className="grid gap-6 lg:grid-cols-2">
+            <div className="rounded-panel border border-hair bg-paper-2 p-8">
+              <div className="text-xs font-bold uppercase tracking-[0.14em] text-[#C0853C]">Without it</div>
+              <h3 className="mt-3 font-display text-[22px] font-extrabold text-forest">{s.problem.title}</h3>
+              <p className="mt-3 text-[15.5px] leading-[1.7] text-fg2">{s.problem.body}</p>
+            </div>
+            <div className="rounded-panel border p-8" style={{ borderColor: accent, background: soft }}>
+              <div className="text-xs font-bold uppercase tracking-[0.14em]" style={{ color: accent }}>With {product.name}</div>
+              <ul className="mt-4 flex flex-col gap-3">
+                {s.benefits.map((b) => (
+                  <li key={b.title} className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full text-white" style={{ background: accent }}><Check size={14} strokeWidth={3} /></span>
+                    <span className="text-[15.5px] leading-[1.5] text-forest"><strong className="font-bold">{b.title}.</strong> <span className="text-[#3F463E]">{b.body}</span></span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* INTERACTIVE VIDEO */}
@@ -56,53 +97,16 @@ export default function ProductSalesD({ product, related, bundles }: { product: 
         </div>
       </section>
 
-      {/* PROBLEM */}
+      {/* HOW — steps */}
       <section className="px-6 py-16 sm:px-10">
-        <div className="mx-auto max-w-[820px] rounded-panel border border-hair bg-paper-2 p-8 text-center sm:p-12">
-          <div className="text-xs font-bold uppercase tracking-[0.16em] text-[#C0853C]">The problem</div>
-          <h2 className="mt-3 font-display text-[clamp(24px,4vw,36px)] font-black leading-[1.1] tracking-[-0.02em] text-forest">{s.problem.title}</h2>
-          <p className="mx-auto mt-4 max-w-[620px] text-[17px] leading-[1.7] text-fg2">{s.problem.body}</p>
-        </div>
-      </section>
-
-      {/* BENEFITS */}
-      <section className="px-6 pb-8 sm:px-10">
         <div className="mx-auto max-w-container">
-          <h2 className="text-center font-display text-[clamp(26px,4vw,40px)] font-black tracking-[-0.02em] text-forest">Why growers run {product.name}</h2>
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {s.benefits.map((b) => (
-              <div key={b.title} className="rounded-panel border border-hair bg-white p-6 shadow-g-sm">
-                <div className="flex h-12 w-12 items-center justify-center rounded-[14px]" style={{ background: soft, color: accent }}><b.Icon size={24} /></div>
-                <h3 className="mt-4 font-display text-[18px] font-extrabold text-forest">{b.title}</h3>
-                <p className="mt-2 text-[14.5px] leading-[1.6] text-fg2">{b.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* HOW + STATS */}
-      <section className="px-6 py-16 sm:px-10">
-        <div className="mx-auto grid max-w-container gap-10 lg:grid-cols-[1.3fr_0.7fr]">
-          <div>
-            <h2 className="font-display text-[clamp(24px,3.5vw,34px)] font-black tracking-[-0.02em] text-forest">How it fits your program</h2>
-            <div className="mt-7 flex flex-col gap-4">
-              {s.how.map((h, i) => (
-                <div key={h.title} className="flex gap-4">
-                  <div className="flex h-10 w-10 flex-none items-center justify-center rounded-full font-display font-black text-white" style={{ background: accent }}>{i + 1}</div>
-                  <div>
-                    <div className="font-display text-[17px] font-extrabold text-forest">{h.title}</div>
-                    <p className="mt-1 text-[14.5px] leading-[1.6] text-fg2">{h.body}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="grid grid-cols-3 gap-3 self-start lg:grid-cols-1">
-            {s.stats.map((st) => (
-              <div key={st.label} className="rounded-2xl border border-hair bg-paper-2 p-5 text-center lg:text-left">
-                <div className="font-mono text-[clamp(22px,3vw,30px)] font-semibold" style={{ color: accent }}>{st.value}</div>
-                <div className="mt-1 text-[12.5px] uppercase tracking-[0.06em] text-fg3">{st.label}</div>
+          <h2 className="text-center font-display text-[clamp(26px,4vw,38px)] font-black tracking-[-0.02em] text-forest">How it fits your program</h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {s.how.map((h, i) => (
+              <div key={h.title} className="rounded-panel border border-hair bg-white p-7 shadow-g-sm">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full font-display text-[20px] font-black text-white" style={{ background: accent }}>{i + 1}</div>
+                <h3 className="mt-4 font-display text-[19px] font-extrabold text-forest">{h.title}</h3>
+                <p className="mt-2 text-[15px] leading-[1.6] text-fg2">{h.body}</p>
               </div>
             ))}
           </div>
@@ -157,6 +161,20 @@ export default function ProductSalesD({ product, related, bundles }: { product: 
           <RelatedRow related={related} />
         </div>
       </section>
+
+      {/* STICKY BUY BAR */}
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-hair bg-white/95 px-4 py-3 backdrop-blur-md sm:px-8">
+        <div className="mx-auto flex max-w-container items-center gap-4">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={bottle} alt="" className="hidden h-11 w-auto object-contain sm:block" />
+          <div className="min-w-0 flex-1">
+            <div className="truncate font-display text-[16px] font-extrabold text-forest">{product.name} <span className="font-sans text-[13px] font-medium text-fg3">· {product.category}</span></div>
+            {fromPerAcre > 0 && <div className="text-[12.5px] text-fg2">from <span className="font-mono font-semibold text-forest">{money(fromPerAcre)}</span>/acre · seven-product program</div>}
+          </div>
+          <Link href="/pricing" className="btn-ghost hidden px-5 py-2.5 text-[14px] sm:inline-flex">Pricing</Link>
+          <Link href="/order-now" className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-[15px] font-bold text-white" style={{ background: accent }}>Order Now <ArrowRight size={15} strokeWidth={2.4} /></Link>
+        </div>
+      </div>
     </div>
   );
 }
