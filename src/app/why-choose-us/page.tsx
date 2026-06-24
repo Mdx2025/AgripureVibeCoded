@@ -6,12 +6,29 @@ import {
 } from "lucide-react";
 import CountUpStats from "@/components/CountUpStats";
 import ComparisonTable from "@/components/ComparisonTable";
+import WhyChooseUsV2 from "@/components/whychooseus/WhyChooseUsV2";
+import VariationSwitcher from "@/components/ui/VariationSwitcher";
 import { resolveSeoMetadata } from "@/lib/repo";
 
 export const dynamic = "force-dynamic";
 
 export function generateMetadata(): Metadata {
   return resolveSeoMetadata("/why-choose-us");
+}
+
+const OPTIONS = [
+  { v: "1", name: "Detailed" },
+  { v: "2", name: "Cinematic" },
+];
+
+export default function WhyChooseUsPage({ searchParams }: { searchParams?: { v?: string } }) {
+  const v = searchParams?.v === "2" ? "2" : "1";
+  return (
+    <>
+      {v === "2" ? <WhyChooseUsV2 /> : <V1 />}
+      <VariationSwitcher current={v} options={OPTIONS} label="Why choose us" />
+    </>
+  );
 }
 
 const BENEFITS = [
@@ -33,7 +50,7 @@ const LOSS = [
   { label: "AgriPure program", pct: 10, tone: "#4E8A3A", note: "prevent before it strikes — toward nature's baseline" },
 ];
 
-export default function WhyChooseUsPage() {
+function V1() {
   return (
     <div className="overflow-hidden">
       {/* HERO */}

@@ -6,6 +6,8 @@ import {
 } from "lucide-react";
 
 import { resolveSeoMetadata } from "@/lib/repo";
+import NanoTechV2 from "@/components/nanotech/NanoTechV2";
+import VariationSwitcher from "@/components/ui/VariationSwitcher";
 
 export const dynamic = "force-dynamic";
 
@@ -13,7 +15,22 @@ export function generateMetadata(): Metadata {
   return resolveSeoMetadata("/nano-technology");
 }
 
-export default function NanoTechnologyPage() {
+const OPTIONS = [
+  { v: "1", name: "Detailed" },
+  { v: "2", name: "Cinematic" },
+];
+
+export default function NanoTechnologyPage({ searchParams }: { searchParams?: { v?: string } }) {
+  const v = searchParams?.v === "2" ? "2" : "1";
+  return (
+    <>
+      {v === "2" ? <NanoTechV2 /> : <V1 />}
+      <VariationSwitcher current={v} options={OPTIONS} label="Nano tech" />
+    </>
+  );
+}
+
+function V1() {
   return (
     <div className="overflow-hidden">
       {/* HERO */}
