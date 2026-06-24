@@ -107,7 +107,7 @@ export function FaqList({ faqs, accent, tone = "light" }: { faqs: Faq[]; accent:
 
 export function RelatedRow({ related }: { related: ProductRow[] }) {
   return (
-    <div className="grid gap-6 md:grid-cols-3">
+    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {related.map((p) => (
         <Link key={p.id} href={`/products/${p.id}`} className="ap-card flex items-center gap-[18px] rounded-card border border-hair bg-white p-5 shadow-g-sm">
           <div className="flex h-[110px] w-[90px] shrink-0 items-center justify-center rounded-xl" style={{ background: `radial-gradient(circle at 50% 70%, ${p.accentSoft} 0%, #FAF8F2 75%)` }}>

@@ -137,7 +137,7 @@ export default function SalesBody({ product, related, bundles }: { product: Prod
           </div>
         </div>
         <div className="mx-auto mt-20 max-w-container">
-          <h2 className="mb-6 font-display text-[24px] font-extrabold text-forest">Pairs well with</h2>
+          <h2 className="mb-6 text-center font-display text-[clamp(24px,3.5vw,34px)] font-black tracking-[-0.02em] text-forest">Learn About Other Products In Our Line</h2>
           <RelatedRow related={related} />
         </div>
       </section>
