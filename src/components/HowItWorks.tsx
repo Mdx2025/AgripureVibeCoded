@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import Link from "next/link";
-import { ArrowRight, FlaskConical, Gauge, Droplets, Sprout, ShieldCheck, Clock, Beaker, Atom, Sparkles, TrendingUp, Ban, ClipboardList, Package, Microscope } from "lucide-react";
+import { ArrowRight, FlaskConical, Gauge, Droplets, Sprout, ShieldCheck, Clock, Beaker, Atom, Sparkles, TrendingUp, Ban, ClipboardList, Package, Microscope, Waves, Share2 } from "lucide-react";
 import { bottleSrc } from "@/lib/products";
 import type { ProductRow } from "@/lib/repo";
 
@@ -177,6 +177,76 @@ export default function HowItWorks({ products }: { products: ProductRow[] }) {
             <span className="inline-flex items-center gap-2"><ShieldCheck size={17} className="text-leaf-600" /> No extra passes or equipment</span>
             <span className="inline-flex items-center gap-2"><Gauge size={17} className="text-leaf-600" /> Exact per-acre dosing</span>
             <span className="inline-flex items-center gap-2"><Droplets size={17} className="text-leaf-600" /> Works with existing drip / spray</span>
+          </div>
+        </div>
+      </section>
+
+      {/* DEDICATED FERTIGATION SYSTEM SHOWCASE — the real skid + how it mixes & distributes */}
+      <section className="bg-forest px-6 py-20 text-white sm:px-10">
+        <div className="mx-auto max-w-container">
+          <div className="text-center">
+            <div className="text-xs font-bold uppercase tracking-[0.18em] text-[#BFE89A]">The fertigation system</div>
+            <h2 className="mt-3 font-display text-[clamp(28px,4.5vw,44px)] font-black leading-[1.05] tracking-[-0.02em]">
+              How the seven mix with your water — and reach every plant
+            </h2>
+            <p className="mx-auto mt-4 max-w-[740px] text-[clamp(16px,2vw,19px)] leading-[1.65] text-[#D7E5CC]">
+              Your seven custom products connect straight into a fertigation skid plumbed into your irrigation. Each
+              one is metered into the water by its own injector, blended in the manifold, then carried out to the field
+              through your existing drip and spray lines — so the whole program reaches every plant, evenly.
+            </p>
+          </div>
+
+          <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1.15fr_1fr]">
+            {/* the real installed system */}
+            <figure className="overflow-hidden rounded-panel border border-white/15 bg-black/20 shadow-g-xl">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/assets/fertigation/fertigation-room.jpg"
+                alt="The seven AgriPure products connected into a fertigation skid, each metered into the irrigation manifold and distributed through drip and spray lines"
+                className="w-full object-cover"
+              />
+              <figcaption className="flex flex-wrap items-center gap-x-5 gap-y-1.5 border-t border-white/10 px-5 py-3.5 text-[12.5px] text-[#C9DBC0]">
+                <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-[#BFE89A]" /> The seven, dosing live</span>
+                <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-[#5FA4E6]" /> Injectors &amp; manifold</span>
+                <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-[#9FD27E]" /> Filtration &amp; irrigation main</span>
+              </figcaption>
+            </figure>
+
+            {/* the three moves: dose → mix → distribute */}
+            <div className="flex flex-col gap-4">
+              {[
+                { n: "01", Icon: Gauge, t: "Meter the exact dose", d: "Each of your seven products feeds its own injector. The skid draws a precise, per-acre dose straight from the bottle — no hand-mixing, no guesswork." },
+                { n: "02", Icon: Waves, t: "Mix into the irrigation water", d: "The injectors blend the nano-potentized inputs into your pressurized irrigation main, charging the water with the full program as it moves through the manifold." },
+                { n: "03", Icon: Share2, t: "Distribute to every plant", d: "That charged water flows out through your existing drip and micro-spray lines, delivering the same balanced dose to the root zone and canopy of every plant in the block." },
+              ].map(({ n, Icon, t, d }) => (
+                <div key={n} className="flex gap-4 rounded-[18px] border border-white/12 bg-white/[0.05] p-5">
+                  <div className="flex h-12 w-12 flex-none items-center justify-center rounded-[14px] bg-[#BFE89A] text-forest"><Icon size={24} /></div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="font-mono text-[12px] text-[#BFE89A]">{n}</span>
+                      <h3 className="font-display text-[19px] font-extrabold">{t}</h3>
+                    </div>
+                    <p className="mt-1 text-[14.5px] leading-[1.6] text-[#C9DBC0]">{d}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* inline flow recap */}
+          <div className="mt-11 flex flex-wrap items-center justify-center gap-3 text-[13.5px] font-semibold">
+            {["7 products", "Injector skid", "Irrigation water", "Drip & spray", "Every plant"].map((label, i, arr) => (
+              <span key={label} className="inline-flex items-center gap-3">
+                <span className="rounded-full border border-white/15 bg-white/[0.06] px-4 py-2">{label}</span>
+                {i < arr.length - 1 && <ArrowRight size={16} className="text-[#BFE89A]" />}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-9 flex flex-wrap justify-center gap-x-6 gap-y-2.5 text-[14px] text-[#D7E5CC]">
+            <span className="inline-flex items-center gap-2"><Gauge size={17} className="text-[#BFE89A]" /> Exact per-acre dosing</span>
+            <span className="inline-flex items-center gap-2"><Droplets size={17} className="text-[#BFE89A]" /> Works with existing drip &amp; spray</span>
+            <span className="inline-flex items-center gap-2"><ShieldCheck size={17} className="text-[#BFE89A]" /> No extra passes or spray crew</span>
           </div>
         </div>
       </section>
