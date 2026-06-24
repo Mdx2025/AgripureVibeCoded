@@ -6,6 +6,7 @@ import { bundleQuote } from "@/lib/pricing";
 import ProductSalesA from "@/components/product/ProductSalesA";
 import ProductSalesB from "@/components/product/ProductSalesB";
 import ProductSalesC from "@/components/product/ProductSalesC";
+import ProductSalesD from "@/components/product/ProductSalesD";
 import VariationSwitcher from "@/components/product/VariationSwitcher";
 
 export const dynamic = "force-dynamic";
@@ -29,8 +30,9 @@ export default function ProductPage({
   const program = getPricingProgram();
   const bundles = program.bundles.map((b) => bundleQuote(b, program));
 
-  const v = searchParams?.v === "2" ? "2" : searchParams?.v === "3" ? "3" : "1";
-  const View = v === "2" ? ProductSalesB : v === "3" ? ProductSalesC : ProductSalesA;
+  const raw = searchParams?.v;
+  const v = raw === "1" || raw === "2" || raw === "3" ? raw : "4";
+  const View = v === "1" ? ProductSalesA : v === "2" ? ProductSalesB : v === "3" ? ProductSalesC : ProductSalesD;
 
   return (
     <>

@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation";
 import { Layers } from "lucide-react";
 
 const OPTIONS = [
-  { v: "1", name: "Cinematic" },
+  { v: "4", name: "Cinematic Light" },
+  { v: "1", name: "Cinematic Dark" },
   { v: "2", name: "Editorial" },
   { v: "3", name: "Bold" },
 ];
