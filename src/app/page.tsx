@@ -1,12 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, ClipboardList, Package, Microscope, FlaskConical, Droplets } from "lucide-react";
-import HeroDrone from "@/components/experience/HeroDrone";
 import ComparisonTable from "@/components/ComparisonTable";
 import ProductFlow from "@/components/home/ProductFlowB";
-import HeroCinematic from "@/components/home/hero/HeroCinematic";
 import HeroSplit from "@/components/home/hero/HeroSplit";
-import HeroStatement from "@/components/home/hero/HeroStatement";
-import HeroSwitcher from "@/components/home/hero/HeroSwitcher";
 import { listProducts, getPricingProgram } from "@/lib/repo";
 import { floorRate } from "@/lib/pricing";
 
@@ -21,19 +17,14 @@ const JOURNEY = [
   { n: "05", Icon: Droplets, t: "Feed through irrigation", d: "Dose all seven products straight through your fertigation, soil prep to harvest." },
 ];
 
-export default function Home({ searchParams }: { searchParams?: { hero?: string } }) {
+export default function Home() {
   const products = listProducts();
   const floor = floorRate(getPricingProgram());
 
-  const hero = ["0", "1", "2", "3"].includes(searchParams?.hero ?? "") ? searchParams!.hero! : "1";
-
   return (
     <>
-      {/* HERO — selectable layout */}
-      {hero === "0" ? <HeroDrone />
-        : hero === "2" ? <HeroSplit floor={floor} />
-        : hero === "3" ? <HeroStatement products={products} floor={floor} />
-        : <HeroCinematic floor={floor} />}
+      {/* HERO — split: copy + proof points / field video + trust bar */}
+      <HeroSplit floor={floor} />
 
       {/* HOW IT WORKS — brief, educational process overview */}
       <section className="border-b border-hair bg-paper px-8 py-16 sm:py-20">
@@ -114,8 +105,6 @@ export default function Home({ searchParams }: { searchParams?: { hero?: string 
           </div>
         </div>
       </section>
-
-      <HeroSwitcher current={hero} />
     </>
   );
 }
