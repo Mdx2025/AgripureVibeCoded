@@ -5,7 +5,9 @@ import { usePathname } from "next/navigation";
 import { Layers } from "lucide-react";
 
 const OPTIONS = [
-  { v: "5", name: "Cinematic Video" },
+  { v: "6", name: "Split Video" },
+  { v: "7", name: "Video Third" },
+  { v: "5", name: "Full Video" },
   { v: "4", name: "Cinematic Light" },
   { v: "1", name: "Cinematic Dark" },
   { v: "2", name: "Editorial" },
