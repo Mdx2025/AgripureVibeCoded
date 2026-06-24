@@ -34,7 +34,7 @@ function SignInForm() {
       <div className="grid min-h-[540px] overflow-hidden rounded-[24px] border border-hair shadow-g-lg md:grid-cols-2">
         <div className="relative flex flex-col justify-between overflow-hidden bg-forest p-12">
           <div className="absolute inset-0 bg-[radial-gradient(110%_80%_at_50%_130%,rgba(111,174,82,.32)_0%,rgba(0,23,6,0)_65%)]" />
-          <Image src="/assets/logo-white.png" alt="AgriPure" width={150} height={30} className="relative h-[30px] w-auto" />
+          <Image src="/assets/logo-white.png" alt="AgriPure" width={552} height={149} className="relative h-[34px] w-auto self-start" />
           <div className="relative">
             <h2 className="m-0 font-display text-[34px] font-black leading-[1.1] text-white">
               Your operation&apos;s command center.
