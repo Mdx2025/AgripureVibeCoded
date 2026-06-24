@@ -7,6 +7,7 @@ import ProductSalesA from "@/components/product/ProductSalesA";
 import ProductSalesB from "@/components/product/ProductSalesB";
 import ProductSalesC from "@/components/product/ProductSalesC";
 import ProductSalesD from "@/components/product/ProductSalesD";
+import ProductSalesE from "@/components/product/ProductSalesE";
 import VariationSwitcher from "@/components/product/VariationSwitcher";
 
 export const dynamic = "force-dynamic";
@@ -31,8 +32,13 @@ export default function ProductPage({
   const bundles = program.bundles.map((b) => bundleQuote(b, program));
 
   const raw = searchParams?.v;
-  const v = raw === "1" || raw === "2" || raw === "3" ? raw : "4";
-  const View = v === "1" ? ProductSalesA : v === "2" ? ProductSalesB : v === "3" ? ProductSalesC : ProductSalesD;
+  const v = raw === "1" || raw === "2" || raw === "3" || raw === "4" ? raw : "5";
+  const View =
+    v === "1" ? ProductSalesA
+    : v === "2" ? ProductSalesB
+    : v === "3" ? ProductSalesC
+    : v === "4" ? ProductSalesD
+    : ProductSalesE;
 
   return (
     <>

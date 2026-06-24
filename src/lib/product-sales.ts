@@ -262,3 +262,11 @@ export const SALES: Record<string, SalesContent> = {
 export function getSales(id: string): SalesContent {
   return SALES[id] ?? SALES.restore;
 }
+
+// Tinted background film behind the hero (the "in the field" overview).
+// Shared placeholder for now — drop a per-product file at /videos/products/<id>.mp4
+// and add it to HERO_VIDEOS to override per product.
+const SHARED_HERO_VIDEO = "/videos/product-hero.mp4";
+export const HERO_VIDEO_POSTER = "/videos/product-hero-poster.jpg";
+export const HERO_VIDEOS: Record<string, string> = {};
+export const heroVideoFor = (id: string) => HERO_VIDEOS[id] ?? SHARED_HERO_VIDEO;
