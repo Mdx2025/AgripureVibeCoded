@@ -69,6 +69,14 @@ body {
     @apply btn bg-white text-forest;
     border: 1.5px solid #c7cbb8;
   }
+  /* Ghost button for dark sections — transparent with a light outline. */
+  .btn-ghost-dark {
+    @apply btn bg-transparent text-white;
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+  }
+  .btn-ghost-dark:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
 }
 
 @layer utilities {
