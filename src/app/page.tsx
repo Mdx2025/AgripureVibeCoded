@@ -2,10 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ClipboardList, Package, Microscope, FlaskConical, Droplets } from "lucide-react";
 import HeroDrone from "@/components/experience/HeroDrone";
 import ComparisonTable from "@/components/ComparisonTable";
-import ProductFlowA from "@/components/home/ProductFlowA";
-import ProductFlowB from "@/components/home/ProductFlowB";
-import ProductFlowC from "@/components/home/ProductFlowC";
-import HomeVariationSwitcher from "@/components/home/HomeVariationSwitcher";
+import ProductFlow from "@/components/home/ProductFlowB";
 import { listProducts } from "@/lib/repo";
 
 export const dynamic = "force-dynamic";
@@ -19,11 +16,8 @@ const JOURNEY = [
   { n: "05", Icon: Droplets, t: "Feed through irrigation", d: "Dose all seven products straight through your fertigation, soil prep to harvest." },
 ];
 
-export default function Home({ searchParams }: { searchParams?: { v?: string } }) {
+export default function Home() {
   const products = listProducts();
-
-  const v = searchParams?.v === "2" || searchParams?.v === "3" ? searchParams.v : "1";
-  const ProductFlow = v === "2" ? ProductFlowB : v === "3" ? ProductFlowC : ProductFlowA;
 
   return (
     <>
@@ -109,8 +103,6 @@ export default function Home({ searchParams }: { searchParams?: { v?: string } }
           </div>
         </div>
       </section>
-
-      <HomeVariationSwitcher current={v} />
     </>
   );
 }
