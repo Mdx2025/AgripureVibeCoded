@@ -8,11 +8,11 @@ import SalesBody from "./SalesBody";
 import { RatingInline, type Bundle } from "./sales-shared";
 
 /**
- * Variation F — split hero: text on one clean half, the tinted field video
- * filling the other half. No bottle in the hero (it lives in SalesBody's
- * carboy showcase). Stacks to text-over-video on mobile.
+ * The product page layout: split hero — copy on one clean half, the tinted
+ * field video filling the other. The bottle lives in SalesBody's carboy
+ * showcase further down. Stacks to video-over-copy on mobile.
  */
-export default function ProductSalesF({ product, related, bundles }: { product: ProductRow; related: ProductRow[]; bundles: Bundle[] }) {
+export default function ProductSales({ product, related, bundles }: { product: ProductRow; related: ProductRow[]; bundles: Bundle[] }) {
   const s = getSales(product.id);
   const accent = product.accent;
   const soft = product.accentSoft;
@@ -34,7 +34,7 @@ export default function ProductSalesF({ product, related, bundles }: { product: 
             <p className="mt-3 text-[16px] leading-[1.6] text-fg2">{s.sub}</p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link href="/order-now" className="btn-leaf px-8 py-[15px] text-[16px]" style={{ background: accent }}>Order Now <ArrowRight size={17} strokeWidth={2.3} /></Link>
-              <a href="#explainer" className="btn-ghost px-7 py-[15px] text-[16px]">Watch how it works</a>
+              <a href="#how" className="btn-ghost px-7 py-[15px] text-[16px]">How it works</a>
             </div>
             <div className="mt-7"><RatingInline product={product} /></div>
           </div>

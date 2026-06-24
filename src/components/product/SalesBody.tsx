@@ -2,11 +2,10 @@
 
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
-import { bottleSrc, labelSrc, botanicalSrc } from "@/lib/products";
+import { bottleSrc, labelSrc } from "@/lib/products";
 import { getSales } from "@/lib/product-sales";
 import { money } from "@/lib/pricing";
 import type { ProductRow } from "@/lib/repo";
-import InteractiveVideo from "./InteractiveVideo";
 import { BundlePricing, FaqList, SpecGrid, CropTags, RelatedRow, type Bundle } from "./sales-shared";
 
 /**
@@ -64,19 +63,8 @@ export default function SalesBody({ product, related, bundles }: { product: Prod
         </div>
       </section>
 
-      {/* INTERACTIVE VIDEO */}
-      <section id="explainer" className="border-t border-hair px-6 py-20 sm:px-10">
-        <div className="mx-auto max-w-[920px]">
-          <div className="mb-7 text-center">
-            <div className="text-xs font-bold uppercase tracking-[0.16em]" style={{ color: accent }}>See it work</div>
-            <h2 className="mt-3 font-display text-[clamp(28px,4.5vw,42px)] font-black tracking-[-0.02em] text-forest">How {product.name} earns its place</h2>
-          </div>
-          <InteractiveVideo src={s.videoSrc} poster={botanicalSrc(product.id)} chapters={s.chapters} accent={accent} label={`Watch the ${product.name} explainer`} />
-        </div>
-      </section>
-
       {/* HOW — steps */}
-      <section className="px-6 py-16 sm:px-10">
+      <section id="how" className="border-t border-hair px-6 py-20 sm:px-10">
         <div className="mx-auto max-w-container">
           <h2 className="text-center font-display text-[clamp(26px,4vw,38px)] font-black tracking-[-0.02em] text-forest">How it fits your program</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
