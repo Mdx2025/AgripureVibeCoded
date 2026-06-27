@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, ClipboardList, Package, Microscope, FlaskConical, Droplets } from "lucide-react";
 import ComparisonTable from "@/components/ComparisonTable";
-import ProductFlow from "@/components/home/ProductFlowB";
+import ProductFlowFullscreen from "@/components/home/ProductFlowFullscreen";
 import HeroSplit from "@/components/home/hero/HeroSplit";
 import { listProducts, getPricingProgram } from "@/lib/repo";
 import { floorRate } from "@/lib/pricing";
@@ -25,6 +25,9 @@ export default function Home() {
     <>
       {/* HERO — split: copy + proof points / field video + trust bar */}
       <HeroSplit floor={floor} />
+
+      {/* THE SEVEN — full-screen, step-by-step product flow (video + carboy) */}
+      <ProductFlowFullscreen products={products} />
 
       {/* HOW IT WORKS — brief, educational process overview */}
       <section className="border-b border-hair bg-paper px-8 py-16 sm:py-20">
@@ -64,9 +67,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* THE SEVEN — scroll-driven video step flow (selectable layout) */}
-      <ProductFlow products={products} />
 
       {/* WHY CHOOSE US — comparison */}
       <section className="border-t border-hair bg-white px-8 py-20">
