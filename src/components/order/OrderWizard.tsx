@@ -82,34 +82,33 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
                     className="h-2 w-full accent-leaf"
                   />
 
-                  {/* per-crop pricing with comparison */}
-                  <div className="mt-4 rounded-[12px] bg-[#F7F5EE] p-3.5">
-                    <div className="flex items-baseline justify-between">
-                      <span className="text-[13px] font-bold uppercase tracking-[0.05em] text-leaf-700">AgriPure</span>
-                      <span className="font-mono text-[20px] font-bold text-forest">
-                        {money(li.perAcre)}<span className="text-[13px] font-normal text-fg3">/ac</span>
-                      </span>
-                    </div>
+                  {/* your program vs the alternatives — for THIS crop */}
+                  <div className="mt-4 rounded-[14px] border border-leaf bg-[#F2F7EC] p-4">
+                    <div className="text-[12px] font-bold uppercase tracking-[0.05em] text-leaf-700">Your program vs the alternatives</div>
                     {li.unknown ? (
-                      <div className="mt-1 text-[12.5px] text-fg3">Custom crop — priced at the program floor. We&apos;ll confirm on your quote.</div>
+                      <div className="mt-2 text-[12.5px] text-fg3">Custom crop — priced at the program floor. We&apos;ll confirm exact pricing on your quote.</div>
                     ) : (
                       <>
-                        <div className="mt-2 grid grid-cols-2 gap-x-3 gap-y-1 text-[12.5px] text-fg3">
-                          <span>Conventional</span><span className="text-right font-mono">{money(li.conventional)}/ac</span>
-                          <span>Organic</span><span className="text-right font-mono">{money(li.organic)}/ac</span>
+                        <div className="mt-2.5 grid grid-cols-3 gap-2">
+                          {[
+                            { label: "Conventional", value: li.conventionalTotal, tone: "text-fg2" },
+                            { label: "Organic", value: li.organicTotal, tone: "text-fg2" },
+                            { label: "AgriPure", value: li.total, tone: "text-forest" },
+                          ].map((x) => (
+                            <div key={x.label} className="rounded-[10px] bg-white px-2 py-2 text-center">
+                              <div className="text-[10px] uppercase tracking-[0.03em] text-fg3">{x.label}</div>
+                              <div className={`mt-0.5 font-mono text-[15px] font-bold ${x.tone}`}>{money(x.value)}</div>
+                            </div>
+                          ))}
                         </div>
-                        <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2 border-t border-[#E4E1D5] pt-2.5">
-                          {li.discount > 0 && (
-                            <span className="rounded-full bg-leaf/15 px-2.5 py-0.5 text-[11.5px] font-bold text-leaf-700">
-                              volume −{Math.round(li.discount * 100)}%
-                            </span>
-                          )}
-                          <span className="ml-auto text-[12.5px] text-leaf-700">
-                            save {money(li.savingVsOrganic)} vs organic
+                        <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2 text-[12.5px]">
+                          <span className="text-fg2">
+                            {money(li.perAcre)}/ac
+                            {li.discount > 0 && (
+                              <span className="ml-1.5 rounded-full bg-leaf/15 px-2 py-0.5 text-[11px] font-bold text-leaf-700">volume −{Math.round(li.discount * 100)}%</span>
+                            )}
                           </span>
-                        </div>
-                        <div className="mt-1.5 text-right font-mono text-[13px] text-fg2">
-                          line total {money(li.total)}
+                          <span className="font-semibold text-leaf-700">save {money(li.savingVsOrganic)} vs organic</span>
                         </div>
                       </>
                     )}
@@ -118,29 +117,6 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
               );
             })}
           </div>
-
-          {/* comparison summary across all crops */}
-          {totalAcres > 0 && (
-            <div className="rounded-[16px] border border-leaf bg-[#F2F7EC] p-5">
-              <div className="font-display text-[17px] font-extrabold text-forest">Your program vs the alternatives</div>
-              <div className="mt-3 grid gap-3 sm:grid-cols-3">
-                {[
-                  { label: "Conventional", value: cq.conventionalTotal, tone: "text-fg2" },
-                  { label: "Organic", value: cq.organicTotal, tone: "text-fg2" },
-                  { label: "AgriPure program", value: cq.total, tone: "text-forest" },
-                ].map((x) => (
-                  <div key={x.label} className="rounded-[12px] bg-white px-4 py-3">
-                    <div className="text-[12px] uppercase tracking-[0.05em] text-fg3">{x.label}</div>
-                    <div className={`mt-0.5 font-mono text-[22px] font-bold ${x.tone}`}>{money(x.value)}</div>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-3 text-[14px] text-leaf-700">
-                {money(cq.effective)}/ac blended across {totalAcres.toLocaleString()} acres — you save{" "}
-                <strong>{money(cq.saveVsOrganic)}</strong> versus a comparable organic program.
-              </div>
-            </div>
-          )}
         </div>
       ),
     },
