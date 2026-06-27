@@ -12,28 +12,44 @@ import StepVideo from "./StepVideo";
  * Full-screen, step-by-step product flow.
  *
  * - The "Watch the program work" intro is its own separated band at the top.
- * - Below it, the seven steps live in a dedicated scroll container that snaps:
- *   each step is one viewport tall, carries that product's accent gradient (like
- *   the individual product pages), and snaps into place so it exactly fills the
- *   screen rather than scrolling fluidly.
+ * - The seven steps live in NORMAL page flow (no nested scroll container) so the
+ *   page never gets "trapped" and the sections after it scroll cleanly. Each step
+ *   is one viewport tall, carries that product's accent gradient (like the product
+ *   pages), and is a scroll-snap point with `scroll-snap-stop: always` so a single
+ *   scroll gesture lands squarely on the next step and can't skip the sequence.
+ * - Snapping is enabled on the document only while this flow is mounted (the home
+ *   page), so other pages/sections are unaffected.
  * - A sticky rail on the left tracks the active step and jumps on click.
  */
 export default function ProductFlowFullscreen({ products }: { products: ProductRow[] }) {
   const [active, setActive] = useState(0);
   const sections = useRef<(HTMLElement | null)[]>([]);
-  const deck = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    // Root the observer to the snapping deck (a nested scroller) so the active
-    // step tracks the deck's own scroll, independent of the page's position.
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) if (e.isIntersecting) setActive(Number((e.target as HTMLElement).dataset.i));
       },
-      { root: deck.current, rootMargin: "-45% 0px -45% 0px", threshold: 0 },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 },
     );
     sections.current.forEach((el) => el && io.observe(el));
     return () => io.disconnect();
+  }, []);
+
+  // Enable scroll-snapping for the step sequence — scoped to the page that renders
+  // this flow. Proximity (not mandatory) keeps the hero/other sections free to
+  // scroll; the per-step `scroll-snap-stop: always` is what forces a clean stop on
+  // each step so you can't blow past the sequence.
+  useEffect(() => {
+    const html = document.documentElement;
+    const prevType = html.style.scrollSnapType;
+    const prevBehavior = html.style.scrollBehavior;
+    html.style.scrollSnapType = "y proximity";
+    html.style.scrollBehavior = "smooth";
+    return () => {
+      html.style.scrollSnapType = prevType;
+      html.style.scrollBehavior = prevBehavior;
+    };
   }, []);
 
   const jump = (i: number) => sections.current[i]?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -56,10 +72,10 @@ export default function ProductFlowFullscreen({ products }: { products: ProductR
         </div>
       </section>
 
-      {/* ── Snapping deck — one product per screen ───────────────────────── */}
-      <div ref={deck} className="relative h-[100svh] snap-y snap-mandatory overflow-y-auto overscroll-y-contain scroll-smooth">
-        {/* sticky rail (overlay, vertically centered) */}
-        <nav className="pointer-events-none sticky top-0 z-30 hidden h-0 lg:block">
+      {/* ── Step sequence — one product per screen, snaps in normal page flow ── */}
+      <div className="relative">
+        {/* sticky rail overlay (vertically centered, pinned through the sequence) */}
+        <div className="pointer-events-none sticky top-0 z-30 hidden h-0 lg:block">
           <div className="relative mx-auto max-w-[1180px] px-10">
             <ol className="pointer-events-auto absolute left-10 top-[50svh] flex -translate-y-1/2 flex-col gap-1">
               {products.map((p, i) => {
@@ -82,7 +98,7 @@ export default function ProductFlowFullscreen({ products }: { products: ProductR
               })}
             </ol>
           </div>
-        </nav>
+        </div>
 
         {products.map((p, i) => {
           const phase = stepPhaseFor(p.id);
@@ -91,7 +107,7 @@ export default function ProductFlowFullscreen({ products }: { products: ProductR
               key={p.id}
               data-i={i}
               ref={(el) => { sections.current[i] = el; }}
-              className="flex min-h-[100svh] snap-start snap-always flex-col justify-center"
+              className="flex min-h-[100svh] snap-start flex-col justify-center [scroll-snap-stop:always]"
               style={{ background: `linear-gradient(180deg, ${p.accentSoft} 0%, #FFFFFF 94%)` }}
             >
               <div className="mx-auto flex w-full max-w-[1180px] flex-col justify-center px-6 pb-6 pt-[84px] sm:px-10 lg:pl-[230px]">
