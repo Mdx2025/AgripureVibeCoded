@@ -24,6 +24,7 @@ import StepVideo from "./StepVideo";
 export default function ProductFlowFullscreen({ products }: { products: ProductRow[] }) {
   const [active, setActive] = useState(0);
   const sections = useRef<(HTMLElement | null)[]>([]);
+  const goToRef = useRef<(i: number) => void>(() => {});
 
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -36,22 +37,94 @@ export default function ProductFlowFullscreen({ products }: { products: ProductR
     return () => io.disconnect();
   }, []);
 
-  // Enable scroll-snapping for the step sequence — scoped to the page that renders
-  // this flow. Proximity keeps the hero/other sections free; the per-step
-  // `scroll-snap-stop: always` forces a clean stop on each step.
+  // One-section-per-gesture scrolling. While the step sequence fills the screen, a
+  // wheel/arrow/Page key smoothly auto-scrolls to the next (or previous) step and
+  // stops there — and locks out further input until it settles, so trackpad inertia
+  // can't over-shoot. Scrolling up from the first step or down from the last step is
+  // NOT intercepted, so you can always enter and leave the sequence normally. Touch
+  // devices fall back to a gentle CSS proximity snap.
   useEffect(() => {
     const html = document.documentElement;
+    const N = products.length;
+    const SNAP = "y proximity";
     const prevType = html.style.scrollSnapType;
     const prevBehavior = html.style.scrollBehavior;
-    html.style.scrollSnapType = "y proximity";
-    html.style.scrollBehavior = "smooth";
+    html.style.scrollSnapType = SNAP;
+    html.style.scrollBehavior = "auto"; // smoothness is driven explicitly via scrollTo
+
+    let locked = false, minOK = false, idleOK = false;
+    let minTimer: ReturnType<typeof setTimeout> | undefined;
+    let idleTimer: ReturnType<typeof setTimeout> | undefined;
+    const tryUnlock = () => { if (minOK && idleOK) { locked = false; html.style.scrollSnapType = SNAP; } };
+    const idleBump = () => { idleOK = false; clearTimeout(idleTimer); idleTimer = setTimeout(() => { idleOK = true; tryUnlock(); }, 160); };
+    const arm = () => { minOK = false; clearTimeout(minTimer); minTimer = setTimeout(() => { minOK = true; tryUnlock(); }, 480); idleBump(); };
+
+    const go = (idx: number) => {
+      const el = sections.current[idx];
+      if (!el) return;
+      locked = true;
+      html.style.scrollSnapType = "none"; // don't let snap interrupt the animation
+      window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top, behavior: "smooth" });
+      arm();
+    };
+    goToRef.current = go;
+
+    const vh = () => window.innerHeight;
+    // The step currently occupying the vertical center of the viewport (-1 if none).
+    const centerIdx = () => {
+      const mid = vh() / 2;
+      for (let i = 0; i < N; i++) {
+        const el = sections.current[i];
+        if (!el) continue;
+        const r = el.getBoundingClientRect();
+        if (r.top <= mid && r.bottom > mid) return i;
+      }
+      return -1;
+    };
+
+    const onWheel = (e: WheelEvent) => {
+      const i = centerIdx();
+      if (i < 0) return;                       // not in the sequence → native scroll
+      if (locked) { e.preventDefault(); idleBump(); return; } // absorbing inertia
+      if (Math.abs(e.deltaY) < 4) return;
+      const r = sections.current[i]!.getBoundingClientRect();
+      const dir = e.deltaY > 0 ? 1 : -1;
+      // If the current step isn't aligned yet (entering the sequence), settle it
+      // first; otherwise advance to the neighbour in the scroll direction.
+      const target = dir > 0
+        ? (r.top > vh() * 0.1 ? i : i + 1)
+        : (r.bottom < vh() * 0.9 ? i : i - 1);
+      if (target < 0 || target >= N) return;   // at the ends → let the page scroll out
+      e.preventDefault();
+      go(target);
+    };
+
+    const onKey = (e: KeyboardEvent) => {
+      const tag = (document.activeElement?.tagName || "").toLowerCase();
+      if (tag === "input" || tag === "textarea" || tag === "select") return;
+      const i = centerIdx();
+      if (i < 0) return;
+      let target: number | null = null;
+      if (e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") target = i + 1;
+      else if (e.key === "ArrowUp" || e.key === "PageUp") target = i - 1;
+      if (target == null || target < 0 || target >= N) return;
+      e.preventDefault();
+      if (!locked) go(target);
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("keydown", onKey);
     return () => {
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("keydown", onKey);
+      clearTimeout(minTimer);
+      clearTimeout(idleTimer);
       html.style.scrollSnapType = prevType;
       html.style.scrollBehavior = prevBehavior;
     };
-  }, []);
+  }, [products.length]);
 
-  const jump = (i: number) => sections.current[i]?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const jump = (i: number) => goToRef.current(i);
 
   return (
     <div className="bg-white">
@@ -106,7 +179,7 @@ export default function ProductFlowFullscreen({ products }: { products: ProductR
                 key={p.id}
                 data-i={i}
                 ref={(el) => { sections.current[i] = el; }}
-                className="relative flex min-h-[100svh] snap-start flex-col justify-center [scroll-snap-stop:always]"
+                className="relative flex min-h-[100svh] snap-start flex-col justify-center"
               >
                 {/* full-bleed accent gradient (extends left under the rail column) */}
                 <div
