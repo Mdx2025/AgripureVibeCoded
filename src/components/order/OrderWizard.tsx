@@ -51,7 +51,7 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
       title: "What are you growing?",
       sub: "Select every crop in your operation. Type to search or add your own.",
       valid: crops.length > 0,
-      body: <MultiCombobox size="lg" value={crops} onChange={setCrops} options={CROP_NAMES} placeholder="e.g. Almond, Wheat, Strawberry…" />,
+      body: <MultiCombobox size="lg" value={crops} onChange={setCrops} options={CROP_NAMES} maxOptions={CROP_NAMES.length} listMaxH="max-h-[360px]" placeholder="e.g. Almond, Wheat, Strawberry…" />,
     },
     {
       title: "How many acres of each crop?",
