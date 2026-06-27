@@ -159,4 +159,62 @@ export function quoteForCrops(acresByCrop: Record<string, number>): CropQuote {
   };
 }
 
+/* ----------------------- 7-product function breakdown ----------------------- */
+// AgriPure replaces a grower's whole input stack with seven products. The model
+// gives each crop a single conventional / organic / AgriPure $/acre figure; this
+// allocates each of those totals across the seven functions by a fixed mix so the
+// per-product comparison scales correctly for every crop. Weights are the
+// representative US 2024–25 like-for-like input split per method.
+export interface ProductFunction {
+  key: string;
+  label: string;
+  /** what it replaces, for the row caption */
+  role: string;
+  convW: number;
+  orgW: number;
+  apW: number;
+}
+
+export const PRODUCT_FUNCTIONS: ProductFunction[] = [
+  { key: "restore", label: "Restore", role: "soil health", convW: 30, orgW: 60, apW: 62 },
+  { key: "cleanse", label: "Cleanse", role: "weed control", convW: 75, orgW: 100, apW: 104 },
+  { key: "strength", label: "Strength", role: "root & germination", convW: 15, orgW: 35, apW: 36 },
+  { key: "grow", label: "Grow", role: "growth stimulant", convW: 15, orgW: 35, apW: 36 },
+  { key: "protect", label: "Protect", role: "insecticide", convW: 25, orgW: 60, apW: 62 },
+  { key: "prevent", label: "Prevent", role: "fungicide", convW: 25, orgW: 60, apW: 62 },
+  { key: "boost", label: "Boost", role: "yield enhancer", convW: 20, orgW: 35, apW: 36 },
+];
+
+const CONV_W = PRODUCT_FUNCTIONS.reduce((t, f) => t + f.convW, 0);
+const ORG_W = PRODUCT_FUNCTIONS.reduce((t, f) => t + f.orgW, 0);
+const AP_W = PRODUCT_FUNCTIONS.reduce((t, f) => t + f.apW, 0);
+
+export interface ProductRowBreakdown {
+  key: string;
+  label: string;
+  role: string;
+  conventional: number;
+  organic: number;
+  agripure: number;
+}
+
+/**
+ * Split a crop's per-acre conventional / organic costs and its (volume-discounted)
+ * AgriPure per-acre price across the seven product functions. All $/acre.
+ */
+export function productBreakdown(name: string, acres: number): ProductRowBreakdown[] {
+  const c = findCrop(name);
+  const apPerAcre = c ? priceAtAcreage(c, acres) : PRICING_PARAMS.priceFloor;
+  const conv = c?.conventional ?? 0;
+  const org = c?.organic ?? 0;
+  return PRODUCT_FUNCTIONS.map((f) => ({
+    key: f.key,
+    label: f.label,
+    role: f.role,
+    conventional: Math.round((conv * f.convW) / CONV_W),
+    organic: Math.round((org * f.orgW) / ORG_W),
+    agripure: Math.round((apPerAcre * f.apW) / AP_W),
+  }));
+}
+
 export const money = (n: number) => "$" + Math.round(n).toLocaleString("en-US");

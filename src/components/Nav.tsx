@@ -8,9 +8,9 @@ import { User, ArrowRight, Menu, X } from "lucide-react";
 
 const LINKS = [
   { href: "/shop", label: "Products" },
+  { href: "/pricing", label: "Pricing" },
   { href: "/how-it-works", label: "How It Works" },
   { href: "/why-choose-us", label: "Why Choose Us" },
-  { href: "/pricing", label: "Pricing" },
   { href: "/nano-technology", label: "Nano Technology" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
