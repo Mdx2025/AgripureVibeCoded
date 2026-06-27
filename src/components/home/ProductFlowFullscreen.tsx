@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { bottleSrc } from "@/lib/products";
@@ -8,63 +9,111 @@ import type { ProductRow } from "@/lib/repo";
 import StepVideo from "./StepVideo";
 
 /**
- * Full-screen, step-by-step product flow: each of the seven gets its own
- * viewport-height section with the explainer video and the carboy (label
- * shown) to its right, plus the step's explanation. The in-view video plays.
+ * Full-screen, step-by-step product flow with a sticky step rail on the left.
+ * Each of the seven gets a viewport-height section: the explainer video with
+ * the carboy (label shown) to its right, plus the step's explanation. The rail
+ * tracks the active step and jumps to any step on click.
  */
 export default function ProductFlowFullscreen({ products }: { products: ProductRow[] }) {
+  const [active, setActive] = useState(0);
+  const sections = useRef<(HTMLElement | null)[]>([]);
+
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) if (e.isIntersecting) setActive(Number((e.target as HTMLElement).dataset.i));
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 },
+    );
+    sections.current.forEach((el) => el && io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  const jump = (i: number) => sections.current[i]?.scrollIntoView({ behavior: "smooth", block: "center" });
+
   return (
-    <div>
+    <div className="bg-white">
       {/* intro */}
       <section className="px-6 pb-6 pt-16 text-center sm:px-10">
         <div className="text-xs font-bold uppercase tracking-[0.16em] text-leaf">The seven, step by step</div>
         <h2 className="mt-3 font-display text-[clamp(30px,5vw,52px)] font-black tracking-[-0.02em] text-forest">Watch the program work</h2>
         <p className="mx-auto mt-4 max-w-[640px] text-[17px] leading-[1.6] text-fg2">
-          Scroll through the season. Each step plays its own film, shows the product, and explains exactly what it does
-          for your crop.
+          Scroll through the season — or jump to any step on the left. Each one plays its own film, shows the product,
+          and explains exactly what it does for your crop.
         </p>
       </section>
 
-      {products.map((p, i) => {
-        const s = getSales(p.id);
-        const phase = stepPhaseFor(p.id);
-        return (
-          <section key={p.id} className={`flex min-h-[calc(100vh-74px)] flex-col justify-center px-6 py-16 sm:px-10 ${i % 2 ? "bg-paper-2" : "bg-white"}`}>
-            <div className="mx-auto w-full min-w-0 max-w-container">
-              {/* heading */}
-              <div className="mx-auto max-w-[860px] text-center">
-                <div className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-white" style={{ background: p.accent }}>
-                  Step {i + 1} of 7 · {phase.phase}
-                </div>
-                <h2 className="mt-4 font-display text-[clamp(34px,5.5vw,60px)] font-black leading-[0.98] tracking-[-0.02em] text-forest">{p.name}</h2>
-                <div className="mt-1 text-[clamp(16px,2vw,20px)] font-semibold" style={{ color: p.accent }}>{p.category}</div>
-                <p className="mx-auto mt-4 max-w-[660px] text-[clamp(17px,2.2vw,22px)] font-semibold leading-[1.4] text-forest">{s.hook}</p>
-              </div>
+      <div className="mx-auto max-w-container px-6 sm:px-10">
+        <div className="lg:grid lg:grid-cols-[220px_1fr] lg:gap-12">
+          {/* sticky step rail */}
+          <nav className="hidden lg:block">
+            <ol className="sticky top-[50vh] flex -translate-y-1/2 flex-col gap-1">
+              {products.map((p, i) => {
+                const ph = stepPhaseFor(p.id);
+                const on = i === active;
+                return (
+                  <li key={p.id}>
+                    <button onClick={() => jump(i)} className="group flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors hover:bg-paper-2">
+                      <span className="flex h-9 w-9 flex-none items-center justify-center rounded-full font-display text-[14px] font-black transition-colors" style={{ background: on ? p.accent : "#E4E1D5", color: on ? "#fff" : "#7A8076" }}>{i + 1}</span>
+                      <span className="min-w-0">
+                        <span className={`block font-display text-[15px] font-extrabold ${on ? "text-forest" : "text-fg3"}`}>{p.name}</span>
+                        <span className="block truncate text-[11.5px] text-fg3">{ph.phase}</span>
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
 
-              {/* media: video + carboy to the right */}
-              <div className="mt-9 grid items-stretch gap-5 lg:h-[clamp(340px,58vh,560px)] lg:grid-cols-[1.7fr_1fr]">
-                <div className="relative aspect-video min-w-0 overflow-hidden rounded-[24px] border shadow-g-xl lg:aspect-auto lg:h-full" style={{ borderColor: `${p.accent}40` }}>
-                  <StepVideo src={productVideoFor(p.id)} poster={productPosterFor(p.id)} rounded={false} className="absolute inset-0 h-full w-full object-cover" />
-                  <span className="absolute left-4 top-4 rounded-full bg-black/45 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-white backdrop-blur-sm">{phase.when}</span>
-                </div>
-                <div className="relative flex aspect-[4/5] min-w-0 items-center justify-center overflow-hidden rounded-[24px] border lg:aspect-auto lg:h-full" style={{ borderColor: `${p.accent}40`, background: `radial-gradient(circle at 50% 62%, ${p.accentSoft} 0%, #FAF8F2 78%)` }}>
-                  <span className="absolute left-4 top-4 font-mono text-[12px] font-semibold" style={{ color: p.accent }}>No. {p.num}</span>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={bottleSrc(p.id)} alt={`${p.name} carboy with label`} className="max-h-[82%] w-auto max-w-[78%] object-contain py-6 drop-shadow-[0_24px_40px_rgba(0,40,8,.24)]" />
-                </div>
-              </div>
+          {/* steps */}
+          <div>
+            {products.map((p, i) => {
+              const s = getSales(p.id);
+              const phase = stepPhaseFor(p.id);
+              return (
+                <section
+                  key={p.id}
+                  data-i={i}
+                  ref={(el) => { sections.current[i] = el; }}
+                  className="flex min-h-[calc(100vh-74px)] flex-col justify-center border-t border-hair py-14 first:border-t-0"
+                >
+                  {/* heading */}
+                  <div className="max-w-[760px]">
+                    <div className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-white" style={{ background: p.accent }}>
+                      Step {i + 1} of 7 · {phase.phase}
+                    </div>
+                    <h2 className="mt-4 font-display text-[clamp(32px,5vw,56px)] font-black leading-[0.98] tracking-[-0.02em] text-forest">{p.name}</h2>
+                    <div className="mt-1 text-[clamp(16px,2vw,20px)] font-semibold" style={{ color: p.accent }}>{p.category}</div>
+                    <p className="mt-4 max-w-[620px] text-[clamp(17px,2.2vw,22px)] font-semibold leading-[1.4] text-forest">{s.hook}</p>
+                  </div>
 
-              {/* what it does + CTA */}
-              <div className="mx-auto mt-7 max-w-[820px] text-center">
-                <p className="text-[16px] leading-[1.7] text-fg2">{p.long}</p>
-                <Link href={`/products/${p.id}`} className="mt-6 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-[15px] font-bold text-white" style={{ background: p.accent }}>
-                  Explore {p.name} <ArrowRight size={16} strokeWidth={2.4} />
-                </Link>
-              </div>
-            </div>
-          </section>
-        );
-      })}
+                  {/* media: video + carboy to the right */}
+                  <div className="mt-8 grid items-stretch gap-5 lg:h-[clamp(320px,52vh,520px)] lg:grid-cols-[1.7fr_1fr]">
+                    <div className="relative aspect-video min-w-0 overflow-hidden rounded-[24px] border shadow-g-xl lg:aspect-auto lg:h-full" style={{ borderColor: `${p.accent}40` }}>
+                      <StepVideo src={productVideoFor(p.id)} poster={productPosterFor(p.id)} rounded={false} className="absolute inset-0 h-full w-full object-cover" />
+                      <span className="absolute left-4 top-4 rounded-full bg-black/45 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-white backdrop-blur-sm">{phase.when}</span>
+                    </div>
+                    <div className="relative flex aspect-[4/5] min-w-0 items-center justify-center overflow-hidden rounded-[24px] border lg:aspect-auto lg:h-full" style={{ borderColor: `${p.accent}40`, background: `radial-gradient(circle at 50% 62%, ${p.accentSoft} 0%, #FAF8F2 78%)` }}>
+                      <span className="absolute left-4 top-4 font-mono text-[12px] font-semibold" style={{ color: p.accent }}>No. {p.num}</span>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={bottleSrc(p.id)} alt={`${p.name} carboy with label`} className="max-h-[82%] w-auto max-w-[78%] object-contain py-6 drop-shadow-[0_24px_40px_rgba(0,40,8,.24)]" />
+                    </div>
+                  </div>
+
+                  {/* what it does + CTA */}
+                  <div className="mt-7 max-w-[820px]">
+                    <p className="text-[16px] leading-[1.7] text-fg2">{p.long}</p>
+                    <Link href={`/products/${p.id}`} className="mt-6 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-[15px] font-bold text-white" style={{ background: p.accent }}>
+                      Explore {p.name} <ArrowRight size={16} strokeWidth={2.4} />
+                    </Link>
+                  </div>
+                </section>
+              );
+            })}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
