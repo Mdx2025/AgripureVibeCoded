@@ -90,9 +90,9 @@ export default function ProductFlowFullscreen({ products }: { products: ProductR
 
                   {/* media: 16:9 video (drives the row height) + carboy matched to it */}
                   <div className="mt-8 grid items-stretch gap-5 lg:grid-cols-[1.7fr_1fr]">
-                    {/* video — always 16:9 */}
+                    {/* video — square (1:1) */}
                     <div className="min-w-0">
-                      <div className="relative aspect-video w-full overflow-hidden rounded-[24px] border shadow-g-xl" style={{ borderColor: `${p.accent}40` }}>
+                      <div className="relative aspect-square w-full overflow-hidden rounded-[24px] border shadow-g-xl" style={{ borderColor: `${p.accent}40` }}>
                         <StepVideo src={productVideoFor(p.id)} poster={productPosterFor(p.id)} rounded={false} className="absolute inset-0 h-full w-full object-cover" />
                         <span className="absolute left-4 top-4 rounded-full bg-black/45 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-white backdrop-blur-sm">{phase.when}</span>
                       </div>
