@@ -73,6 +73,8 @@ export default function PricingExplorer() {
               onChange={setCropList}
               options={CROP_NAMES}
               allowCustom={false}
+              maxOptions={CROP_NAMES.length}
+              listMaxH="max-h-[360px]"
               placeholder="e.g. Strawberry, Almond, Wheat…"
             />
             <p className="mt-2.5 text-center text-[13px] text-fg3">{CROP_NAMES.length} crops priced — start typing to search.</p>

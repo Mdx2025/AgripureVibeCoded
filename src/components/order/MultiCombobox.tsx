@@ -11,6 +11,8 @@ export default function MultiCombobox({
   allowCustom = true,
   noneLabel,
   size = "md",
+  maxOptions = 8,
+  listMaxH = "max-h-[240px]",
 }: {
   value: string[];
   onChange: (v: string[]) => void;
@@ -19,6 +21,10 @@ export default function MultiCombobox({
   allowCustom?: boolean;
   noneLabel?: string;
   size?: "md" | "lg";
+  /** how many matching options to render in the dropdown (default 8) */
+  maxOptions?: number;
+  /** Tailwind max-height class for the scrollable dropdown */
+  listMaxH?: string;
 }) {
   const lg = size === "lg";
   const sz = {
@@ -38,7 +44,7 @@ export default function MultiCombobox({
   const selectedSet = new Set(value.map((v) => v.toLowerCase()));
   const filtered = options
     .filter((o) => !selectedSet.has(o.toLowerCase()) && o.toLowerCase().includes(q.toLowerCase()))
-    .slice(0, 8);
+    .slice(0, maxOptions);
   const exact = options.some((o) => o.toLowerCase() === q.toLowerCase()) || selectedSet.has(q.toLowerCase());
   const showAdd = allowCustom && q.length > 0 && !exact;
 
@@ -96,7 +102,7 @@ export default function MultiCombobox({
       </div>
 
       {open && !noneSelected && (filtered.length > 0 || showAdd) && (
-        <div className="absolute z-30 mt-1.5 max-h-[240px] w-full overflow-y-auto rounded-[12px] border border-hair bg-white p-1.5 shadow-g-lg">
+        <div className={`absolute z-30 mt-1.5 w-full overflow-y-auto rounded-[12px] border border-hair bg-white p-1.5 shadow-g-lg ${listMaxH}`}>
           {filtered.map((o) => (
             <button
               key={o}
