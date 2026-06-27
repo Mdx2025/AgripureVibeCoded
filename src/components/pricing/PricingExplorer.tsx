@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowLeft, Sprout, Check } from "lucide-react";
+import { ArrowRight, ArrowLeft, Sprout, Check, Minus, X } from "lucide-react";
 import MultiCombobox from "@/components/order/MultiCombobox";
 import {
   CROP_PRICING, cropLineItem, productBreakdown, quoteForCrops, money,
@@ -149,6 +149,27 @@ export default function PricingExplorer() {
 }
 
 const apCol = "bg-[#F2F7EC]";
+
+// Why AgriPure earns its mid-tier price — what you get vs each alternative.
+type Mark = "yes" | "no" | "partial";
+const BENEFITS: { label: string; conv: Mark; org: Mark; ap: Mark }[] = [
+  { label: "100% natural · OMRI-style · copper-free", conv: "no", org: "yes", ap: "yes" },
+  { label: "All 7 crop functions in one system", conv: "no", org: "no", ap: "yes" },
+  { label: "Custom-formulated to your crop, soil & pressure", conv: "no", org: "no", ap: "yes" },
+  { label: "No synthetic residue · runoff-conscious", conv: "no", org: "yes", ap: "yes" },
+  { label: "Builds plant resistance — no repeat-spray spiral", conv: "no", org: "partial", ap: "yes" },
+  { label: "Restores living soil season over season", conv: "no", org: "partial", ap: "yes" },
+  { label: "Qualifies your crop for the organic price premium", conv: "no", org: "yes", ap: "yes" },
+  { label: "One supplier · one season-long program", conv: "no", org: "no", ap: "yes" },
+];
+
+function MarkCell({ mark }: { mark: Mark }) {
+  if (mark === "yes")
+    return <span className="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-[#E9F0E0] text-leaf-700"><Check size={17} strokeWidth={2.6} /></span>;
+  if (mark === "partial")
+    return <span className="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-[#FBEFD9] text-[#C97A06]"><Minus size={17} strokeWidth={2.6} /></span>;
+  return <span className="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-[#F1ECE6] text-[#B23A1E]"><X size={16} strokeWidth={2.6} /></span>;
+}
 
 function Results({
   crops, acres, cq, activeCrop, setActiveCrop, onBack,
@@ -308,6 +329,52 @@ function Results({
             </table>
           </div>
         </div>
+      </div>
+
+      {/* why AgriPure — what the mid-tier price buys you */}
+      <div className="mt-12">
+        <h2 className="font-display text-[26px] font-extrabold tracking-[-0.02em] text-forest">
+          Why choose AgriPure over conventional &amp; organic
+        </h2>
+        <p className="mt-1.5 max-w-[680px] text-[15px] text-fg2">
+          AgriPure lands between conventional and organic on price — but unlike either, it delivers all seven functions
+          in one custom-matched, residue-free program. Here&apos;s what that price buys that the alternatives don&apos;t.
+        </p>
+        <div className="mt-5 overflow-hidden rounded-panel border border-hair bg-white shadow-g-md">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[640px] text-left">
+              <thead>
+                <tr className="border-b border-hair bg-[#FAF8F2]">
+                  <th className="w-[46%] px-6 py-4 text-[11.5px] font-bold uppercase tracking-[0.06em] text-fg3">What you get</th>
+                  <th className="px-4 py-4 text-center text-[13px] font-extrabold text-ink">Conventional</th>
+                  <th className="px-4 py-4 text-center text-[13px] font-extrabold text-ink">Organic</th>
+                  <th className={`px-4 py-4 text-center text-[13px] font-extrabold text-forest ${apCol}`}>AgriPure</th>
+                </tr>
+              </thead>
+              <tbody>
+                {BENEFITS.map((b, i) => (
+                  <tr key={b.label} className={i % 2 ? "bg-[#FCFBF7]" : ""}>
+                    <td className="px-6 py-3.5 text-[14.5px] font-medium text-[#3F463E]">{b.label}</td>
+                    <td className="px-4 py-3.5 text-center"><MarkCell mark={b.conv} /></td>
+                    <td className="px-4 py-3.5 text-center"><MarkCell mark={b.org} /></td>
+                    <td className={`px-4 py-3.5 text-center ${apCol}`}><MarkCell mark={b.ap} /></td>
+                  </tr>
+                ))}
+                <tr className="border-t-2 border-hair-strong">
+                  <td className="px-6 py-4 font-display text-[15px] font-extrabold text-forest">Your blended price · per acre</td>
+                  <td className="px-4 py-4 text-center font-mono text-[15px] font-semibold text-ink">{money(Math.round(cq.conventionalTotal / Math.max(1, cq.acres)))}</td>
+                  <td className="px-4 py-4 text-center font-mono text-[15px] font-semibold text-ink">{money(Math.round(cq.organicTotal / Math.max(1, cq.acres)))}</td>
+                  <td className={`px-4 py-4 text-center font-mono text-[16px] font-bold text-forest ${apCol}`}>{money(cq.effective)}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p className="mt-2.5 text-[12.5px] text-fg3">
+          <span className="text-leaf-700">●</span> included &nbsp; <span className="text-[#C97A06]">●</span> partial &nbsp;
+          <span className="text-[#B23A1E]">●</span> not offered. Blended per-acre figures are weighted across your{" "}
+          {cq.acres.toLocaleString()} selected acres.
+        </p>
       </div>
 
       {/* CTA */}
