@@ -26,9 +26,6 @@ export default function Home() {
       {/* HERO — split: copy + proof points / field video + trust bar */}
       <HeroSplit floor={floor} />
 
-      {/* THE SEVEN — full-screen, step-by-step product flow (video + carboy) */}
-      <ProductFlowFullscreen products={products} />
-
       {/* HOW IT WORKS — brief, educational process overview */}
       <section className="border-b border-hair bg-paper px-8 py-16 sm:py-20">
         <div className="mx-auto max-w-container">
@@ -67,6 +64,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* THE SEVEN — full-screen, step-by-step product flow (video + carboy) */}
+      <ProductFlowFullscreen products={products} />
 
       {/* WHY CHOOSE US — comparison */}
       <section className="border-t border-hair bg-white px-8 py-20">
