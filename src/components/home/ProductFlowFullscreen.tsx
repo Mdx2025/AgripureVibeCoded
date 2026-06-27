@@ -146,9 +146,11 @@ export default function ProductFlowFullscreen({ products }: { products: ProductR
 
       {/* ── Step sequence — sticky rail (col 1) + full-screen steps (col 2) ── */}
       <div className="lg:grid lg:grid-cols-[240px_1fr]">
-        {/* sticky rail — a real element, releases cleanly at the end of step 7 */}
-        <nav className="hidden lg:block">
-          <ol className="sticky top-[50svh] z-30 flex -translate-y-1/2 flex-col gap-1 px-6">
+        {/* sticky rail — full-viewport-height sticky element, flex-centered (no
+            upward translate, so it never pokes above step 1 into the intro band)
+            and releases cleanly at the end of step 7. */}
+        <nav className="sticky top-0 z-30 hidden h-[100svh] items-center px-6 lg:flex">
+          <ol className="flex w-full flex-col gap-1">
             {products.map((p, i) => {
               const ph = stepPhaseFor(p.id);
               const on = i === active;
