@@ -43,7 +43,7 @@ export default function ProductFlowFullscreen({ products }: { products: ProductR
         </p>
       </section>
 
-      <div className="mx-auto max-w-container px-6 sm:px-10">
+      <div className="mx-auto max-w-[1600px] px-6 sm:px-10">
         <div className="lg:grid lg:grid-cols-[210px_1fr] lg:gap-10 xl:gap-14">
           {/* sticky step rail — stays vertically centered */}
           <nav className="hidden lg:block">
@@ -88,16 +88,20 @@ export default function ProductFlowFullscreen({ products }: { products: ProductR
                     <p className="mx-auto mt-4 max-w-[640px] text-[clamp(17px,2.2vw,22px)] font-semibold leading-[1.4] text-forest">{s.hook}</p>
                   </div>
 
-                  {/* media: video + carboy — equal height; video fills its full width */}
-                  <div className="mt-8 grid items-stretch gap-5 lg:h-[clamp(400px,62vh,600px)] lg:grid-cols-[1.9fr_1fr]">
-                    <div className="relative aspect-video min-w-0 overflow-hidden rounded-[24px] border shadow-g-xl lg:aspect-auto lg:h-full" style={{ borderColor: `${p.accent}40` }}>
-                      <StepVideo src={productVideoFor(p.id)} poster={productPosterFor(p.id)} rounded={false} className="absolute inset-0 h-full w-full object-cover" />
-                      <span className="absolute left-4 top-4 rounded-full bg-black/45 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-white backdrop-blur-sm">{phase.when}</span>
+                  {/* media: 16:9 video (drives the row height) + carboy matched to it */}
+                  <div className="mt-8 grid items-stretch gap-5 lg:grid-cols-[1.7fr_1fr]">
+                    {/* video — always 16:9 */}
+                    <div className="min-w-0">
+                      <div className="relative aspect-video w-full overflow-hidden rounded-[24px] border shadow-g-xl" style={{ borderColor: `${p.accent}40` }}>
+                        <StepVideo src={productVideoFor(p.id)} poster={productPosterFor(p.id)} rounded={false} className="absolute inset-0 h-full w-full object-cover" />
+                        <span className="absolute left-4 top-4 rounded-full bg-black/45 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-white backdrop-blur-sm">{phase.when}</span>
+                      </div>
                     </div>
-                    <div className="relative flex aspect-[4/5] min-w-0 items-center justify-center overflow-hidden rounded-[24px] border lg:aspect-auto lg:h-full" style={{ borderColor: `${p.accent}40`, background: `radial-gradient(circle at 50% 62%, ${p.accentSoft} 0%, #FAF8F2 78%)` }}>
-                      <span className="absolute left-4 top-4 font-mono text-[12px] font-semibold" style={{ color: p.accent }}>No. {p.num}</span>
+                    {/* carboy — matches the video's height (img is absolute so it never drives height) */}
+                    <div className="relative aspect-[4/5] min-w-0 overflow-hidden rounded-[24px] border lg:aspect-auto lg:h-full" style={{ borderColor: `${p.accent}40`, background: `radial-gradient(circle at 50% 62%, ${p.accentSoft} 0%, #FAF8F2 78%)` }}>
+                      <span className="absolute left-4 top-4 z-10 font-mono text-[12px] font-semibold" style={{ color: p.accent }}>No. {p.num}</span>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={bottleSrc(p.id)} alt={`${p.name} carboy with label`} className="max-h-[88%] w-auto max-w-[82%] object-contain py-5 drop-shadow-[0_24px_40px_rgba(0,40,8,.24)]" />
+                      <img src={bottleSrc(p.id)} alt={`${p.name} carboy with label`} className="absolute inset-0 m-auto max-h-[86%] w-auto max-w-[80%] object-contain drop-shadow-[0_24px_40px_rgba(0,40,8,.24)]" />
                     </div>
                   </div>
 
