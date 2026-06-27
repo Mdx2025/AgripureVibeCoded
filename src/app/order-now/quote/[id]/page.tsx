@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { getQuote, getPricingProgram } from "@/lib/repo";
-import { quoteForAcres, money } from "@/lib/pricing";
+import { getQuote } from "@/lib/repo";
+import { quoteForCrops, money } from "@/lib/crop-pricing";
 import PaymentPanel from "@/components/order/PaymentPanel";
 import NewAccountNotice from "@/components/order/NewAccountNotice";
 
@@ -12,7 +12,7 @@ export default function QuotePage({
   const quote = getQuote(params.id);
   if (!quote) return notFound();
   const p = quote.payload;
-  const q = quoteForAcres(quote.acres, getPricingProgram());
+  const cq = quoteForCrops(p.acres);
   const isNew = searchParams?.new === "1";
 
   const list = (xs: string[]) => (xs.length ? xs.join(", ") : "—");
@@ -66,42 +66,77 @@ export default function QuotePage({
         </div>
       </div>
 
-      {/* pricing */}
+      {/* pricing — per crop, by crop type */}
       <div className="mt-6 overflow-hidden rounded-panel border border-hair bg-white">
         <div className="border-b border-hair px-7 py-5 font-display text-[21px] font-extrabold text-forest">
-          Pricing — graduated volume rate
+          Pricing — by crop, with volume discounts
         </div>
-        <table className="w-full text-[16px]">
-          <tbody>
-            {q.bands.map((b) => (
-              <tr key={b.from} className="border-b border-[#F2EFE6]">
-                <td className="px-7 py-3.5 text-fg2">{b.from}–{b.to == null ? "+" : b.to} ac · {b.acres} ac</td>
-                <td className="px-2 py-3.5 text-right font-mono text-fg2">${b.rate}/ac</td>
-                <td className="px-7 py-3.5 text-right font-mono text-forest">{money(b.cost)}</td>
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[640px] text-[15px]">
+            <thead className="border-b border-hair bg-[#FAF8F2] text-[11.5px] uppercase tracking-[0.05em] text-fg3">
+              <tr>
+                <th className="px-7 py-3 text-left font-bold">Crop</th>
+                <th className="px-2 py-3 text-right font-bold">Acres</th>
+                <th className="px-2 py-3 text-right font-bold">Conv. / Org.</th>
+                <th className="px-2 py-3 text-right font-bold">AgriPure $/ac</th>
+                <th className="px-7 py-3 text-right font-bold">Line total</th>
               </tr>
-            ))}
-            <tr className="border-b border-[#F2EFE6] bg-[#FAF8F2]">
-              <td className="px-7 py-3.5 font-display text-[15px] font-extrabold text-forest">Program subtotal · {q.bundles} × 6-gal bundles</td>
-              <td className="px-2 py-3.5 text-right font-mono text-fg3">{money(q.effective)}/ac</td>
-              <td className="px-7 py-3.5 text-right font-mono text-[16px] font-semibold text-forest">{money(q.total)}</td>
-            </tr>
-            <tr className="border-b border-[#F2EFE6]">
-              <td className="px-7 py-3.5 text-fg2">
-                Soil samples — {p.crops.length} crop{p.crops.length === 1 ? "" : "s"}
-                {quote.soil_price > 0 && <span className="text-fg3"> ({money(quote.soil_price)} each)</span>}
-              </td>
-              <td className="px-2 py-3.5 text-right font-mono text-fg3">required</td>
-              <td className="px-7 py-3.5 text-right font-mono text-forest">{money(quote.soil_total)}</td>
-            </tr>
-            <tr className="bg-[#F2F7EC]">
-              <td className="px-7 py-4 font-display text-[17px] font-extrabold text-forest">Total due</td>
-              <td className="px-2 py-4"></td>
-              <td className="px-7 py-4 text-right font-mono text-[20px] font-bold text-forest">{money(quote.total)}</td>
-            </tr>
-          </tbody>
-        </table>
-        <div className="px-7 py-4 text-[15px] text-leaf-700">
-          You save {money(q.saveVsOrganic)} vs a comparable organic program ({money(q.organicTotal)}). A soil-sample kit
+            </thead>
+            <tbody>
+              {cq.lines.map((l) => (
+                <tr key={l.id} className="border-b border-[#F2EFE6]">
+                  <td className="px-7 py-3.5">
+                    <span className="font-semibold text-forest">{l.crop}</span>
+                    {!l.unknown && <span className="ml-2 text-[12px] text-fg3">tier {l.tier}</span>}
+                  </td>
+                  <td className="px-2 py-3.5 text-right font-mono text-fg2">{l.acres.toLocaleString()}</td>
+                  <td className="px-2 py-3.5 text-right font-mono text-fg3">
+                    {l.unknown ? "—" : `${money(l.conventional)} / ${money(l.organic)}`}
+                  </td>
+                  <td className="px-2 py-3.5 text-right font-mono text-forest">
+                    {money(l.perAcre)}
+                    {l.discount > 0 && <span className="ml-1.5 text-[11.5px] font-semibold text-leaf-700">−{Math.round(l.discount * 100)}%</span>}
+                  </td>
+                  <td className="px-7 py-3.5 text-right font-mono font-semibold text-forest">{money(l.total)}</td>
+                </tr>
+              ))}
+              <tr className="border-b border-[#F2EFE6] bg-[#FAF8F2]">
+                <td className="px-7 py-3.5 font-display text-[15px] font-extrabold text-forest">
+                  Program subtotal · {cq.bundles.sixGal} × 6-gal{cq.bundles.threeGal > 0 ? ` + ${cq.bundles.threeGal} × 3-gal` : ""} bundles
+                </td>
+                <td className="px-2 py-3.5 text-right font-mono text-fg3">{cq.acres.toLocaleString()}</td>
+                <td className="px-2 py-3.5"></td>
+                <td className="px-2 py-3.5 text-right font-mono text-fg3">{money(cq.effective)}/ac</td>
+                <td className="px-7 py-3.5 text-right font-mono text-[16px] font-semibold text-forest">{money(cq.total)}</td>
+              </tr>
+              <tr className="border-b border-[#F2EFE6]">
+                <td className="px-7 py-3.5 text-fg2" colSpan={4}>
+                  Soil samples — {p.crops.length} crop{p.crops.length === 1 ? "" : "s"}
+                  {quote.soil_price > 0 && <span className="text-fg3"> ({money(quote.soil_price)} each)</span>}
+                </td>
+                <td className="px-7 py-3.5 text-right font-mono text-forest">{money(quote.soil_total)}</td>
+              </tr>
+              <tr className="bg-[#F2F7EC]">
+                <td className="px-7 py-4 font-display text-[17px] font-extrabold text-forest" colSpan={4}>Total due</td>
+                <td className="px-7 py-4 text-right font-mono text-[20px] font-bold text-forest">{money(quote.total)}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div className="grid gap-3 border-t border-hair px-7 py-5 sm:grid-cols-3">
+          {[
+            { label: "Conventional inputs", value: cq.conventionalTotal },
+            { label: "Organic inputs", value: cq.organicTotal },
+            { label: "AgriPure program", value: cq.total, hl: true },
+          ].map((x) => (
+            <div key={x.label}>
+              <div className="text-[12px] uppercase tracking-[0.05em] text-fg3">{x.label}</div>
+              <div className={`mt-0.5 font-mono text-[20px] font-bold ${x.hl ? "text-leaf-700" : "text-fg2"}`}>{money(x.value)}</div>
+            </div>
+          ))}
+        </div>
+        <div className="px-7 pb-5 text-[15px] text-leaf-700">
+          You save {money(cq.saveVsOrganic)} vs a comparable organic program ({money(cq.organicTotal)}). A soil-sample kit
           ships to your address for each crop — mail your samples to the lab and we&apos;ll formulate your program.
         </div>
       </div>

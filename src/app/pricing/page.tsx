@@ -212,16 +212,16 @@ export default function PricingPage() {
         </div>
       </div>
 
-      {/* acreage calculator */}
+      {/* per-crop calculator */}
       <div className="mt-16">
         <h2 className="text-center font-display text-[32px] font-extrabold tracking-[-0.02em] text-forest">
-          Price by acreage
+          Price by crop
         </h2>
         <p className="mt-2 text-center text-[15px] text-fg2">
-          Volume pricing in 25-acre increments — your rate steps down the more you cover.
+          Pick your crop and acreage — pricing is set per crop, between conventional and organic, with a volume discount.
         </p>
         <div className="mt-8">
-          <PricingCalculator program={program} />
+          <PricingCalculator />
         </div>
       </div>
 

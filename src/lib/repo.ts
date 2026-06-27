@@ -369,7 +369,8 @@ export function deleteProduct(id: string): { ok: boolean } {
 }
 
 /* ---- Quotes & customer accounts (Order Now flow) ---------------------- */
-import { quoteForAcres, DEFAULT_PROGRAM, type PricingProgram } from "./pricing";
+import { DEFAULT_PROGRAM, type PricingProgram } from "./pricing";
+import { quoteForCrops } from "./crop-pricing";
 
 export interface QuoteInput {
   customer: { name: string; email: string; phone: string; business: string; address: string };
@@ -397,11 +398,12 @@ export function createQuote(input: QuoteInput) {
   const email = input.customer.email.trim().toLowerCase();
   const totalAcres = Object.values(input.acres).reduce((t, n) => t + (Number(n) || 0), 0);
   const program = getPricingProgram();
-  const q = quoteForAcres(totalAcres, program);
+  // Per-crop pricing: each crop priced by type, volume-discounted on its own acreage.
+  const cq = quoteForCrops(input.acres);
   // One required soil sample per crop (kit + lab analysis); added to the order total.
   const soilPrice = program.soilSamplePrice;
   const soilTotal = (input.crops?.length || 0) * soilPrice;
-  const grandTotal = q.total + soilTotal;
+  const grandTotal = cq.total + soilTotal;
   const now = new Date().toISOString();
 
   // Upsert account by email.
@@ -427,7 +429,7 @@ export function createQuote(input: QuoteInput) {
     VALUES (@id,@number,@account_id,@customer_name,@customer_email,@acres,@total,@effective,@payload,@soil_total,@soil_price,'quote','unpaid',NULL,@created_at)`).run({
     id, number, account_id: account.id,
     customer_name: input.customer.name, customer_email: email,
-    acres: totalAcres, total: grandTotal, effective: q.effective,
+    acres: totalAcres, total: grandTotal, effective: cq.effective,
     payload: JSON.stringify(input), soil_total: soilTotal, soil_price: soilPrice, created_at: now,
   });
 

@@ -6,7 +6,7 @@ import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 import MultiCombobox from "./MultiCombobox";
 import { SOIL_PROBLEMS, WEEDS, PESTS, DISEASES, NONE } from "@/lib/order-options";
 import { CROP_NAMES } from "@/lib/data/crop-names";
-import { quoteForAcres, money } from "@/lib/pricing";
+import { quoteForCrops, cropLineItem, money } from "@/lib/crop-pricing";
 
 type Rec<T> = Record<string, T>;
 const sync = <T,>(crops: string[], prev: Rec<T>, init: T): Rec<T> =>
@@ -43,7 +43,7 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
   };
 
   const totalAcres = crops.reduce((t, c) => t + (acres[c] || 0), 0);
-  const q = quoteForAcres(totalAcres);
+  const cq = quoteForCrops(acres);
   const soilCost = crops.length * soilSamplePrice;
 
   const STEPS = [
@@ -55,31 +55,92 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
     },
     {
       title: "How many acres of each crop?",
-      sub: "Set the acreage for every crop, in 25-acre increments — this drives your custom quote.",
+      sub: "Set the acreage for every crop, in 25-acre increments — pricing is calculated per crop, with conventional & organic comparisons, and a volume discount on each.",
       valid: crops.every((c) => (acres[c] || 0) >= ACRE_STEP),
       body: (
-        <div className="grid gap-5 md:grid-cols-2">
-          {crops.map((c) => (
-            <div key={c} className="rounded-[16px] border border-hair bg-white p-5">
-              <div className="mb-3 flex items-center justify-between">
-                <span className="font-display text-[20px] font-extrabold text-forest">{c}</span>
-                <div className="flex items-center gap-2">
+        <div className="flex flex-col gap-6">
+          <div className="grid gap-5 md:grid-cols-2">
+            {crops.map((c) => {
+              const li = cropLineItem(c, acres[c] || 0);
+              return (
+                <div key={c} className="rounded-[16px] border border-hair bg-white p-5">
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className="font-display text-[20px] font-extrabold text-forest">{c}</span>
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="number" min={ACRE_STEP} max={5000} step={ACRE_STEP} value={acres[c] ?? 0}
+                        onChange={(e) => setAcres((p) => ({ ...p, [c]: Math.max(0, parseInt(e.target.value || "0", 10)) }))}
+                        onBlur={(e) => setAcres((p) => ({ ...p, [c]: snapAcres(parseInt(e.target.value || "0", 10)) }))}
+                        className="w-[110px] rounded-[12px] border border-hair px-3 py-2.5 text-right font-mono text-[19px] outline-none focus:border-leaf"
+                      />
+                      <span className="text-[15px] text-fg3">acres</span>
+                    </div>
+                  </div>
                   <input
-                    type="number" min={ACRE_STEP} max={5000} step={ACRE_STEP} value={acres[c] ?? 0}
-                    onChange={(e) => setAcres((p) => ({ ...p, [c]: Math.max(0, parseInt(e.target.value || "0", 10)) }))}
-                    onBlur={(e) => setAcres((p) => ({ ...p, [c]: snapAcres(parseInt(e.target.value || "0", 10)) }))}
-                    className="w-[110px] rounded-[12px] border border-hair px-3 py-2.5 text-right font-mono text-[19px] outline-none focus:border-leaf"
+                    type="range" min={ACRE_STEP} max={2000} step={ACRE_STEP} value={Math.min(acres[c] ?? ACRE_STEP, 2000)}
+                    onChange={(e) => setAcres((p) => ({ ...p, [c]: parseInt(e.target.value, 10) }))}
+                    className="h-2 w-full accent-leaf"
                   />
-                  <span className="text-[15px] text-fg3">acres</span>
+
+                  {/* per-crop pricing with comparison */}
+                  <div className="mt-4 rounded-[12px] bg-[#F7F5EE] p-3.5">
+                    <div className="flex items-baseline justify-between">
+                      <span className="text-[13px] font-bold uppercase tracking-[0.05em] text-leaf-700">AgriPure</span>
+                      <span className="font-mono text-[20px] font-bold text-forest">
+                        {money(li.perAcre)}<span className="text-[13px] font-normal text-fg3">/ac</span>
+                      </span>
+                    </div>
+                    {li.unknown ? (
+                      <div className="mt-1 text-[12.5px] text-fg3">Custom crop — priced at the program floor. We&apos;ll confirm on your quote.</div>
+                    ) : (
+                      <>
+                        <div className="mt-2 grid grid-cols-2 gap-x-3 gap-y-1 text-[12.5px] text-fg3">
+                          <span>Conventional</span><span className="text-right font-mono">{money(li.conventional)}/ac</span>
+                          <span>Organic</span><span className="text-right font-mono">{money(li.organic)}/ac</span>
+                        </div>
+                        <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2 border-t border-[#E4E1D5] pt-2.5">
+                          {li.discount > 0 && (
+                            <span className="rounded-full bg-leaf/15 px-2.5 py-0.5 text-[11.5px] font-bold text-leaf-700">
+                              volume −{Math.round(li.discount * 100)}%
+                            </span>
+                          )}
+                          <span className="ml-auto text-[12.5px] text-leaf-700">
+                            save {money(li.savingVsOrganic)} vs organic
+                          </span>
+                        </div>
+                        <div className="mt-1.5 text-right font-mono text-[13px] text-fg2">
+                          line total {money(li.total)}
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
+              );
+            })}
+          </div>
+
+          {/* comparison summary across all crops */}
+          {totalAcres > 0 && (
+            <div className="rounded-[16px] border border-leaf bg-[#F2F7EC] p-5">
+              <div className="font-display text-[17px] font-extrabold text-forest">Your program vs the alternatives</div>
+              <div className="mt-3 grid gap-3 sm:grid-cols-3">
+                {[
+                  { label: "Conventional", value: cq.conventionalTotal, tone: "text-fg2" },
+                  { label: "Organic", value: cq.organicTotal, tone: "text-fg2" },
+                  { label: "AgriPure program", value: cq.total, tone: "text-forest" },
+                ].map((x) => (
+                  <div key={x.label} className="rounded-[12px] bg-white px-4 py-3">
+                    <div className="text-[12px] uppercase tracking-[0.05em] text-fg3">{x.label}</div>
+                    <div className={`mt-0.5 font-mono text-[22px] font-bold ${x.tone}`}>{money(x.value)}</div>
+                  </div>
+                ))}
               </div>
-              <input
-                type="range" min={ACRE_STEP} max={2000} step={ACRE_STEP} value={Math.min(acres[c] ?? ACRE_STEP, 2000)}
-                onChange={(e) => setAcres((p) => ({ ...p, [c]: parseInt(e.target.value, 10) }))}
-                className="h-2 w-full accent-leaf"
-              />
+              <div className="mt-3 text-[14px] text-leaf-700">
+                {money(cq.effective)}/ac blended across {totalAcres.toLocaleString()} acres — you save{" "}
+                <strong>{money(cq.saveVsOrganic)}</strong> versus a comparable organic program.
+              </div>
             </div>
-          ))}
+          )}
         </div>
       ),
     },
@@ -253,12 +314,12 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
         {totalAcres > 0 && step >= 1 && (
           <div className="mb-5 flex flex-wrap items-center justify-between gap-2 rounded-[16px] border border-hair bg-white px-6 py-4 text-[17px]">
             <span className="text-fg2">
-              {totalAcres.toLocaleString()} acres · {q.bundles} × 6-gal bundles
+              {totalAcres.toLocaleString()} acres · {cq.bundles.sixGal} × 6-gal{cq.bundles.threeGal > 0 ? ` + ${cq.bundles.threeGal} × 3-gal` : ""} bundles
               {soilCost > 0 && <span className="text-fg3"> + {crops.length} soil sample{crops.length === 1 ? "" : "s"}</span>}
             </span>
             <span className="font-mono text-[19px] font-semibold text-forest">
-              est. {money(q.total + soilCost)}
-              <span className="text-[15px] font-normal text-fg3"> · {money(q.effective)}/ac + {money(soilCost)} soil</span>
+              est. {money(cq.total + soilCost)}
+              <span className="text-[15px] font-normal text-fg3"> · {money(cq.effective)}/ac + {money(soilCost)} soil</span>
             </span>
           </div>
         )}

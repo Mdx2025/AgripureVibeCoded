@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutGrid, ShoppingBag, Boxes, Users, UsersRound, Settings, LogOut, Search, Bell,
-  FlaskConical, Leaf, ShieldCheck, Award, HelpCircle, ChevronDown, Receipt, Microscope, Tag, Menu, X, Globe,
+  FlaskConical, Leaf, ShieldCheck, Award, HelpCircle, ChevronDown, Receipt, Microscope, Tag, Menu, X, Globe, Sprout,
 } from "lucide-react";
 
 const NAVIGATION = [
@@ -16,6 +16,7 @@ const NAVIGATION = [
   { href: "/admin/clients", label: "Clients", Icon: Users, badge: "" },
   { href: "/admin/products", label: "Products", Icon: Boxes, badge: "" },
   { href: "/admin/pricing", label: "Pricing", Icon: Tag, badge: "" },
+  { href: "/admin/crop-pricing", label: "Crop Pricing", Icon: Sprout, badge: "" },
   { href: "/admin/crop-library", label: "Crop Library", Icon: Microscope, badge: "" },
   { href: "/admin/formulas", label: "Formulas", Icon: FlaskConical, badge: "" },
   { href: "/admin/remedies", label: "Remedies", Icon: Leaf, badge: "" },
@@ -37,6 +38,7 @@ const TITLES: Record<string, string> = {
   "/admin/clients": "Clients",
   "/admin/products": "Products",
   "/admin/pricing": "Pricing Program",
+  "/admin/crop-pricing": "Crop Pricing",
   "/admin/formulas": "Formulas",
   "/admin/remedies": "Remedies",
   "/admin/admins": "Admins",
