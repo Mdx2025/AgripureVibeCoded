@@ -63,10 +63,10 @@ export default function Nav() {
           <Link
             href="/account"
             title="Account"
-            className="hidden items-center gap-[7px] rounded-full px-2.5 py-2 text-sm font-semibold text-[#26302A] lg:flex"
+            aria-label="Account"
+            className="hidden items-center rounded-full px-2.5 py-2 text-sm font-semibold text-[#26302A] lg:flex"
           >
             <User size={19} strokeWidth={1.8} />
-            <span>Account</span>
           </Link>
           <Link
             href="/order-now"
