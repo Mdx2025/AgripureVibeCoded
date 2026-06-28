@@ -378,6 +378,7 @@ export interface QuoteInput {
   acres: Record<string, number>;
   soil: string[];
   weeds: string[];
+  plantHealthByCrop?: Record<string, string[]>;
   pestsByCrop: Record<string, string[]>;
   diseasesByCrop: Record<string, string[]>;
   yieldByCrop: Record<string, boolean>;

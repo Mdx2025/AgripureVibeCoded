@@ -58,8 +58,8 @@ export default function QuotePage({
             <div><dt className="text-[13px] uppercase tracking-[0.06em] text-fg3">Weeds</dt><dd className="mt-0.5 text-[#3F463E]">{list(p.weeds)}</dd></div>
             {p.crops.map((c) => (
               <div key={c}>
-                <dt className="text-[13px] uppercase tracking-[0.06em] text-fg3">{c} — pests / disease</dt>
-                <dd className="mt-0.5 text-[#3F463E]">{list(p.pestsByCrop[c] || [])} · {list(p.diseasesByCrop[c] || [])}</dd>
+                <dt className="text-[13px] uppercase tracking-[0.06em] text-fg3">{c} — plant health / pests / disease</dt>
+                <dd className="mt-0.5 text-[#3F463E]">{list(p.plantHealthByCrop?.[c] || [])} · {list(p.pestsByCrop[c] || [])} · {list(p.diseasesByCrop[c] || [])}</dd>
               </div>
             ))}
           </dl>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 import MultiCombobox from "./MultiCombobox";
-import { SOIL_PROBLEMS, WEEDS, PESTS, DISEASES, NONE } from "@/lib/order-options";
+import { SOIL_PROBLEMS, WEEDS, PLANT_HEALTH, PESTS, DISEASES, NONE } from "@/lib/order-options";
 import { CROP_NAMES } from "@/lib/data/crop-names";
 import { quoteForCrops, cropLineItem, money } from "@/lib/crop-pricing";
 
@@ -28,6 +28,7 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
   const [acres, setAcres] = useState<Rec<number>>({});
   const [soil, setSoil] = useState<string[]>([]);
   const [weeds, setWeeds] = useState<string[]>([]);
+  const [plantHealth, setPlantHealth] = useState<Rec<string[]>>({});
   const [pests, setPests] = useState<Rec<string[]>>({});
   const [diseases, setDiseases] = useState<Rec<string[]>>({});
   const [yieldP, setYieldP] = useState<Rec<boolean>>({});
@@ -37,6 +38,7 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
   const setCrops = (next: string[]) => {
     setCropsRaw(next);
     setAcres((p) => sync(next, p, 50));
+    setPlantHealth((p) => sync(next, p, []));
     setPests((p) => sync(next, p, []));
     setDiseases((p) => sync(next, p, []));
     setYieldP((p) => sync(next, p, false));
@@ -131,6 +133,30 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
       sub: "Tell us which weeds you fight — search, add custom, or mark none.",
       valid: weeds.length > 0,
       body: <MultiCombobox size="lg" value={weeds} onChange={setWeeds} options={WEEDS} placeholder="e.g. Pigweed, Nutsedge…" noneLabel={NONE.weeds} />,
+    },
+    {
+      title: "Any plant health problems by crop?",
+      sub: "Tell us the plant-health issues each crop faces — deficiencies, stress, and disorders. Search, add your own, or mark none.",
+      valid: crops.every((c) => (plantHealth[c] || []).length > 0),
+      body: (
+        <div className="grid gap-7 md:grid-cols-2">
+          {crops.map((c) => (
+            <div key={c}>
+              <div className="mb-2.5 font-display text-[18px] font-extrabold text-forest">{c}</div>
+              <MultiCombobox
+                size="lg"
+                value={plantHealth[c] || []}
+                onChange={(v) => setPlantHealth((p) => ({ ...p, [c]: v }))}
+                options={PLANT_HEALTH}
+                maxOptions={PLANT_HEALTH.length}
+                listMaxH="max-h-[360px]"
+                placeholder="e.g. Slow growth, Yellowing leaves, Heat stress…"
+                noneLabel={NONE.plantHealth}
+              />
+            </div>
+          ))}
+        </div>
+      ),
     },
     {
       title: "Pest problems by crop",
@@ -245,6 +271,7 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
         body: JSON.stringify({
           customer,
           crops, acres, soil, weeds,
+          plantHealthByCrop: plantHealth,
           pestsByCrop: pests, diseasesByCrop: diseases, yieldByCrop: yieldP,
         }),
       });

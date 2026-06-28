@@ -31,6 +31,16 @@ export const PESTS = [
   "Vine weevil", "Squash bugs", "Hornworms", "Wireworms",
 ];
 
+export const PLANT_HEALTH = [
+  "Slow / stunted growth", "Poor or uneven germination", "Low vigor / thin canopy",
+  "Yellowing leaves (chlorosis)", "Nutrient deficiency symptoms", "Poor root development",
+  "Weak, spindly stems / lodging", "Heat stress", "Drought / water stress",
+  "Cold / frost damage", "Salt stress", "Transplant shock", "Poor flowering / fruit set",
+  "Blossom-end rot", "Fruit cracking / splitting", "Bitter pit", "Tip burn", "Sunscald",
+  "Leaf drop / defoliation", "Premature senescence", "Small fruit / poor sizing",
+  "Low brix / poor quality", "Micronutrient lockout",
+];
+
 export const DISEASES = [
   "Powdery mildew", "Downy mildew", "Botrytis (gray mold)", "Fusarium wilt",
   "Verticillium wilt", "Rust", "Anthracnose", "Late blight", "Early blight",
@@ -42,6 +52,7 @@ export const DISEASES = [
 export const NONE = {
   soil: "No known soil problems",
   weeds: "No known weed problems",
+  plantHealth: "No known plant health problems",
   pests: "No known pest problems",
   diseases: "No known disease problems",
 } as const;

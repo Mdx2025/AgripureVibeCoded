@@ -15,6 +15,7 @@ export default function LabSheetPage({ params }: { params: { id: string } }) {
     crop,
     acres: p.acres[crop] || 0,
     formulas: getCropFormulas(crop),
+    plantHealth: p.plantHealthByCrop?.[crop] || [],
     pests: p.pestsByCrop[crop] || [],
     diseases: p.diseasesByCrop[crop] || [],
     yieldLoss: !!p.yieldByCrop[crop],
@@ -53,6 +54,7 @@ export default function LabSheetPage({ params }: { params: { id: string } }) {
                 <div className="font-display text-[20px] font-extrabold text-forest">{c.crop}</div>
                 <div className="mt-0.5 text-[12px] text-fg3">
                   {c.acres.toLocaleString()} ac
+                  {c.plantHealth.length ? ` · plant health: ${c.plantHealth.join(", ")}` : ""}
                   {c.pests.length ? ` · pests: ${c.pests.join(", ")}` : ""}
                   {c.diseases.length ? ` · disease: ${c.diseases.join(", ")}` : ""}
                   {c.yieldLoss ? " · yield loss reported" : ""}
