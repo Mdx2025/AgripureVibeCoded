@@ -12,6 +12,7 @@ const LINKS = [
   { href: "/how-it-works", label: "How It Works" },
   { href: "/why-choose-us", label: "Why Choose Us" },
   { href: "/nano-technology", label: "Nano Technology" },
+  { href: "/resources", label: "Resources" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
