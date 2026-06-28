@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, ArrowLeft, Check } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check, Layers, ListChecks, FlaskConical, Clock, ShieldCheck } from "lucide-react";
 import MultiCombobox from "./MultiCombobox";
 import { NONE } from "@/lib/order-options";
 import {
@@ -26,6 +26,7 @@ export default function OrderWizard({ soilSamplePrice, priceOverrides = [] }: { 
   const router = useRouter();
   // Apply admin per-crop price overrides before any estimate is computed.
   useState(() => applyCropPricingOverrides(priceOverrides));
+  const [started, setStarted] = useState(false);
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -339,6 +340,108 @@ export default function OrderWizard({ soilSamplePrice, priceOverrides = [] }: { 
   const last = STEPS.length - 1;
   const cur = STEPS[step];
 
+  // The 10 questions, in order, for the pre-flight overview.
+  const OVERVIEW_STEPS = [
+    "The crops you grow",
+    "Acres of each crop",
+    "Soil deficiencies",
+    "Weed pressure",
+    "Plant-health problems",
+    "Pest problems",
+    "Viral & fungal diseases",
+    "Yield or quality loss",
+    "Soil-sample confirmation",
+    "Where to send your quote",
+  ];
+
+  const HOW_IT_WORKS = [
+    {
+      icon: Layers,
+      title: "We start with a base formula for each crop",
+      body: "Every crop you grow begins with its own base formula, built from the problems most common to that crop — so you're never starting from scratch.",
+    },
+    {
+      icon: ListChecks,
+      title: "Your answers customize it",
+      body: "In each step you pick the exact deficiencies, weeds, pests, plant-health issues, and diseases your crop is facing. We tune that crop's formula to match what you choose.",
+    },
+    {
+      icon: FlaskConical,
+      title: "A soil sample dials it in",
+      body: "A soil-sample kit ships to you for each crop. Your lab results let us fine-tune the final formula to your actual soil before we make it.",
+    },
+  ];
+
+  if (!started) {
+    return (
+      <div className="mx-auto flex min-h-[calc(100vh-72px)] max-w-container flex-col px-6 pb-12 pt-9 sm:px-10">
+        <div className="flex-1">
+          <div className="text-xs font-bold uppercase tracking-[0.14em] text-leaf">Order now · custom formulation</div>
+          <h1 className="mt-4 font-display text-[clamp(34px,5vw,56px)] font-black leading-[1.05] tracking-[-0.02em] text-forest">
+            Let&apos;s build your custom program
+          </h1>
+          <p className="mt-4 max-w-[760px] text-[clamp(17px,2.2vw,21px)] leading-[1.5] text-fg2">
+            AgriPure is never one-size-fits-all — we hand-formulate your six-product program for <strong className="text-forest">each crop you grow</strong>.
+            This short questionnaire walks through <strong className="text-forest">10 quick steps</strong> so we can tailor every formula to your farm.
+            There&apos;s no payment now; you&apos;ll get a custom quote at the end.
+          </p>
+
+          {/* how your formula is made */}
+          <div className="mt-9">
+            <div className="text-[13px] font-bold uppercase tracking-[0.08em] text-fg3">How your custom formula is made</div>
+            <div className="mt-4 grid gap-4 md:grid-cols-3">
+              {HOW_IT_WORKS.map((s, i) => (
+                <div key={s.title} className="rounded-panel border border-hair bg-white p-6">
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-full bg-[#EAF1E1] text-leaf-700">
+                      <s.icon size={20} strokeWidth={2.2} />
+                    </span>
+                    <span className="font-mono text-[13px] font-bold text-leaf-700">Step {i + 1}</span>
+                  </div>
+                  <div className="mt-3 font-display text-[18px] font-extrabold leading-[1.2] text-forest">{s.title}</div>
+                  <p className="mt-2 text-[14.5px] leading-[1.55] text-fg2">{s.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* the 10 questions */}
+          <div className="mt-9">
+            <div className="text-[13px] font-bold uppercase tracking-[0.08em] text-fg3">What we&apos;ll cover — 10 quick questions</div>
+            <div className="mt-4 grid gap-x-8 gap-y-2.5 rounded-panel border border-hair bg-white p-6 sm:grid-cols-2">
+              {OVERVIEW_STEPS.map((label, i) => (
+                <div key={label} className="flex items-center gap-3 text-[15.5px] text-fg2">
+                  <span className="inline-flex h-7 w-7 flex-none items-center justify-center rounded-full bg-[#F1EFE6] font-mono text-[13px] font-bold text-forest">
+                    {i + 1}
+                  </span>
+                  {label}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* reassurance */}
+          <div className="mt-6 flex flex-wrap gap-x-7 gap-y-2 text-[14.5px] text-fg3">
+            <span className="inline-flex items-center gap-2"><Clock size={16} className="text-leaf-700" /> Takes about 3–4 minutes</span>
+            <span className="inline-flex items-center gap-2"><ShieldCheck size={16} className="text-leaf-700" /> No payment required — you&apos;ll get a custom quote</span>
+          </div>
+        </div>
+
+        {/* footer */}
+        <div className="mt-10 flex-none border-t border-hair pt-6">
+          <div className="flex items-center justify-between">
+            <button onClick={() => router.push("/products")} className="btn-ghost px-7 py-4 text-[16px]">
+              <ArrowLeft size={18} /> Back
+            </button>
+            <button onClick={() => setStarted(true)} className="btn-leaf px-9 py-4 text-[16px]">
+              Start your custom quote <ArrowRight size={18} />
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const submit = async () => {
     setSubmitting(true); setError("");
     try {
@@ -407,7 +510,7 @@ export default function OrderWizard({ soilSamplePrice, priceOverrides = [] }: { 
 
         <div className="flex items-center justify-between">
           <button
-            onClick={() => (step === 0 ? router.push("/products") : setStep(step - 1))}
+            onClick={() => (step === 0 ? setStarted(false) : setStep(step - 1))}
             className="btn-ghost px-7 py-4 text-[16px]"
           >
             <ArrowLeft size={18} /> Back
