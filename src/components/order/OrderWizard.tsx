@@ -131,7 +131,7 @@ export default function OrderWizard({ soilSamplePrice, priceOverrides = [] }: { 
       ),
     },
     {
-      title: "Any soil problems by crop?",
+      title: "Any soil deficiencies by crop?",
       sub: "Tap the issues common to each crop, search for more, add your own, or mark none.",
       valid: crops.every((c) => (soil[c] || []).length > 0),
       body: (
