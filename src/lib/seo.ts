@@ -47,7 +47,7 @@ export const SEO_PAGES: { path: string; label: string; group: string; note?: str
     path: PRODUCT_TEMPLATE_PATH,
     label: "Product detail (template)",
     group: "Templates",
-    note: "Applied to every /products/… page. Use {name}, {category} and {tagline} as placeholders.",
+    note: "Applied to every /products/… page. Use {name}, {category}, {type} and {tagline} as placeholders.",
   },
 ];
 
@@ -92,7 +92,7 @@ export const DEFAULT_PAGES: Record<string, SeoEntry> = {
   "/pricing": {
     title: "Pricing — AgriPure",
     description:
-      "Conventional vs organic vs AgriPure cost per acre. One natural 7-function system at roughly organic cost — dropping below organic at volume.",
+      "Conventional vs organic vs AgriPure, priced per crop and per acre. One natural six-product system, custom-formulated to your crop and acreage.",
     keywords: "AgriPure pricing, cost per acre, organic vs conventional cost, crop program pricing",
   },
   "/about": {
@@ -114,9 +114,9 @@ export const DEFAULT_PAGES: Record<string, SeoEntry> = {
     keywords: "order AgriPure, custom crop quote, per-acre pricing, soil sample order",
   },
   [PRODUCT_TEMPLATE_PATH]: {
-    title: "{name} — {category} · AgriPure",
+    title: "{name} — {type} · AgriPure",
     description: "{tagline}",
-    keywords: "AgriPure {name}, {category}, natural crop input",
+    keywords: "AgriPure {name}, natural {type}, {category}, crop input",
   },
 };
 

@@ -333,9 +333,9 @@ export function resolveSeoMetadata(path: string): Metadata {
 }
 
 /** Build Metadata for a product-detail page from the editable template + product data. */
-export function resolveProductMetadata(product: { id: string; name: string; category: string; tagline?: string; long?: string; image?: string }): Metadata {
+export function resolveProductMetadata(product: { id: string; name: string; category: string; type?: string; tagline?: string; long?: string; image?: string }): Metadata {
   const { site, entry } = getSeoEntry(PRODUCT_TEMPLATE_PATH);
-  const tokens = { name: product.name, category: product.category, tagline: product.tagline || product.long || "" };
+  const tokens = { name: product.name, category: product.category, type: product.type || product.category, tagline: product.tagline || product.long || "" };
   const resolved: SeoEntry = {
     title: applyTokens(entry.title, tokens),
     description: applyTokens(entry.description, tokens) || product.tagline || product.long || "",
