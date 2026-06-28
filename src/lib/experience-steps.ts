@@ -40,9 +40,9 @@ export const EXPERIENCE_STEPS: ExperienceStep[] = [
     desc: "We apply targeted disease prevention treatments using potentized nano particles that guard against fungal, bacterial, and viral threats specific to your crops.",
   },
   {
-    id: "grow", step: "06", name: "Grow", title: "Growth Acceleration",
-    accent: "#86CC63", action: "Accelerating healthy growth", threat: "slow", tcolor: "#5B8A3C",
-    desc: "Custom nutrient blends are delivered to accelerate healthy growth, improve flowering, and maximize fruit and grain production for your specific crop variety.",
+    id: "grow", step: "06", name: "Grow", title: "Growth & Plant Health",
+    accent: "#86CC63", action: "Driving healthy, resilient growth", threat: "slow", tcolor: "#5B8A3C",
+    desc: "Custom nutrient-and-biostimulant blends drive healthy growth while targeting the plant-health problems your specific crop faces — correcting deficiencies, stresses, and disorders so growth is strong where your crop is usually weakest.",
   },
   {
     id: "boost", step: "07", name: "Boost", title: "Harvest Optimization",

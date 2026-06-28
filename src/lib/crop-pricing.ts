@@ -179,7 +179,7 @@ export const PRODUCT_FUNCTIONS: ProductFunction[] = [
   { key: "restore", label: "Restore", role: "soil health", convW: 30, orgW: 60, apW: 62 },
   { key: "cleanse", label: "Cleanse", role: "weed control", convW: 75, orgW: 100, apW: 104 },
   { key: "strength", label: "Strength", role: "root & germination", convW: 15, orgW: 35, apW: 36 },
-  { key: "grow", label: "Grow", role: "growth stimulant", convW: 15, orgW: 35, apW: 36 },
+  { key: "grow", label: "Grow", role: "growth & plant health", convW: 15, orgW: 35, apW: 36 },
   { key: "protect", label: "Protect", role: "insecticide", convW: 25, orgW: 60, apW: 62 },
   { key: "prevent", label: "Prevent", role: "fungicide", convW: 25, orgW: 60, apW: 62 },
   { key: "boost", label: "Boost", role: "yield enhancer", convW: 20, orgW: 35, apW: 36 },

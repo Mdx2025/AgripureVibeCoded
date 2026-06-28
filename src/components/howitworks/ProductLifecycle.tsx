@@ -10,7 +10,7 @@ const LIFECYCLE: Phase[] = [
   { id: "restore", phase: "Soil preparation", timing: "Before planting", role: "Step one is the ground itself — we rebuild living soil so everything that follows has a healthy foundation." },
   { id: "cleanse", phase: "Weed control", timing: "Pre-emergent · before the crop comes up", role: "Next we clear the field, knocking back weed pressure during the window that matters most — before your crop emerges." },
   { id: "strength", phase: "Germination & rooting", timing: "At planting, through emergence", role: "As seeds go in, we wake them up and drive deep, even roots for a fast, uniform, vigorous stand." },
-  { id: "grow", phase: "Vegetative growth", timing: "As the canopy builds", role: "Through the vegetative phase we fuel balanced growth and maximum leaf area — the engine for yield." },
+  { id: "grow", phase: "Growth & plant health", timing: "As the canopy builds", role: "Through the vegetative phase we fuel balanced growth and leaf area while targeting the plant-health problems your specific crop faces — strong growth where your crop is usually weakest." },
   { id: "protect", phase: "Pest protection", timing: "Through the season, as pests appear", role: "Mid-season, we defend the crop from insect pressure with botanical actives that spare pollinators and beneficials." },
   { id: "prevent", phase: "Disease prevention", timing: "Ahead of fungal & viral pressure", role: "Alongside pest control, we get ahead of disease — priming the plant's defenses before fungal and viral pressure costs yield." },
   { id: "boost", phase: "Bloom, fruit & harvest", timing: "Flowering through fruit fill", role: "At the finish, we push flowering, fruit set, and fill for a bigger, cleaner, higher-value harvest." },

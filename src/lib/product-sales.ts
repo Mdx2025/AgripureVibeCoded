@@ -125,23 +125,23 @@ export const SALES: Record<string, SalesContent> = {
 
   /* 04 — GROW · Foliar Nutrient · vegetative phase (flagship) */
   grow: {
-    hook: "Build the canopy that builds your yield.",
-    sub: "Grow fuels the vegetative phase with balanced nutrition and biostimulants — maximum photosynthetic area without soft, disease-prone growth.",
-    labelNote: "Our flagship vegetative driver: a balanced nutrient-and-biostimulant profile, crop-matched and potentized for clean uptake through the canopy.",
+    hook: "Grow strong — and fix what holds your crop back.",
+    sub: "Grow fuels the vegetative phase with balanced nutrition and biostimulants, and targets the specific health problems your crop is prone to — deficiencies, stress, and disorders — for fast, resilient growth.",
+    labelNote: "A balanced nutrient-and-biostimulant driver, crop-matched from your soil test and tuned to the plant-health problems your specific crop faces — potentized for clean uptake through the canopy.",
     problem: {
-      title: "Push growth wrong and you invite disease.",
-      body: "Forcing the canopy with raw nitrogen makes soft, vulnerable tissue that pests and fungi love. Hold back, and you leave photosynthetic area — and yield potential — on the table.",
+      title: "Generic growth boosters ignore what's actually wrong with your crop.",
+      body: "Forcing the canopy with raw nitrogen makes soft, vulnerable tissue — and does nothing for the deficiencies, stresses, and disorders that quietly cap your yield. Every crop has its own weak points; a one-size growth product leaves them unaddressed.",
     },
     benefits: [
       { Icon: Leaf, title: "Lush, balanced canopy", body: "Builds leaf area and structure without forcing weak, watery tissue." },
+      { Icon: Microscope, title: "Crop-specific plant health", body: "Tuned to the deficiencies, stresses, and disorders your particular crop is prone to." },
       { Icon: Sun, title: "More photosynthesis", body: "Captures more energy early — the engine for everything that follows." },
-      { Icon: Gauge, title: "Complete, balanced nutrition", body: "A full profile that feeds growth without throwing the plant out of balance." },
-      { Icon: ShieldCheck, title: "Resilient tissue", body: "Stronger growth that stands up to pest and disease pressure later in the season." },
+      { Icon: ShieldCheck, title: "Resilient tissue", body: "Healthy growth that stands up to pest and disease pressure later in the season." },
     ],
     how: [
-      { title: "Crop-matched blend", body: "We formulate Grow to your crop's vegetative demand from your soil test." },
+      { title: "Crop-matched blend", body: "We formulate Grow to your crop's vegetative demand and its known health problems, from your soil test." },
       { title: "Feed as the canopy builds", body: "Dosed through fertigation right through the vegetative phase." },
-      { title: "Raise the ceiling", body: "Maximum healthy leaf area early sets the yield ceiling for bloom and fill." },
+      { title: "Grow healthy where it counts", body: "Balanced leaf area early — plus support for your crop's weak points — sets a healthier yield ceiling for bloom and fill." },
     ],
     stats: [
       { value: "4–3–6", label: "N-P-K" },
@@ -150,6 +150,7 @@ export const SALES: Record<string, SalesContent> = {
     ],
     faqs: [
       { q: "When do I use Grow?", a: "Through the vegetative phase, as the canopy builds — it's the engine stage of the program." },
+      { q: "How does it address my crop's specific problems?", a: "We tune Grow from your soil test and crop profile to target the deficiencies, stresses, and disorders your crop is prone to — so growth is healthy exactly where your crop is usually weakest." },
       { q: "Will it cause soft, disease-prone growth?", a: "No — Grow is balanced to build structure and leaf area without forcing weak tissue." },
       { q: "Is it organic-friendly?", a: "Yes — OMRI-style and copper-free." },
     ],
@@ -284,7 +285,7 @@ export const STEP_PHASE: Record<string, { phase: string; when: string }> = {
   restore: { phase: "Soil preparation", when: "Before planting" },
   cleanse: { phase: "Weed control", when: "Pre-emergent" },
   strength: { phase: "Germination & rooting", when: "At planting" },
-  grow: { phase: "Vegetative growth", when: "As the canopy builds" },
+  grow: { phase: "Growth & plant health", when: "As the canopy builds" },
   protect: { phase: "Pest protection", when: "Through the season" },
   prevent: { phase: "Disease prevention", when: "Ahead of pressure" },
   boost: { phase: "Bloom, fruit & harvest", when: "Flowering to fill" },
