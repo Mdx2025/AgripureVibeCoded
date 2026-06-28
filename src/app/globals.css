@@ -36,7 +36,7 @@ body {
     color: #26302a;
   }
   .ap-link:hover {
-    color: #063a12;
+    color: #538b3c; /* brand leaf-600 — a clear color shift on hover */
   }
 
   /* Product card hover-rise */
