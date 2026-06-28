@@ -12,14 +12,14 @@ const STEPS = [
   { n: "01", Icon: ClipboardList, t: "Place your custom order", d: "Tell us your crops, acreage, and the problems you're fighting — right on the website." },
   { n: "02", Icon: Package, t: "Get your soil-sample kit", d: "We mail you a soil-sample tube kit with everything you need to pull a clean sample." },
   { n: "03", Icon: Microscope, t: "We read your ground", d: "Ship it back in the prepaid kit. Our lab reads your soil's chemistry and biology." },
-  { n: "04", Icon: FlaskConical, t: "We formulate your program", d: "A custom, nano-potentized blend of all seven products, tuned to each crop and stage." },
+  { n: "04", Icon: FlaskConical, t: "We formulate your program", d: "A custom, nano-potentized blend of all six products, tuned to each crop and stage." },
   { n: "05", Icon: Droplets, t: "Feed it through irrigation", d: "A fertigation injector meters each product into your existing drip or spray lines." },
 ];
 
 const FAQS = [
   { q: "How long does it take to get started?", a: "Place your order online in minutes. The soil-sample kit ships right away; once your sample reaches the lab, we formulate and ship your custom program." },
   { q: "Do I need new equipment?", a: "No. The program runs through your existing drip or spray irrigation with a standard fertigation injector — no extra passes, no new rig." },
-  { q: "Is it really custom to my farm?", a: "Yes. Every one of the seven products is formulated to your soil test and the specific crops you grow — never a generic jug off a shelf." },
+  { q: "Is it really custom to my farm?", a: "Yes. Every one of the six products is formulated to your soil test and the specific crops you grow — never a generic jug off a shelf." },
 ];
 
 export default function HowItWorksV3({ products }: { products: ProductRow[] }) {
@@ -71,11 +71,11 @@ export default function HowItWorksV3({ products }: { products: ProductRow[] }) {
       <section className="px-6 py-20 sm:px-10">
         <div className="mx-auto grid max-w-container items-center gap-12 lg:grid-cols-2">
           <figure className="overflow-hidden rounded-panel border border-hair shadow-g-xl">
-            <Image src="/assets/fertigation/fertigation-room.jpg" alt="The seven AgriPure products connected into a fertigation skid" width={1200} height={896} className="w-full object-cover" />
+            <Image src="/assets/fertigation/fertigation-room.jpg" alt="The six AgriPure products connected into a fertigation skid" width={1200} height={896} className="w-full object-cover" />
           </figure>
           <div>
             <div className="text-xs font-bold uppercase tracking-[0.16em]" style={{ color: ACCENT }}>The fertigation system</div>
-            <h2 className="mt-3 font-display text-[clamp(26px,4vw,38px)] font-black tracking-[-0.02em] text-forest">How the seven reach every plant</h2>
+            <h2 className="mt-3 font-display text-[clamp(26px,4vw,38px)] font-black tracking-[-0.02em] text-forest">How the six reach every plant</h2>
             <div className="mt-7 flex flex-col gap-4">
               {[
                 { Icon: Gauge, t: "Meter the exact dose", d: "Each product feeds its own injector, drawing a precise per-acre dose straight from the bottle." },
@@ -107,7 +107,7 @@ export default function HowItWorksV3({ products }: { products: ProductRow[] }) {
       <section className="px-6 pb-24 sm:px-10">
         <div className="mx-auto max-w-container overflow-hidden rounded-panel border border-hair p-10 text-center sm:p-16" style={{ background: "radial-gradient(120% 130% at 50% -20%, #E9F0E0 0%, #FFFFFF 60%)" }}>
           <h2 className="font-display text-[clamp(28px,5vw,46px)] font-black tracking-[-0.02em] text-forest">Ready to build your program?</h2>
-          <p className="mx-auto mt-3.5 max-w-[540px] text-[17px] text-fg2">Tell us your crop, soil, and pressures — we&apos;ll formulate all seven and price it by your acreage.</p>
+          <p className="mx-auto mt-3.5 max-w-[540px] text-[17px] text-fg2">Tell us your crop, soil, and pressures — we&apos;ll formulate all six and price it by your acreage.</p>
           <div className="mt-7 flex flex-wrap justify-center gap-3.5">
             <Link href="/order-now" className="btn-leaf px-8 py-[15px] text-[16px]" style={{ background: ACCENT }}>Order Now <ArrowRight size={17} strokeWidth={2.2} /></Link>
             <Link href="/pricing" className="btn-ghost px-8 py-[15px] text-[16px]">See pricing</Link>

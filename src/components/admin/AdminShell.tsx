@@ -58,7 +58,7 @@ const REGIONS = [
 
 const NOTIFICATIONS = [
   { title: "New order #AP-28411", detail: "Carter Vineyards · Processing", tone: "#2F6FB0" },
-  { title: "Low stock: Prevent", detail: "18 units remaining", tone: "#C97A06" },
+  { title: "Low stock: Protect", detail: "18 units remaining", tone: "#C97A06" },
   { title: "New client added", detail: "Sunridge Orchards", tone: "#538B3C" },
   { title: "Lab production complete", detail: "Order #AP-28409", tone: "#356A26" },
 ];

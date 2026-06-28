@@ -432,7 +432,7 @@ export function createScene(opts: CreateOpts): () => void {
       camera.position.set(lerp(-6, Math.sin(-0.55) * 5.4, t), lerp(15, 2.1, t), lerp(22, 5.4, t));
       lk.set(lerp(2, 0, t), 1.5, lerp(-10, 0, t)); camera.lookAt(lk);
     } else {
-      const seg = (p - introEnd) / (1 - introEnd); const f = clamp(seg * 7, 0, 6.9999); idx = Math.floor(f); lt = f - idx;
+      const seg = (p - introEnd) / (1 - introEnd); const f = clamp(seg * PD.length, 0, PD.length - 0.0001); idx = Math.floor(f); lt = f - idx;
       const a = -0.55 + seg * 1.15; const r = 5.4 - seg * 1.7 - smooth(0.2, 0.7, lt) * 0.5;
       const hy = 1.95 + Math.sin(seg * 6.28) * 0.25 + Math.sin(time * 0.35) * 0.05;
       camera.position.set(Math.sin(a) * r, hy, Math.cos(a) * r); camera.lookAt(0, 1.45, 0);
@@ -447,7 +447,7 @@ export function createScene(opts: CreateOpts): () => void {
 
     cloud.rotation.y = time * 0.004;
 
-    const health = idx < 0 ? 0.12 : (idx + smooth(0.32, 0.72, lt)) / 7;
+    const health = idx < 0 ? 0.12 : (idx + smooth(0.32, 0.72, lt)) / PD.length;
     const sick = new THREE.Color(0xb2bb6a), lush = new THREE.Color(0x3f8c2c), lc = sick.clone().lerp(lush, health);
     for (const m of leafMats) { m.color.copy(lc); m.emissiveIntensity = health * 0.06; }
     plant.rotation.z = Math.sin(time * 0.6) * 0.018; plant.scale.setScalar(lerp(0.9, 1.05, health));

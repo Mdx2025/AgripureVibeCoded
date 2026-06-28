@@ -9,7 +9,7 @@ import type { ProductRow } from "@/lib/repo";
 import { BundleCards, BottleLineup, type ShopBundle } from "./shop-shared";
 
 /** Version A — "The Program": tinted field-video hero, then each product as a
- * full-width season showcase row, with bundle pricing. The seven sold as one. */
+ * full-width season showcase row, with bundle pricing. The six sold as one. */
 export default function ShopExperienceA({ products, bundles, floor }: { products: ProductRow[]; bundles: ShopBundle[]; floor: number }) {
   return (
     <div className="bg-white text-forest">
@@ -19,12 +19,12 @@ export default function ShopExperienceA({ products, bundles, floor }: { products
         <video className="absolute inset-0 h-full w-full object-cover" src={heroVideoFor("restore")} poster={HERO_VIDEO_POSTER} autoPlay muted loop playsInline preload="auto" />
         <div className="pointer-events-none absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.86) 0%, rgba(255,255,255,0.72) 45%, #ffffff 100%)" }} />
         <div className="relative z-10 mx-auto w-full max-w-container py-16 text-center">
-          <div className="text-xs font-bold uppercase tracking-[0.18em] text-leaf">The seven-product program</div>
+          <div className="text-xs font-bold uppercase tracking-[0.18em] text-leaf">The six-product program</div>
           <h1 className="mx-auto mt-4 max-w-[900px] font-display text-[clamp(40px,7vw,80px)] font-black leading-[0.95] tracking-[-0.02em] text-forest">
-            One program. Seven inputs. Soil to harvest.
+            One program. Six inputs. Soil to harvest.
           </h1>
           <p className="mx-auto mt-5 max-w-[640px] text-[clamp(17px,2.2vw,21px)] leading-[1.55] text-[#3F463E]">
-            Every AgriPure operation runs the same seven natural products as a single, custom-formulated system —
+            Every AgriPure operation runs the same six natural products as a single, custom-formulated system —
             fed straight through your irrigation, from soil prep to harvest.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-4">
@@ -46,7 +46,7 @@ export default function ShopExperienceA({ products, bundles, floor }: { products
             <div className="text-xs font-bold uppercase tracking-[0.16em] text-leaf">Sold as a bundle</div>
             <h2 className="mt-3 font-display text-[clamp(28px,4.5vw,44px)] font-black tracking-[-0.02em] text-forest">Pick your coverage</h2>
             <p className="mx-auto mt-4 max-w-[620px] text-[17px] leading-[1.6] text-fg2">
-              Each bundle covers a set acreage with all seven products. Priced by the acre — and it drops at volume.
+              Each bundle covers a set acreage with all six products. Priced by the acre — and it drops at volume.
             </p>
           </div>
           <BundleCards bundles={bundles} floor={floor} />
@@ -57,7 +57,7 @@ export default function ShopExperienceA({ products, bundles, floor }: { products
       <section className="px-6 py-20 sm:px-10">
         <div className="mx-auto max-w-container text-center">
           <div className="text-xs font-bold uppercase tracking-[0.16em] text-leaf">What&apos;s inside</div>
-          <h2 className="mt-3 font-display text-[clamp(28px,4.5vw,44px)] font-black tracking-[-0.02em] text-forest">The seven, across your season</h2>
+          <h2 className="mt-3 font-display text-[clamp(28px,4.5vw,44px)] font-black tracking-[-0.02em] text-forest">The six, across your season</h2>
         </div>
 
         <div className="mx-auto mt-14 flex max-w-container flex-col gap-16">
@@ -76,7 +76,7 @@ export default function ShopExperienceA({ products, bundles, floor }: { products
                 </div>
                 <div className={flip ? "md:order-1" : ""}>
                   <div className="flex items-center gap-2.5">
-                    <span className="rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em]" style={{ color: p.accent, background: p.accentSoft }}>Step {i + 1} of 7</span>
+                    <span className="rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.1em]" style={{ color: p.accent, background: p.accentSoft }}>Step {i + 1} of {products.length}</span>
                     <span className="rounded-full border border-hair bg-white px-3 py-1 text-[11px] font-bold uppercase tracking-[0.08em] text-fg2">{p.type}</span>
                   </div>
                   <h3 className="mt-4 font-display text-[clamp(34px,5vw,52px)] font-black leading-[0.98] tracking-[-0.02em] text-forest">{p.name}</h3>
@@ -97,7 +97,7 @@ export default function ShopExperienceA({ products, bundles, floor }: { products
       <section className="px-6 pb-24 sm:px-10">
         <div className="mx-auto max-w-container overflow-hidden rounded-panel border border-[#D9D6C7] bg-[radial-gradient(120%_130%_at_50%_-20%,#DCEFC8_0%,#EDEAE0_60%)] px-10 py-16 text-center">
           <h2 className="font-display text-[clamp(30px,5vw,46px)] font-black tracking-[-0.02em] text-forest">Build your custom program.</h2>
-          <p className="mx-auto mt-3.5 max-w-[540px] text-[17px] text-[#4A524B]">Tell us your crops, soil, and acreage — we&apos;ll formulate all seven and price it by the acre.</p>
+          <p className="mx-auto mt-3.5 max-w-[540px] text-[17px] text-[#4A524B]">Tell us your crops, soil, and acreage — we&apos;ll formulate all six and price it by the acre.</p>
           <div className="mt-7 flex flex-wrap justify-center gap-3.5">
             <Link href="/order-now" className="btn-primary px-8 py-[15px] text-[16px]">Order Now <ArrowRight size={17} strokeWidth={2.2} /></Link>
             <Link href="/how-it-works" className="btn-ghost px-8 py-[15px] text-[16px]">How it works</Link>

@@ -1,6 +1,6 @@
 // Per-crop pricing model (AgriPure_Pricing_Model_SPEC.md).
 //
-// AgriPure prices its 7-product bundle PER CROP, by crop type, anchored at the
+// AgriPure prices its 6-product bundle PER CROP, by crop type, anchored at the
 // midpoint between conventional and organic input costs for that crop. Each crop
 // carries its own volume-discount cap (by tier), applied to that crop's acreage.
 //
@@ -24,8 +24,8 @@ export const PRICING_PARAMS = {
   cogsAtScale: 14, // approx production cost/acre (margin calc)
   tierCap: { S: 0.12, A: 0.1, B: 0.08, C: 0.06, D: 0 } as Record<string, number>,
   tierThreshold: { S: 2200, A: 1500, B: 900, C: 500 } as Record<string, number>,
-  bundle3galAcres: 25, // 3-gal 7-product bundle coverage
-  bundle6galAcres: 50, // 6-gal 7-product bundle coverage (largest producible)
+  bundle3galAcres: 25, // 3-gal 6-product bundle coverage
+  bundle6galAcres: 50, // 6-gal 6-product bundle coverage (largest producible)
 } as const;
 
 const round5 = (n: number) => Math.round(n / 5) * 5;
@@ -144,7 +144,7 @@ export function quoteForCrops(acresByCrop: Record<string, number>): CropQuote {
   const sixGal = Math.floor(acres / PRICING_PARAMS.bundle6galAcres);
   const remainder = acres - sixGal * PRICING_PARAMS.bundle6galAcres;
   const threeGal = remainder > 0 ? Math.ceil(remainder / PRICING_PARAMS.bundle3galAcres) : 0;
-  const carboys = (sixGal + threeGal) * 7;
+  const carboys = (sixGal + threeGal) * 6;
 
   return {
     lines,
@@ -159,10 +159,10 @@ export function quoteForCrops(acresByCrop: Record<string, number>): CropQuote {
   };
 }
 
-/* ----------------------- 7-product function breakdown ----------------------- */
-// AgriPure replaces a grower's whole input stack with seven products. The model
+/* ----------------------- 6-product function breakdown ----------------------- */
+// AgriPure replaces a grower's whole input stack with six products. The model
 // gives each crop a single conventional / organic / AgriPure $/acre figure; this
-// allocates each of those totals across the seven functions by a fixed mix so the
+// allocates each of those totals across the six functions by a fixed mix so the
 // per-product comparison scales correctly for every crop. Weights are the
 // representative US 2024–25 like-for-like input split per method.
 export interface ProductFunction {
@@ -180,8 +180,7 @@ export const PRODUCT_FUNCTIONS: ProductFunction[] = [
   { key: "cleanse", label: "Cleanse", role: "weed control", convW: 75, orgW: 100, apW: 104 },
   { key: "strength", label: "Strength", role: "root & germination", convW: 15, orgW: 35, apW: 36 },
   { key: "grow", label: "Grow", role: "growth & plant health", convW: 15, orgW: 35, apW: 36 },
-  { key: "protect", label: "Protect", role: "insecticide", convW: 25, orgW: 60, apW: 62 },
-  { key: "prevent", label: "Prevent", role: "fungicide", convW: 25, orgW: 60, apW: 62 },
+  { key: "protect", label: "Protect", role: "insecticide & fungicide", convW: 50, orgW: 120, apW: 124 },
   { key: "boost", label: "Boost", role: "yield enhancer", convW: 20, orgW: 35, apW: 36 },
 ];
 
@@ -200,7 +199,7 @@ export interface ProductRowBreakdown {
 
 /**
  * Split a crop's per-acre conventional / organic costs and its (volume-discounted)
- * AgriPure per-acre price across the seven product functions. All $/acre.
+ * AgriPure per-acre price across the six product functions. All $/acre.
  */
 export function productBreakdown(name: string, acres: number): ProductRowBreakdown[] {
   const c = findCrop(name);

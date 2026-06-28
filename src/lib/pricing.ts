@@ -37,8 +37,8 @@ export const DEFAULT_PROGRAM: PricingProgram = {
   organicPerAc: 385,
   conventionalPerAc: 205,
   bundles: [
-    { id: "3g", label: "3-Gallon Set", gallons: 3, acres: 25, note: "3-gallon set of all 7 products" },
-    { id: "6g", label: "6-Gallon Set", gallons: 6, acres: 50, note: "6-gallon set of all 7 products", best: true },
+    { id: "3g", label: "3-Gallon Set", gallons: 3, acres: 25, note: "3-gallon set of all 6 products" },
+    { id: "6g", label: "6-Gallon Set", gallons: 6, acres: 50, note: "6-gallon set of all 6 products", best: true },
   ],
   soilSamplePrice: 40,
 };

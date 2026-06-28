@@ -124,7 +124,7 @@ export default function Experience3D() {
             <div className="rounded-[22px] border border-white/[0.16] bg-[rgba(7,18,9,.62)] p-[30px] shadow-[0_24px_60px_rgba(0,0,0,.4)] backdrop-blur-[14px]">
               <div className="flex items-center justify-between">
                 <div className="font-mono text-xs tracking-[0.18em]" style={{ color: cur.accent }}>
-                  STEP {cur.step} / 7
+                  STEP {cur.step} / {EXPERIENCE_STEPS.length}
                 </div>
                 <div className="flex items-center gap-2">
                   <Image

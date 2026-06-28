@@ -43,7 +43,7 @@ export default function Hero() {
           </span>
         </div>
 
-        {/* Product lineup — the seven applied to one system */}
+        {/* Product lineup — the six applied to one system */}
         <div className="ap-sc mt-14 flex items-end gap-2 overflow-x-auto pb-2">
           {PRODUCTS.map((p) => (
             <Link

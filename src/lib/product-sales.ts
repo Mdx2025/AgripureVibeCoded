@@ -1,6 +1,6 @@
 import {
   Sprout, Recycle, TrendingUp, ShieldCheck, Droplets, Leaf, Bug, Sun,
-  Microscope, Flower2, Ban, Gauge, Network, CloudRain,
+  Microscope, Flower2, Ban, Network,
   type LucideIcon,
 } from "lucide-react";
 
@@ -53,7 +53,7 @@ export const SALES: Record<string, SalesContent> = {
       { value: "4.9★", label: "214 reviews" },
     ],
     faqs: [
-      { q: "When do I apply Restore?", a: "At the very start of the season — before planting — so the soil is alive and well-structured before your crop goes in. It's step one of the seven-product program." },
+      { q: "When do I apply Restore?", a: "At the very start of the season — before planting — so the soil is alive and well-structured before your crop goes in. It's step one of the six-product program." },
       { q: "How is it applied?", a: "Straight through your existing irrigation/fertigation at 1–2 gallons per acre. No separate pass, no special equipment." },
       { q: "Is it organic-friendly?", a: "Yes — Restore is OMRI-style, copper-free, and free of synthetic residue." },
     ],
@@ -109,7 +109,7 @@ export const SALES: Record<string, SalesContent> = {
     how: [
       { title: "Tuned to your seed", body: "We match Strength to your crop and soil so germination and rooting fire together." },
       { title: "Apply at planting", body: "Delivered through irrigation as seed goes in and through emergence." },
-      { title: "Build the engine", body: "Deep, even roots set up Grow, Protect, Prevent and Boost to perform." },
+      { title: "Build the engine", body: "Deep, even roots set up Grow, Protect and Boost to perform." },
     ],
     stats: [
       { value: "3–4–2", label: "N-P-K" },
@@ -156,71 +156,40 @@ export const SALES: Record<string, SalesContent> = {
     ],
   },
 
-  /* 05 — PROTECT · Biopesticide · through the season as pests appear */
+  /* 05 — PROTECT · Insecticide & Fungicide · through the season, ahead of pressure */
   protect: {
-    hook: "Defend the crop without declaring war on your field.",
-    sub: "Protect uses botanical actives to disrupt the pests that hit hardest — tough on aphids, beetles and mites, soft on pollinators and beneficials.",
-    labelNote: "Botanical insect actives matched to your pest pressure, potentized to move with irrigation water to the root zone and canopy where pests feed.",
+    hook: "One defense for the bugs and the diseases.",
+    sub: "Protect is a natural insecticide and fungicide in one — botanical actives knock back the pests that hit hardest while a broad-spectrum defense gets ahead of fungal disease, all while sparing pollinators and beneficials.",
+    labelNote: "Botanical insect actives plus broad-spectrum disease defense, matched to your pest and disease history and potentized to move with irrigation water to the root zone and canopy.",
     problem: {
-      title: "Broad-spectrum chemistry costs more than the pests do.",
-      body: "Harsh insecticides take out beneficials and pollinators along with the pests, leaving residue and resistance behind. The field gets more fragile every season, not less.",
+      title: "Spraying twice — once for bugs, once for disease — costs more than the pests do.",
+      body: "Running separate harsh insecticides and fungicides takes out beneficials and pollinators, stacks residue and resistance, and means extra passes. The field gets more fragile every season, not less.",
     },
     benefits: [
       { Icon: Bug, title: "Hits the pests that matter", body: "Disrupts feeding and reproduction in aphids, beetles, mites and more." },
+      { Icon: ShieldCheck, title: "Broad-spectrum disease defense", body: "Gets ahead of powdery mildew, botrytis, downy mildew and rusts — one product, both jobs." },
       { Icon: Flower2, title: "Spares pollinators", body: "Botanical actives go easy on bees and beneficials when applied as directed." },
       { Icon: Ban, title: "Copper-free & residue-conscious", body: "Defends the crop without the residue or runoff of conventional sprays." },
-      { Icon: Droplets, title: "Delivered through irrigation", body: "Even coverage to root zone and canopy — no separate spray crew or pass." },
     ],
     how: [
-      { title: "Scout and formulate", body: "We match Protect to the pests in your crop and region." },
-      { title: "Dose as pressure appears", body: "Run it through fertigation through the season when scouting calls for it." },
-      { title: "Keep the balance", body: "Knock back pests while preserving the beneficials that work for you." },
+      { title: "Scout and formulate", body: "We match Protect to the insect and disease pressure in your crop and region." },
+      { title: "Dose as pressure appears", body: "Run it through fertigation through the season — and ahead of fungal pressure on a rotation." },
+      { title: "Keep the balance", body: "Knock back pests and disease while preserving the beneficials that work for you." },
     ],
     stats: [
-      { value: "Copper-free", label: "chemistry" },
-      { value: "0.5–1 gal", label: "per acre" },
-      { value: "4.8★", label: "191 reviews" },
+      { value: "Insect + disease", label: "one product" },
+      { value: "0.5–1.5 gal", label: "per acre" },
+      { value: "4.8★", label: "335 reviews" },
     ],
     faqs: [
-      { q: "Is Protect safe for pollinators?", a: "Applied as directed, its botanical actives target pest insects while sparing pollinators and beneficials." },
-      { q: "Which pests does it cover?", a: "Aphids, beetles, mites and other common feeders — it disrupts feeding and reproduction." },
+      { q: "Does Protect handle both insects and disease?", a: "Yes — it works as a natural insecticide and fungicide in one, so a single product covers pest control and broad-spectrum disease defense." },
+      { q: "Which pests and diseases does it cover?", a: "Insects like aphids, beetles and mites, plus fungal pressures including powdery mildew, botrytis, downy mildew and rusts." },
+      { q: "Is it safe for pollinators?", a: "Applied as directed, its botanical actives target pests while sparing pollinators and beneficials." },
       { q: "Is it organic-friendly?", a: "Yes — OMRI-style, copper-free and residue-conscious." },
     ],
   },
 
-  /* 06 — PREVENT · Biofungicide · ahead of disease pressure */
-  prevent: {
-    hook: "Beat disease to the punch.",
-    sub: "Prevent builds a protective barrier and primes the plant's own defenses against the fungal pressures that cost the most yield.",
-    labelNote: "A broad-spectrum biofungicide matched to your disease history, potentized to coat and prime the plant before pressure peaks.",
-    problem: {
-      title: "By the time you see disease, the yield is already gone.",
-      body: "Powdery mildew, botrytis, downy mildew and rusts move fast. Reacting after symptoms show means you're already paying for it in marketable crop.",
-    },
-    benefits: [
-      { Icon: ShieldCheck, title: "Broad-spectrum defense", body: "Guards against powdery mildew, botrytis, downy mildew and rusts." },
-      { Icon: CloudRain, title: "Works ahead of pressure", body: "Builds a barrier and primes defenses before disease takes hold." },
-      { Icon: Leaf, title: "Primes the plant", body: "Switches on the crop's own immune response — not just a surface coat." },
-      { Icon: Ban, title: "Rotation-ready, residue-free", body: "OMRI-style and copper-free — ideal for resistance-management rotations." },
-    ],
-    how: [
-      { title: "Map your risk", body: "We formulate Prevent to the diseases your crop and climate face." },
-      { title: "Apply ahead of pressure", body: "Dosed through fertigation before fungal pressure peaks, on a rotation." },
-      { title: "Let the plant defend", body: "Primed defenses mean disease costs far less yield." },
-    ],
-    stats: [
-      { value: "Broad", label: "spectrum" },
-      { value: "0.75–1.5 gal", label: "per acre" },
-      { value: "4.7★", label: "144 reviews" },
-    ],
-    faqs: [
-      { q: "Before or after I see disease?", a: "Before. Prevent works best applied ahead of pressure, building a barrier and priming defenses as part of a rotation." },
-      { q: "Which diseases does it target?", a: "Powdery mildew, botrytis, downy mildew and rusts, among other common fungal pressures." },
-      { q: "Is it organic-friendly?", a: "Yes — OMRI-style and copper-free." },
-    ],
-  },
-
-  /* 07 — BOOST · Bloom & Fruit · flowering through fill */
+  /* 06 — BOOST · Bloom & Fruit · flowering through fill */
   boost: {
     hook: "Finish heavy. Finish clean.",
     sub: "Boost shifts the plant into reproductive overdrive — driving flower set, fruit fill and sizing for a measurable lift in marketable yield.",
@@ -269,11 +238,9 @@ export const heroVideoFor = (id: string) => HERO_VIDEOS[id] ?? SHARED_HERO_VIDEO
 // here as they're produced; everything else falls back to the shared placeholder.
 export const PRODUCT_VIDEOS: Record<string, string> = {
   protect: "/videos/products/protect.mp4",
-  prevent: "/videos/products/prevent.mp4",
 };
 export const PRODUCT_POSTERS: Record<string, string> = {
   protect: "/videos/products/protect-poster.jpg",
-  prevent: "/videos/products/prevent-poster.jpg",
 };
 export const productVideoFor = (id: string) => PRODUCT_VIDEOS[id] ?? SHARED_HERO_VIDEO;
 export const productPosterFor = (id: string) => PRODUCT_POSTERS[id] ?? HERO_VIDEO_POSTER;
@@ -286,8 +253,7 @@ export const STEP_PHASE: Record<string, { phase: string; when: string }> = {
   cleanse: { phase: "Weed control", when: "Pre-emergent" },
   strength: { phase: "Germination & rooting", when: "At planting" },
   grow: { phase: "Growth & plant health", when: "As the canopy builds" },
-  protect: { phase: "Pest protection", when: "Through the season" },
-  prevent: { phase: "Disease prevention", when: "Ahead of pressure" },
+  protect: { phase: "Pest & disease protection", when: "Through the season" },
   boost: { phase: "Bloom, fruit & harvest", when: "Flowering to fill" },
 };
 export const stepPhaseFor = (id: string) => STEP_PHASE[id] ?? { phase: "", when: "" };

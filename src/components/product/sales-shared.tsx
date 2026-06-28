@@ -18,7 +18,7 @@ export function BundlePricing({ product, bundles, accent, tone = "light" }: { pr
     <div className={`rounded-panel border p-6 ${dark ? "border-white/15 bg-white/[0.04]" : "border-leaf bg-[#F2F7EC]"}`}>
       <div className={`font-display text-[18px] font-extrabold ${dark ? "text-white" : "text-forest"}`}>Sold in 3 &amp; 6 gallon bundles</div>
       <p className={`mt-1.5 text-[14px] leading-[1.6] ${dark ? "text-[#C9DBC0]" : "text-fg2"}`}>
-        {product.name} ships as part of the complete seven-product program, custom-matched and priced by your acreage.
+        {product.name} ships as part of the complete six-product program, custom-matched and priced by your acreage.
       </p>
       {bundles.length > 0 && (
         <div className="mt-4 grid gap-3 sm:grid-cols-2">

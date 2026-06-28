@@ -147,7 +147,7 @@ export default function NanoTechV3() {
       <section className="px-6 pb-24 sm:px-10">
         <div className="mx-auto max-w-container overflow-hidden rounded-panel border border-hair p-10 text-center sm:p-16" style={{ background: "radial-gradient(120% 130% at 50% -20%, #E9F0E0 0%, #FFFFFF 60%)" }}>
           <h2 className="font-display text-[clamp(28px,5vw,44px)] font-black tracking-[-0.02em] text-forest">Natural science, working for your crop.</h2>
-          <p className="mx-auto mt-3.5 max-w-[540px] text-[17px] text-fg2">See how the seven products are applied across the season — or build your custom program.</p>
+          <p className="mx-auto mt-3.5 max-w-[540px] text-[17px] text-fg2">See how the six products are applied across the season — or build your custom program.</p>
           <div className="mt-7 flex flex-wrap justify-center gap-3.5">
             <Link href="/how-it-works" className="btn-leaf px-8 py-[15px] text-[16px]" style={{ background: ACCENT }}>See how it works <ArrowRight size={17} strokeWidth={2.2} /></Link>
             <Link href="/order-now" className="btn-ghost px-8 py-[15px] text-[16px]">Order Now</Link>

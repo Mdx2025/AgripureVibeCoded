@@ -14,7 +14,7 @@ const JOURNEY = [
   { n: "02", Icon: Package, t: "Test your soil", d: "We mail you a soil-sample kit. Pull a sample and send it back in the prepaid box." },
   { n: "03", Icon: Microscope, t: "We read your ground", d: "Our lab analyzes your soil's chemistry and biology to see exactly what it needs." },
   { n: "04", Icon: FlaskConical, t: "We formulate", d: "A custom, all-natural program — nano-potentized and tuned to each crop you grow." },
-  { n: "05", Icon: Droplets, t: "Feed through irrigation", d: "Dose all seven products straight through your fertigation, soil prep to harvest." },
+  { n: "05", Icon: Droplets, t: "Feed through irrigation", d: "Dose all six products straight through your fertigation, soil prep to harvest." },
 ];
 
 export default function Home() {
@@ -65,7 +65,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* THE SEVEN — full-screen, step-by-step product flow (video + carboy) */}
+      {/* THE SIX — full-screen, step-by-step product flow (video + carboy) */}
       <ProductFlowFullscreen products={products} />
 
       {/* WHY CHOOSE US — comparison */}
@@ -92,7 +92,7 @@ export default function Home() {
       <section className="bg-paper px-8 pb-24 pt-4">
         <div className="mx-auto max-w-container rounded-panel border border-[#D9D6C7] bg-[radial-gradient(120%_130%_at_50%_-20%,#DCEFC8_0%,#EDEAE0_60%)] px-10 py-16 text-center">
           <h2 className="m-0 font-display text-[42px] font-black tracking-[-0.02em] text-forest">
-            Seven inputs. One program.
+            Six inputs. One program.
           </h2>
           <p className="mx-auto mt-3.5 max-w-[520px] text-[17px] text-[#4A524B]">
             Build a custom formulation for your crop, soil, and pressure — priced by your acreage.

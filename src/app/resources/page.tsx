@@ -45,7 +45,7 @@ const RESOURCES = [
     href: "/resources/application-methods",
     Icon: Droplets,
     title: "Application Methods",
-    desc: "How to dose all seven products through your fertigation, soil prep to harvest.",
+    desc: "How to dose all six products through your fertigation, soil prep to harvest.",
   },
   {
     href: "/resources/research-studies",

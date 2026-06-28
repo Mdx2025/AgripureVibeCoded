@@ -62,19 +62,19 @@ export const DEFAULT_PAGES: Record<string, SeoEntry> = {
   "/": {
     title: "AgriPure — Natural pesticides, fungicides & nutrients",
     description:
-      "Natural pesticides, fungicides, and nutrients — custom-formulated for your crop, soil, and pressures. One seven-product program, fed through your irrigation, soil to harvest.",
+      "Natural pesticides, fungicides, and nutrients — custom-formulated for your crop, soil, and pressures. One six-product program, fed through your irrigation, soil to harvest.",
     keywords: "natural pesticides, organic fungicide, crop nutrients, fertigation, custom crop formulation, biological farming",
   },
   "/shop": {
-    title: "The Seven Products — AgriPure",
+    title: "The Six Products — AgriPure",
     description:
-      "Restore, Cleanse, Strength, Grow, Protect, Prevent and Boost — the seven natural AgriPure inputs that carry your crop from soil prep to harvest.",
+      "Restore, Cleanse, Strength, Grow, Protect and Boost — the six natural AgriPure inputs that carry your crop from soil prep to harvest.",
     keywords: "AgriPure products, natural crop inputs, soil amendment, biological fungicide, yield booster",
   },
   "/how-it-works": {
     title: "How It Works — AgriPure",
     description:
-      "From a custom, crop-specific formulation of all seven products, to precise fertigation dosing, to season-long application across the crop lifecycle — see the full AgriPure process.",
+      "From a custom, crop-specific formulation of all six products, to precise fertigation dosing, to season-long application across the crop lifecycle — see the full AgriPure process.",
     keywords: "how AgriPure works, soil testing, custom formulation, fertigation system, crop program",
   },
   "/why-choose-us": {

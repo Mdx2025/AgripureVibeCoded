@@ -130,7 +130,7 @@ export default function SalesBody({ product, related, bundles }: { product: Prod
       <section className="px-6 pb-24 sm:px-10">
         <div className="mx-auto max-w-container overflow-hidden rounded-panel border border-hair p-10 text-center sm:p-16" style={{ background: `radial-gradient(120% 130% at 50% -20%, ${soft} 0%, #FFFFFF 60%)` }}>
           <h2 className="font-display text-[clamp(28px,5vw,46px)] font-black tracking-[-0.02em] text-forest">Put {product.name} to work this season.</h2>
-          <p className="mx-auto mt-3.5 max-w-[520px] text-[17px] text-fg2">Tell us your crop, soil, and acreage — we&apos;ll formulate all seven and price it by the acre.</p>
+          <p className="mx-auto mt-3.5 max-w-[520px] text-[17px] text-fg2">Tell us your crop, soil, and acreage — we&apos;ll formulate all six and price it by the acre.</p>
           <div className="mt-7 flex flex-wrap justify-center gap-3.5">
             <Link href="/order-now" className="btn-leaf px-8 py-[15px] text-[16px]" style={{ background: accent }}>Order Now <ArrowRight size={17} strokeWidth={2.3} /></Link>
             <Link href="/how-it-works" className="btn-ghost px-8 py-[15px] text-[16px]">How it works</Link>
@@ -149,7 +149,7 @@ export default function SalesBody({ product, related, bundles }: { product: Prod
           <img src={bottle} alt="" className="hidden h-11 w-auto object-contain sm:block" />
           <div className="min-w-0 flex-1">
             <div className="truncate font-display text-[16px] font-extrabold text-forest">{product.name} <span className="font-sans text-[13px] font-medium text-fg3">· {product.category}</span></div>
-            {fromPerAcre > 0 && <div className="text-[12.5px] text-fg2">from <span className="font-mono font-semibold text-forest">{money(fromPerAcre)}</span>/acre · seven-product program</div>}
+            {fromPerAcre > 0 && <div className="text-[12.5px] text-fg2">from <span className="font-mono font-semibold text-forest">{money(fromPerAcre)}</span>/acre · six-product program</div>}
           </div>
           <Link href="/pricing" className="btn-ghost hidden px-5 py-2.5 text-[14px] sm:inline-flex">Pricing</Link>
           <Link href="/order-now" className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-[15px] font-bold text-white" style={{ background: accent }}>Order Now <ArrowRight size={15} strokeWidth={2.4} /></Link>

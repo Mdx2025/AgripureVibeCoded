@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 /**
  * A muted, looping product clip that plays only while it's in view (and pauses
  * when scrolled away) — the Apple-store autoplay-on-scroll feel, without
- * hammering the browser with seven simultaneous videos.
+ * hammering the browser with six simultaneous videos.
  */
 export default function StepVideo({
   src,

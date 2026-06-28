@@ -11,7 +11,7 @@ export type ShopBundle = {
   note: string; best?: boolean; total: number; perAcre: number;
 };
 
-/** The seven carboys lined up as a single "program" visual. Each links to its page. */
+/** The six carboys lined up as a single "program" visual. Each links to its page. */
 export function BottleLineup({ products, size = "md" }: { products: ProductRow[]; size?: "sm" | "md" | "lg" }) {
   const h = size === "lg" ? "h-[clamp(150px,22vw,260px)]" : size === "sm" ? "h-[88px]" : "h-[clamp(120px,16vw,190px)]";
   return (
@@ -39,11 +39,11 @@ export function BundleCards({ bundles, floor }: { bundles: ShopBundle[]; floor: 
           )}
           <div className="font-mono text-[12px] uppercase tracking-[0.1em] text-leaf-700">{b.gallons}-gallon bundle</div>
           <div className="mt-1 font-display text-[22px] font-extrabold text-forest">{b.label}</div>
-          <div className="mt-0.5 text-[13px] text-fg3">Covers {b.acres} acres · all 7 products</div>
+          <div className="mt-0.5 text-[13px] text-fg3">Covers {b.acres} acres · all 6 products</div>
           <div className="mt-5 font-mono text-[34px] font-semibold text-forest">{money(b.total)}</div>
           <div className="mt-1 text-[13px] text-leaf-700">{money(b.perAcre)} / acre</div>
           <ul className="mt-5 flex flex-1 flex-col gap-2 text-[13.5px] text-fg2">
-            {["All seven products, custom-formulated", "Matched to your soil test & crop", "Fed through your existing irrigation"].map((t) => (
+            {["All six products, custom-formulated", "Matched to your soil test & crop", "Fed through your existing irrigation"].map((t) => (
               <li key={t} className="flex items-start gap-2"><Check size={15} className="mt-0.5 flex-none text-leaf-600" /> {t}</li>
             ))}
           </ul>

@@ -9,9 +9,9 @@ const BENEFITS = [
   { Icon: ShieldCheck, title: "Resistance before it strikes", body: "Plants become naturally resistant to pests and disease before they ever attack — preventing damage, not cleaning it up." },
   { Icon: TrendingUp, title: "Drastically higher yields", body: "Recover the share of your crop that pests, weeds and disease quietly steal every season." },
   { Icon: Award, title: "Certify organic, charge more", body: "100% natural and residue-conscious — so your crop can qualify as organic and command a premium." },
-  { Icon: FlaskConical, title: "Custom to your crop & soil", body: "Every one of the seven formulas is built for your crop and soil profile. Never one-size-fits-all." },
-  { Icon: Package, title: "One company, one program", body: "Replace a shed full of products from a dozen suppliers with a single seven-in-one system." },
-  { Icon: Droplets, title: "Dead-simple to run", body: "No new equipment, no extra passes — dose all seven through your existing drip or spray irrigation." },
+  { Icon: FlaskConical, title: "Custom to your crop & soil", body: "Every one of the six formulas is built for your crop and soil profile. Never one-size-fits-all." },
+  { Icon: Package, title: "One company, one program", body: "Replace a shed full of products from a dozen suppliers with a single six-in-one system." },
+  { Icon: Droplets, title: "Dead-simple to run", body: "No new equipment, no extra passes — dose all six through your existing drip or spray irrigation." },
 ];
 
 const WITH = [
@@ -22,7 +22,7 @@ const WITH = [
 ];
 
 const STEPS = [
-  { n: "1", Icon: FlaskConical, t: "We formulate", d: "Tell us your crop, soil and pressures. We build your custom seven-product program and price it by your acreage." },
+  { n: "1", Icon: FlaskConical, t: "We formulate", d: "Tell us your crop, soil and pressures. We build your custom six-product program and price it by your acreage." },
   { n: "2", Icon: Droplets, t: "You dose it in", d: "A fertigation injector meters the exact dose of each product into your existing drip or spray irrigation." },
   { n: "3", Icon: Sprout, t: "Your crop thrives", d: "The program runs across the whole lifecycle — soil to harvest — for a cleaner, bigger, higher-value crop." },
 ];

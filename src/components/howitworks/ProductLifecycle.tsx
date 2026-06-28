@@ -5,14 +5,13 @@ import type { ProductRow } from "@/lib/repo";
 
 type Phase = { id: string; phase: string; timing: string; role: string };
 
-// The seven, in the order they're applied across the crop's lifecycle.
+// The six, in the order they're applied across the crop's lifecycle.
 const LIFECYCLE: Phase[] = [
   { id: "restore", phase: "Soil preparation", timing: "Before planting", role: "Step one is the ground itself — we rebuild living soil so everything that follows has a healthy foundation." },
   { id: "cleanse", phase: "Weed control", timing: "Pre-emergent · before the crop comes up", role: "Next we clear the field, knocking back weed pressure during the window that matters most — before your crop emerges." },
   { id: "strength", phase: "Germination & rooting", timing: "At planting, through emergence", role: "As seeds go in, we wake them up and drive deep, even roots for a fast, uniform, vigorous stand." },
   { id: "grow", phase: "Growth & plant health", timing: "As the canopy builds", role: "Through the vegetative phase we fuel balanced growth and leaf area while targeting the plant-health problems your specific crop faces — strong growth where your crop is usually weakest." },
-  { id: "protect", phase: "Pest protection", timing: "Through the season, as pests appear", role: "Mid-season, we defend the crop from insect pressure with botanical actives that spare pollinators and beneficials." },
-  { id: "prevent", phase: "Disease prevention", timing: "Ahead of fungal & viral pressure", role: "Alongside pest control, we get ahead of disease — priming the plant's defenses before fungal and viral pressure costs yield." },
+  { id: "protect", phase: "Pest & disease protection", timing: "Through the season, ahead of pressure", role: "Mid-season, one natural pesticide defends the crop from both insects and disease — botanical actives that spare pollinators and beneficials, plus broad-spectrum protection that gets ahead of fungal and viral pressure." },
   { id: "boost", phase: "Bloom, fruit & harvest", timing: "Flowering through fruit fill", role: "At the finish, we push flowering, fruit set, and fill for a bigger, cleaner, higher-value harvest." },
 ];
 
@@ -25,12 +24,12 @@ export default function ProductLifecycle({ products }: { products: ProductRow[] 
     <section className="bg-paper-2 px-6 py-20 sm:px-10">
       <div className="mx-auto max-w-container">
         <div className="text-center">
-          <div className="text-xs font-bold uppercase tracking-[0.14em] text-leaf">The seven products</div>
+          <div className="text-xs font-bold uppercase tracking-[0.14em] text-leaf">The six products</div>
           <h2 className="mt-3 font-display text-[clamp(26px,4.5vw,40px)] font-black tracking-[-0.02em] text-forest">
             Every product, across the crop&apos;s lifecycle
           </h2>
           <p className="mx-auto mt-4 max-w-[700px] text-[17px] leading-[1.7] text-fg2">
-            The seven aren&apos;t a one-time treatment — they&apos;re a season-long program, applied in order from soil
+            The six aren&apos;t a one-time treatment — they&apos;re a season-long program, applied in order from soil
             prep to harvest. Here&apos;s exactly what each one does and when.
           </p>
         </div>
@@ -80,7 +79,7 @@ export default function ProductLifecycle({ products }: { products: ProductRow[] 
                 <Sprout size={26} />
               </div>
               <div className="font-display text-[clamp(18px,3vw,24px)] font-extrabold text-forest">
-                A cleaner, higher-value harvest — soil to harvest, all seven working as one.
+                A cleaner, higher-value harvest — soil to harvest, all six working as one.
               </div>
             </div>
           </div>

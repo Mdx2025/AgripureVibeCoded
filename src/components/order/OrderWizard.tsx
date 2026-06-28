@@ -191,7 +191,7 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
             <ol className="mt-3 ml-5 list-decimal space-y-2">
               <li>A soil-sample tube kit ships to your address — <strong className="text-forest">one kit per crop</strong>.</li>
               <li>You collect the sample in the area where that crop will be grown and mail it to the AgriPure lab.</li>
-              <li>Once your soil results come back, we formulate your seven products specifically for each crop.</li>
+              <li>Once your soil results come back, we formulate your six products specifically for each crop.</li>
             </ol>
           </div>
 

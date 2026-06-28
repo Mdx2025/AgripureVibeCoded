@@ -156,7 +156,7 @@ const apCol = "bg-[#F2F7EC]";
 type Mark = "yes" | "no" | "partial";
 const BENEFITS: { label: string; conv: Mark; org: Mark; ap: Mark }[] = [
   { label: "100% natural · OMRI-style · copper-free", conv: "no", org: "yes", ap: "yes" },
-  { label: "All 7 crop functions in one system", conv: "no", org: "no", ap: "yes" },
+  { label: "All 6 crop functions in one system", conv: "no", org: "no", ap: "yes" },
   { label: "Custom-formulated to your crop, soil & pressure", conv: "no", org: "no", ap: "yes" },
   { label: "No synthetic residue · runoff-conscious", conv: "no", org: "yes", ap: "yes" },
   { label: "Builds plant resistance — no repeat-spray spiral", conv: "no", org: "partial", ap: "yes" },
@@ -254,15 +254,15 @@ function Results({
       </div>
       <p className="mt-2.5 text-[12.5px] text-fg3">
         Conventional &amp; organic figures are like-for-like input cost per acre. AgriPure reflects your volume discount at
-        each crop&apos;s acreage. {crops.length > 1 && "Select a crop above (or a tab below) to see its 7-product breakdown."}
+        each crop&apos;s acreage. {crops.length > 1 && "Select a crop above (or a tab below) to see its 6-product breakdown."}
       </p>
 
-      {/* per-crop detailed 7-product comparison */}
+      {/* per-crop detailed 6-product comparison */}
       <div className="mt-10">
         <h2 className="font-display text-[26px] font-extrabold tracking-[-0.02em] text-forest">
           Cost per acre, product by product
         </h2>
-        <p className="mt-1.5 text-[15px] text-fg2">AgriPure replaces all seven inputs with one program. Here&apos;s how each function compares for your selected crop.</p>
+        <p className="mt-1.5 text-[15px] text-fg2">AgriPure replaces all six inputs with one program. Here&apos;s how each function compares for your selected crop.</p>
 
         {/* crop tabs */}
         {crops.length > 1 && (
@@ -339,7 +339,7 @@ function Results({
           Why choose AgriPure over conventional &amp; organic
         </h2>
         <p className="mt-1.5 max-w-[680px] text-[15px] text-fg2">
-          AgriPure lands between conventional and organic on price — but unlike either, it delivers all seven functions
+          AgriPure lands between conventional and organic on price — but unlike either, it delivers all six functions
           in one custom-matched, residue-free program. Here&apos;s what that price buys that the alternatives don&apos;t.
         </p>
         <div className="mt-5 overflow-hidden rounded-panel border border-hair bg-white shadow-g-md">

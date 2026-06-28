@@ -14,7 +14,7 @@ function MarkCell({ mark }: { mark: Mark }) {
 
 const ROWS: { label: string; conv: Mark; org: Mark; ap: Mark }[] = [
   { label: "Builds resistance before pests & disease strike", conv: "no", org: "partial", ap: "yes" },
-  { label: "All 7 crop functions in one program", conv: "no", org: "no", ap: "yes" },
+  { label: "All 6 crop functions in one program", conv: "no", org: "no", ap: "yes" },
   { label: "Custom-formulated to your crop & soil", conv: "no", org: "no", ap: "yes" },
   { label: "100% natural · no synthetic residue", conv: "no", org: "yes", ap: "yes" },
   { label: "Qualifies your crop for the organic premium", conv: "no", org: "yes", ap: "yes" },

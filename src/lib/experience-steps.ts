@@ -1,4 +1,4 @@
-// The 7 steps of the scroll-driven hero experience (verbatim copy from the
+// The 6 steps of the scroll-driven hero experience (verbatim copy from the
 // approved prototype / live AgriPure site). See design-handoff/EXPERIENCE_3D.md.
 
 export interface ExperienceStep {
@@ -30,22 +30,17 @@ export const EXPERIENCE_STEPS: ExperienceStep[] = [
     desc: "Our specialized root-boosting formula promotes deeper, stronger root systems that improve water and nutrient absorption across all crop types.",
   },
   {
-    id: "protect", step: "04", name: "Protect", title: "Pest Prevention Shield",
-    accent: "#E88A4C", action: "Repelling crop pests", threat: "pest", tcolor: "#C0531C",
-    desc: "A natural bio-pesticide barrier is applied to protect your crops from common pests before they can cause damage, reducing crop loss significantly.",
+    id: "protect", step: "04", name: "Protect", title: "Pest & Disease Defense",
+    accent: "#E88A4C", action: "Repelling pests & disease", threat: "pest", tcolor: "#C0531C",
+    desc: "A natural pesticide barrier — insecticide and fungicide in one — protects your crops from common pests and from fungal, bacterial, and viral disease before they can cause damage, reducing crop loss significantly.",
   },
   {
-    id: "prevent", step: "05", name: "Prevent", title: "Disease Defense",
-    accent: "#A98FD6", action: "Neutralizing fungal, bacterial & viral threats", threat: "virus", tcolor: "#8E6FC0",
-    desc: "We apply targeted disease prevention treatments using potentized nano particles that guard against fungal, bacterial, and viral threats specific to your crops.",
-  },
-  {
-    id: "grow", step: "06", name: "Grow", title: "Growth & Plant Health",
+    id: "grow", step: "05", name: "Grow", title: "Growth & Plant Health",
     accent: "#86CC63", action: "Driving healthy, resilient growth", threat: "slow", tcolor: "#5B8A3C",
     desc: "Custom nutrient-and-biostimulant blends drive healthy growth while targeting the plant-health problems your specific crop faces — correcting deficiencies, stresses, and disorders so growth is strong where your crop is usually weakest.",
   },
   {
-    id: "boost", step: "07", name: "Boost", title: "Harvest Optimization",
+    id: "boost", step: "06", name: "Boost", title: "Harvest Optimization",
     accent: "#E2B43E", action: "Optimizing yield & quality", threat: "none", tcolor: "#C89A2E",
     desc: "The final step ensures your crops reach peak quality at harvest time with a finishing treatment that enhances yield, color, and shelf life.",
   },

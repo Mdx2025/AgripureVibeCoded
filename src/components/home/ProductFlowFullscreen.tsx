@@ -12,7 +12,7 @@ import StepVideo from "./StepVideo";
  * Full-screen, step-by-step product flow.
  *
  * - The "Watch the program work" intro is its own separated band at the top.
- * - The seven steps live in NORMAL page flow (no nested scroll container) inside a
+ * - The six steps live in NORMAL page flow (no nested scroll container) inside a
  *   two-column grid: a sticky rail in column 1, the steps in column 2. The rail is
  *   a real sticky element, so it stays centered through the sequence and releases
  *   cleanly at the end of step 7 — it never bleeds onto the section below.
@@ -130,7 +130,7 @@ export default function ProductFlowFullscreen({ products }: { products: ProductR
     <div className="bg-white">
       {/* ── Separated intro band ─────────────────────────────────────────── */}
       <section className="border-y border-hair bg-[radial-gradient(120%_120%_at_50%_-10%,#EAF3DD_0%,#F7F5EE_60%)] px-6 py-20 text-center sm:px-10 sm:py-24">
-        <div className="text-xs font-bold uppercase tracking-[0.16em] text-leaf">The seven, step by step</div>
+        <div className="text-xs font-bold uppercase tracking-[0.16em] text-leaf">The six, step by step</div>
         <h2 className="mt-3 font-display text-[clamp(32px,5.5vw,56px)] font-black tracking-[-0.02em] text-forest">
           Watch the program work
         </h2>
@@ -194,7 +194,7 @@ export default function ProductFlowFullscreen({ products }: { products: ProductR
                   {/* heading (centered) */}
                   <div className="mx-auto max-w-[820px] text-center">
                     <div className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-white" style={{ background: p.accent }}>
-                      Step {i + 1} of 7 · {phase.phase}
+                      Step {i + 1} of {products.length} · {phase.phase}
                     </div>
                     <h2 className="mt-4 font-display text-[clamp(32px,5vw,54px)] font-black leading-[0.98] tracking-[-0.02em] text-forest">{p.name}</h2>
                     <div className="mt-1 text-[clamp(16px,2vw,20px)] font-semibold" style={{ color: p.accent }}>{p.category}</div>
