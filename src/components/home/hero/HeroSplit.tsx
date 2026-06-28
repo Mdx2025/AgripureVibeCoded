@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { ArrowRight, Sprout, TrendingUp, Ban, ShieldCheck } from "lucide-react";
-import { money } from "@/lib/pricing";
 
 const POINTS = [
   { Icon: Sprout, t: "Healthier crops" },
@@ -12,12 +11,12 @@ const POINTS = [
 
 /** Hero 2 — bold split: deep-forest copy panel with proof points, motion video
  * on the other half, and a full-width trust bar across the bottom. */
-export default function HeroSplit({ floor }: { floor: number }) {
+export default function HeroSplit() {
   const facts = [
     "1,400+ operations served",
     "Up to 40% crop loss recovered",
     "Organic-eligible · copper-free",
-    `from ${money(floor)}/acre at volume`,
+    "Custom-priced by crop & acreage",
   ];
 
   return (

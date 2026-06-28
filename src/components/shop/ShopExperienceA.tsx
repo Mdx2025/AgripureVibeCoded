@@ -4,13 +4,12 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { bottleSrc } from "@/lib/products";
 import { heroVideoFor, HERO_VIDEO_POSTER, getSales } from "@/lib/product-sales";
-import { money } from "@/lib/pricing";
 import type { ProductRow } from "@/lib/repo";
 import { BundleCards, BottleLineup, type ShopBundle } from "./shop-shared";
 
 /** Version A — "The Program": tinted field-video hero, then each product as a
  * full-width season showcase row, with bundle pricing. The six sold as one. */
-export default function ShopExperienceA({ products, bundles, floor }: { products: ProductRow[]; bundles: ShopBundle[]; floor: number }) {
+export default function ShopExperienceA({ products, bundles }: { products: ProductRow[]; bundles: ShopBundle[] }) {
   return (
     <div className="bg-white text-forest">
       {/* HERO */}
@@ -31,7 +30,7 @@ export default function ShopExperienceA({ products, bundles, floor }: { products
             <Link href="/order-now" className="btn-primary px-8 py-[15px] text-[16px]">Build my program <ArrowRight size={17} strokeWidth={2.3} /></Link>
             <a href="#pricing" className="btn-ghost px-7 py-[15px] text-[16px]">See bundle pricing</a>
           </div>
-          <div className="mt-3 text-[14px] text-fg2">from <span className="font-display text-[18px] font-extrabold text-forest">{money(floor)}</span>/acre at volume</div>
+          <div className="mt-3 text-[14px] text-fg2">Custom-priced by your crop &amp; acreage</div>
 
           <div className="mt-12">
             <BottleLineup products={products} size="md" />
@@ -46,10 +45,11 @@ export default function ShopExperienceA({ products, bundles, floor }: { products
             <div className="text-xs font-bold uppercase tracking-[0.16em] text-leaf">Sold as a bundle</div>
             <h2 className="mt-3 font-display text-[clamp(28px,4.5vw,44px)] font-black tracking-[-0.02em] text-forest">Pick your coverage</h2>
             <p className="mx-auto mt-4 max-w-[620px] text-[17px] leading-[1.6] text-fg2">
-              Each bundle covers a set acreage with all six products. Priced by the acre — and it drops at volume.
+              Each bundle covers a set acreage with all six products — custom-priced by your crop and acreage. Build your
+              formulation to see your exact per-acre quote.
             </p>
           </div>
-          <BundleCards bundles={bundles} floor={floor} />
+          <BundleCards bundles={bundles} />
         </div>
       </section>
 

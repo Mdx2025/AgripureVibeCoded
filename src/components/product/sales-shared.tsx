@@ -5,7 +5,6 @@ import Link from "next/link";
 import { ArrowRight, Truck, ShieldCheck, Plus, Minus } from "lucide-react";
 import Stars from "@/components/Stars";
 import { bottleSrc } from "@/lib/products";
-import { money } from "@/lib/pricing";
 import type { ProductRow } from "@/lib/repo";
 import type { Faq } from "@/lib/product-sales";
 
@@ -26,15 +25,14 @@ export function BundlePricing({ product, bundles, accent, tone = "light" }: { pr
             <div key={b.id} className={`rounded-xl border p-4 ${dark ? "border-white/12 bg-white/[0.05]" : "bg-white"} ${b.best ? "ring-1" : ""}`} style={b.best ? { borderColor: accent, boxShadow: `inset 0 0 0 1px ${accent}` } : undefined}>
               <div className="font-mono text-[11px] uppercase tracking-[0.08em]" style={{ color: accent }}>{b.gallons}-gal · {b.acres} ac</div>
               <div className={`mt-1 font-display text-[17px] font-extrabold ${dark ? "text-white" : "text-forest"}`}>{b.label}</div>
-              <div className={`mt-1.5 font-mono text-[22px] font-semibold ${dark ? "text-white" : "text-forest"}`}>{money(b.total)}</div>
-              <div className="text-[12px]" style={{ color: accent }}>{money(b.perAcre)} / acre</div>
+              <div className={`mt-1.5 text-[12.5px] ${dark ? "text-[#C9DBC0]" : "text-fg3"}`}>Custom-priced by your crop &amp; acreage</div>
             </div>
           ))}
         </div>
       )}
       <div className="mt-4 flex flex-wrap gap-3">
-        <Link href="/order-now" className="btn-leaf px-6 py-3 text-[15px]" style={{ background: accent }}>Order Now <ArrowRight size={16} strokeWidth={2.4} /></Link>
-        <Link href="/pricing" className={`px-6 py-3 text-[15px] ${dark ? "btn-ghost-dark" : "btn-ghost"}`}>See full pricing</Link>
+        <Link href="/order-now" className="btn-leaf px-6 py-3 text-[15px]" style={{ background: accent }}>Get my price <ArrowRight size={16} strokeWidth={2.4} /></Link>
+        <Link href="/pricing" className={`px-6 py-3 text-[15px] ${dark ? "btn-ghost-dark" : "btn-ghost"}`}>See pricing</Link>
       </div>
     </div>
   );
@@ -45,7 +43,7 @@ export function TrustRow({ tone = "light" }: { tone?: "light" | "dark" }) {
   const ic = tone === "dark" ? "text-[#BFE89A]" : "text-leaf-600";
   return (
     <div className="flex flex-wrap gap-x-6 gap-y-2">
-      <span className={`flex items-center gap-[7px] text-[13px] ${c}`}><Truck size={17} strokeWidth={1.8} className={ic} />Free freight over $750</span>
+      <span className={`flex items-center gap-[7px] text-[13px] ${c}`}><Truck size={17} strokeWidth={1.8} className={ic} />Free freight on program orders</span>
       <span className={`flex items-center gap-[7px] text-[13px] ${c}`}><ShieldCheck size={17} strokeWidth={1.8} className={ic} />OMRI-style · copper-free</span>
     </div>
   );

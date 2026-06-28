@@ -3,8 +3,7 @@ import { ArrowRight, ClipboardList, Package, Microscope, FlaskConical, Droplets 
 import ComparisonTable from "@/components/ComparisonTable";
 import ProductFlowFullscreen from "@/components/home/ProductFlowFullscreen";
 import HeroSplit from "@/components/home/hero/HeroSplit";
-import { listProducts, getPricingProgram } from "@/lib/repo";
-import { floorRate } from "@/lib/pricing";
+import { listProducts } from "@/lib/repo";
 
 export const dynamic = "force-dynamic";
 
@@ -19,12 +18,11 @@ const JOURNEY = [
 
 export default function Home() {
   const products = listProducts();
-  const floor = floorRate(getPricingProgram());
 
   return (
     <>
       {/* HERO — split: copy + proof points / field video + trust bar */}
-      <HeroSplit floor={floor} />
+      <HeroSplit />
 
       {/* HOW IT WORKS — brief, educational process overview */}
       <section className="border-b border-hair bg-paper px-8 py-16 sm:py-20">

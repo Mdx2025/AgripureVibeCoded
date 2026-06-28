@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { bottleSrc, labelSrc } from "@/lib/products";
 import { getSales } from "@/lib/product-sales";
-import { money } from "@/lib/pricing";
 import type { ProductRow } from "@/lib/repo";
 import { BundlePricing, FaqList, SpecGrid, CropTags, RelatedRow, type Bundle } from "./sales-shared";
 
@@ -19,7 +18,6 @@ export default function SalesBody({ product, related, bundles }: { product: Prod
   const accent = product.accent;
   const soft = product.accentSoft;
   const bottle = product.image?.trim() || bottleSrc(product.id);
-  const fromPerAcre = bundles.length ? Math.min(...bundles.map((b) => b.perAcre)) : 0;
 
   return (
     <>
@@ -149,7 +147,7 @@ export default function SalesBody({ product, related, bundles }: { product: Prod
           <img src={bottle} alt="" className="hidden h-11 w-auto object-contain sm:block" />
           <div className="min-w-0 flex-1">
             <div className="truncate font-display text-[16px] font-extrabold text-forest">{product.name} <span className="font-sans text-[13px] font-medium text-fg3">· {product.category}</span></div>
-            {fromPerAcre > 0 && <div className="text-[12.5px] text-fg2">from <span className="font-mono font-semibold text-forest">{money(fromPerAcre)}</span>/acre · six-product program</div>}
+            <div className="text-[12.5px] text-fg2">Custom-priced by your crop &amp; acreage · six-product program</div>
           </div>
           <Link href="/pricing" className="btn-ghost hidden px-5 py-2.5 text-[14px] sm:inline-flex">Pricing</Link>
           <Link href="/order-now" className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-[15px] font-bold text-white" style={{ background: accent }}>Order Now <ArrowRight size={15} strokeWidth={2.4} /></Link>
