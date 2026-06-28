@@ -16,6 +16,7 @@ export default function QuotePage({
   const isNew = searchParams?.new === "1";
 
   const list = (xs: string[]) => (xs.length ? xs.join(", ") : "—");
+  const perCropSoil = !!(p.soilByCrop || p.weedsByCrop);
 
   return (
     <div className="mx-auto max-w-container px-6 pb-24 pt-10 sm:px-10">
@@ -54,12 +55,21 @@ export default function QuotePage({
         <div className="rounded-panel border border-hair bg-white p-7 text-[16px]">
           <h2 className="font-display text-[21px] font-extrabold text-forest">Pressures to address</h2>
           <dl className="mt-4 space-y-3.5">
-            <div><dt className="text-[13px] uppercase tracking-[0.06em] text-fg3">Soil</dt><dd className="mt-0.5 text-[#3F463E]">{list(p.soil)}</dd></div>
-            <div><dt className="text-[13px] uppercase tracking-[0.06em] text-fg3">Weeds</dt><dd className="mt-0.5 text-[#3F463E]">{list(p.weeds)}</dd></div>
+            {!perCropSoil && (p.soil?.length || p.weeds?.length) ? (
+              <>
+                <div><dt className="text-[13px] uppercase tracking-[0.06em] text-fg3">Soil</dt><dd className="mt-0.5 text-[#3F463E]">{list(p.soil || [])}</dd></div>
+                <div><dt className="text-[13px] uppercase tracking-[0.06em] text-fg3">Weeds</dt><dd className="mt-0.5 text-[#3F463E]">{list(p.weeds || [])}</dd></div>
+              </>
+            ) : null}
             {p.crops.map((c) => (
               <div key={c}>
-                <dt className="text-[13px] uppercase tracking-[0.06em] text-fg3">{c} — plant health / pests / disease</dt>
-                <dd className="mt-0.5 text-[#3F463E]">{list(p.plantHealthByCrop?.[c] || [])} · {list(p.pestsByCrop[c] || [])} · {list(p.diseasesByCrop[c] || [])}</dd>
+                <dt className="text-[13px] uppercase tracking-[0.06em] text-fg3">
+                  {c} — {perCropSoil ? "soil / weeds / " : ""}plant health / pests / disease
+                </dt>
+                <dd className="mt-0.5 text-[#3F463E]">
+                  {perCropSoil ? `${list(p.soilByCrop?.[c] || [])} · ${list(p.weedsByCrop?.[c] || [])} · ` : ""}
+                  {list(p.plantHealthByCrop?.[c] || [])} · {list(p.pestsByCrop[c] || [])} · {list(p.diseasesByCrop[c] || [])}
+                </dd>
               </div>
             ))}
           </dl>

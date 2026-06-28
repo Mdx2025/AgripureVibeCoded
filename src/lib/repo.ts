@@ -376,8 +376,11 @@ export interface QuoteInput {
   customer: { name: string; email: string; phone: string; business: string; address: string };
   crops: string[];
   acres: Record<string, number>;
-  soil: string[];
-  weeds: string[];
+  /** Legacy operation-wide lists; newer quotes use soilByCrop / weedsByCrop. */
+  soil?: string[];
+  weeds?: string[];
+  soilByCrop?: Record<string, string[]>;
+  weedsByCrop?: Record<string, string[]>;
   plantHealthByCrop?: Record<string, string[]>;
   pestsByCrop: Record<string, string[]>;
   diseasesByCrop: Record<string, string[]>;

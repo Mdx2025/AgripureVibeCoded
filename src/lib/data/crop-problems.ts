@@ -3,7 +3,7 @@
 // per-crop steps show the actual pests, diseases, and plant-health issues each
 // crop faces — backed by the same data as the lab formulation database.
 import data from "./crop-problems.json";
-import { PLANT_HEALTH, PESTS, DISEASES } from "@/lib/order-options";
+import { PLANT_HEALTH, PESTS, DISEASES, SOIL_PROBLEMS, WEEDS } from "@/lib/order-options";
 
 export interface CropProblems {
   plantHealth: string[];
@@ -37,3 +37,16 @@ const dedupe = (xs: string[]) => {
 export const plantHealthOptions = (crop: string) => dedupe([...cropProblemsFor(crop).plantHealth, ...PLANT_HEALTH]);
 export const pestOptions = (crop: string) => dedupe([...cropProblemsFor(crop).pests, ...PESTS]);
 export const diseaseOptions = (crop: string) => dedupe([...cropProblemsFor(crop).diseases, ...DISEASES]);
+export const soilOptions = (crop: string) => dedupe([...cropProblemsFor(crop).soil, ...SOIL_PROBLEMS]);
+export const weedOptions = (crop: string) => dedupe([...cropProblemsFor(crop).weeds, ...WEEDS]);
+
+/**
+ * The most common problems for a specific crop — surfaced as one-tap quick-pick
+ * chips in the Order Now wizard. Crop-specific only (no generic fallback), so a
+ * farmer sees what actually hits their crop up front instead of scrolling.
+ */
+export const commonSoil = (crop: string) => dedupe(cropProblemsFor(crop).soil);
+export const commonWeeds = (crop: string) => dedupe(cropProblemsFor(crop).weeds);
+export const commonPlantHealth = (crop: string) => dedupe(cropProblemsFor(crop).plantHealth);
+export const commonPests = (crop: string) => dedupe(cropProblemsFor(crop).pests);
+export const commonDiseases = (crop: string) => dedupe(cropProblemsFor(crop).diseases);

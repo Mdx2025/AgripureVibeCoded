@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useId } from "react";
-import { X, Plus, Search } from "lucide-react";
+import { X, Plus, Search, Check } from "lucide-react";
 
 export default function MultiCombobox({
   value,
@@ -13,6 +13,8 @@ export default function MultiCombobox({
   size = "md",
   maxOptions = 8,
   listMaxH = "max-h-[240px]",
+  quickPicks = [],
+  quickPickLabel,
 }: {
   value: string[];
   onChange: (v: string[]) => void;
@@ -25,6 +27,10 @@ export default function MultiCombobox({
   maxOptions?: number;
   /** Tailwind max-height class for the scrollable dropdown */
   listMaxH?: string;
+  /** the most common items, surfaced up front as one-tap toggle chips */
+  quickPicks?: string[];
+  /** small caption shown above the quick-pick chips */
+  quickPickLabel?: string;
 }) {
   const lg = size === "lg";
   const sz = {
@@ -34,6 +40,7 @@ export default function MultiCombobox({
     icon: lg ? 20 : 16,
     opt: lg ? "px-3.5 py-3 text-[16px]" : "px-3 py-2 text-[14px]",
     none: lg ? "px-4 py-2 text-[15px]" : "px-3.5 py-1.5 text-[13px]",
+    pick: lg ? "px-4 py-2 text-[15px]" : "px-3.5 py-1.5 text-[13px]",
   };
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
@@ -57,19 +64,53 @@ export default function MultiCombobox({
     onChange(next);
     setQuery("");
   };
-  const remove = (item: string) => onChange(value.filter((v) => v !== item));
+  const remove = (item: string) => onChange(value.filter((v) => v.toLowerCase() !== item.toLowerCase()));
+
+  // The "most common" quick-pick chips show their own selected state, so keep
+  // them out of the removable selected-chips row (which then only carries the
+  // extras a farmer searched for or typed in). The "no known problems" option
+  // has its own button below, so it never appears as a chip either.
+  const quickSet = new Set(quickPicks.map((s) => s.toLowerCase()));
+  const extras = value.filter((v) => v !== noneLabel && !quickSet.has(v.toLowerCase()));
 
   return (
     <div ref={ref} className="relative">
-      {/* selected chips */}
-      {value.length > 0 && (
+      {/* most-common-for-this-crop quick picks — tap to toggle */}
+      {quickPicks.length > 0 && (
+        <div className="mb-3.5">
+          <div className="mb-2 text-[12.5px] font-bold uppercase tracking-[0.05em] text-fg3">
+            {quickPickLabel ?? "Most common — tap to select"}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {quickPicks.map((item) => {
+              const on = selectedSet.has(item.toLowerCase());
+              return (
+                <button
+                  key={item}
+                  type="button"
+                  onClick={() => (on ? remove(item) : add(item))}
+                  className={`inline-flex items-center gap-1.5 rounded-full border font-semibold transition-colors ${sz.pick} ${
+                    on
+                      ? "border-leaf-600 bg-leaf-600 text-white"
+                      : "border-hair-strong bg-white text-fg2 hover:border-leaf hover:text-forest"
+                  }`}
+                >
+                  {on ? <Check size={14} strokeWidth={2.6} /> : <Plus size={14} strokeWidth={2.4} />}
+                  {item}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* selected extras (searched / custom) */}
+      {extras.length > 0 && (
         <div className="mb-2 flex flex-wrap gap-2">
-          {value.map((v) => (
+          {extras.map((v) => (
             <span
               key={v}
-              className={`inline-flex items-center gap-1.5 rounded-full font-semibold ${sz.chip} ${
-                v === noneLabel ? "bg-[#F0EDE3] text-fg2" : "bg-[#E9F0E0] text-leaf-700"
-              }`}
+              className={`inline-flex items-center gap-1.5 rounded-full bg-[#E9F0E0] font-semibold text-leaf-700 ${sz.chip}`}
             >
               {v}
               <button onClick={() => remove(v)} className="opacity-60 hover:opacity-100" aria-label={`Remove ${v}`}>
@@ -128,10 +169,11 @@ export default function MultiCombobox({
       {noneLabel && (
         <button
           onClick={() => (noneSelected ? onChange([]) : add(noneLabel))}
-          className={`mt-2.5 inline-flex items-center gap-2 rounded-full border font-semibold transition-colors ${sz.none} ${
+          className={`mt-3 inline-flex items-center gap-2 rounded-full border font-semibold transition-colors ${sz.none} ${
             noneSelected ? "border-forest bg-forest text-white" : "border-hair-strong bg-white text-fg2 hover:border-forest"
           }`}
         >
+          {noneSelected && <Check size={14} strokeWidth={2.6} />}
           {noneLabel}
         </button>
       )}

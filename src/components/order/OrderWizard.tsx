@@ -4,8 +4,11 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 import MultiCombobox from "./MultiCombobox";
-import { SOIL_PROBLEMS, WEEDS, NONE } from "@/lib/order-options";
-import { plantHealthOptions, pestOptions, diseaseOptions } from "@/lib/data/crop-problems";
+import { NONE } from "@/lib/order-options";
+import {
+  plantHealthOptions, pestOptions, diseaseOptions, soilOptions, weedOptions,
+  commonSoil, commonWeeds, commonPlantHealth, commonPests, commonDiseases,
+} from "@/lib/data/crop-problems";
 import { CROP_NAMES } from "@/lib/data/crop-names";
 import { quoteForCrops, cropLineItem, money } from "@/lib/crop-pricing";
 
@@ -27,8 +30,8 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
 
   const [crops, setCropsRaw] = useState<string[]>([]);
   const [acres, setAcres] = useState<Rec<number>>({});
-  const [soil, setSoil] = useState<string[]>([]);
-  const [weeds, setWeeds] = useState<string[]>([]);
+  const [soil, setSoil] = useState<Rec<string[]>>({});
+  const [weeds, setWeeds] = useState<Rec<string[]>>({});
   const [plantHealth, setPlantHealth] = useState<Rec<string[]>>({});
   const [pests, setPests] = useState<Rec<string[]>>({});
   const [diseases, setDiseases] = useState<Rec<string[]>>({});
@@ -39,6 +42,8 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
   const setCrops = (next: string[]) => {
     setCropsRaw(next);
     setAcres((p) => sync(next, p, 50));
+    setSoil((p) => sync(next, p, []));
+    setWeeds((p) => sync(next, p, []));
     setPlantHealth((p) => sync(next, p, []));
     setPests((p) => sync(next, p, []));
     setDiseases((p) => sync(next, p, []));
@@ -124,20 +129,60 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
       ),
     },
     {
-      title: "Any soil problems or deficiencies?",
-      sub: "Search and select all that apply, add your own, or mark none.",
-      valid: soil.length > 0,
-      body: <MultiCombobox size="lg" value={soil} onChange={setSoil} options={SOIL_PROBLEMS} placeholder="e.g. Nitrogen deficiency, Low pH…" noneLabel={NONE.soil} />,
+      title: "Any soil problems by crop?",
+      sub: "Tap the issues common to each crop, search for more, add your own, or mark none.",
+      valid: crops.every((c) => (soil[c] || []).length > 0),
+      body: (
+        <div className="grid gap-7 md:grid-cols-2">
+          {crops.map((c) => (
+            <div key={c}>
+              <div className="mb-2.5 font-display text-[18px] font-extrabold text-forest">{c}</div>
+              <MultiCombobox
+                size="lg"
+                value={soil[c] || []}
+                onChange={(v) => setSoil((p) => ({ ...p, [c]: v }))}
+                options={soilOptions(c)}
+                maxOptions={soilOptions(c).length}
+                listMaxH="max-h-[360px]"
+                quickPicks={commonSoil(c)}
+                quickPickLabel={`Common on ${c} — tap to select`}
+                placeholder="Search more soil problems…"
+                noneLabel={NONE.soil}
+              />
+            </div>
+          ))}
+        </div>
+      ),
     },
     {
-      title: "Any weed problems?",
-      sub: "Tell us which weeds you fight — search, add custom, or mark none.",
-      valid: weeds.length > 0,
-      body: <MultiCombobox size="lg" value={weeds} onChange={setWeeds} options={WEEDS} placeholder="e.g. Pigweed, Nutsedge…" noneLabel={NONE.weeds} />,
+      title: "Any weed problems by crop?",
+      sub: "Tap the weeds common to each crop, search for more, add your own, or mark none.",
+      valid: crops.every((c) => (weeds[c] || []).length > 0),
+      body: (
+        <div className="grid gap-7 md:grid-cols-2">
+          {crops.map((c) => (
+            <div key={c}>
+              <div className="mb-2.5 font-display text-[18px] font-extrabold text-forest">{c}</div>
+              <MultiCombobox
+                size="lg"
+                value={weeds[c] || []}
+                onChange={(v) => setWeeds((p) => ({ ...p, [c]: v }))}
+                options={weedOptions(c)}
+                maxOptions={weedOptions(c).length}
+                listMaxH="max-h-[360px]"
+                quickPicks={commonWeeds(c)}
+                quickPickLabel={`Common on ${c} — tap to select`}
+                placeholder="Search more weeds…"
+                noneLabel={NONE.weeds}
+              />
+            </div>
+          ))}
+        </div>
+      ),
     },
     {
       title: "Any plant health problems by crop?",
-      sub: "Tell us the plant-health issues each crop faces — deficiencies, stress, and disorders. Search, add your own, or mark none.",
+      sub: "Tap the plant-health issues common to each crop, search for more, add your own, or mark none.",
       valid: crops.every((c) => (plantHealth[c] || []).length > 0),
       body: (
         <div className="grid gap-7 md:grid-cols-2">
@@ -151,7 +196,9 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
                 options={plantHealthOptions(c)}
                 maxOptions={plantHealthOptions(c).length}
                 listMaxH="max-h-[360px]"
-                placeholder="e.g. Slow growth, Yellowing leaves, Heat stress…"
+                quickPicks={commonPlantHealth(c)}
+                quickPickLabel={`Common on ${c} — tap to select`}
+                placeholder="Search more plant-health problems…"
                 noneLabel={NONE.plantHealth}
               />
             </div>
@@ -161,14 +208,25 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
     },
     {
       title: "Pest problems by crop",
-      sub: "Select the pests affecting each crop, or mark none.",
+      sub: "Tap the pests common to each crop, search for more, add your own, or mark none.",
       valid: crops.every((c) => (pests[c] || []).length > 0),
       body: (
         <div className="grid gap-7 md:grid-cols-2">
           {crops.map((c) => (
             <div key={c}>
               <div className="mb-2.5 font-display text-[18px] font-extrabold text-forest">{c}</div>
-              <MultiCombobox size="lg" value={pests[c] || []} onChange={(v) => setPests((p) => ({ ...p, [c]: v }))} options={pestOptions(c)} maxOptions={pestOptions(c).length} listMaxH="max-h-[360px]" placeholder="e.g. Aphids, Spider mites…" noneLabel={NONE.pests} />
+              <MultiCombobox
+                size="lg"
+                value={pests[c] || []}
+                onChange={(v) => setPests((p) => ({ ...p, [c]: v }))}
+                options={pestOptions(c)}
+                maxOptions={pestOptions(c).length}
+                listMaxH="max-h-[360px]"
+                quickPicks={commonPests(c)}
+                quickPickLabel={`Common on ${c} — tap to select`}
+                placeholder="Search more pests…"
+                noneLabel={NONE.pests}
+              />
             </div>
           ))}
         </div>
@@ -176,14 +234,25 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
     },
     {
       title: "Viral & fungal problems by crop",
-      sub: "Select the diseases affecting each crop, or mark none.",
+      sub: "Tap the diseases common to each crop, search for more, add your own, or mark none.",
       valid: crops.every((c) => (diseases[c] || []).length > 0),
       body: (
         <div className="grid gap-7 md:grid-cols-2">
           {crops.map((c) => (
             <div key={c}>
               <div className="mb-2.5 font-display text-[18px] font-extrabold text-forest">{c}</div>
-              <MultiCombobox size="lg" value={diseases[c] || []} onChange={(v) => setDiseases((p) => ({ ...p, [c]: v }))} options={diseaseOptions(c)} maxOptions={diseaseOptions(c).length} listMaxH="max-h-[360px]" placeholder="e.g. Powdery mildew, Mosaic virus…" noneLabel={NONE.diseases} />
+              <MultiCombobox
+                size="lg"
+                value={diseases[c] || []}
+                onChange={(v) => setDiseases((p) => ({ ...p, [c]: v }))}
+                options={diseaseOptions(c)}
+                maxOptions={diseaseOptions(c).length}
+                listMaxH="max-h-[360px]"
+                quickPicks={commonDiseases(c)}
+                quickPickLabel={`Common on ${c} — tap to select`}
+                placeholder="Search more diseases…"
+                noneLabel={NONE.diseases}
+              />
             </div>
           ))}
         </div>
@@ -271,7 +340,8 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           customer,
-          crops, acres, soil, weeds,
+          crops, acres,
+          soilByCrop: soil, weedsByCrop: weeds,
           plantHealthByCrop: plantHealth,
           pestsByCrop: pests, diseasesByCrop: diseases, yieldByCrop: yieldP,
         }),
