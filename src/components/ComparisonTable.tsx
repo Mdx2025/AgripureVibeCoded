@@ -1,7 +1,4 @@
-import Link from "next/link";
 import { Check, X, Minus } from "lucide-react";
-import { getPricingProgram } from "@/lib/repo";
-import { money } from "@/lib/pricing";
 
 type Mark = "yes" | "no" | "partial";
 
@@ -28,8 +25,6 @@ const ROWS: { label: string; conv: Mark; org: Mark; ap: Mark }[] = [
 const apCol = "bg-[#F2F7EC]";
 
 export default function ComparisonTable() {
-  const program = getPricingProgram();
-
   return (
     <div className="overflow-hidden rounded-panel border border-hair shadow-g-md">
       <div className="overflow-x-auto">
@@ -61,15 +56,6 @@ export default function ComparisonTable() {
                 <td className={`px-5 py-3.5 text-center ${apCol}`}><MarkCell mark={r.ap} /></td>
               </tr>
             ))}
-            <tr className="border-t-2 border-hair-strong bg-white">
-              <td className="px-6 py-4 font-display text-[15px] font-extrabold text-forest">Typical cost per acre</td>
-              <td className="px-5 py-4 text-center font-mono text-[16px] font-semibold text-ink">{money(program.conventionalPerAc)}</td>
-              <td className="px-5 py-4 text-center font-mono text-[16px] font-semibold text-ink">{money(program.organicPerAc)}</td>
-              <td className={`px-5 py-4 text-center ${apCol}`}>
-                <div className="font-display text-[15px] font-bold text-forest">Custom</div>
-                <Link href="/pricing" className="ap-link text-[11.5px] font-semibold !text-leaf-600">priced by crop &amp; acreage →</Link>
-              </td>
-            </tr>
           </tbody>
         </table>
       </div>
