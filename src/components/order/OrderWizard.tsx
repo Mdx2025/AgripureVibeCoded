@@ -47,7 +47,7 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
     setPlantHealth((p) => sync(next, p, []));
     setPests((p) => sync(next, p, []));
     setDiseases((p) => sync(next, p, []));
-    setYieldP((p) => sync(next, p, false));
+    setYieldP((p) => sync(next, p, true));
   };
 
   const totalAcres = crops.reduce((t, c) => t + (acres[c] || 0), 0);
