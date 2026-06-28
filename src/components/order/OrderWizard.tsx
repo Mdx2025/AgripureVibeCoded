@@ -150,6 +150,7 @@ export default function OrderWizard({ soilSamplePrice, priceOverrides = [] }: { 
                 quickPickLabel={`Common on ${c} — tap to select`}
                 placeholder="Search more soil problems…"
                 noneLabel={NONE.soil}
+                unsureLabel="I don't know"
               />
             </div>
           ))}
@@ -176,6 +177,7 @@ export default function OrderWizard({ soilSamplePrice, priceOverrides = [] }: { 
                 quickPickLabel={`Common on ${c} — tap to select`}
                 placeholder="Search more weeds…"
                 noneLabel={NONE.weeds}
+                unsureLabel="I don't know"
               />
             </div>
           ))}
@@ -202,6 +204,7 @@ export default function OrderWizard({ soilSamplePrice, priceOverrides = [] }: { 
                 quickPickLabel={`Common on ${c} — tap to select`}
                 placeholder="Search more plant-health problems…"
                 noneLabel={NONE.plantHealth}
+                unsureLabel="I don't know"
               />
             </div>
           ))}
@@ -228,6 +231,7 @@ export default function OrderWizard({ soilSamplePrice, priceOverrides = [] }: { 
                 quickPickLabel={`Common on ${c} — tap to select`}
                 placeholder="Search more pests…"
                 noneLabel={NONE.pests}
+                unsureLabel="I don't know"
               />
             </div>
           ))}
@@ -254,6 +258,7 @@ export default function OrderWizard({ soilSamplePrice, priceOverrides = [] }: { 
                 quickPickLabel={`Common on ${c} — tap to select`}
                 placeholder="Search more diseases…"
                 noneLabel={NONE.diseases}
+                unsureLabel="I don't know"
               />
             </div>
           ))}

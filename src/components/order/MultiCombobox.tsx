@@ -10,6 +10,7 @@ export default function MultiCombobox({
   placeholder = "Type to search…",
   allowCustom = true,
   noneLabel,
+  unsureLabel,
   size = "md",
   maxOptions = 8,
   listMaxH = "max-h-[240px]",
@@ -22,6 +23,8 @@ export default function MultiCombobox({
   placeholder?: string;
   allowCustom?: boolean;
   noneLabel?: string;
+  /** a second exclusive option (e.g. "I don't know") shown next to noneLabel */
+  unsureLabel?: string;
   size?: "md" | "lg";
   /** how many matching options to render in the dropdown (default 8) */
   maxOptions?: number;
@@ -55,11 +58,17 @@ export default function MultiCombobox({
   const exact = options.some((o) => o.toLowerCase() === q.toLowerCase()) || selectedSet.has(q.toLowerCase());
   const showAdd = allowCustom && q.length > 0 && !exact;
 
+  // "No known problems" and "I don't know" are mutually-exclusive answers: each
+  // clears the rest, and picking a real item clears them.
+  const exclusive = [noneLabel, unsureLabel].filter(Boolean) as string[];
+  const isExclusive = (v: string) => exclusive.includes(v);
   const noneSelected = !!noneLabel && value.includes(noneLabel);
+  const unsureSelected = !!unsureLabel && value.includes(unsureLabel);
+  const locked = noneSelected || unsureSelected;
 
   const add = (item: string) => {
-    if (noneLabel && item === noneLabel) { onChange([noneLabel]); setQuery(""); return; }
-    const next = value.filter((v) => v !== noneLabel);
+    if (isExclusive(item)) { onChange([item]); setQuery(""); return; }
+    const next = value.filter((v) => !isExclusive(v));
     if (!next.some((v) => v.toLowerCase() === item.toLowerCase())) next.push(item);
     onChange(next);
     setQuery("");
@@ -71,7 +80,7 @@ export default function MultiCombobox({
   // extras a farmer searched for or typed in). The "no known problems" option
   // has its own button below, so it never appears as a chip either.
   const quickSet = new Set(quickPicks.map((s) => s.toLowerCase()));
-  const extras = value.filter((v) => v !== noneLabel && !quickSet.has(v.toLowerCase()));
+  const extras = value.filter((v) => !isExclusive(v) && !quickSet.has(v.toLowerCase()));
 
   return (
     <div ref={ref} className="relative">
@@ -126,7 +135,7 @@ export default function MultiCombobox({
         <input
           id={id}
           value={query}
-          disabled={noneSelected}
+          disabled={locked}
           onChange={(e) => { setQuery(e.target.value); setOpen(true); }}
           onFocus={() => setOpen(true)}
           onBlur={() => setTimeout(() => setOpen(false), 150)}
@@ -137,12 +146,12 @@ export default function MultiCombobox({
               else if (showAdd) add(q);
             }
           }}
-          placeholder={noneSelected ? "Clear the option below to add items" : placeholder}
+          placeholder={locked ? "Clear the option below to add items" : placeholder}
           className={`w-full bg-transparent outline-none disabled:cursor-not-allowed ${sz.input}`}
         />
       </div>
 
-      {open && !noneSelected && (filtered.length > 0 || showAdd) && (
+      {open && !locked && (filtered.length > 0 || showAdd) && (
         <div className={`absolute z-30 mt-1.5 w-full overflow-y-auto rounded-[12px] border border-hair bg-white p-1.5 shadow-g-lg ${listMaxH}`}>
           {filtered.map((o) => (
             <button
@@ -166,16 +175,31 @@ export default function MultiCombobox({
         </div>
       )}
 
-      {noneLabel && (
-        <button
-          onClick={() => (noneSelected ? onChange([]) : add(noneLabel))}
-          className={`mt-3 inline-flex items-center gap-2 rounded-full border font-semibold transition-colors ${sz.none} ${
-            noneSelected ? "border-forest bg-forest text-white" : "border-hair-strong bg-white text-fg2 hover:border-forest"
-          }`}
-        >
-          {noneSelected && <Check size={14} strokeWidth={2.6} />}
-          {noneLabel}
-        </button>
+      {(noneLabel || unsureLabel) && (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {noneLabel && (
+            <button
+              onClick={() => (noneSelected ? onChange([]) : add(noneLabel))}
+              className={`inline-flex items-center gap-2 rounded-full border font-semibold transition-colors ${sz.none} ${
+                noneSelected ? "border-forest bg-forest text-white" : "border-hair-strong bg-white text-fg2 hover:border-forest"
+              }`}
+            >
+              {noneSelected && <Check size={14} strokeWidth={2.6} />}
+              {noneLabel}
+            </button>
+          )}
+          {unsureLabel && (
+            <button
+              onClick={() => (unsureSelected ? onChange([]) : add(unsureLabel))}
+              className={`inline-flex items-center gap-2 rounded-full border font-semibold transition-colors ${sz.none} ${
+                unsureSelected ? "border-forest bg-forest text-white" : "border-hair-strong bg-white text-fg2 hover:border-forest"
+              }`}
+            >
+              {unsureSelected && <Check size={14} strokeWidth={2.6} />}
+              {unsureLabel}
+            </button>
+          )}
+        </div>
       )}
     </div>
   );
