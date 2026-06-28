@@ -375,7 +375,7 @@ export default function ResearchStudies() {
             </ol>
             <div className="mt-7 flex flex-wrap gap-3">
               <Link href="/order-now" className="btn-primary px-7 py-3.5 text-[15px]">Build my program</Link>
-              <Link href="/how-it-works" className="btn-ghost px-7 py-3.5 text-[15px]">How it works</Link>
+              <Link href="/how-it-works" className="btn-ghost px-7 py-3.5 text-[15px]">Our process</Link>
             </div>
           </div>
         </section>

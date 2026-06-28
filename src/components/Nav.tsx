@@ -9,9 +9,9 @@ import { User, ArrowRight, Menu, X } from "lucide-react";
 const LINKS = [
   { href: "/shop", label: "Products" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/how-it-works", label: "How It Works" },
-  { href: "/why-choose-us", label: "Why Choose Us" },
-  { href: "/nano-technology", label: "Nano Technology" },
+  { href: "/how-it-works", label: "Process" },
+  { href: "/why-choose-us", label: "Why AgriPure" },
+  { href: "/nano-technology", label: "Technology" },
   { href: "/resources", label: "Resources" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },

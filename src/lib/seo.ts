@@ -36,9 +36,9 @@ export const PRODUCT_TEMPLATE_PATH = "/products";
 export const SEO_PAGES: { path: string; label: string; group: string; note?: string }[] = [
   { path: "/", label: "Home", group: "Marketing pages" },
   { path: "/shop", label: "Products (Shop)", group: "Marketing pages" },
-  { path: "/how-it-works", label: "How It Works", group: "Marketing pages" },
-  { path: "/why-choose-us", label: "Why Choose Us", group: "Marketing pages" },
-  { path: "/nano-technology", label: "Nano Technology", group: "Marketing pages" },
+  { path: "/how-it-works", label: "Process", group: "Marketing pages" },
+  { path: "/why-choose-us", label: "Why AgriPure", group: "Marketing pages" },
+  { path: "/nano-technology", label: "Technology", group: "Marketing pages" },
   { path: "/pricing", label: "Pricing", group: "Marketing pages" },
   { path: "/about", label: "About", group: "Marketing pages" },
   { path: "/contact", label: "Contact", group: "Marketing pages" },
@@ -72,22 +72,22 @@ export const DEFAULT_PAGES: Record<string, SeoEntry> = {
     keywords: "AgriPure products, natural crop inputs, soil amendment, biological fungicide, yield booster",
   },
   "/how-it-works": {
-    title: "How It Works — AgriPure",
+    title: "Process — AgriPure",
     description:
       "From a custom, crop-specific formulation of all six products, to precise fertigation dosing, to season-long application across the crop lifecycle — see the full AgriPure process.",
-    keywords: "how AgriPure works, soil testing, custom formulation, fertigation system, crop program",
+    keywords: "AgriPure process, how AgriPure works, soil testing, custom formulation, fertigation system, crop program",
   },
   "/why-choose-us": {
-    title: "Why Choose AgriPure",
+    title: "Why AgriPure",
     description:
       "Build pest and disease resistance before it strikes, lift yields back toward nature's natural loss rate, qualify your crop as organic, and run one natural program instead of many.",
     keywords: "why AgriPure, organic certification, higher yields, natural pest resistance, reduce crop loss",
   },
   "/nano-technology": {
-    title: "Nano Technology — AgriPure",
+    title: "Technology — AgriPure",
     description:
       "How potentized nano-particle inputs are shrunk to a scale plants absorb directly through water — switching on the crop's own defenses with zero chemicals.",
-    keywords: "nano technology agriculture, potentized inputs, nano particles crops, natural plant defense",
+    keywords: "AgriPure technology, potentized inputs, nano particles crops, natural plant defense",
   },
   "/pricing": {
     title: "Pricing — AgriPure",

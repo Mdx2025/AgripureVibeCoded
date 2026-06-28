@@ -31,7 +31,7 @@ export default function WhyChooseUsV3() {
   return (
     <div className="bg-white text-forest">
       <VideoSplitHero
-        eyebrow="Why choose AgriPure"
+        eyebrow="Why AgriPure"
         title="Stop fighting crop loss. Prevent it."
         sub="One natural, custom-formulated program that makes your plants resistant before pests and disease ever strike — recovering the yield the world quietly loses every season, with zero chemicals."
         points={["Prevent, don't react", "Recover lost yield", "Qualify for the organic premium"]}

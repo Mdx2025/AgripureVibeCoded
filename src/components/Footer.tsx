@@ -17,7 +17,7 @@ const COLUMNS: { heading: string; links: { href: string; label: string }[] }[] =
     heading: "Company",
     links: [
       { href: "/about", label: "About" },
-      { href: "/nano-technology", label: "Nano Technology" },
+      { href: "/nano-technology", label: "Technology" },
       { href: "/contact", label: "Contact" },
     ],
   },

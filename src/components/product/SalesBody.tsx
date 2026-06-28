@@ -131,7 +131,7 @@ export default function SalesBody({ product, related, bundles }: { product: Prod
           <p className="mx-auto mt-3.5 max-w-[520px] text-[17px] text-fg2">Tell us your crop, soil, and acreage — we&apos;ll formulate all six and price it by the acre.</p>
           <div className="mt-7 flex flex-wrap justify-center gap-3.5">
             <Link href="/order-now" className="btn-leaf px-8 py-[15px] text-[16px]" style={{ background: accent }}>Order Now <ArrowRight size={17} strokeWidth={2.3} /></Link>
-            <Link href="/how-it-works" className="btn-ghost px-8 py-[15px] text-[16px]">How it works</Link>
+            <Link href="/how-it-works" className="btn-ghost px-8 py-[15px] text-[16px]">Our process</Link>
           </div>
         </div>
         <div className="mx-auto mt-20 max-w-container">

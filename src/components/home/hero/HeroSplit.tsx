@@ -37,7 +37,7 @@ export default function HeroSplit() {
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link href="/order-now" className="btn-leaf px-8 py-[15px] text-[16px]">Build my program <ArrowRight size={17} strokeWidth={2.3} /></Link>
-              <Link href="/how-it-works" className="btn-ghost-dark px-7 py-[15px] text-[16px]">How it works</Link>
+              <Link href="/how-it-works" className="btn-ghost-dark px-7 py-[15px] text-[16px]">Our process</Link>
             </div>
 
             {/* proof points */}

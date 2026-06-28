@@ -30,7 +30,7 @@ export default function NanoTechV3() {
   return (
     <div className="bg-white text-forest">
       <VideoSplitHero
-        eyebrow="Nano Technology"
+        eyebrow="Technology"
         title="Potentized nano particles, explained."
         sub="The natural science behind every AgriPure product — how we shrink proven natural remedies down to a nano scale so your plants simply drink them in through water. No chemicals, no synthetics."
         points={["100% natural source materials", "Absorbed through roots & leaves", "Centuries-proven, modernized"]}

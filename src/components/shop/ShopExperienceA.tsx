@@ -100,7 +100,7 @@ export default function ShopExperienceA({ products, bundles }: { products: Produ
           <p className="mx-auto mt-3.5 max-w-[540px] text-[17px] text-[#4A524B]">Tell us your crops, soil, and acreage — we&apos;ll formulate all six and price it by the acre.</p>
           <div className="mt-7 flex flex-wrap justify-center gap-3.5">
             <Link href="/order-now" className="btn-primary px-8 py-[15px] text-[16px]">Order Now <ArrowRight size={17} strokeWidth={2.2} /></Link>
-            <Link href="/how-it-works" className="btn-ghost px-8 py-[15px] text-[16px]">How it works</Link>
+            <Link href="/how-it-works" className="btn-ghost px-8 py-[15px] text-[16px]">Our process</Link>
           </div>
         </div>
       </section>

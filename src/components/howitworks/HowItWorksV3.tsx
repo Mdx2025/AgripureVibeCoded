@@ -26,7 +26,7 @@ export default function HowItWorksV3({ products }: { products: ProductRow[] }) {
   return (
     <div className="bg-white pb-4 text-forest">
       <VideoSplitHero
-        eyebrow="How it works"
+        eyebrow="Process"
         title="From your soil to your harvest."
         sub="Order online, test your soil, get a custom-formulated program, and feed it to your crops through your irrigation. Here's the entire process — start to finish."
         points={["Order online in minutes", "Soil-tested & custom-formulated", "Fed through your existing irrigation"]}
