@@ -370,7 +370,47 @@ export function deleteProduct(id: string): { ok: boolean } {
 
 /* ---- Quotes & customer accounts (Order Now flow) ---------------------- */
 import { DEFAULT_PROGRAM, type PricingProgram } from "./pricing";
-import { quoteForCrops } from "./crop-pricing";
+import { quoteForCrops, applyCropPricingOverrides, CROP_PRICING, type CropPricing, type CropPriceOverride } from "./crop-pricing";
+
+/* --------------------------- crop price overrides --------------------------- */
+
+/** The admin-set conventional/organic/list overrides, as stored. */
+export function getCropPriceOverrides(): CropPriceOverride[] {
+  return getDb()
+    .prepare("SELECT crop_id AS id, conventional, organic, list FROM crop_pricing_overrides")
+    .all() as CropPriceOverride[];
+}
+
+/**
+ * Apply the current DB override set onto the shared crop-pricing data and return
+ * the live, effective per-crop pricing. Call from any server entry point that
+ * prices crops (quotes, the admin table, pages that hydrate client pricing).
+ */
+export function loadCropPricing(): CropPricing[] {
+  applyCropPricingOverrides(getCropPriceOverrides());
+  return CROP_PRICING;
+}
+
+/** Insert/update one crop's conventional/organic/AgriPure-list $/acre. */
+export function saveCropPriceOverride(o: { id: string; conventional: number; organic: number; list: number }): CropPriceOverride[] {
+  const crop = CROP_PRICING.find((c) => c.id === o.id);
+  if (!crop) throw new Error(`Unknown crop: ${o.id}`);
+  const clamp = (n: number) => Math.max(0, Math.round(Number(n) || 0));
+  getDb()
+    .prepare(`INSERT INTO crop_pricing_overrides (crop_id, conventional, organic, list, updated_at)
+      VALUES (@id, @conventional, @organic, @list, @updated_at)
+      ON CONFLICT(crop_id) DO UPDATE SET conventional=@conventional, organic=@organic, list=@list, updated_at=@updated_at`)
+    .run({ id: o.id, conventional: clamp(o.conventional), organic: clamp(o.organic), list: clamp(o.list), updated_at: new Date().toISOString() });
+  applyCropPricingOverrides(getCropPriceOverrides());
+  return getCropPriceOverrides();
+}
+
+/** Remove a crop's override, restoring its generated default pricing. */
+export function resetCropPriceOverride(id: string): CropPriceOverride[] {
+  getDb().prepare("DELETE FROM crop_pricing_overrides WHERE crop_id = ?").run(id);
+  applyCropPricingOverrides(getCropPriceOverrides());
+  return getCropPriceOverrides();
+}
 
 export interface QuoteInput {
   customer: { name: string; email: string; phone: string; business: string; address: string };
@@ -402,6 +442,9 @@ export function createQuote(input: QuoteInput) {
   const email = input.customer.email.trim().toLowerCase();
   const totalAcres = Object.values(input.acres).reduce((t, n) => t + (Number(n) || 0), 0);
   const program = getPricingProgram();
+  // Apply any admin per-crop price overrides before pricing this operation, so
+  // the stored total matches what the grower saw in the Order Now estimate.
+  applyCropPricingOverrides(getCropPriceOverrides());
   // Per-crop pricing: each crop priced by type, volume-discounted on its own acreage.
   const cq = quoteForCrops(input.acres);
   // One required soil sample per crop (kit + lab analysis); added to the order total.

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import OrderWizard from "@/components/order/OrderWizard";
-import { getPricingProgram, resolveSeoMetadata } from "@/lib/repo";
+import { getPricingProgram, resolveSeoMetadata, getCropPriceOverrides } from "@/lib/repo";
 
 export const dynamic = "force-dynamic";
 
@@ -9,5 +9,5 @@ export function generateMetadata(): Metadata {
 }
 
 export default function OrderNowPage() {
-  return <OrderWizard soilSamplePrice={getPricingProgram().soilSamplePrice} />;
+  return <OrderWizard soilSamplePrice={getPricingProgram().soilSamplePrice} priceOverrides={getCropPriceOverrides()} />;
 }

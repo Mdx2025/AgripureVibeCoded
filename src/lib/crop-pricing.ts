@@ -44,6 +44,51 @@ export function findCrop(nameOrId: string): CropPricing | undefined {
   return BY_NAME.get(nameOrId.trim().toLowerCase()) ?? BY_ID.get(nameOrId.trim());
 }
 
+/* --------------------------- admin price overrides -------------------------- */
+// The conventional / organic / AgriPure-list $/acre figures can be tuned per
+// crop from the admin Crop Pricing page. Overrides live in the DB; the server
+// applies them at request time and passes the same set to the client so the
+// Order Now estimate, the /pricing explorer, and every quote agree. We snapshot
+// the generated defaults so applying an override set is idempotent and a removed
+// override cleanly restores the original numbers.
+export interface CropPriceOverride {
+  id: string;
+  conventional?: number;
+  organic?: number;
+  list?: number;
+}
+
+const BASE = new Map<string, Pick<CropPricing, "conventional" | "organic" | "list" | "premiumPct" | "savingsPct">>();
+for (const c of CROP_PRICING) {
+  BASE.set(c.id, { conventional: c.conventional, organic: c.organic, list: c.list, premiumPct: c.premiumPct, savingsPct: c.savingsPct });
+}
+
+function recomputeComparisons(c: CropPricing) {
+  c.premiumPct = c.conventional > 0 ? Math.round(((c.list - c.conventional) / c.conventional) * 100) : 0;
+  c.savingsPct = c.organic > 0 ? Math.round(((c.list - c.organic) / c.organic) * 100) : 0;
+}
+
+/**
+ * Replace the live conventional/organic/list figures with the given override
+ * set, restoring every other crop to its generated default first. Mutates the
+ * shared CropPricing objects in place so all lookups (and any code holding a
+ * reference) immediately reflect the change. Pass the FULL current override set.
+ */
+export function applyCropPricingOverrides(overrides: CropPriceOverride[]): void {
+  for (const c of CROP_PRICING) {
+    const b = BASE.get(c.id);
+    if (b) Object.assign(c, b);
+  }
+  for (const o of overrides ?? []) {
+    const c = o?.id ? BY_ID.get(o.id) ?? BY_NAME.get(o.id.toLowerCase()) : undefined;
+    if (!c) continue;
+    if (typeof o.conventional === "number" && o.conventional >= 0) c.conventional = Math.round(o.conventional);
+    if (typeof o.organic === "number" && o.organic >= 0) c.organic = Math.round(o.organic);
+    if (typeof o.list === "number" && o.list >= 0) c.list = Math.round(o.list);
+    recomputeComparisons(c);
+  }
+}
+
 /**
  * Formula 3 — the volume discount fraction for a crop at acreage `A`.
  * Shallow, saturating curve; the ceiling is that crop's tier cap.

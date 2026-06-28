@@ -1,8 +1,11 @@
 import CropPricingTable from "@/components/admin/CropPricingTable";
-import { CROP_PRICING, PRICING_PARAMS } from "@/lib/crop-pricing";
+import { PRICING_PARAMS } from "@/lib/crop-pricing";
+import { loadCropPricing, getCropPriceOverrides } from "@/lib/repo";
 
 export const dynamic = "force-dynamic";
 
 export default function AdminCropPricingPage() {
-  return <CropPricingTable crops={CROP_PRICING} params={PRICING_PARAMS} />;
+  const crops = loadCropPricing();
+  const overrideIds = getCropPriceOverrides().map((o) => o.id);
+  return <CropPricingTable crops={crops} params={PRICING_PARAMS} overrideIds={overrideIds} />;
 }

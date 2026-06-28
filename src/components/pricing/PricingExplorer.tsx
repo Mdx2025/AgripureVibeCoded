@@ -6,6 +6,7 @@ import { ArrowRight, ArrowLeft, Sprout, Check, Minus, X } from "lucide-react";
 import MultiCombobox from "@/components/order/MultiCombobox";
 import {
   CROP_PRICING, cropLineItem, productBreakdown, quoteForCrops, money,
+  applyCropPricingOverrides, type CropPriceOverride,
 } from "@/lib/crop-pricing";
 
 // Only crops we actually price can be compared.
@@ -16,7 +17,9 @@ const clampAc = (n: number) => Math.max(1, Math.min(100000, Math.round(n) || 0))
 
 type Step = "crops" | "acres" | "results";
 
-export default function PricingExplorer() {
+export default function PricingExplorer({ priceOverrides = [] }: { priceOverrides?: CropPriceOverride[] }) {
+  // Apply admin per-crop price overrides before any comparison is computed.
+  useState(() => applyCropPricingOverrides(priceOverrides));
   const [step, setStep] = useState<Step>("crops");
   const [crops, setCrops] = useState<string[]>([]);
   const [acres, setAcres] = useState<Record<string, number>>({});

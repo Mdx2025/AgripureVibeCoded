@@ -86,6 +86,10 @@ function migrate(db: Database.Database) {
       method TEXT, stage TEXT, cadence TEXT, lab_note TEXT
     );
     CREATE INDEX IF NOT EXISTS idx_crop_formulas_crop ON crop_formulas(crop);
+
+    CREATE TABLE IF NOT EXISTS crop_pricing_overrides (
+      crop_id TEXT PRIMARY KEY, conventional INTEGER, organic INTEGER, list INTEGER, updated_at TEXT
+    );
   `);
 
   // Older databases: add order workflow columns if missing.

@@ -10,7 +10,7 @@ import {
   commonSoil, commonWeeds, commonPlantHealth, commonPests, commonDiseases,
 } from "@/lib/data/crop-problems";
 import { CROP_NAMES } from "@/lib/data/crop-names";
-import { quoteForCrops, cropLineItem, money } from "@/lib/crop-pricing";
+import { quoteForCrops, cropLineItem, money, applyCropPricingOverrides, type CropPriceOverride } from "@/lib/crop-pricing";
 
 type Rec<T> = Record<string, T>;
 const sync = <T,>(crops: string[], prev: Rec<T>, init: T): Rec<T> =>
@@ -22,8 +22,10 @@ const snapAcres = (n: number) => Math.max(ACRE_STEP, Math.round(n / ACRE_STEP) *
 
 const field = "w-full rounded-[14px] border border-hair bg-white px-5 py-4 text-[18px] outline-none focus:border-leaf";
 
-export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: number }) {
+export default function OrderWizard({ soilSamplePrice, priceOverrides = [] }: { soilSamplePrice: number; priceOverrides?: CropPriceOverride[] }) {
   const router = useRouter();
+  // Apply admin per-crop price overrides before any estimate is computed.
+  useState(() => applyCropPricingOverrides(priceOverrides));
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
