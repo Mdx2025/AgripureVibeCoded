@@ -7,7 +7,7 @@ import BlendEditor, { type FormulaRow } from "./BlendEditor";
 type Formula = FormulaRow;
 const LINES = [
   { code: "RES", name: "Restore" }, { code: "CLN", name: "Cleanse" }, { code: "STR", name: "Strength" },
-  { code: "GRO", name: "Grow" }, { code: "PRO", name: "Protect" }, { code: "PRV", name: "Prevent" }, { code: "BST", name: "Boost" },
+  { code: "GRO", name: "Grow" }, { code: "PRO", name: "Protect" }, { code: "BST", name: "Boost" },
 ];
 const field = "w-full rounded-[10px] border border-[#D9D6C7] px-3 py-2.5 text-sm outline-none focus:border-leaf";
 

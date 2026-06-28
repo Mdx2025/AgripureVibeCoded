@@ -511,12 +511,12 @@ export interface CropFormulaRow {
   rate: string; method: string; stage: string; cadence: string; lab_note: string;
 }
 
-const LINE_ORDER = ["RES", "CLN", "STR", "GRO", "PRO", "PRV", "BST"];
+const LINE_ORDER = ["RES", "CLN", "STR", "GRO", "PRO", "BST"];
 const LINE_NAME: Record<string, string> = {
-  RES: "Restore", CLN: "Cleanse", STR: "Strength", GRO: "Grow", PRO: "Protect", PRV: "Prevent", BST: "Boost",
+  RES: "Restore", CLN: "Cleanse", STR: "Strength", GRO: "Grow", PRO: "Protect", BST: "Boost",
 };
 
-/** The 7 product-line lab blends for a crop (case-insensitive), in program order. */
+/** The 6 product-line lab blends for a crop (case-insensitive), in program order. */
 export function getCropFormulas(crop: string): CropFormulaRow[] {
   const rows = getDb().prepare("SELECT * FROM crop_formulas WHERE crop = ? COLLATE NOCASE").all(crop) as CropFormulaRow[];
   return rows.sort((a, b) => LINE_ORDER.indexOf(a.line_code) - LINE_ORDER.indexOf(b.line_code));

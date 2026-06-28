@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, ArrowLeft, Check } from "lucide-react";
 import MultiCombobox from "./MultiCombobox";
-import { SOIL_PROBLEMS, WEEDS, PLANT_HEALTH, PESTS, DISEASES, NONE } from "@/lib/order-options";
+import { SOIL_PROBLEMS, WEEDS, NONE } from "@/lib/order-options";
+import { plantHealthOptions, pestOptions, diseaseOptions } from "@/lib/data/crop-problems";
 import { CROP_NAMES } from "@/lib/data/crop-names";
 import { quoteForCrops, cropLineItem, money } from "@/lib/crop-pricing";
 
@@ -147,8 +148,8 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
                 size="lg"
                 value={plantHealth[c] || []}
                 onChange={(v) => setPlantHealth((p) => ({ ...p, [c]: v }))}
-                options={PLANT_HEALTH}
-                maxOptions={PLANT_HEALTH.length}
+                options={plantHealthOptions(c)}
+                maxOptions={plantHealthOptions(c).length}
                 listMaxH="max-h-[360px]"
                 placeholder="e.g. Slow growth, Yellowing leaves, Heat stress…"
                 noneLabel={NONE.plantHealth}
@@ -167,7 +168,7 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
           {crops.map((c) => (
             <div key={c}>
               <div className="mb-2.5 font-display text-[18px] font-extrabold text-forest">{c}</div>
-              <MultiCombobox size="lg" value={pests[c] || []} onChange={(v) => setPests((p) => ({ ...p, [c]: v }))} options={PESTS} placeholder="e.g. Aphids, Spider mites…" noneLabel={NONE.pests} />
+              <MultiCombobox size="lg" value={pests[c] || []} onChange={(v) => setPests((p) => ({ ...p, [c]: v }))} options={pestOptions(c)} maxOptions={pestOptions(c).length} listMaxH="max-h-[360px]" placeholder="e.g. Aphids, Spider mites…" noneLabel={NONE.pests} />
             </div>
           ))}
         </div>
@@ -182,7 +183,7 @@ export default function OrderWizard({ soilSamplePrice }: { soilSamplePrice: numb
           {crops.map((c) => (
             <div key={c}>
               <div className="mb-2.5 font-display text-[18px] font-extrabold text-forest">{c}</div>
-              <MultiCombobox size="lg" value={diseases[c] || []} onChange={(v) => setDiseases((p) => ({ ...p, [c]: v }))} options={DISEASES} placeholder="e.g. Powdery mildew, Mosaic virus…" noneLabel={NONE.diseases} />
+              <MultiCombobox size="lg" value={diseases[c] || []} onChange={(v) => setDiseases((p) => ({ ...p, [c]: v }))} options={diseaseOptions(c)} maxOptions={diseaseOptions(c).length} listMaxH="max-h-[360px]" placeholder="e.g. Powdery mildew, Mosaic virus…" noneLabel={NONE.diseases} />
             </div>
           ))}
         </div>

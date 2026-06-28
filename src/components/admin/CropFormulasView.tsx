@@ -9,7 +9,7 @@ type Row = {
   id: string; crop: string; line: string; line_code: string;
   primary_remedy: string; potency: string; targets: string; rate: string;
 };
-const LINES = ["Restore", "Cleanse", "Strength", "Grow", "Protect", "Prevent", "Boost"];
+const LINES = ["Restore", "Cleanse", "Strength", "Grow", "Protect", "Boost"];
 const TH = "px-3 py-3 text-left text-[11px] font-bold uppercase tracking-[0.06em] text-fg3 first:pl-6 last:pr-6";
 const pill = "inline-block rounded-full bg-[#E9F0E0] px-2.5 py-[3px] text-[11px] font-bold text-[#356A26]";
 const sel = "rounded-full border border-hair bg-white px-3.5 py-2 text-sm text-forest outline-none focus:border-leaf";
@@ -35,7 +35,7 @@ export default function CropFormulasView({ formulas, crops }: { formulas: Row[];
   return (
     <div>
       <div className="mb-[18px] text-sm text-[#7A8076]">
-        {formulas.length.toLocaleString()} crop-specific lab formulas imported · {crops.length} crops · 7 product lines each.{" "}
+        {formulas.length.toLocaleString()} crop-specific lab formulas imported · {crops.length} crops · 6 product lines each.{" "}
         <Link href="/admin/crop-library" className="ap-link !text-leaf-600">Open the Crop Library</Link> to view a crop&apos;s full blends or add a new one.
       </div>
 

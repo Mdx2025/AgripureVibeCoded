@@ -1,0 +1,7607 @@
+{
+ "Wheat": {
+  "plantHealth": [
+   "Lodging-prone / weak stems",
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Hessian fly",
+   "Russian wheat aphid",
+   "bird cherry-oat aphid",
+   "wheat stem sawfly",
+   "cereal leaf beetle",
+   "wheat curl mite"
+  ],
+  "diseases": [
+   "Stripe rust(F)",
+   "Leaf rust(F)",
+   "Fusarium head blight/scab(F)",
+   "Septoria/tan spot blotch(F)",
+   "Powdery mildew(F)",
+   "Take-all(F)",
+   "Barley yellow dwarf(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Sulfur",
+   "Manganese",
+   "Zinc",
+   "Copper"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Durum wheat": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress",
+   "Frost / cold-shock sensitivity",
+   "Lodging-prone / weak stems"
+  ],
+  "pests": [
+   "Wheat stem sawfly",
+   "orange wheat blossom midge",
+   "aphids",
+   "Hessian fly",
+   "grasshoppers",
+   "wireworms"
+  ],
+  "diseases": [
+   "Fusarium head blight/DON(F)",
+   "Leaf rust(F)",
+   "Stripe rust(F)",
+   "Tan spot(F)",
+   "Septoria blotch(F)",
+   "Loose smut(F)",
+   "Barley yellow dwarf(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Sulfur",
+   "Zinc",
+   "Manganese",
+   "Copper"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Spelt": {
+  "plantHealth": [
+   "Lodging-prone / weak stems",
+   "Soft NPK-driven growth",
+   "Frost / cold-shock sensitivity",
+   "Wind / mechanical stress"
+  ],
+  "pests": [
+   "Aphids",
+   "cereal leaf beetle",
+   "wireworms",
+   "grasshoppers",
+   "Hessian fly"
+  ],
+  "diseases": [
+   "Leaf rust(F)",
+   "Stripe rust(F)",
+   "Powdery mildew(F)",
+   "Septoria blotch(F)",
+   "Loose smut(F)",
+   "Barley yellow dwarf(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Sulfur",
+   "Manganese",
+   "Copper"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Barley": {
+  "plantHealth": [
+   "Lodging-prone / weak stems",
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Bird cherry-oat aphid",
+   "English grain aphid",
+   "cereal leaf beetle",
+   "Russian wheat aphid",
+   "wireworms",
+   "armyworm"
+  ],
+  "diseases": [
+   "Net blotch(F)",
+   "Scald/Rhynchosporium(F)",
+   "Spot blotch(F)",
+   "Powdery mildew(F)",
+   "Leaf rust(F)",
+   "Loose smut(F)",
+   "Barley yellow dwarf(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Manganese",
+   "Copper",
+   "Zinc"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Oats": {
+  "plantHealth": [
+   "Lodging-prone / weak stems",
+   "Frost / cold-shock sensitivity",
+   "Acid-soil / lime-induced chlorosis",
+   "Heat stress / sunscald"
+  ],
+  "pests": [
+   "Bird cherry-oat aphid",
+   "cereal leaf beetle",
+   "armyworm",
+   "grasshoppers",
+   "frit fly",
+   "wireworms"
+  ],
+  "diseases": [
+   "Crown rust(F)",
+   "Stem rust(F)",
+   "Septoria blotch(F)",
+   "Powdery mildew(F)",
+   "Loose smut(F)",
+   "Barley yellow dwarf(V)"
+  ],
+  "soil": [
+   "Manganese",
+   "Nitrogen",
+   "Copper",
+   "Zinc"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Rye": {
+  "plantHealth": [
+   "Lodging-prone / weak stems",
+   "Drought / water-deficit stress",
+   "Wind / mechanical stress",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Aphids (BYDV vectors)",
+   "grasshoppers",
+   "armyworm",
+   "wireworms",
+   "cereal leaf beetle",
+   "cutworms"
+  ],
+  "diseases": [
+   "Ergot(F)",
+   "Brown/leaf rust(F)",
+   "Stem rust(F)",
+   "Powdery mildew(F)",
+   "Scald(F)",
+   "Septoria blotch(F)",
+   "Barley yellow dwarf(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Copper",
+   "Manganese",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Triticale": {
+  "plantHealth": [
+   "Lodging-prone / weak stems",
+   "Soft NPK-driven growth",
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Aphids",
+   "orange wheat blossom midge",
+   "grasshoppers",
+   "armyworm",
+   "cutworms",
+   "wireworms"
+  ],
+  "diseases": [
+   "Leaf rust(F)",
+   "Stripe rust(F)",
+   "Ergot(F)",
+   "Septoria/tan spot(F)",
+   "Powdery mildew(F)",
+   "Fusarium head blight(F)",
+   "Barley yellow dwarf(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Copper",
+   "Manganese",
+   "Zinc"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Maize / Corn": {
+  "plantHealth": [
+   "Chilling injury (cold-sensitive)",
+   "Lodging-prone / weak stems",
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Western corn rootworm",
+   "European corn borer",
+   "fall armyworm",
+   "corn earworm",
+   "western bean cutworm",
+   "wireworms"
+  ],
+  "diseases": [
+   "Gray leaf spot(F)",
+   "Northern corn leaf blight(F)",
+   "Tar spot(F)",
+   "Common/southern rust(F)",
+   "Goss's wilt(B)",
+   "Gibberella ear & stalk rot(F)",
+   "Maize lethal necrosis(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Phosphorus",
+   "Zinc",
+   "Magnesium",
+   "Sulfur"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Parasitic weeds (Striga / broomrape)"
+  ]
+ },
+ "Sweet corn": {
+  "plantHealth": [
+   "Chilling injury (cold-sensitive)",
+   "Slow establishment / weak early vigour",
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Corn earworm",
+   "European corn borer",
+   "fall armyworm",
+   "corn rootworm beetle",
+   "sap beetles",
+   "aphids"
+  ],
+  "diseases": [
+   "Common rust(F)",
+   "Common smut(F)",
+   "Northern corn leaf blight(F)",
+   "Stewart's bacterial wilt(B)",
+   "Goss's wilt(B)",
+   "Maize dwarf mosaic(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Phosphorus",
+   "Zinc",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Rice": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Chilling injury (cold-sensitive)",
+   "Salinity / saline-soil stress",
+   "Heat stress / sunscald"
+  ],
+  "pests": [
+   "Brown planthopper",
+   "yellow stem borer",
+   "rice leaffolder",
+   "rice hispa",
+   "gall midge",
+   "rice water weevil"
+  ],
+  "diseases": [
+   "Rice blast(F)",
+   "Sheath blight(F)",
+   "Bacterial leaf blight(B)",
+   "Brown spot(F)",
+   "False smut(F)",
+   "Bacterial leaf streak(B)",
+   "Rice tungro(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Phosphorus",
+   "Zinc",
+   "Potassium",
+   "Iron toxicity"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)",
+   "Aquatic weeds",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Sorghum": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Chilling injury (cold-sensitive)",
+   "Lodging-prone / weak stems",
+   "Heat stress / sunscald"
+  ],
+  "pests": [
+   "Sugarcane aphid",
+   "sorghum midge",
+   "fall armyworm",
+   "sorghum headworm",
+   "chinch bug",
+   "stink bugs"
+  ],
+  "diseases": [
+   "Anthracnose(F)",
+   "Grain mold complex(F)",
+   "Downy mildew(F)",
+   "Charcoal rot(F)",
+   "Head smut(F)",
+   "Bacterial leaf streak(B)",
+   "Sugarcane mosaic(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Iron chlorosis",
+   "Zinc",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Parasitic weeds (Striga / broomrape)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Pearl millet": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress",
+   "Low vigour / failure to thrive"
+  ],
+  "pests": [
+   "Pearl millet head miner",
+   "shoot fly",
+   "stem borer",
+   "blister beetle",
+   "white grubs",
+   "earhead bugs"
+  ],
+  "diseases": [
+   "Downy mildew/green ear(F)",
+   "Ergot(F)",
+   "Smut(F)",
+   "Rust(F)",
+   "Blast(F)",
+   "Leaf spot(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Phosphorus",
+   "Iron",
+   "Zinc"
+  ],
+  "weeds": [
+   "Parasitic weeds (Striga / broomrape)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Finger millet": {
+  "plantHealth": [
+   "Slow establishment / weak early vigour",
+   "Drought / water-deficit stress",
+   "Salinity / saline-soil stress",
+   "Acid-soil / lime-induced chlorosis"
+  ],
+  "pests": [
+   "Pink stem borer",
+   "shoot fly",
+   "earhead bugs",
+   "grain midge",
+   "armyworm",
+   "aphids"
+  ],
+  "diseases": [
+   "Blast (neck/finger)(F)",
+   "Brown leaf spot(F)",
+   "Cercospora leaf spot(F)",
+   "Foot rot/wilt(F)",
+   "Downy mildew(F)",
+   "Smut(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Phosphorus",
+   "Iron",
+   "Zinc"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Parasitic weeds (Striga / broomrape)"
+  ]
+ },
+ "Teff": {
+  "plantHealth": [
+   "Lodging-prone / weak stems",
+   "Slow establishment / weak early vigour",
+   "Drought / water-deficit stress",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Red teff worm",
+   "shoot fly",
+   "aphids",
+   "grasshoppers",
+   "wollar (army worm)",
+   "mites"
+  ],
+  "diseases": [
+   "Teff rust(F)",
+   "Leaf blight/Helminthosporium(F)",
+   "Head smudge(F)",
+   "Damping-off(F)",
+   "Leaf spot(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Phosphorus",
+   "Zinc",
+   "Iron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial grasses (bermuda/johnsongrass/couch)"
+  ]
+ },
+ "Sugarcane": {
+  "plantHealth": [
+   "Lodging-prone / weak stems",
+   "Waterlogging / poor drainage",
+   "Chilling injury (cold-sensitive)",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Sugarcane top/stalk borer",
+   "white grubs",
+   "sugarcane aphid",
+   "woolly aphid",
+   "termites",
+   "wireworms"
+  ],
+  "diseases": [
+   "Red rot(F)",
+   "Smut/whip smut(F)",
+   "Pokkah boeng(F)",
+   "Sett rot(F)",
+   "Ratoon stunting(B)",
+   "Leaf scald(B)",
+   "Sugarcane mosaic(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Phosphorus",
+   "Potassium",
+   "Iron",
+   "Zinc"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)"
+  ]
+ },
+ "Bamboo": {
+  "plantHealth": [
+   "Slow establishment / weak early vigour",
+   "Wind / mechanical stress",
+   "Frost / cold-shock sensitivity",
+   "Transplant / establishment shock"
+  ],
+  "pests": [
+   "Bamboo mealybug",
+   "bamboo aphid",
+   "bamboo borer/Dinoderus",
+   "scale insects",
+   "bamboo mite",
+   "termites"
+  ],
+  "diseases": [
+   "Culm rot(F)",
+   "Bamboo blight(F)",
+   "Rust(F)",
+   "Leaf spot(F)",
+   "Witches' broom(B)",
+   "Thread blight(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Silicon",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)"
+  ]
+ },
+ "Turf / Lawn grass": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress",
+   "Soft NPK-driven growth",
+   "Decline / dieback"
+  ],
+  "pests": [
+   "White grubs",
+   "hairy chinch bug",
+   "billbugs",
+   "sod webworm",
+   "armyworm",
+   "annual bluegrass weevil"
+  ],
+  "diseases": [
+   "Brown patch(F)",
+   "Dollar spot(F)",
+   "Pythium blight(F)",
+   "Gray leaf spot(F)",
+   "Snow mold(F)",
+   "Summer/take-all patch(F)",
+   "Red thread(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Iron",
+   "Potassium",
+   "Manganese"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Forage / Pasture grass": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Slow establishment / weak early vigour",
+   "Frost / cold-shock sensitivity",
+   "Lodging-prone / weak stems"
+  ],
+  "pests": [
+   "Fall armyworm",
+   "grasshoppers",
+   "spittlebug",
+   "greenbug aphid",
+   "cereal leaf beetle",
+   "white grubs"
+  ],
+  "diseases": [
+   "Crown rust(F)",
+   "Bipolaris leaf spot(F)",
+   "Pythium/Fusarium root rot(F)",
+   "Powdery mildew(F)",
+   "Ergot(F)",
+   "Barley yellow dwarf(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Phosphorus",
+   "Potassium",
+   "Sulfur",
+   "Magnesium (grass tetany)"
+  ],
+  "weeds": [
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Thistles"
+  ]
+ },
+ "Quinoa": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Aphids",
+   "flea beetles",
+   "cutworms",
+   "quinoa moth",
+   "Lygus bug",
+   "leaf miners"
+  ],
+  "diseases": [
+   "Downy mildew(F)",
+   "Ascochyta black stem(F)",
+   "Passalora leaf spot(F)",
+   "Phoma stem rot(F)",
+   "Damping-off(F)",
+   "Bacterial leaf spot(B)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Phosphorus",
+   "Iron",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Amaranth (grain)": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Lodging-prone / weak stems",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Amaranth weevil",
+   "Lygus bugs",
+   "flea beetles",
+   "aphids",
+   "leaf miner",
+   "stem borer"
+  ],
+  "diseases": [
+   "Wet stalk rot/Choanephora(F)",
+   "Damping-off(F)",
+   "Cercospora/white leaf spot(F)",
+   "Downy mildew(F)",
+   "Stem canker(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Phosphorus",
+   "Iron",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Buckwheat": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Lodging-prone / weak stems",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Aphids",
+   "wireworms",
+   "Lygus bugs",
+   "Japanese beetle",
+   "grasshoppers",
+   "spider mites"
+  ],
+  "diseases": [
+   "Ramularia leaf spot(F)",
+   "Rhizoctonia root rot(F)",
+   "Powdery mildew(F)",
+   "Botrytis gray mold(F)",
+   "Downy mildew(F)"
+  ],
+  "soil": [
+   "Phosphorus",
+   "Boron",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Common bean": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Bean fly/maggot",
+   "black bean aphid",
+   "Mexican bean beetle",
+   "leafhoppers",
+   "bruchids",
+   "whitefly"
+  ],
+  "diseases": [
+   "Anthracnose(F)",
+   "Angular leaf spot(F)",
+   "Bean rust(F)",
+   "White mold/Sclerotinia(F)",
+   "Common bacterial blight(B)",
+   "Halo blight(B)",
+   "Bean common mosaic(V)"
+  ],
+  "soil": [
+   "Nitrogen (nodulation)",
+   "Zinc",
+   "Iron chlorosis",
+   "Manganese",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Lima bean": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Lygus bugs",
+   "stink bugs",
+   "lima bean pod borer",
+   "aphids",
+   "corn earworm",
+   "spider mites"
+  ],
+  "diseases": [
+   "Downy mildew(F)",
+   "White mold/Sclerotinia(F)",
+   "Anthracnose(F)",
+   "Pythium pod rot(F)",
+   "Bacterial blight(B)",
+   "Bean common mosaic(V)"
+  ],
+  "soil": [
+   "Nitrogen (nodulation)",
+   "Manganese",
+   "Zinc",
+   "Potassium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Runner bean": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Wind / mechanical stress"
+  ],
+  "pests": [
+   "Black bean aphid",
+   "Mexican bean beetle",
+   "leafhoppers",
+   "slugs",
+   "spider mites",
+   "bean seed fly"
+  ],
+  "diseases": [
+   "Halo blight(B)",
+   "Common bacterial blight(B)",
+   "Anthracnose(F)",
+   "Bean rust(F)",
+   "Chocolate spot/Botrytis(F)",
+   "Bean common mosaic(V)"
+  ],
+  "soil": [
+   "Nitrogen (nodulation)",
+   "Boron",
+   "Magnesium",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Soybean": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress",
+   "Frost / cold-shock sensitivity",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Soybean cyst nematode",
+   "soybean aphid",
+   "stink bugs",
+   "bean leaf beetle",
+   "spider mites",
+   "whitefly"
+  ],
+  "diseases": [
+   "Sudden death syndrome(F)",
+   "Phytophthora root/stem rot(F)",
+   "White mold/Sclerotinia(F)",
+   "Frogeye leaf spot(F)",
+   "Asian soybean rust(F)",
+   "Bacterial blight(B)",
+   "Soybean mosaic(V)"
+  ],
+  "soil": [
+   "Iron chlorosis (high pH)",
+   "Manganese",
+   "Potassium",
+   "Sulfur",
+   "Molybdenum (nodulation)"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Pea": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Waterlogging / poor drainage",
+   "Lodging-prone / weak stems",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Pea aphid",
+   "pea weevil",
+   "pea leaf weevil",
+   "pea moth",
+   "thrips",
+   "cutworms"
+  ],
+  "diseases": [
+   "Ascochyta blight(F)",
+   "Aphanomyces root rot(F)",
+   "Fusarium root rot/wilt(F)",
+   "Powdery mildew(F)",
+   "Downy mildew(F)",
+   "Bacterial blight(B)",
+   "Pea enation mosaic(V)"
+  ],
+  "soil": [
+   "Manganese (marsh spot)",
+   "Molybdenum (nodulation)",
+   "Phosphorus",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Field pea": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress",
+   "Lodging-prone / weak stems"
+  ],
+  "pests": [
+   "Pea aphid",
+   "pea leaf weevil",
+   "pea weevil (bruchid)",
+   "cutworms",
+   "grasshoppers",
+   "wireworms"
+  ],
+  "diseases": [
+   "Ascochyta/Mycosphaerella blight(F)",
+   "Aphanomyces root rot(F)",
+   "Fusarium root rot(F)",
+   "Powdery mildew(F)",
+   "Bacterial blight(B)",
+   "Pea seed-borne mosaic(V)"
+  ],
+  "soil": [
+   "Manganese",
+   "Molybdenum",
+   "Phosphorus",
+   "Zinc"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Chickpea": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Chilling injury (cold-sensitive)",
+   "Salinity / saline-soil stress",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Pod borer (Helicoverpa)",
+   "black aphid",
+   "cutworms",
+   "leaf miner",
+   "bruchids",
+   "semilooper"
+  ],
+  "diseases": [
+   "Ascochyta blight(F)",
+   "Fusarium wilt(F)",
+   "Botrytis gray mold(F)",
+   "Dry root rot(F)",
+   "Collar rot(F)",
+   "Bacterial blight(B)",
+   "Stunt(V)"
+  ],
+  "soil": [
+   "Iron chlorosis (calcareous)",
+   "Zinc",
+   "Boron",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Parasitic weeds (Striga / broomrape)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Lentil": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Pea aphid",
+   "Lygus bugs",
+   "cutworms",
+   "wireworms",
+   "grasshoppers",
+   "bruchids"
+  ],
+  "diseases": [
+   "Ascochyta blight(F)",
+   "Anthracnose/Colletotrichum(F)",
+   "Fusarium wilt(F)",
+   "Stemphylium blight(F)",
+   "Sclerotinia white mold(F)",
+   "Bacterial blight(B)",
+   "Pea seed-borne mosaic(V)"
+  ],
+  "soil": [
+   "Iron chlorosis (high pH)",
+   "Zinc",
+   "Boron",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Thistles",
+   "Parasitic weeds (Striga / broomrape)"
+  ]
+ },
+ "Peanut / Groundnut": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress",
+   "Chilling injury (cold-sensitive)"
+  ],
+  "pests": [
+   "Thrips (TSWV vector)",
+   "leaf miner",
+   "aphids",
+   "white grubs",
+   "spider mites",
+   "three-cornered alfalfa hopper"
+  ],
+  "diseases": [
+   "Early leaf spot(F)",
+   "Late leaf spot(F)",
+   "Groundnut rust(F)",
+   "Stem rot/Sclerotium(F)",
+   "Aflatoxin/Aspergillus(F)",
+   "Rosette(V)",
+   "Tomato spotted wilt(V)"
+  ],
+  "soil": [
+   "Calcium (pops/empty pods)",
+   "Boron (hollow heart)",
+   "Manganese",
+   "Iron chlorosis",
+   "Zinc"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Alfalfa / Lucerne": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Acid-soil / lime-induced chlorosis",
+   "Frost / cold-shock sensitivity",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Alfalfa weevil",
+   "potato leafhopper",
+   "pea aphid",
+   "spotted alfalfa aphid",
+   "alfalfa blotch leafminer",
+   "spittlebug"
+  ],
+  "diseases": [
+   "Aphanomyces root rot(F)",
+   "Phytophthora root rot(F)",
+   "Common leaf spot(F)",
+   "Sclerotinia crown/stem rot(F)",
+   "Verticillium wilt(F)",
+   "Bacterial wilt(B)",
+   "Alfalfa mosaic(V)"
+  ],
+  "soil": [
+   "Phosphorus",
+   "Potassium",
+   "Boron",
+   "Sulfur",
+   "Molybdenum (nodulation)"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Dodder (Cuscuta)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Red clover": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress",
+   "Decline / dieback",
+   "Acid-soil / lime-induced chlorosis"
+  ],
+  "pests": [
+   "Clover root weevil/Sitona",
+   "clover root borer",
+   "pea aphid",
+   "stem eelworm",
+   "slugs",
+   "clover leaf weevil"
+  ],
+  "diseases": [
+   "Clover rot/Sclerotinia(F)",
+   "Southern anthracnose(F)",
+   "Powdery mildew(F)",
+   "Northern anthracnose(F)",
+   "Fusarium root rot(F)",
+   "Bean yellow mosaic(V)"
+  ],
+  "soil": [
+   "Phosphorus",
+   "Potassium",
+   "Boron",
+   "Molybdenum",
+   "Sulfur"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Dodder (Cuscuta)"
+  ]
+ },
+ "White clover": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Waterlogging / poor drainage",
+   "Frost / cold-shock sensitivity",
+   "Low vigour / failure to thrive"
+  ],
+  "pests": [
+   "Clover root weevil/Sitona",
+   "slugs",
+   "clover casebearer",
+   "stem eelworm",
+   "aphids",
+   "clover cyst nematode"
+  ],
+  "diseases": [
+   "Sclerotinia clover rot(F)",
+   "Powdery mildew(F)",
+   "Rust(F)",
+   "Cercospora leaf spot(F)",
+   "Pythium root rot(F)",
+   "White clover mosaic(V)"
+  ],
+  "soil": [
+   "Phosphorus",
+   "Potassium",
+   "Molybdenum",
+   "Boron",
+   "Sulfur"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Dodder (Cuscuta)"
+  ]
+ },
+ "Faba / Broad bean": {
+  "plantHealth": [
+   "Lodging-prone / weak stems",
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Black bean aphid",
+   "pea & bean weevil (Sitona)",
+   "bean bruchid",
+   "pea aphid",
+   "thrips",
+   "cutworms"
+  ],
+  "diseases": [
+   "Chocolate spot/Botrytis fabae(F)",
+   "Faba bean rust(F)",
+   "Ascochyta blight(F)",
+   "Downy mildew(F)",
+   "Sclerotinia(F)",
+   "Bean leaf roll(V)",
+   "Bean yellow mosaic(V)"
+  ],
+  "soil": [
+   "Manganese (marsh spot)",
+   "Boron",
+   "Magnesium",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Parasitic weeds (Striga / broomrape)"
+  ]
+ },
+ "Mung bean": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress",
+   "Waterlogging / poor drainage",
+   "Chilling injury (cold-sensitive)"
+  ],
+  "pests": [
+   "Whitefly (MYMV vector)",
+   "thrips",
+   "pod borer (Maruca)",
+   "aphids",
+   "jassids",
+   "bruchids"
+  ],
+  "diseases": [
+   "Mungbean yellow mosaic(V)",
+   "Cercospora leaf spot(F)",
+   "Powdery mildew(F)",
+   "Anthracnose(F)",
+   "Web blight/Rhizoctonia(F)",
+   "Bacterial leaf spot(B)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Zinc",
+   "Sulfur",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Cowpea": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Heat stress / sunscald",
+   "Chilling injury (cold-sensitive)",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Legume pod borer (Maruca)",
+   "cowpea aphid",
+   "flower thrips",
+   "pod-sucking bugs",
+   "leafhoppers",
+   "bruchids"
+  ],
+  "diseases": [
+   "Cowpea aphid-borne mosaic(V)",
+   "Cercospora leaf spot(F)",
+   "Anthracnose(F)",
+   "Brown blotch(F)",
+   "Fusarium wilt(F)",
+   "Bacterial blight(B)",
+   "Web blight(F)"
+  ],
+  "soil": [
+   "Phosphorus",
+   "Molybdenum (nodulation)",
+   "Zinc",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Parasitic weeds (Striga / broomrape)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Pigeon pea": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Slow establishment / weak early vigour",
+   "Drought / water-deficit stress",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Pod borer (Helicoverpa)",
+   "pod fly (Melanagromyza)",
+   "Maruca pod borer",
+   "pod bugs",
+   "plume moth",
+   "bruchids"
+  ],
+  "diseases": [
+   "Fusarium wilt(F)",
+   "Sterility mosaic disease(V)",
+   "Phytophthora blight(F)",
+   "Alternaria leaf spot(F)",
+   "Botrytis gray mold(F)",
+   "Cercospora leaf spot(F)"
+  ],
+  "soil": [
+   "Iron chlorosis (calcareous)",
+   "Zinc",
+   "Sulfur",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Black gram": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Heat stress / sunscald",
+   "Waterlogging / poor drainage",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Whitefly (YMV vector)",
+   "pod borer (Maruca)",
+   "aphids",
+   "jassids",
+   "thrips",
+   "bruchids"
+  ],
+  "diseases": [
+   "Mungbean yellow mosaic(V)",
+   "Cercospora leaf spot(F)",
+   "Powdery mildew(F)",
+   "Anthracnose(F)",
+   "Web blight(F)",
+   "Leaf crinkle(V)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Zinc",
+   "Sulfur",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Adzuki bean": {
+  "plantHealth": [
+   "Chilling injury (cold-sensitive)",
+   "Waterlogging / poor drainage",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Adzuki pod worm",
+   "bean weevil/bruchid",
+   "aphids",
+   "cutworms",
+   "spider mites",
+   "stink bugs"
+  ],
+  "diseases": [
+   "Powdery mildew(F)",
+   "Brown stem rot(F)",
+   "White mold/Sclerotinia(F)",
+   "Anthracnose(F)",
+   "Fusarium root rot(F)",
+   "Bacterial blight(B)"
+  ],
+  "soil": [
+   "Nitrogen (nodulation)",
+   "Zinc",
+   "Manganese",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Lupin": {
+  "plantHealth": [
+   "Acid-soil / lime-induced chlorosis",
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress",
+   "Transplant / establishment shock"
+  ],
+  "pests": [
+   "Lupin aphid",
+   "redlegged earth mite",
+   "lucerne flea",
+   "native budworm",
+   "thrips",
+   "slugs"
+  ],
+  "diseases": [
+   "Anthracnose/Colletotrichum(F)",
+   "Pleiochaeta brown spot(F)",
+   "Pleiochaeta root rot(F)",
+   "Sclerotinia stem rot(F)",
+   "Phomopsis stem blight(F)",
+   "Cucumber mosaic(V)"
+  ],
+  "soil": [
+   "Manganese (split seed)",
+   "Iron chlorosis (lime-sensitive)",
+   "Molybdenum",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Vetch": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Lodging-prone / weak stems",
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Pea aphid",
+   "vetch bruchid",
+   "cutworms",
+   "Lygus bugs",
+   "potato leafhopper",
+   "native budworm"
+  ],
+  "diseases": [
+   "Ascochyta/anthracnose(F)",
+   "Downy mildew(F)",
+   "Vetch rust(F)",
+   "Botrytis(F)",
+   "Powdery mildew(F)",
+   "Bean leaf roll(V)"
+  ],
+  "soil": [
+   "Phosphorus",
+   "Molybdenum (nodulation)",
+   "Sulfur",
+   "Manganese"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Fenugreek": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Waterlogging / poor drainage",
+   "Slow establishment / weak early vigour",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Aphids",
+   "root-knot nematode",
+   "leaf miner",
+   "thrips",
+   "whitefly",
+   "cutworms"
+  ],
+  "diseases": [
+   "Powdery mildew(F)",
+   "Charcoal/root rot(F)",
+   "Cercospora leaf spot(F)",
+   "Downy mildew(F)",
+   "Fusarium wilt(F)",
+   "Bacterial leaf spot(B)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Zinc",
+   "Phosphorus",
+   "Sulfur"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Guar": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Aphids",
+   "jassids",
+   "whitefly",
+   "pod borer",
+   "blister beetle",
+   "root-knot nematode"
+  ],
+  "diseases": [
+   "Bacterial blight/Xanthomonas(B)",
+   "Alternaria leaf blight(F)",
+   "Anthracnose(F)",
+   "Powdery mildew(F)",
+   "Rhizoctonia root rot(F)",
+   "Fusarium wilt(F)"
+  ],
+  "soil": [
+   "Iron chlorosis (calcareous)",
+   "Zinc",
+   "Phosphorus",
+   "Sulfur"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Sunflower": {
+  "plantHealth": [
+   "Lodging-prone / weak stems",
+   "Wind / mechanical stress",
+   "Drought / water-deficit stress",
+   "Heat stress / sunscald"
+  ],
+  "pests": [
+   "Sunflower head moth",
+   "sunflower beetle",
+   "banded sunflower moth",
+   "red sunflower seed weevil",
+   "aphids",
+   "cutworms"
+  ],
+  "diseases": [
+   "Sclerotinia head/stalk rot(F)",
+   "Downy mildew(F)",
+   "Sunflower rust(F)",
+   "Phomopsis stem canker(F)",
+   "Verticillium wilt(F)",
+   "Charcoal rot(F)",
+   "Bacterial leaf spot(B)"
+  ],
+  "soil": [
+   "Boron (hollow stem/poor set)",
+   "Nitrogen",
+   "Potassium",
+   "Zinc",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Parasitic weeds (Striga / broomrape)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Canola / Rapeseed": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Lodging-prone / weak stems",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Crucifer flea beetle",
+   "cabbage seedpod weevil",
+   "diamondback moth",
+   "root maggots",
+   "aphids",
+   "swede midge"
+  ],
+  "diseases": [
+   "Blackleg/Leptosphaeria(F)",
+   "Sclerotinia stem rot(F)",
+   "Clubroot(F)",
+   "Alternaria black spot(F)",
+   "Verticillium stripe(F)",
+   "Downy mildew(F)",
+   "Aster yellows(B)"
+  ],
+  "soil": [
+   "Sulfur (high need)",
+   "Boron",
+   "Nitrogen",
+   "Potassium",
+   "Molybdenum"
+  ],
+  "weeds": [
+   "Volunteer / weedy crop plants",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)"
+  ]
+ },
+ "Mustard": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Lodging-prone / weak stems"
+  ],
+  "pests": [
+   "Mustard aphid",
+   "flea beetle",
+   "painted bug",
+   "diamondback moth",
+   "sawfly",
+   "leaf miner"
+  ],
+  "diseases": [
+   "White rust/Albugo(F)",
+   "Alternaria blight(F)",
+   "Downy mildew(F)",
+   "Sclerotinia stem rot(F)",
+   "Powdery mildew(F)",
+   "Bacterial leaf spot(B)"
+  ],
+  "soil": [
+   "Sulfur",
+   "Nitrogen",
+   "Boron",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Parasitic weeds (Striga / broomrape)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)"
+  ]
+ },
+ "Safflower": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Salinity / saline-soil stress",
+   "Frost / cold-shock sensitivity",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Safflower aphid",
+   "capsule/bud fly",
+   "leafhoppers",
+   "semilooper",
+   "armyworm",
+   "spider mites"
+  ],
+  "diseases": [
+   "Alternaria blight(F)",
+   "Safflower rust(F)",
+   "Sclerotinia head rot(F)",
+   "Fusarium wilt(F)",
+   "Phytophthora root rot(F)",
+   "Botrytis head rot(F)",
+   "Bacterial blight(B)"
+  ],
+  "soil": [
+   "Boron",
+   "Zinc",
+   "Nitrogen",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Thistles"
+  ]
+ },
+ "Castor": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Wind / mechanical stress",
+   "Lodging-prone / weak stems"
+  ],
+  "pests": [
+   "Castor semilooper",
+   "capsule/shoot borer",
+   "tobacco caterpillar",
+   "jassids",
+   "whitefly",
+   "gray weevil"
+  ],
+  "diseases": [
+   "Fusarium wilt(F)",
+   "Gray mold/Botrytis ricini(F)",
+   "Alternaria leaf spot(F)",
+   "Cercospora leaf spot(F)",
+   "Seedling blight/Phytophthora(F)",
+   "Charcoal rot(F)",
+   "Bacterial leaf spot(B)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Zinc",
+   "Boron",
+   "Sulfur"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Cabbage": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Transplant / establishment shock",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Cabbage looper",
+   "imported cabbageworm",
+   "diamondback moth",
+   "cabbage aphid",
+   "flea beetles",
+   "cabbage maggot"
+  ],
+  "diseases": [
+   "Black rot(B)",
+   "Clubroot(F)",
+   "Alternaria leaf spot(F)",
+   "Downy mildew(F)",
+   "Fusarium yellows(F)",
+   "Sclerotinia white mold(F)",
+   "Tipburn(P)"
+  ],
+  "soil": [
+   "Boron",
+   "Calcium",
+   "Molybdenum",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Savoy cabbage": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Transplant / establishment shock",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Cabbage aphid",
+   "diamondback moth",
+   "imported cabbageworm",
+   "flea beetles",
+   "cabbage maggot",
+   "cabbage looper"
+  ],
+  "diseases": [
+   "Black rot(B)",
+   "Clubroot(F)",
+   "Downy mildew(F)",
+   "Alternaria leaf spot(F)",
+   "Sclerotinia white mold(F)",
+   "Tipburn(P)"
+  ],
+  "soil": [
+   "Boron",
+   "Calcium",
+   "Nitrogen",
+   "Molybdenum"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Red cabbage": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Transplant / establishment shock",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Cabbage looper",
+   "cabbage aphid",
+   "diamondback moth",
+   "flea beetles",
+   "imported cabbageworm",
+   "cabbage maggot"
+  ],
+  "diseases": [
+   "Black rot(B)",
+   "Clubroot(F)",
+   "Alternaria leaf spot(F)",
+   "Downy mildew(F)",
+   "Sclerotinia white mold(F)",
+   "Tipburn(P)"
+  ],
+  "soil": [
+   "Boron",
+   "Calcium",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Broccoli": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Transplant / establishment shock",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Cabbage aphid",
+   "diamondback moth",
+   "cabbage looper",
+   "imported cabbageworm",
+   "flea beetles",
+   "swede midge"
+  ],
+  "diseases": [
+   "Downy mildew(F)",
+   "Black rot(B)",
+   "Alternaria head/leaf spot(F)",
+   "Clubroot(F)",
+   "Sclerotinia white mold(F)",
+   "Bacterial head rot(B)",
+   "Hollow stem(P)"
+  ],
+  "soil": [
+   "Boron (hollow stem)",
+   "Molybdenum (whiptail)",
+   "Calcium",
+   "Nitrogen"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Cauliflower": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Transplant / establishment shock",
+   "Frost / cold-shock sensitivity",
+   "Low vigour / failure to thrive"
+  ],
+  "pests": [
+   "Cabbage looper",
+   "imported cabbageworm",
+   "diamondback moth",
+   "cabbage aphid",
+   "flea beetles",
+   "cabbage maggot"
+  ],
+  "diseases": [
+   "Alternaria leaf spot(F)",
+   "Black rot(B)",
+   "Downy mildew(F)",
+   "Clubroot(F)",
+   "Sclerotinia white mold(F)",
+   "Bacterial soft rot(B)",
+   "Whiptail(P)"
+  ],
+  "soil": [
+   "Boron (curd browning)",
+   "Molybdenum (whiptail)",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Kale": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Transplant / establishment shock"
+  ],
+  "pests": [
+   "Cabbage aphid",
+   "harlequin bug",
+   "diamondback moth",
+   "imported cabbageworm",
+   "flea beetles",
+   "cabbage looper"
+  ],
+  "diseases": [
+   "Black rot(B)",
+   "Downy mildew(F)",
+   "Alternaria leaf spot(F)",
+   "White rust(F)",
+   "Clubroot(F)",
+   "Bacterial leaf spot(B)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Boron",
+   "Calcium",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Collard greens": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Transplant / establishment shock"
+  ],
+  "pests": [
+   "Cabbage aphid",
+   "harlequin bug",
+   "diamondback moth",
+   "cabbage looper",
+   "flea beetles",
+   "cabbage webworm"
+  ],
+  "diseases": [
+   "Black rot(B)",
+   "Downy mildew(F)",
+   "Alternaria leaf spot(F)",
+   "White rust(F)",
+   "Cercospora leaf spot(F)",
+   "Bacterial leaf spot(B)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Boron",
+   "Calcium",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Brussels sprouts": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Lodging-prone / weak stems",
+   "Frost / cold-shock sensitivity",
+   "Transplant / establishment shock"
+  ],
+  "pests": [
+   "Cabbage aphid",
+   "diamondback moth",
+   "imported cabbageworm",
+   "cabbage looper",
+   "thrips",
+   "flea beetles"
+  ],
+  "diseases": [
+   "Black rot(B)",
+   "Alternaria leaf spot(F)",
+   "Downy mildew(F)",
+   "Sclerotinia white mold(F)",
+   "Ring spot(F)",
+   "Clubroot(F)",
+   "Blown sprouts(P)"
+  ],
+  "soil": [
+   "Boron",
+   "Nitrogen",
+   "Calcium",
+   "Molybdenum"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Kohlrabi": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Transplant / establishment shock"
+  ],
+  "pests": [
+   "Flea beetles",
+   "cabbage aphid",
+   "cabbage maggot",
+   "diamondback moth",
+   "imported cabbageworm",
+   "cutworms"
+  ],
+  "diseases": [
+   "Black rot(B)",
+   "Clubroot(F)",
+   "Alternaria leaf spot(F)",
+   "Downy mildew(F)",
+   "White rust(F)",
+   "Bulb cracking(P)"
+  ],
+  "soil": [
+   "Boron",
+   "Nitrogen",
+   "Calcium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Turnip": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Flea beetles",
+   "cabbage/root maggot",
+   "aphids",
+   "diamondback moth",
+   "turnip sawfly",
+   "cutworms"
+  ],
+  "diseases": [
+   "Clubroot(F)",
+   "Alternaria leaf spot(F)",
+   "White rust(F)",
+   "Downy mildew(F)",
+   "Turnip mosaic(V)",
+   "Bacterial soft rot(B)",
+   "Brown heart(P)"
+  ],
+  "soil": [
+   "Boron (brown heart)",
+   "Nitrogen",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Rutabaga / Swede": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Cabbage/root maggot",
+   "flea beetles",
+   "aphids",
+   "diamondback moth",
+   "cutworms",
+   "wireworms"
+  ],
+  "diseases": [
+   "Clubroot(F)",
+   "Alternaria leaf spot(F)",
+   "White rust(F)",
+   "Powdery mildew(F)",
+   "Bacterial soft rot(B)",
+   "Brown heart(P)"
+  ],
+  "soil": [
+   "Boron (brown heart)",
+   "Nitrogen",
+   "Phosphorus",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Radish": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Flea beetles",
+   "cabbage root maggot",
+   "aphids",
+   "diamondback moth",
+   "harlequin bug",
+   "cutworms"
+  ],
+  "diseases": [
+   "Clubroot(F)",
+   "White rust(F)",
+   "Downy mildew(F)",
+   "Alternaria leaf spot(F)",
+   "Fusarium/Rhizoctonia root rot(F)",
+   "Black root/Aphanomyces(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Phosphorus",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Daikon": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Flea beetles",
+   "cabbage root maggot",
+   "aphids",
+   "diamondback moth",
+   "cutworms",
+   "wireworms"
+  ],
+  "diseases": [
+   "Clubroot(F)",
+   "Fusarium wilt/yellows(F)",
+   "Downy mildew(F)",
+   "White rust(F)",
+   "Bacterial soft rot(B)",
+   "Alternaria leaf spot(F)"
+  ],
+  "soil": [
+   "Boron",
+   "Nitrogen",
+   "Potassium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Bok choy": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Transplant / establishment shock",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Flea beetles",
+   "diamondback moth",
+   "cabbage aphid",
+   "imported cabbageworm",
+   "slugs",
+   "cabbage looper"
+  ],
+  "diseases": [
+   "Downy mildew(F)",
+   "Black rot(B)",
+   "Alternaria leaf spot(F)",
+   "Sclerotinia white mold(F)",
+   "Clubroot(F)",
+   "Bacterial soft rot(B)",
+   "Tipburn(P)"
+  ],
+  "soil": [
+   "Calcium (tipburn)",
+   "Nitrogen",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Napa cabbage": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Transplant / establishment shock",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Cabbage aphid",
+   "diamondback moth",
+   "flea beetles",
+   "imported cabbageworm",
+   "cabbage looper",
+   "thrips"
+  ],
+  "diseases": [
+   "Bacterial soft rot(B)",
+   "Downy mildew(F)",
+   "Alternaria leaf spot(F)",
+   "Clubroot(F)",
+   "Sclerotinia white mold(F)",
+   "Turnip mosaic(V)",
+   "Internal tipburn(P)"
+  ],
+  "soil": [
+   "Calcium (internal tipburn)",
+   "Boron",
+   "Nitrogen"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Arugula": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Flea beetles",
+   "diamondback moth",
+   "aphids",
+   "imported cabbageworm",
+   "cabbage looper",
+   "leafminers"
+  ],
+  "diseases": [
+   "Downy mildew(F)",
+   "White rust(F)",
+   "Alternaria leaf spot(F)",
+   "Cercospora leaf spot(F)",
+   "Bacterial leaf spot(B)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Calcium",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Watercress": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Aphids",
+   "flea beetles",
+   "watercress leaf beetle",
+   "caddisfly larvae",
+   "snails",
+   "whitefly"
+  ],
+  "diseases": [
+   "Crook root/Spongospora(F)",
+   "Downy mildew(F)",
+   "White rust(F)",
+   "Cercospora leaf spot(F)",
+   "Bacterial leaf spot(B)",
+   "Turnip mosaic(V)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Aquatic weeds",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)"
+  ]
+ },
+ "Horseradish": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress",
+   "Low vigour / failure to thrive"
+  ],
+  "pests": [
+   "Flea beetles",
+   "horseradish flea beetle",
+   "cabbage looper",
+   "aphids",
+   "beet armyworm",
+   "whitefringed beetle"
+  ],
+  "diseases": [
+   "Brittle root/Spiroplasma(B)",
+   "Verticillium wilt(F)",
+   "White rust(F)",
+   "Cercospora/Ramularia leaf spot(F)",
+   "Rhizoctonia root rot(F)",
+   "Internal discoloration(P)"
+  ],
+  "soil": [
+   "Potassium",
+   "Nitrogen",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Cucumber": {
+  "plantHealth": [
+   "Chilling injury (cold-sensitive)",
+   "Frost / cold-shock sensitivity",
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Striped cucumber beetle",
+   "spotted cucumber beetle",
+   "squash bug",
+   "aphids",
+   "two-spotted spider mite",
+   "pickleworm"
+  ],
+  "diseases": [
+   "Downy mildew(F)",
+   "Powdery mildew(F)",
+   "Bacterial wilt(B)",
+   "Angular leaf spot(B)",
+   "Anthracnose(F)",
+   "Gummy stem blight(F)",
+   "Cucumber mosaic(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium",
+   "Calcium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Gherkin": {
+  "plantHealth": [
+   "Chilling injury (cold-sensitive)",
+   "Frost / cold-shock sensitivity",
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Cucumber beetles",
+   "squash bug",
+   "aphids",
+   "spider mites",
+   "pickleworm",
+   "whitefly"
+  ],
+  "diseases": [
+   "Downy mildew(F)",
+   "Powdery mildew(F)",
+   "Bacterial wilt(B)",
+   "Angular leaf spot(B)",
+   "Anthracnose(F)",
+   "Cucumber mosaic(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Pumpkin": {
+  "plantHealth": [
+   "Chilling injury (cold-sensitive)",
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Wind / mechanical stress"
+  ],
+  "pests": [
+   "Squash bug",
+   "squash vine borer",
+   "striped cucumber beetle",
+   "aphids",
+   "spotted cucumber beetle",
+   "spider mites"
+  ],
+  "diseases": [
+   "Powdery mildew(F)",
+   "Downy mildew(F)",
+   "Bacterial wilt(B)",
+   "Plectosporium blight(F)",
+   "Gummy stem blight/black rot(F)",
+   "Phytophthora fruit rot(F)",
+   "Cucurbit yellow vine(B)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Winter squash": {
+  "plantHealth": [
+   "Chilling injury (cold-sensitive)",
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Transplant / establishment shock"
+  ],
+  "pests": [
+   "Squash bug",
+   "squash vine borer",
+   "cucumber beetles",
+   "aphids",
+   "spider mites",
+   "whitefly"
+  ],
+  "diseases": [
+   "Powdery mildew(F)",
+   "Downy mildew(F)",
+   "Bacterial wilt(B)",
+   "Gummy stem blight(F)",
+   "Phytophthora fruit rot(F)",
+   "Cucurbit yellow vine(B)",
+   "Angular leaf spot(B)"
+  ],
+  "soil": [
+   "Potassium",
+   "Nitrogen",
+   "Magnesium",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Summer squash / Zucchini": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress",
+   "Frost / cold-shock sensitivity",
+   "Chilling injury (cold-sensitive)"
+  ],
+  "pests": [
+   "Squash bug",
+   "squash vine borer",
+   "striped cucumber beetle",
+   "aphids",
+   "whitefly",
+   "spider mites"
+  ],
+  "diseases": [
+   "Powdery mildew(F)",
+   "Downy mildew(F)",
+   "Bacterial wilt(B)",
+   "Zucchini yellow mosaic(V)",
+   "Choanephora fruit rot(F)",
+   "Phytophthora(F)",
+   "Blossom-end rot(P)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Calcium",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Melon / Cantaloupe": {
+  "plantHealth": [
+   "Chilling injury (cold-sensitive)",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Heat stress / sunscald"
+  ],
+  "pests": [
+   "Striped cucumber beetle",
+   "melon aphid",
+   "squash bug",
+   "spider mites",
+   "whitefly",
+   "leafminers"
+  ],
+  "diseases": [
+   "Downy mildew(F)",
+   "Powdery mildew(F)",
+   "Bacterial wilt(B)",
+   "Gummy stem blight(F)",
+   "Fusarium wilt(F)",
+   "Alternaria leaf blight(F)",
+   "Cucurbit yellow vine(B)"
+  ],
+  "soil": [
+   "Potassium",
+   "Nitrogen",
+   "Magnesium",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Honeydew melon": {
+  "plantHealth": [
+   "Chilling injury (cold-sensitive)",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Heat stress / sunscald"
+  ],
+  "pests": [
+   "Melon aphid",
+   "cucumber beetles",
+   "squash bug",
+   "spider mites",
+   "whitefly",
+   "leafminers"
+  ],
+  "diseases": [
+   "Powdery mildew(F)",
+   "Downy mildew(F)",
+   "Fusarium wilt(F)",
+   "Gummy stem blight(F)",
+   "Alternaria leaf blight(F)",
+   "Cucurbit yellow vine(B)"
+  ],
+  "soil": [
+   "Potassium",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Watermelon": {
+  "plantHealth": [
+   "Chilling injury (cold-sensitive)",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Heat stress / sunscald"
+  ],
+  "pests": [
+   "Striped cucumber beetle",
+   "aphids",
+   "squash bug",
+   "spider mites",
+   "whitefly",
+   "thrips"
+  ],
+  "diseases": [
+   "Fusarium wilt(F)",
+   "Gummy stem blight(F)",
+   "Anthracnose(F)",
+   "Downy mildew(F)",
+   "Powdery mildew(F)",
+   "Bacterial fruit blotch(B)",
+   "Hollow heart(P)"
+  ],
+  "soil": [
+   "Potassium",
+   "Magnesium",
+   "Nitrogen",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Bottle gourd": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Chilling injury (cold-sensitive)",
+   "Waterlogging / poor drainage",
+   "Wind / mechanical stress"
+  ],
+  "pests": [
+   "Red pumpkin beetle",
+   "melon fruit fly",
+   "aphids",
+   "epilachna beetle",
+   "whitefly",
+   "spider mites"
+  ],
+  "diseases": [
+   "Downy mildew(F)",
+   "Powdery mildew(F)",
+   "Fusarium wilt(F)",
+   "Anthracnose(F)",
+   "Cucumber mosaic(V)",
+   "Bacterial wilt(B)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Bitter gourd": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Chilling injury (cold-sensitive)",
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Melon fruit fly",
+   "aphids",
+   "fruit borer",
+   "epilachna beetle",
+   "whitefly",
+   "red pumpkin beetle"
+  ],
+  "diseases": [
+   "Downy mildew(F)",
+   "Powdery mildew(F)",
+   "Fusarium wilt(F)",
+   "Cucumber mosaic(V)",
+   "Anthracnose(F)",
+   "Gummy stem blight(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Ridge gourd / Luffa": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Chilling injury (cold-sensitive)",
+   "Slow establishment / weak early vigour",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Melon fruit fly",
+   "red pumpkin beetle",
+   "aphids",
+   "epilachna beetle",
+   "whitefly",
+   "leafminer"
+  ],
+  "diseases": [
+   "Downy mildew(F)",
+   "Powdery mildew(F)",
+   "Fusarium wilt(F)",
+   "Anthracnose(F)",
+   "Cucumber mosaic(V)",
+   "Cercospora leaf spot(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Chayote": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Chilling injury (cold-sensitive)",
+   "Wind / mechanical stress",
+   "Heat stress / sunscald"
+  ],
+  "pests": [
+   "Aphids",
+   "whitefly",
+   "spider mites",
+   "fruit fly",
+   "cucumber beetles",
+   "root-knot nematode"
+  ],
+  "diseases": [
+   "Powdery mildew(F)",
+   "Downy mildew(F)",
+   "Anthracnose(F)",
+   "Gummy stem blight(F)",
+   "Cucumber mosaic(V)",
+   "Root rot(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Tomato": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Soft NPK-driven growth",
+   "Transplant / establishment shock"
+  ],
+  "pests": [
+   "Tomato hornworm",
+   "tomato fruitworm/corn earworm",
+   "aphids",
+   "whitefly",
+   "two-spotted spider mite",
+   "thrips",
+   "stink bugs"
+  ],
+  "diseases": [
+   "Early blight(F)",
+   "Late blight(F)",
+   "Septoria leaf spot(F)",
+   "Fusarium/Verticillium wilt(F)",
+   "Bacterial spot/speck(B)",
+   "Tomato spotted wilt(V)",
+   "Blossom-end rot(P)"
+  ],
+  "soil": [
+   "Calcium (BER)",
+   "Magnesium",
+   "Potassium",
+   "Nitrogen",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Sedges (nutsedge)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Potato": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Chilling injury (cold-sensitive)",
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Colorado potato beetle",
+   "potato leafhopper",
+   "green peach aphid",
+   "wireworms",
+   "flea beetles",
+   "potato tuberworm"
+  ],
+  "diseases": [
+   "Late blight(F)",
+   "Early blight(F)",
+   "Common scab(B)",
+   "Verticillium wilt(F)",
+   "Black leg/soft rot(B)",
+   "Potato virus Y/leafroll(V)",
+   "Hollow heart(P)"
+  ],
+  "soil": [
+   "Potassium",
+   "Phosphorus",
+   "Magnesium",
+   "Calcium"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Sedges (nutsedge)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Pepper / Capsicum (bell)": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Transplant / establishment shock"
+  ],
+  "pests": [
+   "Pepper weevil",
+   "aphids",
+   "European corn borer",
+   "thrips",
+   "whitefly",
+   "two-spotted spider mite"
+  ],
+  "diseases": [
+   "Bacterial spot(B)",
+   "Phytophthora blight/root rot(F)",
+   "Anthracnose(F)",
+   "Cucumber/tobacco mosaic(V)",
+   "Tomato spotted wilt(V)",
+   "Blossom-end rot(P)",
+   "Sunscald(P)"
+  ],
+  "soil": [
+   "Calcium (BER)",
+   "Magnesium",
+   "Potassium",
+   "Nitrogen"
+  ],
+  "weeds": [
+   "Sedges (nutsedge)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)"
+  ]
+ },
+ "Chili pepper": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Transplant / establishment shock"
+  ],
+  "pests": [
+   "Thrips (vector)",
+   "aphids",
+   "pepper fruit borer",
+   "whitefly",
+   "spider mites",
+   "pepper weevil"
+  ],
+  "diseases": [
+   "Anthracnose/fruit rot(F)",
+   "Bacterial spot/wilt(B)",
+   "Phytophthora blight(F)",
+   "Chilli leaf curl(V)",
+   "Cercospora leaf spot(F)",
+   "Powdery mildew(F)",
+   "Blossom-end rot(P)"
+  ],
+  "soil": [
+   "Calcium (BER)",
+   "Magnesium",
+   "Nitrogen",
+   "Potassium"
+  ],
+  "weeds": [
+   "Sedges (nutsedge)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)"
+  ]
+ },
+ "Eggplant / Aubergine": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Chilling injury (cold-sensitive)",
+   "Heat stress / sunscald",
+   "Transplant / establishment shock"
+  ],
+  "pests": [
+   "Flea beetles",
+   "Colorado potato beetle",
+   "aphids",
+   "spider mites",
+   "whitefly",
+   "eggplant fruit & shoot borer"
+  ],
+  "diseases": [
+   "Verticillium wilt(F)",
+   "Phomopsis blight/fruit rot(F)",
+   "Early blight(F)",
+   "Bacterial wilt(B)",
+   "Cercospora leaf spot(F)",
+   "Tomato mosaic(V)",
+   "Blossom-end rot(P)"
+  ],
+  "soil": [
+   "Magnesium",
+   "Potassium",
+   "Calcium",
+   "Nitrogen"
+  ],
+  "weeds": [
+   "Sedges (nutsedge)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)"
+  ]
+ },
+ "Tomatillo": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Transplant / establishment shock",
+   "Heat stress / sunscald",
+   "Lodging-prone / weak stems"
+  ],
+  "pests": [
+   "Three-lined potato beetle",
+   "Colorado potato beetle",
+   "aphids",
+   "flea beetles",
+   "cutworms",
+   "whitefly"
+  ],
+  "diseases": [
+   "Tomato spotted wilt(V)",
+   "Phytophthora root/fruit rot(F)",
+   "Bacterial spot(B)",
+   "Alternaria/early blight(F)",
+   "Powdery mildew(F)",
+   "Sclerotinia(F)"
+  ],
+  "soil": [
+   "Calcium",
+   "Magnesium",
+   "Nitrogen",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Tobacco": {
+  "plantHealth": [
+   "Transplant / establishment shock",
+   "Soft NPK-driven growth",
+   "Waterlogging / poor drainage",
+   "Lodging-prone / weak stems"
+  ],
+  "pests": [
+   "Tobacco budworm",
+   "tobacco hornworm",
+   "green peach aphid",
+   "tobacco flea beetle",
+   "root-knot nematode",
+   "tobacco thrips"
+  ],
+  "diseases": [
+   "Black shank/Phytophthora(F)",
+   "Blue mould(F)",
+   "Tobacco mosaic(V)",
+   "Granville/bacterial wilt(B)",
+   "Fusarium wilt(F)",
+   "Brown spot/Alternaria(F)",
+   "Tomato spotted wilt(V)"
+  ],
+  "soil": [
+   "Potassium",
+   "Nitrogen",
+   "Magnesium",
+   "Boron",
+   "Manganese"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Goji berry": {
+  "plantHealth": [
+   "Salinity / saline-soil stress",
+   "Drought / water-deficit stress",
+   "Wind / mechanical stress",
+   "Acid-soil / lime-induced chlorosis"
+  ],
+  "pests": [
+   "Goji gall mite",
+   "aphids",
+   "potato psyllid",
+   "spider mites",
+   "whitefly",
+   "leafhoppers"
+  ],
+  "diseases": [
+   "Anthracnose(F)",
+   "Powdery mildew(F)",
+   "Phytophthora root rot(F)",
+   "Bacterial leaf spot(B)",
+   "Rust(F)",
+   "Botrytis(F)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen",
+   "Potassium"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Onion": {
+  "plantHealth": [
+   "Slow establishment / weak early vigour",
+   "Frost / cold-shock sensitivity",
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Onion thrips",
+   "onion maggot",
+   "leafminers",
+   "cutworms",
+   "bulb mites",
+   "armyworms"
+  ],
+  "diseases": [
+   "Botrytis leaf blight/neck rot(F)",
+   "Downy mildew(F)",
+   "Purple blotch(F)",
+   "Pink root(F)",
+   "Fusarium basal rot(F)",
+   "White rot(F)",
+   "Iris yellow spot(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Sulfur",
+   "Zinc",
+   "Manganese"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Garlic": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Waterlogging / poor drainage",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Onion thrips",
+   "bulb mites",
+   "onion maggot",
+   "wheat curl mite",
+   "leafminers",
+   "stem & bulb nematode"
+  ],
+  "diseases": [
+   "White rot(F)",
+   "Botrytis neck rot(F)",
+   "Fusarium basal rot(F)",
+   "Rust(F)",
+   "Downy mildew(F)",
+   "Garlic mosaic/yellow streak(V)",
+   "Blue mould(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Sulfur",
+   "Potassium",
+   "Zinc"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Leek": {
+  "plantHealth": [
+   "Slow establishment / weak early vigour",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Soft NPK-driven growth"
+  ],
+  "pests": [
+   "Onion thrips",
+   "leek moth",
+   "onion maggot",
+   "allium leafminer",
+   "leafminers",
+   "cutworms"
+  ],
+  "diseases": [
+   "Rust(F)",
+   "Purple blotch(F)",
+   "White rot(F)",
+   "Downy mildew(F)",
+   "Botrytis leaf blight(F)",
+   "Fusarium basal rot(F)",
+   "Pink root(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Sulfur",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Shallot": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Slow establishment / weak early vigour",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Onion thrips",
+   "onion maggot",
+   "leafminers",
+   "bulb mites",
+   "cutworms",
+   "armyworms"
+  ],
+  "diseases": [
+   "Downy mildew(F)",
+   "Purple blotch(F)",
+   "Botrytis neck rot(F)",
+   "Fusarium basal rot(F)",
+   "White rot(F)",
+   "Stemphylium leaf blight(F)",
+   "Onion yellow dwarf(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Sulfur",
+   "Zinc"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Spring onion / Scallion": {
+  "plantHealth": [
+   "Slow establishment / weak early vigour",
+   "Drought / water-deficit stress",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Onion thrips",
+   "onion maggot",
+   "leafminers",
+   "cutworms",
+   "aphids",
+   "armyworms"
+  ],
+  "diseases": [
+   "Downy mildew(F)",
+   "Purple blotch(F)",
+   "Botrytis leaf blight(F)",
+   "Pink root(F)",
+   "Rust(F)",
+   "Iris yellow spot(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Sulfur"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Chives": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Onion thrips",
+   "leafminers",
+   "allium leafminer",
+   "aphids",
+   "bulb mites",
+   "cutworms"
+  ],
+  "diseases": [
+   "Rust(F)",
+   "Downy mildew(F)",
+   "Botrytis leaf blight(F)",
+   "White rot(F)",
+   "Purple blotch(F)",
+   "Pink root(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Sulfur"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Carrot": {
+  "plantHealth": [
+   "Slow establishment / weak early vigour",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Carrot rust fly",
+   "carrot weevil",
+   "willow-carrot aphid",
+   "aster leafhopper",
+   "root-knot nematode",
+   "armyworms"
+  ],
+  "diseases": [
+   "Alternaria leaf blight(F)",
+   "Cercospora leaf blight(F)",
+   "Aster yellows(B)",
+   "Cavity spot/Pythium(F)",
+   "Bacterial soft rot(B)",
+   "Sclerotinia white mold(F)",
+   "Forking(P)"
+  ],
+  "soil": [
+   "Potassium",
+   "Boron",
+   "Phosphorus",
+   "Nitrogen"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Celery": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Transplant / establishment shock"
+  ],
+  "pests": [
+   "Aphids",
+   "aster leafhopper",
+   "carrot rust fly",
+   "armyworms",
+   "leafminers",
+   "tarnished plant bug"
+  ],
+  "diseases": [
+   "Early blight/Cercospora(F)",
+   "Late blight/Septoria(F)",
+   "Fusarium yellows(F)",
+   "Bacterial leaf spot(B)",
+   "Pink rot/Sclerotinia(F)",
+   "Aster yellows(B)",
+   "Blackheart(P)"
+  ],
+  "soil": [
+   "Calcium (blackheart)",
+   "Boron (cracked stem)",
+   "Magnesium",
+   "Nitrogen"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Celeriac": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Transplant / establishment shock"
+  ],
+  "pests": [
+   "Carrot rust fly",
+   "aphids",
+   "celery leafminer",
+   "aster leafhopper",
+   "carrot weevil",
+   "armyworms"
+  ],
+  "diseases": [
+   "Septoria leaf spot(F)",
+   "Cercospora early blight(F)",
+   "Sclerotinia pink rot(F)",
+   "Bacterial leaf spot(B)",
+   "Aster yellows(B)",
+   "Hollow heart(P)"
+  ],
+  "soil": [
+   "Calcium",
+   "Boron",
+   "Nitrogen"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Parsley": {
+  "plantHealth": [
+   "Slow establishment / weak early vigour",
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald"
+  ],
+  "pests": [
+   "Aphids",
+   "carrot rust fly",
+   "parsley worm (swallowtail)",
+   "leafminers",
+   "spider mites",
+   "armyworms"
+  ],
+  "diseases": [
+   "Septoria leaf spot(F)",
+   "Cercospora leaf blight(F)",
+   "Powdery mildew(F)",
+   "Damping-off(F)",
+   "Crown/root rot(F)",
+   "Aster yellows(B)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Cilantro / Coriander": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Slow establishment / weak early vigour",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Aphids",
+   "leafhoppers",
+   "armyworms",
+   "whitefly",
+   "spider mites",
+   "cutworms"
+  ],
+  "diseases": [
+   "Bacterial leaf spot(B)",
+   "Powdery mildew(F)",
+   "Damping-off(F)",
+   "Soft rot(B)",
+   "Wilt/Fusarium(F)",
+   "Septoria leaf spot(F)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Dill": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Slow establishment / weak early vigour",
+   "Transplant / establishment shock"
+  ],
+  "pests": [
+   "Aphids",
+   "parsley worm",
+   "armyworms",
+   "leafhoppers",
+   "spider mites",
+   "cutworms"
+  ],
+  "diseases": [
+   "Cercospora leaf blight(F)",
+   "Powdery mildew(F)",
+   "Damping-off(F)",
+   "Downy mildew(F)",
+   "Aster yellows(B)",
+   "Soft rot(B)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Fennel (bulb)": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress",
+   "Transplant / establishment shock",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Aphids",
+   "parsley worm",
+   "armyworms",
+   "carrot rust fly",
+   "leafminers",
+   "cutworms"
+  ],
+  "diseases": [
+   "Cercospora leaf blight(F)",
+   "Powdery mildew(F)",
+   "Sclerotinia rot(F)",
+   "Damping-off(F)",
+   "Bacterial leaf spot(B)"
+  ],
+  "soil": [
+   "Boron",
+   "Nitrogen",
+   "Potassium"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Parsnip": {
+  "plantHealth": [
+   "Slow establishment / weak early vigour",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Carrot rust fly",
+   "carrot weevil",
+   "aphids",
+   "parsnip webworm",
+   "armyworms",
+   "root-knot nematode"
+  ],
+  "diseases": [
+   "Canker/Itersonilia(F)",
+   "Alternaria/Cercospora blight(F)",
+   "Powdery mildew(F)",
+   "Sclerotinia white mold(F)",
+   "Bacterial soft rot(B)",
+   "Aster yellows(B)"
+  ],
+  "soil": [
+   "Boron",
+   "Potassium",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Cumin": {
+  "plantHealth": [
+   "Slow establishment / weak early vigour",
+   "Drought / water-deficit stress",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Aphids",
+   "thrips",
+   "cutworms",
+   "cumin gall midge",
+   "whitefly",
+   "armyworms"
+  ],
+  "diseases": [
+   "Cumin wilt/Fusarium(F)",
+   "Alternaria blight(F)",
+   "Powdery mildew(F)",
+   "Cumin blight(F)",
+   "Root rot(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Phosphorus",
+   "Zinc"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Caraway": {
+  "plantHealth": [
+   "Slow establishment / weak early vigour",
+   "Drought / water-deficit stress",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Aphids",
+   "caraway moth",
+   "cutworms",
+   "leafhoppers",
+   "spider mites",
+   "armyworms"
+  ],
+  "diseases": [
+   "Powdery mildew(F)",
+   "Septoria leaf spot(F)",
+   "Sclerotinia rot(F)",
+   "Downy mildew(F)",
+   "Bacterial leaf spot(B)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Phosphorus",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Lettuce": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Transplant / establishment shock",
+   "Soft NPK-driven growth"
+  ],
+  "pests": [
+   "Currant-lettuce aphid",
+   "thrips",
+   "cabbage looper",
+   "armyworms",
+   "leafminers",
+   "slugs"
+  ],
+  "diseases": [
+   "Downy mildew(F)",
+   "Sclerotinia drop(F)",
+   "Bottom rot/Rhizoctonia(F)",
+   "Bacterial leaf spot(B)",
+   "Lettuce mosaic(V)",
+   "Big vein(V)",
+   "Tipburn(P)"
+  ],
+  "soil": [
+   "Calcium (tipburn)",
+   "Nitrogen",
+   "Phosphorus",
+   "Molybdenum"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Endive": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Transplant / establishment shock",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Aphids",
+   "slugs",
+   "cabbage looper",
+   "leafminers",
+   "armyworms",
+   "thrips"
+  ],
+  "diseases": [
+   "Downy mildew(F)",
+   "Sclerotinia drop(F)",
+   "Bottom rot/Rhizoctonia(F)",
+   "Bacterial soft rot(B)",
+   "Botrytis gray mold(F)",
+   "Tipburn(P)"
+  ],
+  "soil": [
+   "Calcium (tipburn)",
+   "Nitrogen",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)"
+  ]
+ },
+ "Chicory / Radicchio": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Transplant / establishment shock",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Aphids",
+   "leafhoppers",
+   "cabbage looper",
+   "cutworms",
+   "leafminers",
+   "slugs"
+  ],
+  "diseases": [
+   "Sclerotinia drop(F)",
+   "Bacterial soft rot(B)",
+   "Powdery mildew(F)",
+   "Downy mildew(F)",
+   "Bottom rot/Rhizoctonia(F)",
+   "Tipburn(P)"
+  ],
+  "soil": [
+   "Calcium",
+   "Nitrogen",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Globe artichoke": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Transplant / establishment shock",
+   "Decline / dieback"
+  ],
+  "pests": [
+   "Artichoke plume moth",
+   "aphids (artichoke aphid)",
+   "snails & slugs",
+   "thrips",
+   "cutworms",
+   "spider mites"
+  ],
+  "diseases": [
+   "Powdery mildew(F)",
+   "Botrytis gray mold(F)",
+   "Sclerotinia/Ramularia(F)",
+   "Verticillium wilt(F)",
+   "Curly dwarf virus(V)",
+   "Bacterial crown rot(B)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Boron"
+  ],
+  "weeds": [
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Jerusalem artichoke": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Lodging-prone / weak stems",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Aphids",
+   "tarnished plant bug",
+   "sunflower beetle",
+   "cutworms",
+   "root-knot nematode",
+   "wireworms"
+  ],
+  "diseases": [
+   "Sclerotinia stalk rot(F)",
+   "Powdery mildew(F)",
+   "Rust(F)",
+   "Septoria leaf spot(F)",
+   "Southern blight(F)",
+   "Bacterial soft rot(B)"
+  ],
+  "soil": [
+   "Potassium",
+   "Nitrogen",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Volunteer / weedy crop plants",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)"
+  ]
+ },
+ "Safflower (oilseed)": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Salinity / saline-soil stress",
+   "Frost / cold-shock sensitivity",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Safflower aphid",
+   "capsule fly",
+   "leafhoppers",
+   "semilooper",
+   "armyworm",
+   "spider mites"
+  ],
+  "diseases": [
+   "Alternaria blight(F)",
+   "Safflower rust(F)",
+   "Sclerotinia head rot(F)",
+   "Fusarium wilt(F)",
+   "Phytophthora root rot(F)",
+   "Bacterial blight(B)"
+  ],
+  "soil": [
+   "Boron",
+   "Zinc",
+   "Nitrogen",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Thistles"
+  ]
+ },
+ "Stevia": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Waterlogging / poor drainage",
+   "Transplant / establishment shock",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Aphids",
+   "whitefly",
+   "spider mites",
+   "thrips",
+   "leafminers",
+   "cutworms"
+  ],
+  "diseases": [
+   "Septoria leaf spot(F)",
+   "Sclerotinia stem rot(F)",
+   "Alternaria leaf spot(F)",
+   "Rhizoctonia root rot(F)",
+   "Bacterial leaf spot(B)",
+   "Powdery mildew(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Iron chlorosis"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Chrysanthemum (cut flower)": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Soft NPK-driven growth",
+   "Lodging-prone / weak stems",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Chrysanthemum aphid",
+   "two-spotted spider mite",
+   "thrips",
+   "leafminer",
+   "cutworms",
+   "whitefly"
+  ],
+  "diseases": [
+   "Chrysanthemum white rust(F)",
+   "Septoria leaf spot(F)",
+   "Powdery mildew(F)",
+   "Botrytis gray mold(F)",
+   "Fusarium wilt(F)",
+   "Chrysanthemum stunt viroid(V)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen",
+   "Potassium"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Marigold": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Soft NPK-driven growth",
+   "Transplant / establishment shock",
+   "Heat stress / sunscald"
+  ],
+  "pests": [
+   "Two-spotted spider mite",
+   "aphids",
+   "thrips",
+   "cutworms",
+   "snails & slugs",
+   "leafminers"
+  ],
+  "diseases": [
+   "Botrytis gray mold(F)",
+   "Powdery mildew(F)",
+   "Alternaria leaf spot(F)",
+   "Sclerotinia stem rot(F)",
+   "Damping-off(F)",
+   "Aster yellows(B)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Spinach": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Slow establishment / weak early vigour",
+   "Soft NPK-driven growth"
+  ],
+  "pests": [
+   "Green peach aphid",
+   "spinach leafminer",
+   "flea beetles",
+   "armyworms",
+   "cabbage looper",
+   "thrips"
+  ],
+  "diseases": [
+   "Downy mildew/blue mold(F)",
+   "White rust(F)",
+   "Cercospora leaf spot(F)",
+   "Fusarium wilt(F)",
+   "Stemphylium leaf spot(F)",
+   "Cucumber mosaic(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Manganese",
+   "Magnesium",
+   "Molybdenum"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)"
+  ]
+ },
+ "Swiss chard": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Beet leafminer",
+   "aphids",
+   "flea beetles",
+   "armyworms",
+   "cabbage looper",
+   "blister beetles"
+  ],
+  "diseases": [
+   "Cercospora leaf spot(F)",
+   "Downy mildew(F)",
+   "Phoma leaf spot(F)",
+   "Bacterial leaf spot(B)",
+   "Beet curly top(V)",
+   "Rhizoctonia root rot(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Boron",
+   "Magnesium",
+   "Manganese"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)"
+  ]
+ },
+ "Beetroot": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Beet leafminer",
+   "flea beetles",
+   "aphids",
+   "beet webworm",
+   "armyworms",
+   "leafhoppers"
+  ],
+  "diseases": [
+   "Cercospora leaf spot(F)",
+   "Downy mildew(F)",
+   "Rhizoctonia root/crown rot(F)",
+   "Aphanomyces black root(F)",
+   "Scab(B)",
+   "Beet curly top(V)",
+   "Heart rot(P)"
+  ],
+  "soil": [
+   "Boron (black heart)",
+   "Nitrogen",
+   "Magnesium",
+   "Manganese"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Sugar beet": {
+  "plantHealth": [
+   "Salinity / saline-soil stress",
+   "Drought / water-deficit stress",
+   "Frost / cold-shock sensitivity",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Sugarbeet root maggot",
+   "beet leafhopper",
+   "aphids",
+   "flea beetles",
+   "beet webworm",
+   "wireworms"
+  ],
+  "diseases": [
+   "Cercospora leaf spot(F)",
+   "Rhizoctonia root & crown rot(F)",
+   "Aphanomyces black root(F)",
+   "Rhizomania/BNYVV(V)",
+   "Curly top(V)",
+   "Fusarium yellows(F)",
+   "Powdery mildew(F)"
+  ],
+  "soil": [
+   "Boron (heart rot)",
+   "Nitrogen",
+   "Manganese",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Rhubarb": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Decline / dieback",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Rhubarb curculio",
+   "aphids",
+   "slugs",
+   "stem borers",
+   "leaf-eating caterpillars",
+   "spider mites"
+  ],
+  "diseases": [
+   "Crown/root rot/Phytophthora(F)",
+   "Ramularia leaf spot(F)",
+   "Ascochyta leaf spot(F)",
+   "Botrytis gray mold(F)",
+   "Bacterial soft rot(B)",
+   "Powdery mildew(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Basil": {
+  "plantHealth": [
+   "Chilling injury (cold-sensitive)",
+   "Transplant / establishment shock",
+   "Waterlogging / poor drainage",
+   "Soft NPK-driven growth"
+  ],
+  "pests": [
+   "Aphids",
+   "whitefly",
+   "two-spotted spider mite",
+   "thrips",
+   "Japanese beetle",
+   "cutworms"
+  ],
+  "diseases": [
+   "Basil downy mildew(F)",
+   "Fusarium wilt(F)",
+   "Gray mold/Botrytis(F)",
+   "Bacterial leaf spot(B)",
+   "Cercospora leaf spot(F)",
+   "Damping-off(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Magnesium",
+   "Iron chlorosis"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Mint": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Soft NPK-driven growth",
+   "Drought / water-deficit stress",
+   "Decline / dieback"
+  ],
+  "pests": [
+   "Mint root borer",
+   "two-spotted spider mite",
+   "aphids",
+   "thrips",
+   "mint flea beetle",
+   "root-knot nematode"
+  ],
+  "diseases": [
+   "Mint rust(F)",
+   "Verticillium wilt(F)",
+   "Powdery mildew(F)",
+   "Anthracnose(F)",
+   "Septoria leaf spot(F)",
+   "Stolon canker(F)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Peppermint": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress",
+   "Decline / dieback",
+   "Soft NPK-driven growth"
+  ],
+  "pests": [
+   "Mint root borer",
+   "two-spotted spider mite",
+   "aphids",
+   "loopers",
+   "mint flea beetle",
+   "root-knot nematode"
+  ],
+  "diseases": [
+   "Mint rust(F)",
+   "Verticillium wilt(F)",
+   "Powdery mildew(F)",
+   "Rhizoctonia stem rot(F)",
+   "Anthracnose(F)",
+   "Septoria leaf spot(F)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Spearmint": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress",
+   "Soft NPK-driven growth",
+   "Decline / dieback"
+  ],
+  "pests": [
+   "Mint root borer",
+   "spider mites",
+   "aphids",
+   "loopers",
+   "mint flea beetle",
+   "root-knot nematode"
+  ],
+  "diseases": [
+   "Mint rust(F)",
+   "Powdery mildew(F)",
+   "Verticillium wilt(F)",
+   "Anthracnose(F)",
+   "Septoria leaf spot(F)",
+   "Stolon canker(F)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Sage": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Frost / cold-shock sensitivity",
+   "Decline / dieback",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Aphids",
+   "two-spotted spider mite",
+   "thrips",
+   "whitefly",
+   "spittlebug",
+   "leafhoppers"
+  ],
+  "diseases": [
+   "Powdery mildew(F)",
+   "Root/crown rot/Phytophthora(F)",
+   "Septoria leaf spot(F)",
+   "Botrytis(F)",
+   "Rust(F)",
+   "Verticillium wilt(F)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Rosemary": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Frost / cold-shock sensitivity",
+   "Decline / dieback",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Aphids",
+   "two-spotted spider mite",
+   "rosemary beetle",
+   "scale insects",
+   "whitefly",
+   "spittlebug"
+  ],
+  "diseases": [
+   "Powdery mildew(F)",
+   "Root rot/Phytophthora(F)",
+   "Botrytis gray mold(F)",
+   "Rhizoctonia damping-off(F)",
+   "Leaf spot(F)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Thyme": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Decline / dieback",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Aphids",
+   "two-spotted spider mite",
+   "thrips",
+   "spittlebug",
+   "whitefly",
+   "leafhoppers"
+  ],
+  "diseases": [
+   "Botrytis gray mold(F)",
+   "Root rot/Rhizoctonia(F)",
+   "Alternaria leaf blight(F)",
+   "Powdery mildew(F)",
+   "Damping-off(F)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Oregano / Marjoram": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Decline / dieback"
+  ],
+  "pests": [
+   "Aphids",
+   "two-spotted spider mite",
+   "thrips",
+   "leafminers",
+   "spittlebug",
+   "whitefly"
+  ],
+  "diseases": [
+   "Oregano rust(F)",
+   "Root/crown rot/Rhizoctonia(F)",
+   "Botrytis(F)",
+   "Powdery mildew(F)",
+   "Damping-off(F)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Lavender": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Decline / dieback",
+   "Frost / cold-shock sensitivity",
+   "Acid-soil / lime-induced chlorosis"
+  ],
+  "pests": [
+   "Aphids",
+   "two-spotted spider mite",
+   "whitefly",
+   "spittlebug",
+   "rosemary beetle",
+   "leafhoppers"
+  ],
+  "diseases": [
+   "Phytophthora root & crown rot(F)",
+   "Botrytis gray mold(F)",
+   "Septoria leaf spot(F)",
+   "Shab disease/Phomopsis(F)",
+   "Alfalfa mosaic(V)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Lemon balm": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Soft NPK-driven growth",
+   "Drought / water-deficit stress",
+   "Decline / dieback"
+  ],
+  "pests": [
+   "Aphids",
+   "spider mites",
+   "thrips",
+   "whitefly",
+   "leafhoppers",
+   "cutworms"
+  ],
+  "diseases": [
+   "Septoria leaf spot(F)",
+   "Powdery mildew(F)",
+   "Mint rust(F)",
+   "Root rot(F)",
+   "Botrytis(F)",
+   "Damping-off(F)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Bay laurel": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Waterlogging / poor drainage",
+   "Slow establishment / weak early vigour",
+   "Wind / mechanical stress"
+  ],
+  "pests": [
+   "Bay sucker (psyllid)",
+   "soft & armored scale",
+   "spider mites",
+   "thrips",
+   "mealybugs",
+   "caterpillars"
+  ],
+  "diseases": [
+   "Leaf spot/Colletotrichum(F)",
+   "Powdery mildew(F)",
+   "Phytophthora root rot(F)",
+   "Sooty mould(F)",
+   "Anthracnose(F)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Apple": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Alternate / biennial bearing stress",
+   "Decline / dieback"
+  ],
+  "pests": [
+   "Codling moth",
+   "apple maggot",
+   "woolly apple aphid",
+   "tentiform leafminer",
+   "San Jose scale",
+   "plum curculio"
+  ],
+  "diseases": [
+   "Apple scab(F)",
+   "Fire blight(B)",
+   "Cedar-apple rust(F)",
+   "Powdery mildew(F)",
+   "Bitter rot(F)",
+   "Apple mosaic(V)",
+   "Bitter pit(P)"
+  ],
+  "soil": [
+   "Calcium (bitter pit)",
+   "Boron (internal cork)",
+   "Magnesium",
+   "Manganese",
+   "Potassium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Pear": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Acid-soil / lime-induced chlorosis",
+   "Decline / dieback",
+   "Soft NPK-driven growth"
+  ],
+  "pests": [
+   "Pear psylla",
+   "codling moth",
+   "pear sawfly (pear slug)",
+   "San Jose scale",
+   "spider mites",
+   "pear midge"
+  ],
+  "diseases": [
+   "Fire blight(B)",
+   "Pear scab(F)",
+   "Pear decline(B)",
+   "Fabraea leaf spot(F)",
+   "Pear rust(F)",
+   "Stony pit(V)",
+   "Cork spot(P)"
+  ],
+  "soil": [
+   "Boron (cork spot)",
+   "Calcium",
+   "Potassium",
+   "Zinc"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Quince": {
+  "plantHealth": [
+   "Acid-soil / lime-induced chlorosis",
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Codling moth",
+   "quince curculio",
+   "oriental fruit moth",
+   "aphids",
+   "San Jose scale",
+   "leafrollers"
+  ],
+  "diseases": [
+   "Fire blight(B)",
+   "Quince rust(F)",
+   "Fabraea leaf blight(F)",
+   "Powdery mildew(F)",
+   "Brown rot(F)",
+   "Quince scab(F)"
+  ],
+  "soil": [
+   "Iron chlorosis (alkaline)",
+   "Boron",
+   "Nitrogen"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Loquat": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Mediterranean fruit fly",
+   "aphids",
+   "scale insects",
+   "codling moth",
+   "birds",
+   "caterpillars"
+  ],
+  "diseases": [
+   "Fire blight(B)",
+   "Loquat scab(F)",
+   "Anthracnose/blossom blight(F)",
+   "Pear blight(B)",
+   "Crown rot/Phytophthora(F)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Zinc",
+   "Nitrogen"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Perennial grasses (bermuda/johnsongrass/couch)"
+  ]
+ },
+ "Peach": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Decline / dieback",
+   "Chilling injury (cold-sensitive)"
+  ],
+  "pests": [
+   "Oriental fruit moth",
+   "plum curculio",
+   "peachtree borer",
+   "San Jose scale",
+   "green peach aphid",
+   "stink bugs"
+  ],
+  "diseases": [
+   "Brown rot(F)",
+   "Peach leaf curl(F)",
+   "Bacterial spot(B)",
+   "Peach scab(F)",
+   "Cytospora canker(F)",
+   "Powdery mildew(F)",
+   "Plum pox(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Zinc",
+   "Boron",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Nectarine": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Chilling injury (cold-sensitive)",
+   "Decline / dieback"
+  ],
+  "pests": [
+   "Oriental fruit moth",
+   "plum curculio",
+   "peachtree borer",
+   "San Jose scale",
+   "thrips",
+   "stink bugs"
+  ],
+  "diseases": [
+   "Brown rot(F)",
+   "Bacterial spot(B)",
+   "Peach leaf curl(F)",
+   "Powdery mildew(F)",
+   "Peach scab(F)",
+   "Cytospora canker(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Zinc",
+   "Boron",
+   "Potassium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Plum": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Waterlogging / poor drainage",
+   "Heat stress / sunscald",
+   "Decline / dieback"
+  ],
+  "pests": [
+   "Plum curculio",
+   "oriental fruit moth",
+   "mealy plum aphid",
+   "San Jose scale",
+   "peachtree borer",
+   "stink bugs"
+  ],
+  "diseases": [
+   "Brown rot(F)",
+   "Black knot(F)",
+   "Bacterial spot(B)",
+   "Bacterial canker(B)",
+   "Plum pox/sharka(V)",
+   "X-disease(B)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Zinc",
+   "Boron"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Apricot": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Decline / dieback",
+   "Heat stress / sunscald"
+  ],
+  "pests": [
+   "Oriental fruit moth",
+   "plum curculio",
+   "peachtree borer",
+   "San Jose scale",
+   "aphids",
+   "stink bugs"
+  ],
+  "diseases": [
+   "Brown rot blossom/twig blight(F)",
+   "Eutypa dieback(F)",
+   "Bacterial spot(B)",
+   "Bacterial canker(B)",
+   "Shot hole/Coryneum(F)",
+   "Plum pox(V)"
+  ],
+  "soil": [
+   "Boron",
+   "Potassium",
+   "Nitrogen",
+   "Zinc"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Sweet cherry": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Chilling injury (cold-sensitive)",
+   "Decline / dieback"
+  ],
+  "pests": [
+   "Spotted wing drosophila",
+   "western cherry fruit fly",
+   "black cherry aphid",
+   "San Jose scale",
+   "shothole borer",
+   "brown marmorated stink bug"
+  ],
+  "diseases": [
+   "Brown rot(F)",
+   "Bacterial canker(B)",
+   "Cherry leaf spot(F)",
+   "Powdery mildew(F)",
+   "Cytospora canker(F)",
+   "Little cherry/X-disease(V)",
+   "Cracking(P)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium",
+   "Boron"
+  ],
+  "weeds": [
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Sour cherry": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Decline / dieback",
+   "Heat stress / sunscald"
+  ],
+  "pests": [
+   "Cherry fruit fly",
+   "spotted wing drosophila",
+   "black cherry aphid",
+   "San Jose scale",
+   "plum curculio",
+   "pear slug"
+  ],
+  "diseases": [
+   "Cherry leaf spot(F)",
+   "Brown rot(F)",
+   "Bacterial canker(B)",
+   "Powdery mildew(F)",
+   "Cytospora canker(F)",
+   "X-disease(B)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium",
+   "Iron chlorosis"
+  ],
+  "weeds": [
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Almond": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Salinity / saline-soil stress",
+   "Heat stress / sunscald",
+   "Alternate / biennial bearing stress"
+  ],
+  "pests": [
+   "Navel orangeworm",
+   "peach twig borer",
+   "San Jose scale",
+   "web-spinning spider mites",
+   "leaffooted bug",
+   "ants"
+  ],
+  "diseases": [
+   "Brown rot blossom blight(F)",
+   "Hull rot(F)",
+   "Shot hole(F)",
+   "Alternaria leaf spot(F)",
+   "Anthracnose(F)",
+   "Bacterial spot(B)",
+   "Noninfectious bud failure(P)"
+  ],
+  "soil": [
+   "Zinc (little leaf)",
+   "Boron (poor set)",
+   "Nitrogen",
+   "Potassium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Strawberry": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Transplant / establishment shock",
+   "Drought / water-deficit stress",
+   "Heat stress / sunscald"
+  ],
+  "pests": [
+   "Spotted wing drosophila",
+   "two-spotted spider mite",
+   "lygus bug",
+   "western flower thrips",
+   "strawberry aphid",
+   "root weevils"
+  ],
+  "diseases": [
+   "Gray mold/Botrytis(F)",
+   "Anthracnose fruit & crown rot(F)",
+   "Verticillium wilt(F)",
+   "Powdery mildew(F)",
+   "Phytophthora red stele/crown(F)",
+   "Angular leaf spot(B)",
+   "Strawberry viruses(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Iron chlorosis",
+   "Calcium (tipburn)",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Raspberry": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Wind / mechanical stress",
+   "Waterlogging / poor drainage",
+   "Decline / dieback"
+  ],
+  "pests": [
+   "Spotted wing drosophila",
+   "raspberry crown borer",
+   "raspberry cane borer",
+   "two-spotted spider mite",
+   "aphids",
+   "Japanese beetle"
+  ],
+  "diseases": [
+   "Spur blight(F)",
+   "Cane blight(F)",
+   "Anthracnose(F)",
+   "Phytophthora root rot(F)",
+   "Gray mold/Botrytis(F)",
+   "Orange rust(F)",
+   "Raspberry mosaic(V)"
+  ],
+  "soil": [
+   "Iron chlorosis (high pH)",
+   "Nitrogen",
+   "Potassium",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Blackberry": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Wind / mechanical stress",
+   "Lodging-prone / weak stems",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Spotted wing drosophila",
+   "raspberry crown borer",
+   "redberry mite",
+   "stink bugs",
+   "thrips",
+   "aphids"
+  ],
+  "diseases": [
+   "Anthracnose(F)",
+   "Cane & leaf rust(F)",
+   "Orange rust(F)",
+   "Botrytis fruit rot(F)",
+   "Double blossom/rosette(F)",
+   "Crown gall(B)",
+   "Blackberry viruses(V)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen",
+   "Potassium",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Volunteer / weedy crop plants"
+  ]
+ },
+ "Blueberry": {
+  "plantHealth": [
+   "Acid-soil / lime-induced chlorosis",
+   "Frost / cold-shock sensitivity",
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Spotted wing drosophila",
+   "blueberry maggot",
+   "cranberry fruitworm",
+   "plum curculio",
+   "blueberry gall midge",
+   "sharp-nosed leafhopper"
+  ],
+  "diseases": [
+   "Mummy berry(F)",
+   "Anthracnose ripe rot(F)",
+   "Botrytis blossom blight(F)",
+   "Phomopsis twig blight(F)",
+   "Godronia canker(F)",
+   "Bacterial leaf scorch/Xylella(B)",
+   "Blueberry shock/scorch(V)"
+  ],
+  "soil": [
+   "Iron chlorosis (high pH)",
+   "Nitrogen",
+   "Magnesium",
+   "Acid-soil chlorosis"
+  ],
+  "weeds": [
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Cranberry": {
+  "plantHealth": [
+   "Acid-soil / lime-induced chlorosis",
+   "Frost / cold-shock sensitivity",
+   "Waterlogging / poor drainage",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Cranberry fruitworm",
+   "Sparganothis fruitworm",
+   "blunt-nosed leafhopper",
+   "cranberry weevil",
+   "cranberry girdler",
+   "cutworms"
+  ],
+  "diseases": [
+   "Fruit rot complex(F)",
+   "Cottonball(F)",
+   "Red leaf spot(F)",
+   "Phytophthora root rot(F)",
+   "False blossom(B)",
+   "Upright dieback(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Iron chlorosis",
+   "Acid-soil chlorosis"
+  ],
+  "weeds": [
+   "Dodder (Cuscuta)",
+   "Sedges (nutsedge)",
+   "Aquatic weeds",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Huckleberry": {
+  "plantHealth": [
+   "Acid-soil / lime-induced chlorosis",
+   "Slow establishment / weak early vigour",
+   "Transplant / establishment shock",
+   "Low vigour / failure to thrive"
+  ],
+  "pests": [
+   "Aphids",
+   "spotted wing drosophila",
+   "leafrollers",
+   "scale insects",
+   "spider mites",
+   "gall midge"
+  ],
+  "diseases": [
+   "Mummy berry(F)",
+   "Botrytis blossom blight(F)",
+   "Anthracnose(F)",
+   "Rust(F)",
+   "Leaf spot(F)",
+   "Root rot(F)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Nitrogen",
+   "Acid-soil chlorosis"
+  ],
+  "weeds": [
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Rose (ornamental)": {
+  "plantHealth": [
+   "Soft NPK-driven growth",
+   "Decline / dieback",
+   "Frost / cold-shock sensitivity",
+   "Transplant / establishment shock"
+  ],
+  "pests": [
+   "Rose aphid",
+   "two-spotted spider mite",
+   "thrips",
+   "rose sawfly (slug)",
+   "Japanese beetle",
+   "scale insects"
+  ],
+  "diseases": [
+   "Black spot(F)",
+   "Powdery mildew(F)",
+   "Rust(F)",
+   "Botrytis gray mold(F)",
+   "Downy mildew(F)",
+   "Rose rosette(V)",
+   "Crown gall(B)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Magnesium",
+   "Potassium"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Perennial grasses (bermuda/johnsongrass/couch)"
+  ]
+ },
+ "Wine grape": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Acid-soil / lime-induced chlorosis",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Grape phylloxera",
+   "grape leafhopper/sharpshooters",
+   "vine mealybug",
+   "European grapevine moth",
+   "spider mites",
+   "grape berry moth"
+  ],
+  "diseases": [
+   "Powdery mildew(F)",
+   "Downy mildew(F)",
+   "Botrytis bunch rot(F)",
+   "Pierce's disease(B)",
+   "Esca/trunk disease(F)",
+   "Black rot(F)",
+   "Leafroll virus(V)"
+  ],
+  "soil": [
+   "Potassium",
+   "Magnesium",
+   "Zinc (poor set)",
+   "Boron",
+   "Iron chlorosis"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)"
+  ]
+ },
+ "Table grape": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress",
+   "Soft NPK-driven growth"
+  ],
+  "pests": [
+   "Vine mealybug",
+   "grape leafhopper",
+   "western flower thrips",
+   "spider mites",
+   "grape berry moth",
+   "sharpshooters"
+  ],
+  "diseases": [
+   "Powdery mildew(F)",
+   "Botrytis bunch rot(F)",
+   "Sour rot(F)",
+   "Downy mildew(F)",
+   "Pierce's disease(B)",
+   "Measles/Esca(F)",
+   "Grapevine viruses(V)",
+   "Berry cracking(P)"
+  ],
+  "soil": [
+   "Potassium",
+   "Zinc (straggly clusters)",
+   "Magnesium",
+   "Boron"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)"
+  ]
+ },
+ "Raisin grape": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress",
+   "Acid-soil / lime-induced chlorosis"
+  ],
+  "pests": [
+   "Vine mealybug",
+   "grape leafhopper",
+   "spider mites",
+   "grape berry moth",
+   "thrips",
+   "sharpshooters"
+  ],
+  "diseases": [
+   "Powdery mildew(F)",
+   "Botrytis bunch rot(F)",
+   "Sour rot(F)",
+   "Downy mildew(F)",
+   "Pierce's disease(B)",
+   "Esca(F)"
+  ],
+  "soil": [
+   "Potassium",
+   "Zinc",
+   "Magnesium",
+   "Boron"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)"
+  ]
+ },
+ "Sweet orange": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress",
+   "Acid-soil / lime-induced chlorosis"
+  ],
+  "pests": [
+   "Asian citrus psyllid (HLB vector)",
+   "California red scale",
+   "citrus thrips",
+   "citrus leafminer",
+   "glassy-winged sharpshooter",
+   "citrus mealybug"
+  ],
+  "diseases": [
+   "Huanglongbing/citrus greening(B)",
+   "Citrus canker(B)",
+   "Greasy spot(F)",
+   "Phytophthora root rot & gummosis(F)",
+   "Alternaria brown spot(F)",
+   "Citrus tristeza(V)"
+  ],
+  "soil": [
+   "Zinc",
+   "Iron chlorosis (high pH)",
+   "Manganese",
+   "Magnesium",
+   "Nitrogen"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Dodder (Cuscuta)"
+  ]
+ },
+ "Navel orange": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress",
+   "Alternate / biennial bearing stress"
+  ],
+  "pests": [
+   "Asian citrus psyllid (HLB vector)",
+   "California red scale",
+   "citrus thrips",
+   "citrus leafminer",
+   "katydids",
+   "citrus red mite"
+  ],
+  "diseases": [
+   "Huanglongbing(B)",
+   "Citrus canker(B)",
+   "Greasy spot(F)",
+   "Phytophthora root rot/brown rot(F)",
+   "Alternaria brown spot(F)",
+   "Citrus tristeza(V)"
+  ],
+  "soil": [
+   "Zinc",
+   "Iron chlorosis",
+   "Magnesium",
+   "Manganese"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Sedges (nutsedge)",
+   "Dodder (Cuscuta)"
+  ]
+ },
+ "Valencia orange": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Asian citrus psyllid (HLB vector)",
+   "California red scale",
+   "citrus thrips",
+   "citrus leafminer",
+   "citrus rust mite",
+   "mealybugs"
+  ],
+  "diseases": [
+   "Huanglongbing(B)",
+   "Citrus canker(B)",
+   "Greasy spot(F)",
+   "Phytophthora gummosis(F)",
+   "Melanose(F)",
+   "Citrus tristeza(V)"
+  ],
+  "soil": [
+   "Zinc",
+   "Iron chlorosis",
+   "Magnesium",
+   "Manganese"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Dodder (Cuscuta)"
+  ]
+ },
+ "Lemon": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress",
+   "Acid-soil / lime-induced chlorosis"
+  ],
+  "pests": [
+   "Asian citrus psyllid (HLB vector)",
+   "citrus thrips",
+   "California red scale",
+   "citrus leafminer",
+   "citrus bud mite",
+   "cottony cushion scale"
+  ],
+  "diseases": [
+   "Huanglongbing(B)",
+   "Phytophthora gummosis/brown rot(F)",
+   "Citrus canker(B)",
+   "Greasy spot(F)",
+   "Septoria spot(F)",
+   "Citrus tristeza(V)"
+  ],
+  "soil": [
+   "Zinc",
+   "Iron chlorosis",
+   "Magnesium",
+   "Manganese"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Dodder (Cuscuta)"
+  ]
+ },
+ "Lime": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Asian citrus psyllid (HLB vector)",
+   "citrus leafminer",
+   "citrus thrips",
+   "scale insects",
+   "citrus rust mite",
+   "aphids"
+  ],
+  "diseases": [
+   "Huanglongbing(B)",
+   "Citrus canker(B)",
+   "Phytophthora gummosis/root rot(F)",
+   "Greasy spot(F)",
+   "Anthracnose/withertip(F)",
+   "Citrus tristeza(V)"
+  ],
+  "soil": [
+   "Zinc",
+   "Iron chlorosis",
+   "Manganese",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Dodder (Cuscuta)"
+  ]
+ },
+ "Grapefruit": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress",
+   "Acid-soil / lime-induced chlorosis"
+  ],
+  "pests": [
+   "Asian citrus psyllid (HLB vector)",
+   "citrus rust mite",
+   "California red scale",
+   "citrus thrips",
+   "citrus leafminer",
+   "mealybugs"
+  ],
+  "diseases": [
+   "Huanglongbing(B)",
+   "Citrus canker(B)",
+   "Greasy spot(F)",
+   "Phytophthora root rot(F)",
+   "Melanose(F)",
+   "Stubborn disease(B)",
+   "Citrus tristeza(V)"
+  ],
+  "soil": [
+   "Zinc",
+   "Iron chlorosis",
+   "Magnesium",
+   "Manganese",
+   "Boron"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Dodder (Cuscuta)"
+  ]
+ },
+ "Mandarin / Tangerine": {
+  "plantHealth": [
+   "Alternate / biennial bearing stress",
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Asian citrus psyllid (HLB vector)",
+   "citrus thrips",
+   "citrus leafminer",
+   "California red scale",
+   "citrus red mite",
+   "katydids"
+  ],
+  "diseases": [
+   "Huanglongbing(B)",
+   "Alternaria brown spot(F)",
+   "Citrus canker(B)",
+   "Greasy spot(F)",
+   "Phytophthora root rot(F)",
+   "Citrus tristeza(V)"
+  ],
+  "soil": [
+   "Zinc",
+   "Iron chlorosis",
+   "Magnesium",
+   "Manganese"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Dodder (Cuscuta)"
+  ]
+ },
+ "Pomelo": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Asian citrus psyllid (HLB vector)",
+   "citrus leafminer",
+   "fruit-piercing moths",
+   "scale insects",
+   "mealybugs",
+   "citrus rust mite"
+  ],
+  "diseases": [
+   "Huanglongbing(B)",
+   "Citrus canker(B)",
+   "Phytophthora gummosis/root rot(F)",
+   "Greasy spot(F)",
+   "Melanose(F)",
+   "Citrus tristeza(V)",
+   "Granulation(P)"
+  ],
+  "soil": [
+   "Zinc",
+   "Iron chlorosis",
+   "Magnesium",
+   "Boron"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Dodder (Cuscuta)"
+  ]
+ },
+ "Kumquat": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Asian citrus psyllid (HLB vector)",
+   "citrus leafminer",
+   "scale insects",
+   "citrus mealybug",
+   "citrus rust mite",
+   "aphids"
+  ],
+  "diseases": [
+   "Huanglongbing(B)",
+   "Citrus canker(B)",
+   "Phytophthora root rot(F)",
+   "Greasy spot(F)",
+   "Melanose(F)",
+   "Citrus tristeza(V)"
+  ],
+  "soil": [
+   "Zinc",
+   "Iron chlorosis",
+   "Magnesium",
+   "Manganese"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Dodder (Cuscuta)"
+  ]
+ },
+ "Walnut": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Codling moth",
+   "walnut husk fly",
+   "navel orangeworm",
+   "walnut aphid",
+   "walnut twig beetle",
+   "San Jose scale"
+  ],
+  "diseases": [
+   "Walnut blight(B)",
+   "Thousand cankers disease(F)",
+   "Phytophthora crown/root rot(F)",
+   "Botryosphaeria blight(F)",
+   "Crown gall(B)",
+   "Blackline/cherry leafroll(V)"
+  ],
+  "soil": [
+   "Zinc (little leaf)",
+   "Potassium",
+   "Nitrogen",
+   "Boron"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Sedges (nutsedge)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Pecan": {
+  "plantHealth": [
+   "Slow establishment / weak early vigour",
+   "Alternate / biennial bearing stress",
+   "Wind / mechanical stress",
+   "Acid-soil / lime-induced chlorosis"
+  ],
+  "pests": [
+   "Pecan weevil",
+   "pecan nut casebearer",
+   "blackmargined aphid",
+   "hickory shuckworm",
+   "phylloxera",
+   "stink bugs"
+  ],
+  "diseases": [
+   "Pecan scab(F)",
+   "Downy spot(F)",
+   "Powdery mildew(F)",
+   "Brown spot(F)",
+   "Zonate leaf spot(F)",
+   "Bunch disease(B)",
+   "Bacterial leaf scorch(B)"
+  ],
+  "soil": [
+   "Zinc (rosette/little leaf)",
+   "Nitrogen",
+   "Potassium",
+   "Boron"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Hickory": {
+  "plantHealth": [
+   "Slow establishment / weak early vigour",
+   "Transplant / establishment shock",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Hickory shuckworm",
+   "pecan weevil",
+   "hickory bark beetle",
+   "gall phylloxera",
+   "casebearer",
+   "walnut caterpillar"
+  ],
+  "diseases": [
+   "Hickory scab(F)",
+   "Anthracnose(F)",
+   "Powdery mildew(F)",
+   "Gnomonia leaf spot(F)",
+   "Canker rots(F)",
+   "Bunch disease(B)"
+  ],
+  "soil": [
+   "Zinc (rosette)",
+   "Nitrogen",
+   "Potassium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Hazelnut / Filbert": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Heat stress / sunscald",
+   "Wind / mechanical stress"
+  ],
+  "pests": [
+   "Filbertworm",
+   "hazelnut big bud mite",
+   "filbert aphid",
+   "brown marmorated stink bug",
+   "obliquebanded leafroller",
+   "hazelnut weevil"
+  ],
+  "diseases": [
+   "Eastern filbert blight(F)",
+   "Bacterial blight(B)",
+   "Phytophthora root rot(F)",
+   "Powdery mildew(F)",
+   "Nut rots/brown stain(F)",
+   "Armillaria(F)"
+  ],
+  "soil": [
+   "Boron (blanks/poor set)",
+   "Potassium",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Chestnut": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress",
+   "Acid-soil / lime-induced chlorosis",
+   "Decline / dieback"
+  ],
+  "pests": [
+   "Asian chestnut gall wasp",
+   "chestnut weevils",
+   "potato leafhopper",
+   "ambrosia beetles",
+   "filbertworm",
+   "shot-hole borer"
+  ],
+  "diseases": [
+   "Chestnut blight(F)",
+   "Ink disease/Phytophthora(F)",
+   "Gnomoniopsis nut rot(F)",
+   "Canker(F)",
+   "Armillaria(F)"
+  ],
+  "soil": [
+   "Boron",
+   "Manganese",
+   "Nitrogen",
+   "Iron chlorosis"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Macadamia": {
+  "plantHealth": [
+   "Wind / mechanical stress",
+   "Waterlogging / poor drainage",
+   "Heat stress / sunscald",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Macadamia felted coccid",
+   "macadamia nut borer",
+   "green vegetable bug",
+   "mites",
+   "thrips",
+   "rats"
+  ],
+  "diseases": [
+   "Phytophthora trunk canker(F)",
+   "Phytophthora root rot(F)",
+   "Husk spot(F)",
+   "Raceme/flower blight(F)",
+   "Phomopsis stem canker(F)"
+  ],
+  "soil": [
+   "Boron",
+   "Zinc",
+   "Iron chlorosis",
+   "Phosphorus excess (P-sensitive)"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Pistachio": {
+  "plantHealth": [
+   "Salinity / saline-soil stress",
+   "Alternate / biennial bearing stress",
+   "Waterlogging / poor drainage",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Navel orangeworm",
+   "leaffooted bug",
+   "stink bugs",
+   "Gill's mealybug",
+   "soft scale",
+   "mites"
+  ],
+  "diseases": [
+   "Alternaria late blight(F)",
+   "Botryosphaeria panicle & shoot blight(F)",
+   "Verticillium wilt(F)",
+   "Botrytis blossom blight(F)",
+   "Phytophthora root/crown rot(F)",
+   "Septoria leaf spot(F)"
+  ],
+  "soil": [
+   "Zinc",
+   "Boron",
+   "Potassium",
+   "Copper"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Sedges (nutsedge)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Cashew": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Tea mosquito bug (Helopeltis)",
+   "cashew stem & root borer",
+   "leaf miner",
+   "thrips",
+   "fruit/nut weevils",
+   "mealybugs"
+  ],
+  "diseases": [
+   "Anthracnose(F)",
+   "Powdery mildew(F)",
+   "Inflorescence/dieback blight(F)",
+   "Gummosis/Lasiodiplodia dieback(F)",
+   "Damping-off(F)"
+  ],
+  "soil": [
+   "Boron",
+   "Zinc",
+   "Nitrogen",
+   "Iron chlorosis"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Banana": {
+  "plantHealth": [
+   "Wind / mechanical stress",
+   "Chilling injury (cold-sensitive)",
+   "Drought / water-deficit stress",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Banana weevil",
+   "burrowing nematode",
+   "root-lesion nematode",
+   "root-knot nematode",
+   "banana aphid (BBTV vector)",
+   "thrips"
+  ],
+  "diseases": [
+   "Fusarium wilt/Panama TR4(F)",
+   "Black Sigatoka(F)",
+   "Yellow Sigatoka(F)",
+   "Xanthomonas/banana bacterial wilt(B)",
+   "Banana bunchy top(V)",
+   "Banana streak(V)",
+   "Moko(B)"
+  ],
+  "soil": [
+   "Potassium",
+   "Nitrogen",
+   "Magnesium",
+   "Zinc",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial grasses (bermuda/johnsongrass/couch)"
+  ]
+ },
+ "Plantain": {
+  "plantHealth": [
+   "Wind / mechanical stress",
+   "Drought / water-deficit stress",
+   "Chilling injury (cold-sensitive)",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Banana weevil",
+   "burrowing nematode",
+   "Pratylenchus coffeae",
+   "Helicotylenchus",
+   "root-knot nematode",
+   "banana aphid"
+  ],
+  "diseases": [
+   "Black Sigatoka(F)",
+   "Yellow Sigatoka(F)",
+   "Banana bunchy top(V)",
+   "Banana streak(V)",
+   "Xanthomonas wilt(B)",
+   "Cordana leaf spot(F)"
+  ],
+  "soil": [
+   "Potassium",
+   "Nitrogen",
+   "Magnesium",
+   "Zinc",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial grasses (bermuda/johnsongrass/couch)"
+  ]
+ },
+ "Mango": {
+  "plantHealth": [
+   "Alternate / biennial bearing stress",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Wind / mechanical stress"
+  ],
+  "pests": [
+   "Mango hopper",
+   "fruit flies (Bactrocera)",
+   "mango seed weevil",
+   "mealybugs",
+   "scale insects",
+   "thrips"
+  ],
+  "diseases": [
+   "Anthracnose(F)",
+   "Powdery mildew(F)",
+   "Mango malformation(F)",
+   "Bacterial black spot/canker(B)",
+   "Stem-end rot(F)",
+   "Sooty mould(F)"
+  ],
+  "soil": [
+   "Boron",
+   "Zinc",
+   "Iron chlorosis",
+   "Nitrogen",
+   "Potassium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Dodder (Cuscuta)"
+  ]
+ },
+ "Avocado": {
+  "plantHealth": [
+   "Salinity / saline-soil stress",
+   "Waterlogging / poor drainage",
+   "Decline / dieback",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Persea mite",
+   "avocado thrips",
+   "polyphagous shothole borer",
+   "avocado brown mite",
+   "greenhouse thrips",
+   "ambrosia beetle (laurel wilt)"
+  ],
+  "diseases": [
+   "Phytophthora root rot(F)",
+   "Laurel wilt(F)",
+   "Anthracnose(F)",
+   "Stem-end rot(F)",
+   "Bacterial canker(B)",
+   "Sunblotch viroid(V)",
+   "Verticillium wilt(F)"
+  ],
+  "soil": [
+   "Iron chlorosis (lime-induced)",
+   "Zinc",
+   "Nitrogen",
+   "Boron",
+   "Salinity"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Papaya": {
+  "plantHealth": [
+   "Chilling injury (cold-sensitive)",
+   "Waterlogging / poor drainage",
+   "Wind / mechanical stress",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Papaya fruit fly",
+   "aphids (PRSV vectors)",
+   "red spider mite",
+   "papaya mealybug",
+   "whitefly",
+   "fruit-spotting bug"
+  ],
+  "diseases": [
+   "Papaya ringspot virus(V)",
+   "Papaya mosaic(V)",
+   "Anthracnose(F)",
+   "Powdery mildew(F)",
+   "Phytophthora root/fruit rot(F)",
+   "Black spot/Asperisporium(F)",
+   "Bacterial canker(B)"
+  ],
+  "soil": [
+   "Boron (lumpy fruit)",
+   "Calcium",
+   "Zinc",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Guava": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress",
+   "Wind / mechanical stress"
+  ],
+  "pests": [
+   "Fruit flies (Bactrocera)",
+   "root-knot nematode (M. enterolobii)",
+   "guava moth",
+   "mealybugs",
+   "scale insects",
+   "tea mosquito bug"
+  ],
+  "diseases": [
+   "Guava wilt/Fusarium-Nalanthamala(F)",
+   "Anthracnose(F)",
+   "Algal leaf/fruit spot(F)",
+   "Stylar-end rot(F)",
+   "Stem canker(F)",
+   "Red rust(F)"
+  ],
+  "soil": [
+   "Zinc",
+   "Iron chlorosis",
+   "Boron",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Pineapple": {
+  "plantHealth": [
+   "Chilling injury (cold-sensitive)",
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress",
+   "Heat stress / sunscald"
+  ],
+  "pests": [
+   "Pineapple mealybug",
+   "root-knot & reniform nematodes",
+   "symphylids",
+   "scale insects",
+   "ants (mealybug tenders)",
+   "thrips"
+  ],
+  "diseases": [
+   "Mealybug wilt-associated virus(V)",
+   "Heart/root rot Phytophthora(F)",
+   "Fusariosis(F)",
+   "Black rot/Chalara(F)",
+   "Bacterial heart rot/Erwinia(B)",
+   "Pink disease(B)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Zinc",
+   "Nitrogen",
+   "Potassium",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial grasses (bermuda/johnsongrass/couch)"
+  ]
+ },
+ "Date palm": {
+  "plantHealth": [
+   "Salinity / saline-soil stress",
+   "Waterlogging / poor drainage",
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Red palm weevil",
+   "dubas bug",
+   "longhorn stem borer",
+   "lesser date moth",
+   "Old World date mite",
+   "scale insects"
+  ],
+  "diseases": [
+   "Bayoud/Fusarium(F)",
+   "Graphiola false smut(F)",
+   "Khamedj inflorescence rot(F)",
+   "Black scorch/Ceratocystis(F)",
+   "Diplodia(F)",
+   "Brittle leaf(P)"
+  ],
+  "soil": [
+   "Manganese (brittle leaf)",
+   "Potassium",
+   "Boron",
+   "Magnesium",
+   "Iron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Coconut": {
+  "plantHealth": [
+   "Wind / mechanical stress",
+   "Drought / water-deficit stress",
+   "Decline / dieback",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Coconut rhinoceros beetle",
+   "red palm weevil",
+   "coconut eriophyid mite",
+   "black-headed caterpillar",
+   "rugose spiralling whitefly",
+   "scale insects"
+  ],
+  "diseases": [
+   "Lethal yellowing(B)",
+   "Bud rot/Phytophthora(F)",
+   "Stem bleeding/Thielaviopsis(F)",
+   "Ganoderma basal stem rot(F)",
+   "Grey leaf blight(F)",
+   "Root (wilt) disease(B)"
+  ],
+  "soil": [
+   "Potassium",
+   "Chloride",
+   "Magnesium",
+   "Boron",
+   "Nitrogen"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial grasses (bermuda/johnsongrass/couch)"
+  ]
+ },
+ "Oil palm": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Waterlogging / poor drainage",
+   "Wind / mechanical stress",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Bagworms",
+   "nettle caterpillars",
+   "rhinoceros beetle",
+   "bunch moth",
+   "rats",
+   "leaf miner"
+  ],
+  "diseases": [
+   "Ganoderma basal stem rot(F)",
+   "Fusarium wilt(F)",
+   "Marasmius bunch rot(F)",
+   "Curvularia leaf spot(F)",
+   "Bud rot/Phytophthora(F)",
+   "Red ring(V)"
+  ],
+  "soil": [
+   "Potassium",
+   "Magnesium",
+   "Boron",
+   "Nitrogen",
+   "Copper"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Persimmon": {
+  "plantHealth": [
+   "Alternate / biennial bearing stress",
+   "Transplant / establishment shock",
+   "Frost / cold-shock sensitivity",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Persimmon mealybug",
+   "kaki scale",
+   "thrips",
+   "fruit flies",
+   "mites",
+   "ants"
+  ],
+  "diseases": [
+   "Anthracnose leaf & fruit spot(F)",
+   "Circular leaf spot/Cercospora(F)",
+   "Crown gall(B)",
+   "Botryosphaeria dieback(F)",
+   "Armillaria root rot(F)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Zinc",
+   "Potassium",
+   "Manganese"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial grasses (bermuda/johnsongrass/couch)"
+  ]
+ },
+ "Lychee": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Wind / mechanical stress",
+   "Drought / water-deficit stress",
+   "Alternate / biennial bearing stress"
+  ],
+  "pests": [
+   "Lychee erinose mite",
+   "litchi fruit borer",
+   "fruit-piercing moths",
+   "fruit flies",
+   "leaf-roller",
+   "bark-eating caterpillar"
+  ],
+  "diseases": [
+   "Downy blight/Peronophythora(F)",
+   "Anthracnose(F)",
+   "Litchi leaf & fruit blight(F)",
+   "Mushroom root rot(F)",
+   "Algal leaf spot(F)",
+   "Pericarp browning(P)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Zinc",
+   "Boron",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Longan": {
+  "plantHealth": [
+   "Wind / mechanical stress",
+   "Frost / cold-shock sensitivity",
+   "Alternate / biennial bearing stress",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Longan witches'-broom mite",
+   "litchi/longan fruit borer",
+   "yellow peach moth",
+   "oriental fruit fly",
+   "fruit-piercing bugs",
+   "bark borers"
+  ],
+  "diseases": [
+   "Witches'-broom(V)",
+   "Anthracnose(F)",
+   "Downy blight/Phytophthora(F)",
+   "Brown blight/leaf spot(F)",
+   "Pink disease(B)",
+   "Postharvest fruit rots(F)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Zinc",
+   "Boron",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Rambutan": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Wind / mechanical stress",
+   "Frost / cold-shock sensitivity",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Mealybugs",
+   "fruit-piercing/giant bugs",
+   "oriental fruit fly",
+   "mango twig borer",
+   "scale insects",
+   "spider mites"
+  ],
+  "diseases": [
+   "Powdery mildew(F)",
+   "Anthracnose(F)",
+   "Stem canker(F)",
+   "Pink disease(B)",
+   "Sooty mould(F)",
+   "Postharvest fruit rots(F)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Zinc",
+   "Boron",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Olive": {
+  "plantHealth": [
+   "Alternate / biennial bearing stress",
+   "Frost / cold-shock sensitivity",
+   "Salinity / saline-soil stress",
+   "Chilling injury (cold-sensitive)"
+  ],
+  "pests": [
+   "Olive fruit fly",
+   "black scale",
+   "olive psyllid",
+   "olive moth",
+   "olive scale",
+   "branch & twig borer"
+  ],
+  "diseases": [
+   "Olive knot(B)",
+   "Peacock spot/olive leaf spot(F)",
+   "Verticillium wilt(F)",
+   "Anthracnose(F)",
+   "Phytophthora root rot(F)",
+   "Olive quick decline/Xylella(B)"
+  ],
+  "soil": [
+   "Boron (poor set/monkey-face)",
+   "Potassium",
+   "Nitrogen",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Fig": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Decline / dieback",
+   "Heat stress / sunscald",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Dried fruit beetle (souring vector)",
+   "fig mite",
+   "root-knot nematode",
+   "navel orangeworm",
+   "vinegar/fruit flies",
+   "scale insects"
+  ],
+  "diseases": [
+   "Fig rust(F)",
+   "Endosepsis/internal rot(F)",
+   "Souring(B)",
+   "Fig mosaic(V)",
+   "Botrytis limb blight(F)",
+   "Alternaria fruit rot(F)",
+   "Splitting(P)"
+  ],
+  "soil": [
+   "Iron chlorosis",
+   "Zinc",
+   "Potassium",
+   "Boron"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)"
+  ]
+ },
+ "Mulberry": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Pink mealybug/Tukra",
+   "mulberry thrips",
+   "leaf webber",
+   "spiralling whitefly",
+   "scale insects",
+   "stem/root borers"
+  ],
+  "diseases": [
+   "Powdery mildew(F)",
+   "Leaf spot/Pseudocercospora(F)",
+   "Root rot/Fusarium(F)",
+   "Leaf rust(F)",
+   "Bacterial leaf spot/blight(B)",
+   "Stem canker(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Phosphorus",
+   "Zinc"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial grasses (bermuda/johnsongrass/couch)"
+  ]
+ },
+ "Jackfruit": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Waterlogging / poor drainage",
+   "Wind / mechanical stress",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Shoot & fruit borer",
+   "trunk borer (Batocera)",
+   "bark-eating caterpillar",
+   "mealybugs",
+   "fruit fly",
+   "spittle bug"
+  ],
+  "diseases": [
+   "Rhizopus fruit/flower rot(F)",
+   "Pink disease(B)",
+   "Stem/fruit rot Phytophthora(F)",
+   "Phomopsis leaf spot(F)",
+   "Bacterial dieback/Pantoea(B)",
+   "Gummosis(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Zinc",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Breadfruit": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Wind / mechanical stress",
+   "Drought / water-deficit stress",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Breadfruit mealybug",
+   "soft scales",
+   "breadfruit stem borer",
+   "fruit flies",
+   "spiralling whitefly",
+   "root-knot nematodes"
+  ],
+  "diseases": [
+   "Phytophthora fruit rot & leaf blight(F)",
+   "Soft rot(F)",
+   "Dieback/Fusarium(F)",
+   "Root rot/Rosellinia(F)",
+   "Anthracnose(F)",
+   "Leaf spot(F)"
+  ],
+  "soil": [
+   "Potassium",
+   "Nitrogen",
+   "Magnesium",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Pomegranate": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Chilling injury (cold-sensitive)",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Leaffooted bug",
+   "citrus flat mite",
+   "pomegranate butterfly/carob moth",
+   "aphids",
+   "mealybugs",
+   "whiteflies"
+  ],
+  "diseases": [
+   "Alternaria heart rot/black heart(F)",
+   "Gray mold/Botrytis(F)",
+   "Aspergillus fruit rot(F)",
+   "Cercospora fruit & leaf spot(F)",
+   "Bacterial blight/Xanthomonas(B)",
+   "Coniella fruit rot(F)",
+   "Fruit cracking(P)"
+  ],
+  "soil": [
+   "Zinc",
+   "Iron chlorosis",
+   "Boron",
+   "Calcium (cracking)"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Kiwifruit": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Wind / mechanical stress",
+   "Waterlogging / poor drainage",
+   "Heat stress / sunscald"
+  ],
+  "pests": [
+   "Leafrollers",
+   "brown marmorated stink bug",
+   "greedy scale",
+   "root-knot nematode",
+   "thrips",
+   "snails"
+  ],
+  "diseases": [
+   "Bacterial canker/Psa(B)",
+   "Botrytis fruit rot(F)",
+   "Armillaria root rot(F)",
+   "Phytophthora crown & root rot(F)",
+   "Bacterial blossom blight(B)",
+   "Sclerotinia blossom rot(F)"
+  ],
+  "soil": [
+   "Iron chlorosis (high pH)",
+   "Magnesium",
+   "Potassium",
+   "Boron"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Passionfruit": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Frost / cold-shock sensitivity",
+   "Decline / dieback",
+   "Wind / mechanical stress"
+  ],
+  "pests": [
+   "Broad/yellow tea mite",
+   "passion vine mite (Brevipalpus)",
+   "fruit flies",
+   "aphids (woodiness vectors)",
+   "passion vine hopper",
+   "stink bugs"
+  ],
+  "diseases": [
+   "Passionfruit woodiness virus(V)",
+   "Fusarium wilt(F)",
+   "Base/collar rot Phytophthora(F)",
+   "Brown spot/Alternaria(F)",
+   "Septoria spot(F)",
+   "Bacterial grease spot(B)"
+  ],
+  "soil": [
+   "Boron",
+   "Nitrogen",
+   "Potassium",
+   "Magnesium",
+   "Calcium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Dragon fruit": {
+  "plantHealth": [
+   "Heat stress / sunscald",
+   "Waterlogging / poor drainage",
+   "Frost / cold-shock sensitivity",
+   "Wind / mechanical stress"
+  ],
+  "pests": [
+   "Mealybugs",
+   "scale insects",
+   "ants",
+   "aphids",
+   "fruit flies",
+   "slugs & snails"
+  ],
+  "diseases": [
+   "Stem canker/Neoscytalidium(F)",
+   "Anthracnose(F)",
+   "Stem/soft rot Bipolaris(F)",
+   "Bacterial soft rot/Erwinia(B)",
+   "Botryosphaeria stem blotch(F)",
+   "Cactus virus X(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Magnesium",
+   "Calcium",
+   "Iron chlorosis"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Coffee": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Slow establishment / weak early vigour",
+   "Alternate / biennial bearing stress"
+  ],
+  "pests": [
+   "Coffee berry borer",
+   "coffee leaf miner",
+   "root-knot & lesion nematodes",
+   "white stem borer",
+   "green scales/mealybugs",
+   "antestia bug"
+  ],
+  "diseases": [
+   "Coffee leaf rust(F)",
+   "Coffee berry disease(F)",
+   "Coffee wilt/Fusarium(F)",
+   "Brown eye spot/Cercospora(F)",
+   "Bacterial blight/Pseudomonas(B)",
+   "American leaf spot(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Zinc",
+   "Boron",
+   "Iron chlorosis"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Tea": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Waterlogging / poor drainage",
+   "Acid-soil / lime-induced chlorosis"
+  ],
+  "pests": [
+   "Tea mosquito bug",
+   "red spider mite",
+   "thrips",
+   "tea looper",
+   "jassids/Empoasca",
+   "scarlet/purple mites"
+  ],
+  "diseases": [
+   "Blister blight/Exobasidium(F)",
+   "Grey blight/Pestalotiopsis(F)",
+   "Red root rot/Ganoderma(F)",
+   "Brown root rot(F)",
+   "Dieback/Fusarium(F)",
+   "Horse-hair blight(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Zinc",
+   "Sulfur",
+   "Acid-soil chlorosis"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Cacao": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Slow establishment / weak early vigour",
+   "Wind / mechanical stress",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Cocoa pod borer",
+   "cocoa mirids/capsids",
+   "mealybugs (CSSV vectors)",
+   "stem borers",
+   "thrips",
+   "Helopeltis"
+  ],
+  "diseases": [
+   "Black pod rot/Phytophthora(F)",
+   "Frosty pod rot/Moniliophthora(F)",
+   "Witches' broom(F)",
+   "Cacao swollen shoot(V)",
+   "Vascular-streak dieback(F)",
+   "Pink disease(B)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium",
+   "Zinc",
+   "Calcium"
+  ],
+  "weeds": [
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Hops": {
+  "plantHealth": [
+   "Lodging-prone / weak stems",
+   "Drought / water-deficit stress",
+   "Wind / mechanical stress",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Hop aphid",
+   "two-spotted spider mite",
+   "hop looper",
+   "potato leafhopper",
+   "flea beetles",
+   "root weevils"
+  ],
+  "diseases": [
+   "Downy mildew(F)",
+   "Powdery mildew(F)",
+   "Verticillium wilt(F)",
+   "Fusarium cone tip blight(F)",
+   "Alternaria cone disorder(F)",
+   "Hop mosaic/stunt viroid(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium",
+   "Boron",
+   "Zinc"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Hemp / Cannabis": {
+  "plantHealth": [
+   "Soft NPK-driven growth",
+   "Lodging-prone / weak stems",
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Two-spotted spider mite",
+   "hemp russet mite",
+   "fungus gnats",
+   "cannabis aphid",
+   "thrips",
+   "corn earworm/budworm"
+  ],
+  "diseases": [
+   "Bud rot/Botrytis(F)",
+   "Powdery mildew(F)",
+   "Root rot/Fusarium-Pythium(F)",
+   "Hop latent viroid(V)",
+   "Southern blight/Sclerotium(F)",
+   "Damping-off(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Calcium",
+   "Magnesium",
+   "Phosphorus",
+   "Sulfur"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Cassava": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Waterlogging / poor drainage",
+   "Frost / cold-shock sensitivity",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Cassava mealybug",
+   "cassava green mite",
+   "whitefly (virus vector)",
+   "variegated grasshopper",
+   "termites",
+   "scale insects"
+  ],
+  "diseases": [
+   "Cassava mosaic disease(V)",
+   "Cassava brown streak(V)",
+   "Cassava bacterial blight(B)",
+   "Cassava anthracnose(F)",
+   "Root rot Phytophthora/Fusarium(F)",
+   "Frogskin disease(V)"
+  ],
+  "soil": [
+   "Potassium",
+   "Nitrogen",
+   "Zinc",
+   "Phosphorus",
+   "Calcium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Sweet potato": {
+  "plantHealth": [
+   "Chilling injury (cold-sensitive)",
+   "Frost / cold-shock sensitivity",
+   "Transplant / establishment shock",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Sweetpotato weevil",
+   "wireworms",
+   "white grubs",
+   "sweetpotato flea beetle",
+   "cucumber beetles",
+   "root-knot nematode"
+  ],
+  "diseases": [
+   "Fusarium wilt/surface rot(F)",
+   "Black rot/Ceratocystis(F)",
+   "Scurf(F)",
+   "Rhizopus soft rot(F)",
+   "Sweet potato feathery mottle(V)",
+   "Streptomyces soil rot/pox(B)"
+  ],
+  "soil": [
+   "Potassium",
+   "Nitrogen",
+   "Boron",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)",
+   "Perennial grasses (bermuda/johnsongrass/couch)"
+  ]
+ },
+ "Yam": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress",
+   "Lodging-prone / weak stems",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Yam beetle",
+   "yam tuber beetles",
+   "nematodes (Scutellonema, Meloidogyne)",
+   "mealybugs",
+   "scale insects",
+   "yam shoot beetle"
+  ],
+  "diseases": [
+   "Yam anthracnose(F)",
+   "Yam mosaic(V)",
+   "Tuber dry rot/Penicillium-Fusarium(F)",
+   "Tuber wet/soft rot(B)",
+   "Leaf spot(F)",
+   "Nematode dry rot(B)"
+  ],
+  "soil": [
+   "Potassium",
+   "Nitrogen",
+   "Phosphorus",
+   "Magnesium",
+   "Zinc"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Taro": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Frost / cold-shock sensitivity",
+   "Salinity / saline-soil stress",
+   "Decline / dieback"
+  ],
+  "pests": [
+   "Taro planthopper",
+   "taro leafhopper",
+   "taro beetle (Papuana)",
+   "apple snails",
+   "root aphids",
+   "spider mites"
+  ],
+  "diseases": [
+   "Taro leaf blight/Phytophthora(F)",
+   "Dasheen mosaic(V)",
+   "Corm soft rot/Pythium-Erwinia(B)",
+   "Sclerotium corm rot(F)",
+   "Pythium root rot(F)",
+   "Phyllosticta leaf spot(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Phosphorus",
+   "Zinc",
+   "Calcium"
+  ],
+  "weeds": [
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Aquatic weeds"
+  ]
+ },
+ "Ginger": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Shoot borer (Conogethes)",
+   "root-knot nematode",
+   "burrowing nematode",
+   "rhizome scale",
+   "ginger maggot",
+   "white grubs"
+  ],
+  "diseases": [
+   "Soft rot/rhizome rot Pythium(F)",
+   "Bacterial wilt/Ralstonia(B)",
+   "Fusarium yellows(F)",
+   "Phyllosticta leaf spot(F)",
+   "Dry rot/nematode-Fusarium(F)",
+   "Storage rots(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Phosphorus",
+   "Zinc",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Turmeric": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Shoot borer (Conogethes)",
+   "rhizome scale",
+   "root-knot & lesion nematodes",
+   "rhizome fly/maggot",
+   "leaf-roller",
+   "thrips"
+  ],
+  "diseases": [
+   "Rhizome rot/Pythium-Fusarium(F)",
+   "Leaf blotch/Taphrina(F)",
+   "Leaf spot/Colletotrichum(F)",
+   "Leaf blight/Rhizoctonia(F)",
+   "Cercospora leaf spot(F)",
+   "Brown rot/nematode-Fusarium(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Zinc",
+   "Iron",
+   "Phosphorus"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Cardamom": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Slow establishment / weak early vigour",
+   "Wind / mechanical stress",
+   "Decline / dieback"
+  ],
+  "pests": [
+   "Cardamom thrips",
+   "capsule borer (Conogethes)",
+   "root grub",
+   "cardamom aphid (katte vector)",
+   "hairy caterpillar",
+   "whitefly"
+  ],
+  "diseases": [
+   "Katte/mosaic(V)",
+   "Chenthal/Nilgiri necrosis(V)",
+   "Capsule rot/azhukal Phytophthora(F)",
+   "Clump/rhizome rot(F)",
+   "Leaf blight/Colletotrichum(F)",
+   "Chlorotic streak(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Phosphorus",
+   "Zinc",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Perennial grasses (bermuda/johnsongrass/couch)"
+  ]
+ },
+ "Black pepper": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Decline / dieback",
+   "Drought / water-deficit stress",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Pollu beetle",
+   "root-knot & burrowing nematodes",
+   "pepper flea beetle",
+   "scale insects",
+   "mealybugs",
+   "top-shoot borer"
+  ],
+  "diseases": [
+   "Foot rot/quick wilt Phytophthora(F)",
+   "Slow decline/nematode-Phytophthora(F)",
+   "Pollu/anthracnose(F)",
+   "Phyllody(B)",
+   "Piper yellow mottle(V)",
+   "Stunt(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium",
+   "Zinc",
+   "Boron"
+  ],
+  "weeds": [
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Vanilla": {
+  "plantHealth": [
+   "Slow establishment / weak early vigour",
+   "Waterlogging / poor drainage",
+   "Heat stress / sunscald",
+   "Decline / dieback"
+  ],
+  "pests": [
+   "Vanilla weevil",
+   "snails & slugs",
+   "scale insects",
+   "mealybugs",
+   "vine borers",
+   "aphids"
+  ],
+  "diseases": [
+   "Root/stem rot Fusarium(F)",
+   "Phytophthora stem & bean rot(F)",
+   "Anthracnose(F)",
+   "Sclerotium root rot(F)",
+   "Cymbidium/Cucumber mosaic(V)",
+   "Bean rot(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Calcium",
+   "Magnesium",
+   "Iron chlorosis"
+  ],
+  "weeds": [
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Saffron": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Decline / dieback",
+   "Drought / water-deficit stress",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Rodents/voles",
+   "corm mites (Rhizoglyphus)",
+   "root-knot nematode",
+   "thrips",
+   "aphids",
+   "white grubs"
+  ],
+  "diseases": [
+   "Corm rot/Fusarium(F)",
+   "Rhizoctonia violet root rot(F)",
+   "Sclerotial rot/Stromatinia(F)",
+   "Penicillium blue mould(F)",
+   "Phoma corm rot(F)",
+   "Charcoal rot(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Phosphorus",
+   "Potassium",
+   "Zinc"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Clove": {
+  "plantHealth": [
+   "Drought / water-deficit stress",
+   "Decline / dieback",
+   "Wind / mechanical stress",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Clove stem/bark borer",
+   "scale insects",
+   "clove mealybugs",
+   "aphids",
+   "thrips",
+   "leaf-feeding caterpillars"
+  ],
+  "diseases": [
+   "Sumatra disease/Ralstonia(B)",
+   "Dieback/blossom blight(F)",
+   "Leaf spot/Cylindrocladium(F)",
+   "Seedling wilt(F)",
+   "Pink disease(F)",
+   "Sudden death(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium",
+   "Zinc",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Nutmeg": {
+  "plantHealth": [
+   "Wind / mechanical stress",
+   "Drought / water-deficit stress",
+   "Slow establishment / weak early vigour",
+   "Waterlogging / poor drainage"
+  ],
+  "pests": [
+   "Shot-hole/bark borers",
+   "scale insects",
+   "mealybugs",
+   "leaf-eating caterpillars",
+   "white grubs",
+   "fruit-piercing insects"
+  ],
+  "diseases": [
+   "Fruit rot/Colletotrichum-Botryodiplodia(F)",
+   "Phytophthora leaf fall & shoot rot(F)",
+   "Thread blight/Marasmius(F)",
+   "Dieback/Diplodia(F)",
+   "Leaf spot/shot hole(F)",
+   "Brown root rot(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium",
+   "Zinc",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Cinnamon": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress",
+   "Slow establishment / weak early vigour",
+   "Frost / cold-shock sensitivity"
+  ],
+  "pests": [
+   "Cinnamon gall mite",
+   "cinnamon leaf-mining moth",
+   "jumping plant louse (Trioza)",
+   "shoot/leaf webber",
+   "bark borers",
+   "leaf-eating caterpillars"
+  ],
+  "diseases": [
+   "Leaf spot/blight Colletotrichum(F)",
+   "Grey leaf blight/Pestalotiopsis(F)",
+   "Stripe canker/Phytophthora(F)",
+   "Pink disease(B)",
+   "Brown root rot(F)",
+   "Algal leaf spot(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium",
+   "Zinc",
+   "Iron chlorosis"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Cotton": {
+  "plantHealth": [
+   "Chilling injury (cold-sensitive)",
+   "Waterlogging / poor drainage",
+   "Soft NPK-driven growth",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Cotton bollworm/Helicoverpa",
+   "pink bollworm",
+   "whitefly",
+   "cotton aphid",
+   "cotton fleahopper/plant bugs",
+   "thrips"
+  ],
+  "diseases": [
+   "Verticillium wilt(F)",
+   "Fusarium wilt(F)",
+   "Bacterial blight/angular leaf spot(B)",
+   "Target/Cercospora leaf spot(F)",
+   "Cotton root rot(F)",
+   "Cotton leaf curl(V)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Boron",
+   "Zinc",
+   "Magnesium"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Okra": {
+  "plantHealth": [
+   "Chilling injury (cold-sensitive)",
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Cotton aphid",
+   "fruit/shoot borer",
+   "whitefly",
+   "stink bugs",
+   "flea beetles",
+   "root-knot nematode"
+  ],
+  "diseases": [
+   "Fusarium wilt(F)",
+   "Verticillium wilt(F)",
+   "Powdery mildew(F)",
+   "Cercospora leaf spot(F)",
+   "Okra yellow vein mosaic(V)",
+   "Southern blight(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium",
+   "Calcium"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Kenaf / Jute": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Lodging-prone / weak stems",
+   "Drought / water-deficit stress",
+   "Salinity / saline-soil stress"
+  ],
+  "pests": [
+   "Jute hairy caterpillar",
+   "yellow mite",
+   "jute stem weevil",
+   "aphids",
+   "jute semilooper",
+   "root-knot nematode"
+  ],
+  "diseases": [
+   "Stem rot/Macrophomina(F)",
+   "Anthracnose/Colletotrichum(F)",
+   "Soft rot(B)",
+   "Leaf mosaic(V)",
+   "Black band/Botryodiplodia(F)",
+   "Damping-off(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Phosphorus",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Roselle / Hibiscus fibre": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Transplant / establishment shock",
+   "Lodging-prone / weak stems",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Cotton aphid",
+   "whitefly",
+   "flea beetles",
+   "fruit/shoot borer",
+   "mealybugs",
+   "root-knot nematode"
+  ],
+  "diseases": [
+   "Stem/foot rot Phytophthora(F)",
+   "Fusarium wilt(F)",
+   "Leaf spot/Cercospora(F)",
+   "Powdery mildew(F)",
+   "Roselle mosaic(V)",
+   "Anthracnose(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium",
+   "Boron"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Flax / Linseed": {
+  "plantHealth": [
+   "Lodging-prone / weak stems",
+   "Heat stress / sunscald",
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress"
+  ],
+  "pests": [
+   "Flax flea beetle",
+   "aster leafhopper",
+   "cutworms",
+   "aphids",
+   "grasshoppers",
+   "thrips"
+  ],
+  "diseases": [
+   "Fusarium wilt(F)",
+   "Pasmo(F)",
+   "Flax rust(F)",
+   "Powdery mildew(F)",
+   "Seedling blight/damping-off(F)",
+   "Aster yellows(B)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Phosphorus",
+   "Zinc",
+   "Sulfur"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)"
+  ]
+ },
+ "Sesame": {
+  "plantHealth": [
+   "Waterlogging / poor drainage",
+   "Drought / water-deficit stress",
+   "Slow establishment / weak early vigour"
+  ],
+  "pests": [
+   "Sesame gall midge",
+   "sesame leaf & pod caterpillar (Antigastra)",
+   "aphids",
+   "sesame webworm",
+   "thrips",
+   "whitefly"
+  ],
+  "diseases": [
+   "Charcoal/stem rot Macrophomina(F)",
+   "Phytophthora blight(F)",
+   "Cercospora/Alternaria leaf spot(F)",
+   "Powdery mildew(F)",
+   "Bacterial leaf spot(B)",
+   "Phyllody(B)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Phosphorus",
+   "Sulfur",
+   "Zinc"
+  ],
+  "weeds": [
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)",
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Sedges (nutsedge)"
+  ]
+ },
+ "Rubber tree": {
+  "plantHealth": [
+   "Decline / dieback",
+   "Wind / mechanical stress",
+   "Frost / cold-shock sensitivity",
+   "Chilling injury (cold-sensitive)"
+  ],
+  "pests": [
+   "Scarlet/Hemitarsonemus mites",
+   "scale insects",
+   "mealybugs",
+   "bark-feeding caterpillars",
+   "termites",
+   "white grubs"
+  ],
+  "diseases": [
+   "South American leaf blight/Microcyclus(F)",
+   "Corynespora leaf fall(F)",
+   "Phytophthora abnormal leaf fall & black stripe(F)",
+   "Powdery mildew/Oidium(F)",
+   "White root disease/Rigidoporus(F)",
+   "Pink disease(F)"
+  ],
+  "soil": [
+   "Nitrogen",
+   "Potassium",
+   "Magnesium",
+   "Phosphorus",
+   "Manganese"
+  ],
+  "weeds": [
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Perennial grasses (bermuda/johnsongrass/couch)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ },
+ "Eucalyptus (plantation)": {
+  "plantHealth": [
+   "Frost / cold-shock sensitivity",
+   "Drought / water-deficit stress",
+   "Decline / dieback",
+   "Wind / mechanical stress"
+  ],
+  "pests": [
+   "Blue gum/Leptocybe gall wasp",
+   "red gum lerp psyllid",
+   "bronze bug",
+   "eucalyptus snout beetle",
+   "Ophelimus gall wasp",
+   "termites"
+  ],
+  "diseases": [
+   "Teratosphaeria/Mycosphaerella leaf blight(F)",
+   "Ceratocystis wilt/canker(F)",
+   "Botryosphaeria stem canker(F)",
+   "Chrysoporthe canker(F)",
+   "Myrtle/guava rust Puccinia(F)",
+   "Quambalaria shoot blight(F)"
+  ],
+  "soil": [
+   "Boron (tip dieback)",
+   "Nitrogen",
+   "Phosphorus",
+   "Potassium",
+   "Zinc"
+  ],
+  "weeds": [
+   "Annual grasses (foxtail, ryegrass, barnyardgrass)",
+   "Perennial broadleaf weeds (bindweed, dock)",
+   "Annual broadleaf weeds (pigweed, lambsquarters, chickweed)"
+  ]
+ }
+}

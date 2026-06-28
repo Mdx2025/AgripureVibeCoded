@@ -60,7 +60,7 @@ export default function LabSheetPage({ params }: { params: { id: string } }) {
                   {c.yieldLoss ? " · yield loss reported" : ""}
                 </div>
               </div>
-              <span className="font-mono text-[12px] text-fg3">{c.formulas.length}/7 products</span>
+              <span className="font-mono text-[12px] text-fg3">{c.formulas.length}/6 products</span>
             </div>
 
             {c.formulas.length === 0 ? (
