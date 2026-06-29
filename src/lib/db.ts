@@ -17,6 +17,9 @@ const g = globalThis as unknown as {
 function pool(): Pool {
   if (!g.__agripurePool) {
     const connectionString = env.DATABASE_URL;
+    if (!connectionString) {
+      throw new Error("DATABASE_URL is not configured");
+    }
     g.__agripurePool = new Pool({
       connectionString,
       max: 10,

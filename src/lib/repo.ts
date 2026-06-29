@@ -27,12 +27,20 @@ const mapProduct = (r: typeof products.$inferSelect): ProductRow => {
 };
 
 export async function listProducts(): Promise<ProductRow[]> {
-  return (await getDb().select().from(products)).map(mapProduct);
+  try {
+    return (await getDb().select().from(products)).map(mapProduct);
+  } catch {
+    return [];
+  }
 }
 
 export async function getProduct(id: string): Promise<ProductRow | null> {
-  const r = await getDb().select().from(products).where(eq(products.id, id)).limit(1);
-  return r[0] ? mapProduct(r[0]) : null;
+  try {
+    const r = await getDb().select().from(products).where(eq(products.id, id)).limit(1);
+    return r[0] ? mapProduct(r[0]) : null;
+  } catch {
+    return null;
+  }
 }
 
 export interface CustomerRow {
