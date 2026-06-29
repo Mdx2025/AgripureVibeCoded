@@ -1,20 +1,27 @@
-import { NextRequest, NextResponse } from "next/server";
-import { SESSION_COOKIE, SESSION_VALUE, CUSTOMER_COOKIE } from "@/lib/auth";
+import NextAuth from "next-auth";
+import { NextResponse } from "next/server";
+import { authConfig } from "@/auth.config";
+import { CUSTOMER_COOKIE } from "@/lib/auth";
 
-// Gate the admin dashboard and the customer account portal.
-export function middleware(req: NextRequest) {
+// Edge-safe Auth.js instance — reads/verifies the JWT session only (no DB).
+const { auth } = NextAuth(authConfig);
+
+export default auth((req) => {
   const { pathname } = req.nextUrl;
 
+  // Admin dashboard — require a valid Auth.js admin session.
   if (pathname === "/admin" || pathname.startsWith("/admin/")) {
     if (pathname === "/admin/sign-in") return NextResponse.next();
-    if (req.cookies.get(SESSION_COOKIE)?.value !== SESSION_VALUE) {
+    if (!req.auth?.user) {
       const url = req.nextUrl.clone();
       url.pathname = "/admin/sign-in";
+      url.searchParams.set("next", pathname);
       return NextResponse.redirect(url);
     }
     return NextResponse.next();
   }
 
+  // Customer account portal — lightweight session cookie (account id).
   if (pathname === "/account" || pathname.startsWith("/account/")) {
     if (!req.cookies.get(CUSTOMER_COOKIE)?.value) {
       const url = req.nextUrl.clone();
@@ -24,7 +31,7 @@ export function middleware(req: NextRequest) {
     }
   }
   return NextResponse.next();
-}
+});
 
 export const config = {
   matcher: ["/admin", "/admin/:path*", "/account", "/account/:path*"],

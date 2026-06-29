@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCropPriceOverrides, saveCropPriceOverride, resetCropPriceOverride } from "@/lib/repo";
-import { isAdmin } from "@/lib/auth";
+import { getAdminUser } from "@/auth";
 
 export const dynamic = "force-dynamic";
 
-export function GET() {
-  return NextResponse.json({ overrides: getCropPriceOverrides() });
+export async function GET() {
+  return NextResponse.json({ overrides: await getCropPriceOverrides() });
 }
 
 export async function POST(req: NextRequest) {
-  if (!isAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!(await getAdminUser())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   try {
     const b = await req.json();
     if (!b?.id) throw new Error("A crop id is required");
@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
       if (!Number.isFinite(n) || n < 0) throw new Error(`${label} must be a non-negative number`);
       return n;
     };
-    const overrides = saveCropPriceOverride({
+    const overrides = await saveCropPriceOverride({
       id: String(b.id),
       conventional: num(b.conventional, "Conventional"),
       organic: num(b.organic, "Organic"),
@@ -31,8 +31,8 @@ export async function POST(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  if (!isAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!(await getAdminUser())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const id = req.nextUrl.searchParams.get("id");
   if (!id) return NextResponse.json({ error: "A crop id is required" }, { status: 400 });
-  return NextResponse.json({ overrides: resetCropPriceOverride(id) }, { status: 200 });
+  return NextResponse.json({ overrides: await resetCropPriceOverride(id) }, { status: 200 });
 }

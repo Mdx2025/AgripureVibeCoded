@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSettings, updateSettings } from "@/lib/repo";
-import { isAdmin } from "@/lib/auth";
+import { getAdminUser } from "@/auth";
 
 export const dynamic = "force-dynamic";
 
-export function GET() {
-  return NextResponse.json({ settings: getSettings() });
+export async function GET() {
+  return NextResponse.json({ settings: await getSettings() });
 }
 
 export async function PUT(req: NextRequest) {
-  if (!isAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!(await getAdminUser())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   try {
     const body = await req.json();
     if (!body || typeof body !== "object") throw new Error("Invalid settings payload");

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { and, asc, desc, eq, sql } from "drizzle-orm";
+import { asc, desc, eq, sql } from "drizzle-orm";
 import { getDb, query } from "./db";
 import {
   products, customers, orders, settings, accounts, quotes,
@@ -715,3 +715,38 @@ export const listAdmins = () => adminsCrud.list() as Promise<AdminRow[]>;
 export const listTeam = () => teamCrud.list() as Promise<TeamRow[]>;
 export const listProven = () => provenCrud.list() as Promise<ProvenRow[]>;
 export const listFaqs = () => faqsCrud.list() as Promise<FaqRow[]>;
+
+/* ---- Admin auth (Auth.js credentials + RBAC) -------------------------- */
+export interface AdminAuthRow {
+  id: string; email: string; name: string | null;
+  password_hash: string | null; role: string | null; status: string | null;
+}
+
+/** Look up an admin by email (case-insensitive) for credential verification. */
+export async function getAdminByEmail(email: string): Promise<AdminAuthRow | null> {
+  const rows = await query<AdminAuthRow>(
+    `SELECT id, email, name, password_hash, role, status FROM admins WHERE lower(email) = lower($1) LIMIT 1`,
+    [email],
+  );
+  return rows[0] ?? null;
+}
+
+/** Create or update an admin's login credentials + role (used by scripts/create-admin). */
+export async function setAdminCredentials(input: { email: string; name?: string; passwordHash: string; role?: string }): Promise<{ id: string; email: string; role: string }> {
+  const email = input.email.trim().toLowerCase();
+  const role = input.role ?? "admin";
+  const existing = await getAdminByEmail(email);
+  if (existing) {
+    await query(
+      `UPDATE admins SET password_hash = $1, role = $2, name = COALESCE($3, name), status = 'Active' WHERE id = $4`,
+      [input.passwordHash, role, input.name ?? null, existing.id],
+    );
+    return { id: existing.id, email, role };
+  }
+  const id = `ad-${Date.now().toString(36)}-${Math.floor(Math.random() * 1000)}`;
+  await query(
+    `INSERT INTO admins (id, name, email, status, "dateCreated", password_hash, role) VALUES ($1,$2,$3,'Active',$4,$5,$6)`,
+    [id, input.name ?? email, email, today(), input.passwordHash, role],
+  );
+  return { id, email, role };
+}

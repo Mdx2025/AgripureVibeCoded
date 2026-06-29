@@ -1,10 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createQuote } from "@/lib/repo";
 import { sendEmail } from "@/lib/integrations";
+import { rateLimit, clientIp } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
+  // Public write endpoint — rate-limit per IP (5 quotes / minute).
+  const rl = rateLimit(`quote:${clientIp(req)}`, 5, 60_000);
+  if (!rl.ok) {
+    return NextResponse.json(
+      { error: "Too many requests — please try again in a moment." },
+      { status: 429, headers: { "Retry-After": String(rl.retryAfter) } },
+    );
+  }
   try {
     const b = await req.json();
     const c = b?.customer ?? {};

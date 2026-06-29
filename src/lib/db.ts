@@ -1,5 +1,6 @@
 import { Pool } from "pg";
 import { drizzle, type NodePgDatabase } from "drizzle-orm/node-postgres";
+import { env } from "./env"; // validates required env (DATABASE_URL, AUTH_SECRET, …)
 import * as schema from "./schema";
 
 // AgriPure runs as a long-lived Node server (Fly), so we connect to Neon over
@@ -15,8 +16,7 @@ const g = globalThis as unknown as {
 
 function pool(): Pool {
   if (!g.__agripurePool) {
-    const connectionString = process.env.DATABASE_URL;
-    if (!connectionString) throw new Error("DATABASE_URL is not set — see .env.example");
+    const connectionString = env.DATABASE_URL;
     g.__agripurePool = new Pool({
       connectionString,
       max: 10,

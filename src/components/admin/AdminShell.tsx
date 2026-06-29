@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { signOut as nextAuthSignOut } from "next-auth/react";
 import {
   LayoutGrid, ShoppingBag, Boxes, Users, UsersRound, Settings, LogOut, Search, Bell,
   FlaskConical, Leaf, ShieldCheck, Award, HelpCircle, ChevronDown, Receipt, Microscope, Tag, Menu, X, Globe, Sprout,
@@ -95,8 +96,8 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
     setNavOpen(false);
   }, [pathname]);
 
-  const signOut = async () => {
-    await fetch("/api/auth/logout", { method: "POST" });
+  const handleSignOut = async () => {
+    await nextAuthSignOut({ redirect: false });
     router.push("/admin/sign-in");
     router.refresh();
   };
@@ -163,7 +164,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
               <div className="text-[13.5px] font-bold text-white">Super Admin</div>
               <div className="text-xs text-[#7FA06C]">Jun 20th, 2026</div>
             </div>
-            <button onClick={signOut} title="Sign out" className="text-[#7FA06C] hover:text-white">
+            <button onClick={handleSignOut} title="Sign out" className="text-[#7FA06C] hover:text-white">
               <LogOut size={18} strokeWidth={1.8} />
             </button>
           </div>

@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ENTITIES } from "@/lib/repo";
-import { isAdmin } from "@/lib/auth";
+import { getAdminUser } from "@/auth";
 
 export const dynamic = "force-dynamic";
 
 type Ctx = { params: { entity: string; id: string } };
 
-export function GET(req: NextRequest, { params }: Ctx) {
-  if (!isAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+export async function GET(req: NextRequest, { params }: Ctx) {
+  if (!(await getAdminUser())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const e = ENTITIES[params.entity];
   if (!e) return NextResponse.json({ error: "Unknown entity" }, { status: 404 });
   const item = e.get(params.id);
@@ -16,7 +16,7 @@ export function GET(req: NextRequest, { params }: Ctx) {
 }
 
 export async function PUT(req: NextRequest, { params }: Ctx) {
-  if (!isAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!(await getAdminUser())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const e = ENTITIES[params.entity];
   if (!e) return NextResponse.json({ error: "Unknown entity" }, { status: 404 });
   try {
@@ -29,8 +29,8 @@ export async function PUT(req: NextRequest, { params }: Ctx) {
   }
 }
 
-export function DELETE(req: NextRequest, { params }: Ctx) {
-  if (!isAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+export async function DELETE(req: NextRequest, { params }: Ctx) {
+  if (!(await getAdminUser())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const e = ENTITIES[params.entity];
   if (!e) return NextResponse.json({ error: "Unknown entity" }, { status: 404 });
   return NextResponse.json(e.remove(params.id));

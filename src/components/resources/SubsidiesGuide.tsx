@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import {
-  ArrowLeft, ArrowRight, ChevronDown, ClipboardList, FileCheck2, HandCoins,
+  ArrowLeft, ArrowRight, ChevronDown, ClipboardList, HandCoins,
   MapPin, ClipboardCheck, ListChecks, Receipt, BadgeDollarSign, ExternalLink, Sprout,
 } from "lucide-react";
 

@@ -107,6 +107,10 @@ export const admins = pgTable("admins", {
   email: text("email"),
   status: text("status"),
   dateCreated: text("dateCreated"),
+  // Auth.js credentials + RBAC (added Phase 1). Seed/display rows have null
+  // password_hash and cannot sign in until a password is set.
+  password_hash: text("password_hash"),
+  role: text("role").default("admin"),
 });
 
 export const team = pgTable("team", {

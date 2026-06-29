@@ -1,21 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { listProducts, createProduct } from "@/lib/repo";
-import { isAdmin } from "@/lib/auth";
+import { getAdminUser } from "@/auth";
 
 export const dynamic = "force-dynamic";
 
-export function GET() {
+export async function GET() {
   return NextResponse.json({ products: listProducts() });
 }
 
 export async function POST(req: NextRequest) {
-  if (!isAdmin(req)) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!(await getAdminUser())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   try {
     const b = await req.json();
     if (!b?.name || !b?.category || !b?.type || !b?.group || !(b?.price >= 0)) {
       throw new Error("name, category, type, group, and price are required");
     }
-    const product = createProduct({
+    const product = await createProduct({
       name: String(b.name),
       category: String(b.category),
       type: String(b.type),

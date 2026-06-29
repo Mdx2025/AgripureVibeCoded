@@ -8,6 +8,13 @@
       "when": 1782694516072,
       "tag": "0000_perpetual_jigsaw",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1782708409163,
+      "tag": "0001_rainy_proudstar",
+      "breakpoints": true
     }
   ]
 }
