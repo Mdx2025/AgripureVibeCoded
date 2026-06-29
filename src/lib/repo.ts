@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { getDb } from "./db";
+import { and, asc, desc, eq, sql } from "drizzle-orm";
+import { getDb, query } from "./db";
+import {
+  products, customers, orders, settings, accounts, quotes,
+  cropFormulas, cropPricingOverrides,
+} from "./schema";
 import { SIZES } from "./products";
 import type { OrderStatus } from "./admin-data";
 import {
@@ -16,32 +21,26 @@ export interface ProductRow {
   crops: string[]; image: string;
 }
 
-interface ProductDbRow extends Omit<ProductRow, "crops" | "group" | "image"> {
-  grp: string;
-  crops: string;
-  image: string | null;
-}
-
-const mapProduct = (r: ProductDbRow): ProductRow => {
+const mapProduct = (r: typeof products.$inferSelect): ProductRow => {
   const { grp, crops, image, ...rest } = r;
-  return { ...rest, group: grp, crops: JSON.parse(crops || "[]") as string[], image: image || "" };
+  return { ...(rest as Omit<ProductRow, "group" | "crops" | "image">), group: grp ?? "", crops: JSON.parse(crops || "[]") as string[], image: image || "" };
 };
 
-export function listProducts(): ProductRow[] {
-  return (getDb().prepare("SELECT * FROM products").all() as ProductDbRow[]).map(mapProduct);
+export async function listProducts(): Promise<ProductRow[]> {
+  return (await getDb().select().from(products)).map(mapProduct);
 }
 
-export function getProduct(id: string): ProductRow | null {
-  const r = getDb().prepare("SELECT * FROM products WHERE id = ?").get(id) as ProductDbRow | undefined;
-  return r ? mapProduct(r) : null;
+export async function getProduct(id: string): Promise<ProductRow | null> {
+  const r = await getDb().select().from(products).where(eq(products.id, id)).limit(1);
+  return r[0] ? mapProduct(r[0]) : null;
 }
 
 export interface CustomerRow {
   id: string; name: string; op: string; location: string; crop: string;
   orders: number; ltv: string; avColor: string;
 }
-export function listCustomers(): CustomerRow[] {
-  return getDb().prepare("SELECT * FROM customers ORDER BY orders DESC").all() as CustomerRow[];
+export async function listCustomers(): Promise<CustomerRow[]> {
+  return (await getDb().select().from(customers).orderBy(desc(customers.orders))) as CustomerRow[];
 }
 
 export interface OrderRow {
@@ -49,51 +48,36 @@ export interface OrderRow {
   total: string; status: OrderStatus; created_at: string;
   payment: string; lab_production: string; recurring: number; items: number;
 }
-export function listOrders(status?: string): OrderRow[] {
+export async function listOrders(status?: string): Promise<OrderRow[]> {
   const db = getDb();
-  const rows =
-    status && status !== "All"
-      ? (db.prepare("SELECT * FROM orders WHERE status = ? ORDER BY created_at DESC").all(status) as OrderRow[])
-      : (db.prepare("SELECT * FROM orders ORDER BY created_at DESC").all() as OrderRow[]);
-  return rows;
+  const rows = status && status !== "All"
+    ? await db.select().from(orders).where(eq(orders.status, status)).orderBy(desc(orders.created_at))
+    : await db.select().from(orders).orderBy(desc(orders.created_at));
+  return rows as OrderRow[];
 }
 
-export interface NewOrderItem {
-  id: string;
-  size: string;
-  qty: number;
-}
-export interface CreateOrderInput {
-  items: NewOrderItem[];
-  customer?: string;
-  op?: string;
-}
+export interface NewOrderItem { id: string; size: string; qty: number; }
+export interface CreateOrderInput { items: NewOrderItem[]; customer?: string; op?: string; }
 
 const money = (n: number) => "$" + Math.round(n).toLocaleString("en-US");
 
-export function createOrder(input: CreateOrderInput): OrderRow {
-  const db = getDb();
+export async function createOrder(input: CreateOrderInput): Promise<OrderRow> {
   const items = input.items?.filter((i) => i && i.id && i.qty > 0) ?? [];
   if (!items.length) throw new Error("Order has no items");
 
-  // Build summary + total from current product prices, and draw down stock.
-  let total = 0;
-  const parts: string[] = [];
-  const decStock = db.prepare("UPDATE products SET stock = MAX(0, stock - ?) WHERE id = ?");
-  const getPrice = db.prepare("SELECT name, price FROM products WHERE id = ?");
-
-  const tx = db.transaction(() => {
+  return getDb().transaction(async (tx) => {
+    let total = 0;
+    const parts: string[] = [];
     for (const it of items) {
-      const p = getPrice.get(it.id) as { name: string; price: number } | undefined;
+      const p = (await tx.select({ name: products.name, price: products.price }).from(products).where(eq(products.id, it.id)).limit(1))[0];
       if (!p) continue;
       const factor = SIZES.find((s) => s.id === it.size)?.factor ?? 1;
-      total += Math.round(p.price * factor) * it.qty;
-      parts.push(it.qty > 1 ? `${p.name} ×${it.qty}` : p.name);
-      decStock.run(it.qty, it.id);
+      total += Math.round((p.price ?? 0) * factor) * it.qty;
+      parts.push(it.qty > 1 ? `${p.name} ×${it.qty}` : (p.name ?? ""));
+      await tx.update(products).set({ stock: sql`GREATEST(0, ${products.stock} - ${it.qty})` }).where(eq(products.id, it.id));
     }
 
-    // Next order id from the max numeric suffix.
-    const ids = db.prepare("SELECT id FROM orders").all() as { id: string }[];
+    const ids = await tx.select({ id: orders.id }).from(orders);
     const maxNum = ids.reduce((m, r) => {
       const n = parseInt(r.id.replace(/\D/g, ""), 10);
       return Number.isFinite(n) && n > m ? n : m;
@@ -101,31 +85,23 @@ export function createOrder(input: CreateOrderInput): OrderRow {
     const id = `#AP-${maxNum + 1}`;
 
     const now = new Date();
-    const date = now.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-    const created_at = now.toISOString();
-
     const order: OrderRow = {
       id,
       customer: input.customer?.trim() || "Online order",
       op: input.op?.trim() || "Storefront",
       product: parts.join(" · ") || "—",
-      date,
+      date: now.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
       total: money(total),
       status: "Processing",
-      created_at,
+      created_at: now.toISOString(),
       payment: "Pending",
       lab_production: "Queued",
       recurring: 0,
       items: items.reduce((t, it) => t + it.qty, 0),
     };
-    db.prepare(
-      `INSERT INTO orders (id,customer,op,product,date,total,status,created_at,payment,lab_production,recurring,items)
-       VALUES (@id,@customer,@op,@product,@date,@total,@status,@created_at,@payment,@lab_production,@recurring,@items)`,
-    ).run(order);
+    await tx.insert(orders).values(order);
     return order;
   });
-
-  return tx() as OrderRow;
 }
 
 const GROUP_ACCENT: Record<string, { accent: string; soft: string }> = {
@@ -136,59 +112,36 @@ const GROUP_ACCENT: Record<string, { accent: string; soft: string }> = {
 };
 
 export interface NewProductInput {
-  name: string;
-  category: string;
-  type: string;
-  group: string;
-  price: number;
-  stock?: number;
-  sku?: string;
-  blurb?: string;
+  name: string; category: string; type: string; group: string;
+  price: number; stock?: number; sku?: string; blurb?: string;
 }
 
 const slugify = (s: string) =>
   s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "product";
 
-export function createProduct(input: NewProductInput): ProductRow {
+export async function createProduct(input: NewProductInput): Promise<ProductRow> {
   const db = getDb();
+  const taken = async (cand: string) => (await db.select({ id: products.id }).from(products).where(eq(products.id, cand)).limit(1)).length > 0;
   let id = slugify(input.name);
-  const exists = db.prepare("SELECT 1 FROM products WHERE id = ?");
-  if (exists.get(id)) {
+  if (await taken(id)) {
     let i = 2;
-    while (exists.get(`${id}-${i}`)) i++;
+    while (await taken(`${id}-${i}`)) i++;
     id = `${id}-${i}`;
   }
-  const maxNum = (db.prepare("SELECT MAX(CAST(num AS INTEGER)) AS m FROM products").get() as { m: number | null }).m ?? 0;
+  const maxNum = (await db.select({ m: sql<number | null>`max(cast(${products.num} as integer))` }).from(products))[0]?.m ?? 0;
   const accent = GROUP_ACCENT[input.group] ?? { accent: "#4E8A3A", soft: "#E9F0E0" };
+  const num = String(maxNum + 1).padStart(2, "0");
 
-  db.prepare(`INSERT INTO products
-    (id,num,name,category,type,grp,accent,accentSoft,band,price,sku,rating,reviews,stock,cap,tagline,blurb,long,npk,ph,omri,rate,crops)
-    VALUES (@id,@num,@name,@category,@type,@grp,@accent,@accentSoft,@band,@price,@sku,@rating,@reviews,@stock,@cap,@tagline,@blurb,@long,@npk,@ph,@omri,@rate,@crops)`).run({
-    id,
-    num: String(maxNum + 1).padStart(2, "0"),
-    name: input.name,
-    category: input.category,
-    type: input.type,
-    grp: input.group,
-    accent: accent.accent,
-    accentSoft: accent.soft,
-    band: accent.accent,
+  await db.insert(products).values({
+    id, num, name: input.name, category: input.category, type: input.type, grp: input.group,
+    accent: accent.accent, accentSoft: accent.soft, band: accent.accent,
     price: Math.round(input.price),
-    sku: input.sku?.trim() || `AP-${String(maxNum + 1).padStart(2, "0")}-${id.slice(0, 3).toUpperCase()}-6G`,
-    rating: 0,
-    reviews: 0,
-    stock: input.stock ?? 0,
-    cap: 200,
-    tagline: input.blurb ?? "",
-    blurb: input.blurb ?? "",
-    long: input.blurb ?? "",
-    npk: "—",
-    ph: "—",
-    omri: "OMRI-style",
-    rate: "—",
-    crops: JSON.stringify([]),
+    sku: input.sku?.trim() || `AP-${num}-${id.slice(0, 3).toUpperCase()}-6G`,
+    rating: 0, reviews: 0, stock: input.stock ?? 0, cap: 200,
+    tagline: input.blurb ?? "", blurb: input.blurb ?? "", long: input.blurb ?? "",
+    npk: "—", ph: "—", omri: "OMRI-style", rate: "—", crops: JSON.stringify([]),
   });
-  return getProduct(id)!;
+  return (await getProduct(id))!;
 }
 
 const EDITABLE = [
@@ -197,41 +150,43 @@ const EDITABLE = [
 ] as const;
 type EditableField = (typeof EDITABLE)[number];
 
-export function updateProduct(id: string, patch: Partial<Record<EditableField, unknown>>): ProductRow | null {
-  const db = getDb();
-  if (!getProduct(id)) return null;
-  const cols: string[] = [];
-  const vals: (string | number)[] = [];
+export async function updateProduct(id: string, patch: Partial<Record<EditableField, unknown>>): Promise<ProductRow | null> {
+  if (!(await getProduct(id))) return null;
+  const set: Record<string, unknown> = {};
   for (const key of EDITABLE) {
     if (patch[key] === undefined) continue;
-    const col = key === "group" ? "grp" : key;
-    let v: string | number;
-    if (key === "price" || key === "stock") v = Math.round(Number(patch[key]) || 0);
+    if (key === "group") set.grp = String(patch[key] ?? "");
+    else if (key === "price" || key === "stock") set[key] = Math.round(Number(patch[key]) || 0);
     else if (key === "crops") {
-      // accept an array or a comma/newline-separated string → JSON array of trimmed tags
       const raw = patch[key];
       const arr = Array.isArray(raw)
         ? raw.map((s) => String(s).trim()).filter(Boolean)
         : String(raw ?? "").split(/[,\n]/).map((s) => s.trim()).filter(Boolean);
-      v = JSON.stringify(arr);
-    } else v = String(patch[key] ?? "");
-    cols.push(`${col} = ?`);
-    vals.push(v);
+      set.crops = JSON.stringify(arr);
+    } else set[key] = String(patch[key] ?? "");
   }
-  if (!cols.length) return getProduct(id);
-  vals.push(id);
-  db.prepare(`UPDATE products SET ${cols.join(", ")} WHERE id = ?`).run(...vals);
+  if (Object.keys(set).length) {
+    await getDb().update(products).set(set as Partial<typeof products.$inferInsert>).where(eq(products.id, id));
+  }
   return getProduct(id);
 }
 
 /* ---- Editable pricing program (graduated per-acre tiers + bundles) ----- */
 const PRICING_KEY = "pricing_program";
 
-export function getPricingProgram(): PricingProgram {
-  const row = getDb().prepare("SELECT value FROM settings WHERE key = ?").get(PRICING_KEY) as { value: string } | undefined;
-  if (!row) return DEFAULT_PROGRAM;
+async function getSetting(key: string): Promise<string | undefined> {
+  const r = await getDb().select({ value: settings.value }).from(settings).where(eq(settings.key, key)).limit(1);
+  return r[0]?.value ?? undefined;
+}
+async function putSetting(key: string, value: string): Promise<void> {
+  await getDb().insert(settings).values({ key, value }).onConflictDoUpdate({ target: settings.key, set: { value } });
+}
+
+export async function getPricingProgram(): Promise<PricingProgram> {
+  const value = await getSetting(PRICING_KEY);
+  if (!value) return DEFAULT_PROGRAM;
   try {
-    const p = JSON.parse(row.value) as Partial<PricingProgram>;
+    const p = JSON.parse(value) as Partial<PricingProgram>;
     return {
       tiers: Array.isArray(p.tiers) && p.tiers.length ? p.tiers : DEFAULT_PROGRAM.tiers,
       organicPerAc: typeof p.organicPerAc === "number" ? p.organicPerAc : DEFAULT_PROGRAM.organicPerAc,
@@ -244,10 +199,8 @@ export function getPricingProgram(): PricingProgram {
   }
 }
 
-export function savePricingProgram(input: PricingProgram): PricingProgram {
-  // Acreage is priced in 25-acre increments — snap all acreage values to 25.
+export async function savePricingProgram(input: PricingProgram): Promise<PricingProgram> {
   const snap25 = (n: number) => Math.round(n / 25) * 25;
-  // normalize + sort tiers by floor; coerce numbers
   const tiers = (input.tiers ?? [])
     .map((t) => ({
       from: Math.max(0, snap25(Number(t.from) || 0)),
@@ -271,22 +224,20 @@ export function savePricingProgram(input: PricingProgram): PricingProgram {
     bundles,
     soilSamplePrice: Math.max(0, Math.round(Number(input.soilSamplePrice ?? DEFAULT_PROGRAM.soilSamplePrice))),
   };
-  getDb().prepare("INSERT INTO settings (key,value) VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value")
-    .run(PRICING_KEY, JSON.stringify(program));
+  await putSetting(PRICING_KEY, JSON.stringify(program));
   return program;
 }
 
 /* ------------------------------- SEO config ------------------------------- */
 const SEO_KEY = "seo_config";
 
-export function getSeoConfig(): SeoConfig {
-  const row = getDb().prepare("SELECT value FROM settings WHERE key = ?").get(SEO_KEY) as { value: string } | undefined;
-  if (!row) return DEFAULT_SEO;
+export async function getSeoConfig(): Promise<SeoConfig> {
+  const value = await getSetting(SEO_KEY);
+  if (!value) return DEFAULT_SEO;
   try {
-    const saved = JSON.parse(row.value) as Partial<SeoConfig>;
+    const saved = JSON.parse(value) as Partial<SeoConfig>;
     return {
       site: { ...DEFAULT_SITE, ...(saved.site ?? {}) },
-      // Merge saved page entries over defaults so newly-added pages still appear.
       pages: { ...DEFAULT_PAGES, ...(saved.pages ?? {}) },
     };
   } catch {
@@ -294,7 +245,7 @@ export function getSeoConfig(): SeoConfig {
   }
 }
 
-export function saveSeoConfig(input: SeoConfig): SeoConfig {
+export async function saveSeoConfig(input: SeoConfig): Promise<SeoConfig> {
   const clean = (s: unknown) => String(s ?? "").trim();
   const site: SeoSite = {
     siteName: clean(input.site?.siteName) || DEFAULT_SITE.siteName,
@@ -314,27 +265,26 @@ export function saveSeoConfig(input: SeoConfig): SeoConfig {
     };
   }
   const config: SeoConfig = { site, pages };
-  getDb().prepare("INSERT INTO settings (key,value) VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value")
-    .run(SEO_KEY, JSON.stringify(config));
+  await putSetting(SEO_KEY, JSON.stringify(config));
   return config;
 }
 
 /** Resolve a saved entry for a path, falling back to defaults. */
-export function getSeoEntry(path: string): { site: SeoSite; entry: SeoEntry } {
-  const cfg = getSeoConfig();
+export async function getSeoEntry(path: string): Promise<{ site: SeoSite; entry: SeoEntry }> {
+  const cfg = await getSeoConfig();
   const entry = cfg.pages[path] ?? DEFAULT_PAGES[path] ?? { title: cfg.site.siteName, description: "" };
   return { site: cfg.site, entry };
 }
 
 /** Build Next.js Metadata for a static page path from the editable SEO config. */
-export function resolveSeoMetadata(path: string): Metadata {
-  const { site, entry } = getSeoEntry(path);
+export async function resolveSeoMetadata(path: string): Promise<Metadata> {
+  const { site, entry } = await getSeoEntry(path);
   return buildMetadata(site, entry, path);
 }
 
 /** Build Metadata for a product-detail page from the editable template + product data. */
-export function resolveProductMetadata(product: { id: string; name: string; category: string; type?: string; tagline?: string; long?: string; image?: string }): Metadata {
-  const { site, entry } = getSeoEntry(PRODUCT_TEMPLATE_PATH);
+export async function resolveProductMetadata(product: { id: string; name: string; category: string; type?: string; tagline?: string; long?: string; image?: string }): Promise<Metadata> {
+  const { site, entry } = await getSeoEntry(PRODUCT_TEMPLATE_PATH);
   const tokens = { name: product.name, category: product.category, type: product.type || product.category, tagline: product.tagline || product.long || "" };
   const resolved: SeoEntry = {
     title: applyTokens(entry.title, tokens),
@@ -347,24 +297,21 @@ export function resolveProductMetadata(product: { id: string; name: string; cate
 }
 
 export type Settings = Record<string, string>;
-export function getSettings(): Settings {
-  const rows = getDb().prepare("SELECT key, value FROM settings").all() as { key: string; value: string }[];
-  return Object.fromEntries(rows.map((r) => [r.key, r.value]));
+export async function getSettings(): Promise<Settings> {
+  const rows = await getDb().select({ key: settings.key, value: settings.value }).from(settings);
+  return Object.fromEntries(rows.map((r) => [r.key, r.value ?? ""]));
 }
-export function updateSettings(patch: Settings): Settings {
-  const db = getDb();
-  const up = db.prepare(
-    "INSERT INTO settings (key,value) VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value",
-  );
-  const tx = db.transaction(() => {
-    for (const [k, v] of Object.entries(patch)) up.run(k, String(v));
+export async function updateSettings(patch: Settings): Promise<Settings> {
+  await getDb().transaction(async (tx) => {
+    for (const [k, v] of Object.entries(patch)) {
+      await tx.insert(settings).values({ key: k, value: String(v) }).onConflictDoUpdate({ target: settings.key, set: { value: String(v) } });
+    }
   });
-  tx();
   return getSettings();
 }
 
-export function deleteProduct(id: string): { ok: boolean } {
-  getDb().prepare("DELETE FROM products WHERE id = ?").run(id);
+export async function deleteProduct(id: string): Promise<{ ok: boolean }> {
+  await getDb().delete(products).where(eq(products.id, id));
   return { ok: true };
 }
 
@@ -375,10 +322,11 @@ import { quoteForCrops, applyCropPricingOverrides, CROP_PRICING, type CropPricin
 /* --------------------------- crop price overrides --------------------------- */
 
 /** The admin-set conventional/organic/list overrides, as stored. */
-export function getCropPriceOverrides(): CropPriceOverride[] {
-  return getDb()
-    .prepare("SELECT crop_id AS id, conventional, organic, list FROM crop_pricing_overrides")
-    .all() as CropPriceOverride[];
+export async function getCropPriceOverrides(): Promise<CropPriceOverride[]> {
+  const rows = await getDb()
+    .select({ id: cropPricingOverrides.crop_id, conventional: cropPricingOverrides.conventional, organic: cropPricingOverrides.organic, list: cropPricingOverrides.list })
+    .from(cropPricingOverrides);
+  return rows as CropPriceOverride[];
 }
 
 /**
@@ -386,29 +334,27 @@ export function getCropPriceOverrides(): CropPriceOverride[] {
  * the live, effective per-crop pricing. Call from any server entry point that
  * prices crops (quotes, the admin table, pages that hydrate client pricing).
  */
-export function loadCropPricing(): CropPricing[] {
-  applyCropPricingOverrides(getCropPriceOverrides());
+export async function loadCropPricing(): Promise<CropPricing[]> {
+  applyCropPricingOverrides(await getCropPriceOverrides());
   return CROP_PRICING;
 }
 
 /** Insert/update one crop's conventional/organic/AgriPure-list $/acre. */
-export function saveCropPriceOverride(o: { id: string; conventional: number; organic: number; list: number }): CropPriceOverride[] {
+export async function saveCropPriceOverride(o: { id: string; conventional: number; organic: number; list: number }): Promise<CropPriceOverride[]> {
   const crop = CROP_PRICING.find((c) => c.id === o.id);
   if (!crop) throw new Error(`Unknown crop: ${o.id}`);
   const clamp = (n: number) => Math.max(0, Math.round(Number(n) || 0));
-  getDb()
-    .prepare(`INSERT INTO crop_pricing_overrides (crop_id, conventional, organic, list, updated_at)
-      VALUES (@id, @conventional, @organic, @list, @updated_at)
-      ON CONFLICT(crop_id) DO UPDATE SET conventional=@conventional, organic=@organic, list=@list, updated_at=@updated_at`)
-    .run({ id: o.id, conventional: clamp(o.conventional), organic: clamp(o.organic), list: clamp(o.list), updated_at: new Date().toISOString() });
-  applyCropPricingOverrides(getCropPriceOverrides());
+  const row = { crop_id: o.id, conventional: clamp(o.conventional), organic: clamp(o.organic), list: clamp(o.list), updated_at: new Date().toISOString() };
+  await getDb().insert(cropPricingOverrides).values(row).onConflictDoUpdate({
+    target: cropPricingOverrides.crop_id,
+    set: { conventional: row.conventional, organic: row.organic, list: row.list, updated_at: row.updated_at },
+  });
   return getCropPriceOverrides();
 }
 
 /** Remove a crop's override, restoring its generated default pricing. */
-export function resetCropPriceOverride(id: string): CropPriceOverride[] {
-  getDb().prepare("DELETE FROM crop_pricing_overrides WHERE crop_id = ?").run(id);
-  applyCropPricingOverrides(getCropPriceOverrides());
+export async function resetCropPriceOverride(id: string): Promise<CropPriceOverride[]> {
+  await getDb().delete(cropPricingOverrides).where(eq(cropPricingOverrides.crop_id, id));
   return getCropPriceOverrides();
 }
 
@@ -437,91 +383,93 @@ export interface QuoteRow {
 const genPassword = () =>
   Array.from({ length: 4 }, () => Math.random().toString(36).slice(2, 5)).join("-");
 
-export function createQuote(input: QuoteInput) {
-  const db = getDb();
+export async function createQuote(input: QuoteInput) {
   const email = input.customer.email.trim().toLowerCase();
   const totalAcres = Object.values(input.acres).reduce((t, n) => t + (Number(n) || 0), 0);
-  const program = getPricingProgram();
+  const program = await getPricingProgram();
   // Apply any admin per-crop price overrides before pricing this operation, so
   // the stored total matches what the grower saw in the Order Now estimate.
-  applyCropPricingOverrides(getCropPriceOverrides());
-  // Per-crop pricing: each crop priced by type, volume-discounted on its own acreage.
+  applyCropPricingOverrides(await getCropPriceOverrides());
   const cq = quoteForCrops(input.acres);
-  // One required soil sample per crop (kit + lab analysis); added to the order total.
   const soilPrice = program.soilSamplePrice;
   const soilTotal = (input.crops?.length || 0) * soilPrice;
   const grandTotal = cq.total + soilTotal;
   const now = new Date().toISOString();
 
-  // Upsert account by email.
-  let account = db.prepare("SELECT * FROM accounts WHERE email = ?").get(email) as { id: string } | undefined;
-  let isNewAccount = false;
-  let tempPassword: string | undefined;
-  if (!account) {
-    isNewAccount = true;
-    tempPassword = genPassword();
-    const id = `ac-${Date.now().toString(36)}-${Math.floor(Math.random() * 1000)}`;
-    db.prepare(`INSERT INTO accounts (id,name,email,phone,business,address,password,created_at)
-      VALUES (?,?,?,?,?,?,?,?)`).run(
-      id, input.customer.name, email, input.customer.phone, input.customer.business, input.customer.address, tempPassword, now,
-    );
-    account = { id };
-  }
+  return getDb().transaction(async (tx) => {
+    let account = (await tx.select({ id: accounts.id }).from(accounts).where(eq(accounts.email, email)).limit(1))[0];
+    let isNewAccount = false;
+    let tempPassword: string | undefined;
+    if (!account) {
+      isNewAccount = true;
+      tempPassword = genPassword();
+      const id = `ac-${Date.now().toString(36)}-${Math.floor(Math.random() * 1000)}`;
+      await tx.insert(accounts).values({
+        id, name: input.customer.name, email, phone: input.customer.phone,
+        business: input.customer.business, address: input.customer.address, password: tempPassword, created_at: now,
+      });
+      account = { id };
+    }
 
-  const seq = (db.prepare("SELECT COUNT(*) AS c FROM quotes").get() as { c: number }).c + 10001;
-  const id = `q-${Date.now().toString(36)}-${Math.floor(Math.random() * 1000)}`;
-  const number = `AP-Q-${seq}`;
-  db.prepare(`INSERT INTO quotes
-    (id,number,account_id,customer_name,customer_email,acres,total,effective,payload,soil_total,soil_price,status,payment_status,payment_method,created_at)
-    VALUES (@id,@number,@account_id,@customer_name,@customer_email,@acres,@total,@effective,@payload,@soil_total,@soil_price,'quote','unpaid',NULL,@created_at)`).run({
-    id, number, account_id: account.id,
-    customer_name: input.customer.name, customer_email: email,
-    acres: totalAcres, total: grandTotal, effective: cq.effective,
-    payload: JSON.stringify(input), soil_total: soilTotal, soil_price: soilPrice, created_at: now,
+    const count = (await tx.select({ c: sql<number>`count(*)::int` }).from(quotes))[0]?.c ?? 0;
+    const seq = count + 10001;
+    const id = `q-${Date.now().toString(36)}-${Math.floor(Math.random() * 1000)}`;
+    const number = `AP-Q-${seq}`;
+    await tx.insert(quotes).values({
+      id, number, account_id: account.id,
+      customer_name: input.customer.name, customer_email: email,
+      acres: totalAcres, total: grandTotal, effective: cq.effective,
+      payload: JSON.stringify(input), soil_total: soilTotal, soil_price: soilPrice,
+      status: "quote", payment_status: "unpaid", payment_method: null, created_at: now,
+    });
+    return { id, number, isNewAccount, accountEmail: email, tempPassword };
   });
-
-  return { id, number, isNewAccount, accountEmail: email, tempPassword };
 }
 
-export function getQuote(id: string): QuoteRow | null {
-  const r = getDb().prepare("SELECT * FROM quotes WHERE id = ?").get(id) as (Omit<QuoteRow, "payload"> & { payload: string }) | undefined;
-  if (!r) return null;
-  return { ...r, payload: JSON.parse(r.payload) as QuoteInput };
+const mapQuote = (r: typeof quotes.$inferSelect): QuoteRow => ({
+  ...(r as Omit<QuoteRow, "payload">),
+  payload: JSON.parse(r.payload || "{}") as QuoteInput,
+});
+
+export async function getQuote(id: string): Promise<QuoteRow | null> {
+  const r = (await getDb().select().from(quotes).where(eq(quotes.id, id)).limit(1))[0];
+  return r ? mapQuote(r) : null;
 }
 
-export function placeOrder(id: string, method: string): QuoteRow | null {
-  const db = getDb();
-  if (!getQuote(id)) return null;
+export async function placeOrder(id: string, method: string): Promise<QuoteRow | null> {
+  if (!(await getQuote(id))) return null;
   const paymentStatus = method === "wire" || method === "check" ? "awaiting_payment" : "pending";
-  db.prepare("UPDATE quotes SET status='ordered', payment_status=?, payment_method=? WHERE id=?").run(paymentStatus, method, id);
+  await getDb().update(quotes).set({ status: "ordered", payment_status: paymentStatus, payment_method: method }).where(eq(quotes.id, id));
   return getQuote(id);
 }
 
-export const listQuotes = (): QuoteRow[] =>
-  (getDb().prepare("SELECT * FROM quotes ORDER BY created_at DESC").all() as (Omit<QuoteRow, "payload"> & { payload: string })[])
-    .map((r) => ({ ...r, payload: JSON.parse(r.payload) as QuoteInput }));
+export async function listQuotes(): Promise<QuoteRow[]> {
+  return (await getDb().select().from(quotes).orderBy(desc(quotes.created_at))).map(mapQuote);
+}
 
 export interface AccountRow {
   id: string; name: string; email: string; phone: string; business: string; address: string; created_at: string;
 }
 
-export function getAccountById(id: string): AccountRow | null {
-  return (getDb().prepare("SELECT id,name,email,phone,business,address,created_at FROM accounts WHERE id = ?").get(id) as AccountRow | undefined) ?? null;
+export async function getAccountById(id: string): Promise<AccountRow | null> {
+  const r = (await getDb().select({
+    id: accounts.id, name: accounts.name, email: accounts.email, phone: accounts.phone,
+    business: accounts.business, address: accounts.address, created_at: accounts.created_at,
+  }).from(accounts).where(eq(accounts.id, id)).limit(1))[0];
+  return (r as AccountRow | undefined) ?? null;
 }
 
 /** Returns the account (without password) if email + password match. */
-export function verifyCustomer(email: string, password: string): AccountRow | null {
-  const row = getDb().prepare("SELECT * FROM accounts WHERE email = ?").get(email.trim().toLowerCase()) as
-    (AccountRow & { password: string }) | undefined;
+export async function verifyCustomer(email: string, password: string): Promise<AccountRow | null> {
+  const row = (await getDb().select().from(accounts).where(eq(accounts.email, email.trim().toLowerCase())).limit(1))[0];
   if (!row || row.password !== password) return null;
   const { password: _pw, ...account } = row;
   void _pw;
-  return account;
+  return account as AccountRow;
 }
 
-export function listQuotesByAccount(accountId: string): QuoteRow[] {
-  return (getDb().prepare("SELECT * FROM quotes WHERE account_id = ? ORDER BY created_at DESC").all(accountId) as (Omit<QuoteRow, "payload"> & { payload: string })[])
-    .map((r) => ({ ...r, payload: JSON.parse(r.payload) as QuoteInput }));
+export async function listQuotesByAccount(accountId: string): Promise<QuoteRow[]> {
+  return (await getDb().select().from(quotes).where(eq(quotes.account_id, accountId)).orderBy(desc(quotes.created_at))).map(mapQuote);
 }
 
 /* ---- Clients (real customers created when an order is placed) ---------- */
@@ -530,24 +478,27 @@ export interface ClientSummary extends AccountRow {
 }
 
 /** Every customer account, with their order count + lifetime value. The admin Clients list. */
-export function listAccounts(): ClientSummary[] {
-  return getDb().prepare(`
-    SELECT a.id, a.name, a.email, a.phone, a.business, a.address, a.created_at,
-           COUNT(q.id) AS orders,
-           COALESCE(SUM(q.total), 0) AS totalSpend,
-           MAX(q.created_at) AS lastOrder
-    FROM accounts a
-    LEFT JOIN quotes q ON q.account_id = a.id
-    GROUP BY a.id
-    ORDER BY a.created_at DESC
-  `).all() as ClientSummary[];
+export async function listAccounts(): Promise<ClientSummary[]> {
+  const rows = await getDb()
+    .select({
+      id: accounts.id, name: accounts.name, email: accounts.email, phone: accounts.phone,
+      business: accounts.business, address: accounts.address, created_at: accounts.created_at,
+      orders: sql<number>`count(${quotes.id})::int`,
+      totalSpend: sql<number>`coalesce(sum(${quotes.total}), 0)::int`,
+      lastOrder: sql<string | null>`max(${quotes.created_at})`,
+    })
+    .from(accounts)
+    .leftJoin(quotes, eq(quotes.account_id, accounts.id))
+    .groupBy(accounts.id)
+    .orderBy(desc(accounts.created_at));
+  return rows as ClientSummary[];
 }
 
 /** A single client's full contact record plus every quote/order they've placed. */
-export function getClientWithQuotes(id: string): { account: AccountRow; quotes: QuoteRow[] } | null {
-  const account = getAccountById(id);
+export async function getClientWithQuotes(id: string): Promise<{ account: AccountRow; quotes: QuoteRow[] } | null> {
+  const account = await getAccountById(id);
   if (!account) return null;
-  return { account, quotes: listQuotesByAccount(id) };
+  return { account, quotes: await listQuotesByAccount(id) };
 }
 
 /* ---- Crop formula library (lab-only blends, imported from CSV) --------- */
@@ -563,13 +514,16 @@ const LINE_NAME: Record<string, string> = {
 };
 
 /** The 6 product-line lab blends for a crop (case-insensitive), in program order. */
-export function getCropFormulas(crop: string): CropFormulaRow[] {
-  const rows = getDb().prepare("SELECT * FROM crop_formulas WHERE crop = ? COLLATE NOCASE").all(crop) as CropFormulaRow[];
-  return rows.sort((a, b) => LINE_ORDER.indexOf(a.line_code) - LINE_ORDER.indexOf(b.line_code));
+export async function getCropFormulas(crop: string): Promise<CropFormulaRow[]> {
+  const rows = await getDb().select().from(cropFormulas).where(sql`lower(${cropFormulas.crop}) = lower(${crop})`);
+  return (rows as CropFormulaRow[]).sort((a, b) => LINE_ORDER.indexOf(a.line_code) - LINE_ORDER.indexOf(b.line_code));
 }
 
-export function listCropFormulaCrops(): { crop: string; count: number }[] {
-  return getDb().prepare("SELECT crop, COUNT(*) AS count FROM crop_formulas GROUP BY crop ORDER BY crop").all() as { crop: string; count: number }[];
+export async function listCropFormulaCrops(): Promise<{ crop: string; count: number }[]> {
+  const rows = await getDb()
+    .select({ crop: cropFormulas.crop, count: sql<number>`count(*)::int` })
+    .from(cropFormulas).groupBy(cropFormulas.crop).orderBy(asc(cropFormulas.crop));
+  return rows as { crop: string; count: number }[];
 }
 
 export interface CropFormulaInput {
@@ -579,29 +533,31 @@ export interface CropFormulaInput {
 }
 
 /** Add or update one product-line formula for a crop (creates a CUSTOM crop_id for new crops). */
-export function upsertCropFormula(input: CropFormulaInput): CropFormulaRow {
+export async function upsertCropFormula(input: CropFormulaInput): Promise<CropFormulaRow> {
   const db = getDb();
   const lineCode = input.lineCode.toUpperCase();
-  const existing = db.prepare("SELECT crop_id FROM crop_formulas WHERE crop = ? COLLATE NOCASE LIMIT 1").get(input.crop) as { crop_id: string } | undefined;
+  const existing = (await db.select({ crop_id: cropFormulas.crop_id }).from(cropFormulas).where(sql`lower(${cropFormulas.crop}) = lower(${input.crop})`).limit(1))[0];
   const cropId = existing?.crop_id ?? `CUSTOM-${input.crop.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
   const id = `${cropId}-${lineCode}`;
-  db.prepare(`INSERT INTO crop_formulas
-    (id,crop,crop_id,line,line_code,primary_remedy,potency,blend,targets,rate,method,stage,cadence,lab_note)
-    VALUES (@id,@crop,@crop_id,@line,@line_code,@primary_remedy,@potency,@blend,@targets,@rate,@method,@stage,@cadence,@lab_note)
-    ON CONFLICT(id) DO UPDATE SET
-      primary_remedy=excluded.primary_remedy, potency=excluded.potency, blend=excluded.blend, targets=excluded.targets,
-      rate=excluded.rate, method=excluded.method, stage=excluded.stage, cadence=excluded.cadence, lab_note=excluded.lab_note`).run({
+  const row = {
     id, crop: input.crop, crop_id: cropId, line: LINE_NAME[lineCode] ?? lineCode, line_code: lineCode,
     primary_remedy: input.primaryRemedy ?? "", potency: input.potency ?? "6C", blend: input.blend,
     targets: input.targets ?? "", rate: input.rate ?? "", method: input.method ?? "",
     stage: input.stage ?? "", cadence: input.cadence ?? "", lab_note: input.labNote ?? "",
+  };
+  await db.insert(cropFormulas).values(row).onConflictDoUpdate({
+    target: cropFormulas.id,
+    set: {
+      primary_remedy: row.primary_remedy, potency: row.potency, blend: row.blend, targets: row.targets,
+      rate: row.rate, method: row.method, stage: row.stage, cadence: row.cadence, lab_note: row.lab_note,
+    },
   });
-  return db.prepare("SELECT * FROM crop_formulas WHERE id = ?").get(id) as CropFormulaRow;
+  return (await db.select().from(cropFormulas).where(eq(cropFormulas.id, id)).limit(1))[0] as CropFormulaRow;
 }
 
 /** Every imported crop formula, flat, ordered by crop then program order — for the Formulas page. */
-export function listAllCropFormulas(): CropFormulaRow[] {
-  const rows = getDb().prepare("SELECT * FROM crop_formulas").all() as CropFormulaRow[];
+export async function listAllCropFormulas(): Promise<CropFormulaRow[]> {
+  const rows = (await getDb().select().from(cropFormulas)) as CropFormulaRow[];
   return rows.sort((a, b) =>
     a.crop.localeCompare(b.crop) || LINE_ORDER.indexOf(a.line_code) - LINE_ORDER.indexOf(b.line_code));
 }
@@ -610,16 +566,15 @@ export interface RemedyRollup {
   remedy: string; potency: string; formulaCount: number; cropCount: number; lines: string; sampleTargets: string;
 }
 
-// One blend component looks like "Silicea 6C — 55.6% (63.1 mL/3gal, …)".
-// Capture the remedy name (everything before the potency) and the potency token.
 const BLEND_COMPONENT = /^(.+?)\s+(\d+\s*[CXMcxm]+)\s*[—–-]/;
 const lineRank = (name: string) =>
   LINE_ORDER.indexOf(Object.keys(LINE_NAME).find((k) => LINE_NAME[k] === name) || "");
 
 /** EVERY distinct remedy used across the imported blends (not just each formula's primary). */
-export function listCropRemedies(): RemedyRollup[] {
-  const rows = getDb().prepare("SELECT crop, line, blend, targets FROM crop_formulas").all() as
-    { crop: string; line: string; blend: string; targets: string }[];
+export async function listCropRemedies(): Promise<RemedyRollup[]> {
+  const rows = await getDb()
+    .select({ crop: cropFormulas.crop, line: cropFormulas.line, blend: cropFormulas.blend, targets: cropFormulas.targets })
+    .from(cropFormulas);
 
   const agg = new Map<string, { pots: Set<string>; uses: number; crops: Set<string>; lines: Set<string>; targets: string }>();
   for (const r of rows) {
@@ -632,7 +587,7 @@ export function listCropRemedies(): RemedyRollup[] {
       if (!e) { e = { pots: new Set(), uses: 0, crops: new Set(), lines: new Set(), targets: "" }; agg.set(name, e); }
       e.pots.add(pot);
       e.uses++;
-      e.crops.add(r.crop);
+      e.crops.add(r.crop ?? "");
       if (r.line) e.lines.add(r.line);
       if (!e.targets && r.targets) e.targets = r.targets;
     }
@@ -667,7 +622,10 @@ interface EntityCfg {
 
 function crud(cfg: EntityCfg) {
   const json = cfg.json ?? [];
-  const order = cfg.order ?? "rowid DESC";
+  // Postgres has no rowid; ids are insertion-ordered (seed `xx-1..` then
+  // `xx-<base36 time>-n`), so id ordering preserves the original sequence.
+  const order = cfg.order ?? `"id" DESC`;
+  const tbl = `"${cfg.table}"`;
   const parse = (r: any) => {
     if (!r) return null;
     const o = { ...r };
@@ -682,39 +640,42 @@ function crud(cfg: EntityCfg) {
     }
     return o;
   };
-  const row = (id: string) => getDb().prepare(`SELECT * FROM ${cfg.table} WHERE id = ?`).get(id);
+  const row = async (id: string) => (await query<any>(`SELECT * FROM ${tbl} WHERE "id" = $1`, [id]))[0] ?? null;
   let n = 0;
   return {
-    list: (): any[] => (getDb().prepare(`SELECT * FROM ${cfg.table} ORDER BY ${order}`).all() as any[]).map(parse),
-    get: (id: string): any => parse(row(id)),
-    create: (data: any): any => {
-      const db = getDb();
+    list: async (): Promise<any[]> => (await query<any>(`SELECT * FROM ${tbl} ORDER BY ${order}`)).map(parse),
+    get: async (id: string): Promise<any> => parse(await row(id)),
+    create: async (data: any): Promise<any> => {
       const id = `${cfg.prefix}-${Date.now().toString(36)}-${n++}`;
       const vals = ser(data);
       if (cfg.dateField && !vals[cfg.dateField]) vals[cfg.dateField] = today();
       const cols = Object.keys(vals);
-      db.prepare(
-        `INSERT INTO ${cfg.table} (id${cols.length ? "," + cols.join(",") : ""}) VALUES (@id${cols.length ? "," + cols.map((c) => "@" + c).join(",") : ""})`,
-      ).run({ id, ...vals });
-      return parse(row(id));
+      const all = ["id", ...cols];
+      const params = [id, ...cols.map((c) => vals[c])];
+      const placeholders = all.map((_, i) => `$${i + 1}`).join(", ");
+      const colSql = all.map((c) => `"${c}"`).join(", ");
+      await query(`INSERT INTO ${tbl} (${colSql}) VALUES (${placeholders})`, params);
+      return parse(await row(id));
     },
-    update: (id: string, data: any): any => {
-      if (!row(id)) return null;
+    update: async (id: string, data: any): Promise<any> => {
+      if (!(await row(id))) return null;
       const vals = ser(data);
       const cols = Object.keys(vals);
       if (cols.length) {
-        getDb().prepare(`UPDATE ${cfg.table} SET ${cols.map((c) => `${c}=@${c}`).join(",")} WHERE id=@id`).run({ id, ...vals });
+        const setSql = cols.map((c, i) => `"${c}" = $${i + 1}`).join(", ");
+        const params = [...cols.map((c) => vals[c]), id];
+        await query(`UPDATE ${tbl} SET ${setSql} WHERE "id" = $${cols.length + 1}`, params);
       }
-      return parse(row(id));
+      return parse(await row(id));
     },
-    remove: (id: string): { ok: boolean } => {
-      getDb().prepare(`DELETE FROM ${cfg.table} WHERE id = ?`).run(id);
+    remove: async (id: string): Promise<{ ok: boolean }> => {
+      await query(`DELETE FROM ${tbl} WHERE "id" = $1`, [id]);
       return { ok: true };
     },
   };
 }
 
-const clientsCrud = crud({ table: "clients", prefix: "cl", order: "rowid ASC", dateField: "dateCreated",
+const clientsCrud = crud({ table: "clients", prefix: "cl", order: `"id" ASC`, dateField: "dateCreated",
   cols: ["company", "clientName", "email", "address", "dateCreated"] });
 const formulasCrud = crud({ table: "formulas", prefix: "fm", dateField: "dateCreated",
   cols: ["name", "productLine", "crop", "description", "targetPests", "targetDiseases", "applicationMethod", "dosage", "unitPrice", "remedies", "status", "dateCreated"] });
@@ -722,11 +683,11 @@ const remediesCrud = crud({ table: "remedies", prefix: "rm", dateField: "dateCre
   cols: ["name", "description", "recurring", "status", "dateCreated"] });
 const adminsCrud = crud({ table: "admins", prefix: "ad", dateField: "dateCreated",
   cols: ["name", "email", "status", "dateCreated"] });
-const teamCrud = crud({ table: "team", prefix: "tm", order: "sort ASC",
+const teamCrud = crud({ table: "team", prefix: "tm", order: `"sort" ASC`,
   cols: ["name", "role", "status", "sort"] });
-const provenCrud = crud({ table: "proven_entries", prefix: "pv", order: "rowid ASC",
+const provenCrud = crud({ table: "proven_entries", prefix: "pv", order: `"id" ASC`,
   cols: ["title", "metric1Label", "metric1Value", "metric2Label", "metric2Value", "linkedOrder", "status", "description"] });
-const faqsCrud = crud({ table: "faqs", prefix: "fq", order: "rowid ASC", json: ["questions"],
+const faqsCrud = crud({ table: "faqs", prefix: "fq", order: `"id" ASC`, json: ["questions"],
   cols: ["section", "product", "status", "questions"] });
 
 export const ENTITIES: Record<string, ReturnType<typeof crud>> = {
@@ -747,10 +708,10 @@ export interface TeamRow { id: string; name: string; role: string; status: strin
 export interface ProvenRow { id: string; title: string; metric1Label: string; metric1Value: string; metric2Label: string; metric2Value: string; linkedOrder: string; status: string; description: string }
 export interface FaqRow { id: string; section: string; product: string; status: string; questions: { q: string; a: string }[] }
 
-export const listClients = () => clientsCrud.list() as ClientRow[];
-export const listFormulas = () => formulasCrud.list() as FormulaRow[];
-export const listRemedies = () => remediesCrud.list() as RemedyRow[];
-export const listAdmins = () => adminsCrud.list() as AdminRow[];
-export const listTeam = () => teamCrud.list() as TeamRow[];
-export const listProven = () => provenCrud.list() as ProvenRow[];
-export const listFaqs = () => faqsCrud.list() as FaqRow[];
+export const listClients = () => clientsCrud.list() as Promise<ClientRow[]>;
+export const listFormulas = () => formulasCrud.list() as Promise<FormulaRow[]>;
+export const listRemedies = () => remediesCrud.list() as Promise<RemedyRow[]>;
+export const listAdmins = () => adminsCrud.list() as Promise<AdminRow[]>;
+export const listTeam = () => teamCrud.list() as Promise<TeamRow[]>;
+export const listProven = () => provenCrud.list() as Promise<ProvenRow[]>;
+export const listFaqs = () => faqsCrud.list() as Promise<FaqRow[]>;

@@ -19,12 +19,12 @@ const statusPill = (status: string, payment: string) => {
   return <span className="inline-block rounded-full px-3 py-[5px] text-xs font-bold" style={style}>{label}</span>;
 };
 
-export default function AccountPage() {
+export default async function AccountPage() {
   const id = cookies().get(CUSTOMER_COOKIE)?.value;
   if (!id) redirect("/sign-in?next=/account");
-  const account = getAccountById(id);
+  const account = await getAccountById(id);
   if (!account) redirect("/sign-in?next=/account");
-  const quotes = listQuotesByAccount(id);
+  const quotes = await listQuotesByAccount(id);
 
   return (
     <div className="mx-auto max-w-container px-8 pb-[90px] pt-14">

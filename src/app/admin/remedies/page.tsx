@@ -3,6 +3,6 @@ import { listCropRemedies } from "@/lib/repo";
 
 export const dynamic = "force-dynamic";
 
-export default function RemediesPage() {
-  return <CropRemediesView remedies={listCropRemedies()} />;
+export default async function RemediesPage() {
+  return <CropRemediesView remedies={await listCropRemedies()} />;
 }

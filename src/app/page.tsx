@@ -16,8 +16,8 @@ const JOURNEY = [
   { n: "05", Icon: Droplets, t: "Feed through irrigation", d: "Dose all six products straight through your fertigation, soil prep to harvest." },
 ];
 
-export default function Home() {
-  const products = listProducts();
+export default async function Home() {
+  const products = await listProducts();
 
   return (
     <>

@@ -5,8 +5,8 @@ export const dynamic = "force-dynamic";
 const TH =
   "px-2 py-3.5 text-left text-xs font-bold uppercase tracking-[0.06em] text-fg3 first:pl-6 last:pr-6";
 
-export default function CustomersPage() {
-  const customers = listCustomers();
+export default async function CustomersPage() {
+  const customers = await listCustomers();
   return (
     <div className="overflow-x-auto rounded-card border border-hair bg-white">
       <table className="w-full min-w-[640px] border-collapse">

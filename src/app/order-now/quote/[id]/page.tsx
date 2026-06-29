@@ -6,10 +6,10 @@ import NewAccountNotice from "@/components/order/NewAccountNotice";
 
 export const dynamic = "force-dynamic";
 
-export default function QuotePage({
+export default async function QuotePage({
   params, searchParams,
 }: { params: { id: string }; searchParams: { new?: string } }) {
-  const quote = getQuote(params.id);
+  const quote = await getQuote(params.id);
   if (!quote) return notFound();
   const p = quote.payload;
   const cq = quoteForCrops(p.acres);

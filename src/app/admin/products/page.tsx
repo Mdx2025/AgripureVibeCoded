@@ -3,6 +3,6 @@ import { listProducts } from "@/lib/repo";
 
 export const dynamic = "force-dynamic";
 
-export default function ProductsPage() {
-  return <ProductsManager products={listProducts()} />;
+export default async function ProductsPage() {
+  return <ProductsManager products={await listProducts()} />;
 }

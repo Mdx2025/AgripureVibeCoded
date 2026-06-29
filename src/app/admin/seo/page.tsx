@@ -3,6 +3,6 @@ import { getSeoConfig } from "@/lib/repo";
 
 export const dynamic = "force-dynamic";
 
-export default function AdminSeoPage() {
-  return <SeoManager initial={getSeoConfig()} />;
+export default async function AdminSeoPage() {
+  return <SeoManager initial={await getSeoConfig()} />;
 }

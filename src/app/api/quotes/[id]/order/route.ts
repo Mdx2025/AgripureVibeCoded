@@ -10,7 +10,7 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
   try {
     const { method } = await req.json().catch(() => ({}));
     if (!METHODS.has(method)) throw new Error("Unknown payment method");
-    const quote = getQuote(params.id);
+    const quote = await getQuote(params.id);
     if (!quote) return NextResponse.json({ error: "Quote not found" }, { status: 404 });
 
     const origin = req.nextUrl.origin;
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest, { params }: { params: { id: string 
       if (token) extra.plaidLinkToken = token; // hand to Plaid Link UI when configured
     }
 
-    const updated = placeOrder(params.id, method);
+    const updated = await placeOrder(params.id, method);
     return NextResponse.json({ ok: true, quote: updated, ...extra });
   } catch (err) {
     return NextResponse.json({ error: err instanceof Error ? err.message : "Order failed" }, { status: 400 });

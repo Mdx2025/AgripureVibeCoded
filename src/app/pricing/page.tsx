@@ -4,14 +4,14 @@ import { resolveSeoMetadata, getCropPriceOverrides } from "@/lib/repo";
 
 export const dynamic = "force-dynamic";
 
-export function generateMetadata(): Metadata {
+export async function generateMetadata(): Promise<Metadata> {
   return resolveSeoMetadata("/pricing");
 }
 
-export default function PricingPage() {
+export default async function PricingPage() {
   return (
     <div className="mx-auto max-w-container px-6 pb-[96px] pt-14 sm:px-8">
-      <PricingExplorer priceOverrides={getCropPriceOverrides()} />
+      <PricingExplorer priceOverrides={await getCropPriceOverrides()} />
     </div>
   );
 }

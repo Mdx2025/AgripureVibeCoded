@@ -9,8 +9,8 @@ export const dynamic = "force-dynamic";
 const fmtDate = (iso: string | null) =>
   iso ? new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "—";
 
-export default function ClientDetailPage({ params }: { params: { id: string } }) {
-  const data = getClientWithQuotes(params.id);
+export default async function ClientDetailPage({ params }: { params: { id: string } }) {
+  const data = await getClientWithQuotes(params.id);
   if (!data) return notFound();
   const { account, quotes } = data;
   const lifetime = quotes.reduce((t, q) => t + q.total, 0);

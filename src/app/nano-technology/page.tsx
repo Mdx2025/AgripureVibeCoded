@@ -4,7 +4,7 @@ import { resolveSeoMetadata } from "@/lib/repo";
 
 export const dynamic = "force-dynamic";
 
-export function generateMetadata(): Metadata {
+export async function generateMetadata(): Promise<Metadata> {
   return resolveSeoMetadata("/nano-technology");
 }
 

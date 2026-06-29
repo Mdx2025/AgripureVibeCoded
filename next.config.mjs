@@ -2,10 +2,10 @@
 const nextConfig = {
   // Emit a self-contained server bundle for the Docker/Fly image.
   output: "standalone",
-  // better-sqlite3 is a native module — keep it out of the server bundle.
-  // (Removed once the data layer fully moves to Drizzle/Neon in Phase 0b.)
+  // Keep node-postgres out of the server bundle (it dynamically requires
+  // optional native/pure-JS backends that webpack shouldn't trace).
   experimental: {
-    serverComponentsExternalPackages: ["better-sqlite3"],
+    serverComponentsExternalPackages: ["pg"],
   },
 };
 

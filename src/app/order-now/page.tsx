@@ -4,10 +4,10 @@ import { getPricingProgram, resolveSeoMetadata, getCropPriceOverrides } from "@/
 
 export const dynamic = "force-dynamic";
 
-export function generateMetadata(): Metadata {
+export async function generateMetadata(): Promise<Metadata> {
   return resolveSeoMetadata("/order-now");
 }
 
-export default function OrderNowPage() {
-  return <OrderWizard soilSamplePrice={getPricingProgram().soilSamplePrice} priceOverrides={getCropPriceOverrides()} />;
+export default async function OrderNowPage() {
+  return <OrderWizard soilSamplePrice={(await getPricingProgram()).soilSamplePrice} priceOverrides={await getCropPriceOverrides()} />;
 }

@@ -4,10 +4,10 @@ import { listProducts, resolveSeoMetadata } from "@/lib/repo";
 
 export const dynamic = "force-dynamic";
 
-export function generateMetadata(): Metadata {
+export async function generateMetadata(): Promise<Metadata> {
   return resolveSeoMetadata("/how-it-works");
 }
 
-export default function HowItWorksPage() {
-  return <HowItWorksV3 products={listProducts()} />;
+export default async function HowItWorksPage() {
+  return <HowItWorksV3 products={await listProducts()} />;
 }

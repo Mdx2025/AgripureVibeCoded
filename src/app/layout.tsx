@@ -26,7 +26,7 @@ const jetbrains = JetBrains_Mono({
 
 // Site-wide default metadata (home entry) — editable in admin → SEO.
 // Each page overrides this via its own generateMetadata.
-export function generateMetadata(): Metadata {
+export async function generateMetadata(): Promise<Metadata> {
   return resolveSeoMetadata("/");
 }
 

@@ -9,8 +9,8 @@ const TH = "px-3 py-3.5 text-left text-xs font-bold uppercase tracking-[0.06em] 
 const fmtDate = (iso: string | null) =>
   iso ? new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "—";
 
-export default function AdminClientsPage() {
-  const clients = listAccounts();
+export default async function AdminClientsPage() {
+  const clients = await listAccounts();
 
   return (
     <div>

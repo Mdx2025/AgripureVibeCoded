@@ -3,6 +3,6 @@ import { listFaqs } from "@/lib/repo";
 
 export const dynamic = "force-dynamic";
 
-export default function FaqsPage() {
-  return <FaqsManager initial={listFaqs()} />;
+export default async function FaqsPage() {
+  return <FaqsManager initial={await listFaqs()} />;
 }

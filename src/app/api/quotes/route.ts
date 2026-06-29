@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     if (!c.name || !c.email || !Array.isArray(b?.crops) || b.crops.length === 0) {
       throw new Error("Name, email, and at least one crop are required");
     }
-    const result = createQuote({
+    const result = await createQuote({
       customer: {
         name: String(c.name), email: String(c.email), phone: String(c.phone ?? ""),
         business: String(c.business ?? ""), address: String(c.address ?? ""),

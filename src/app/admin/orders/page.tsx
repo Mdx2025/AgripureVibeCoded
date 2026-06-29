@@ -3,6 +3,6 @@ import { listOrders } from "@/lib/repo";
 
 export const dynamic = "force-dynamic";
 
-export default function OrdersPage() {
-  return <OrdersTable orders={listOrders()} />;
+export default async function OrdersPage() {
+  return <OrdersTable orders={await listOrders()} />;
 }

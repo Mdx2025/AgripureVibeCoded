@@ -9,7 +9,9 @@ export default defineConfig({
   schema: "./src/lib/schema.ts",
   out: "./drizzle",
   dialect: "postgresql",
-  dbCredentials: { url: process.env.DATABASE_URL ?? "" },
+  // Migrations/DDL run over the DIRECT (unpooled) connection — PgBouncer
+  // transaction pooling can break DDL. The app runtime uses the pooled URL.
+  dbCredentials: { url: process.env.DATABASE_URL_UNPOOLED ?? process.env.DATABASE_URL ?? "" },
   // Keep generated SQL readable in PRs.
   verbose: true,
   strict: true,

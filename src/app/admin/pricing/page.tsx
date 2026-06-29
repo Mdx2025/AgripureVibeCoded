@@ -3,6 +3,6 @@ import { getPricingProgram } from "@/lib/repo";
 
 export const dynamic = "force-dynamic";
 
-export default function AdminPricingPage() {
-  return <PricingManager initial={getPricingProgram()} />;
+export default async function AdminPricingPage() {
+  return <PricingManager initial={await getPricingProgram()} />;
 }

@@ -6,22 +6,22 @@ import { money } from "@/lib/pricing";
 
 export const dynamic = "force-dynamic";
 
-export default function LabSheetPage({ params }: { params: { id: string } }) {
-  const quote = getQuote(params.id);
+export default async function LabSheetPage({ params }: { params: { id: string } }) {
+  const quote = await getQuote(params.id);
   if (!quote) return notFound();
   const p = quote.payload;
 
-  const crops = p.crops.map((crop) => ({
+  const crops = await Promise.all(p.crops.map(async (crop) => ({
     crop,
     acres: p.acres[crop] || 0,
-    formulas: getCropFormulas(crop),
+    formulas: await getCropFormulas(crop),
     soil: p.soilByCrop?.[crop] || [],
     weeds: p.weedsByCrop?.[crop] || [],
     plantHealth: p.plantHealthByCrop?.[crop] || [],
     pests: p.pestsByCrop[crop] || [],
     diseases: p.diseasesByCrop[crop] || [],
     yieldLoss: !!p.yieldByCrop[crop],
-  }));
+  })));
 
   return (
     <div className="mx-auto max-w-[1000px]">

@@ -26,14 +26,14 @@ const QUICK_CARDS = [
   { href: "/admin/faqs", label: "Client support", sub: "Technical Support", Icon: LifeBuoy, tint: "#E2ECF5", fg: "#2F6FB0" },
 ];
 
-export default function OverviewPage() {
+export default async function OverviewPage() {
   const maxRev = Math.max(...REVENUE_VALUES);
-  const orders = listOrders();
+  const orders = await listOrders();
   const recent = orders.slice(0, 5);
   const receivedThisMonth = orders
     .filter((o) => o.payment === "Paid")
     .reduce((t, o) => t + (Number(String(o.total).replace(/[^0-9.]/g, "")) || 0), 0);
-  const lowStock = listProducts()
+  const lowStock = (await listProducts())
     .filter((p) => p.stock < 140)
     .sort((a, b) => a.stock - b.stock)
     .slice(0, 4);

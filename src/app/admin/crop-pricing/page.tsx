@@ -4,8 +4,8 @@ import { loadCropPricing, getCropPriceOverrides } from "@/lib/repo";
 
 export const dynamic = "force-dynamic";
 
-export default function AdminCropPricingPage() {
-  const crops = loadCropPricing();
-  const overrideIds = getCropPriceOverrides().map((o) => o.id);
+export default async function AdminCropPricingPage() {
+  const crops = await loadCropPricing();
+  const overrideIds = (await getCropPriceOverrides()).map((o) => o.id);
   return <CropPricingTable crops={crops} params={PRICING_PARAMS} overrideIds={overrideIds} />;
 }

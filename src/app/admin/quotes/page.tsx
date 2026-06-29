@@ -7,8 +7,8 @@ export const dynamic = "force-dynamic";
 
 const TH = "px-3 py-3.5 text-left text-xs font-bold uppercase tracking-[0.06em] text-fg3 first:pl-6 last:pr-6";
 
-export default function AdminQuotesPage() {
-  const quotes = listQuotes();
+export default async function AdminQuotesPage() {
+  const quotes = await listQuotes();
   return (
     <div>
       <div className="mb-[18px] text-sm text-[#7A8076]">
