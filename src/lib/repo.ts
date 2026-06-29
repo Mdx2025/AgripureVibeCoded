@@ -175,8 +175,12 @@ export async function updateProduct(id: string, patch: Partial<Record<EditableFi
 const PRICING_KEY = "pricing_program";
 
 async function getSetting(key: string): Promise<string | undefined> {
-  const r = await getDb().select({ value: settings.value }).from(settings).where(eq(settings.key, key)).limit(1);
-  return r[0]?.value ?? undefined;
+  try {
+    const r = await getDb().select({ value: settings.value }).from(settings).where(eq(settings.key, key)).limit(1);
+    return r[0]?.value ?? undefined;
+  } catch {
+    return undefined;
+  }
 }
 async function putSetting(key: string, value: string): Promise<void> {
   await getDb().insert(settings).values({ key, value }).onConflictDoUpdate({ target: settings.key, set: { value } });
