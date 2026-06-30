@@ -11,3 +11,7 @@
 - Added a floating glass proof card ("+38% avg yield recovery") crossing the seam for depth/layering.
 - Trust bar refined with lime-dot separators.
 - Subtle `animate-rise` entrance on the copy block.
+
+### Typography — Home hero (`HeroSplit.tsx`, `src/app/layout.tsx`)
+- Switched the hero headline and the stat/proof numbers off `font-display` (Nunito, rounded — read as generic) to `font-sans` (Hanken Grotesk), the design system's base/body font already applied site-wide. No new font dependency.
+- Extended the Hanken Grotesk `next/font` config with weights `800`/`900` so the `font-black` headline renders a real heavy weight instead of a synthesized faux-bold (it was capped at `700`).

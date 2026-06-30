@@ -66,7 +66,7 @@ export default function HeroSplit() {
               <span className="h-px w-8 bg-[#BFE89A]/70" />
               <span className="font-mono text-[12px] uppercase tracking-[0.26em] text-[#BFE89A]">100% Natural · Custom-Formulated</span>
             </div>
-            <h1 className="mt-5 font-display text-[clamp(44px,5.4vw,76px)] font-black leading-[0.94] tracking-[-0.03em]">
+            <h1 className="mt-5 font-sans text-[clamp(44px,5.4vw,76px)] font-black leading-[0.94] tracking-[-0.03em]">
               <span className="bg-[linear-gradient(92deg,#BFE89A_0%,#8BC06F_60%,#6FAE52_100%)] bg-clip-text text-transparent">Natural</span> Pesticides
               <br />&amp; Nutrients
             </h1>
@@ -88,7 +88,7 @@ export default function HeroSplit() {
                   <div>
                     <div
                       className={
-                        "font-display text-[clamp(28px,3vw,34px)] font-black leading-none " +
+                        "font-sans text-[clamp(28px,3vw,34px)] font-black leading-none " +
                         (accent ? "bg-[linear-gradient(92deg,#BFE89A,#6FAE52)] bg-clip-text text-transparent" : "text-white")
                       }
                     >
@@ -126,7 +126,7 @@ export default function HeroSplit() {
               <span className="flex h-7 w-7 items-center justify-center rounded-full bg-leaf/30 text-[#BFE89A]"><Check size={15} strokeWidth={3} /></span>
               <span className="text-[12px] font-bold uppercase tracking-wide text-white/80">Verified field result</span>
             </div>
-            <div className="mt-2.5 font-display text-[40px] font-black leading-none text-white">+38%</div>
+            <div className="mt-2.5 font-sans text-[40px] font-black leading-none text-white">+38%</div>
             <div className="text-[13px] font-semibold text-white/70">avg yield recovery</div>
             <div className="mt-3 flex h-7 items-end gap-1">
               <span className="w-full rounded-sm bg-white/20" style={{ height: "35%" }} />
