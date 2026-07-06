@@ -763,6 +763,17 @@ export async function setAdminCredentials(input: { email: string; name?: string;
   return { id, email, role };
 }
 
+/* ---- Order cancel ------------------------------------------------------ */
+export async function cancelOrders(ids: string[]): Promise<number> {
+  if (!ids.length) return 0;
+  const placeholders = ids.map((_, i) => `$${i + 1}`).join(", ");
+  const result = await query(
+    `UPDATE orders SET status = 'Canceled' WHERE id IN (${placeholders}) AND status != 'Canceled'`,
+    ids,
+  );
+  return (result as unknown[]).length;
+}
+
 /* ---- Password reset tokens --------------------------------------------- */
 import crypto from "crypto";
 
