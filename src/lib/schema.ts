@@ -199,8 +199,18 @@ export const cropPricingOverrides = pgTable("crop_pricing_overrides", {
   updated_at: text("updated_at"),
 });
 
+export const passwordResetTokens = pgTable("password_reset_tokens", {
+  id: text("id").primaryKey(),
+  email: text("email").notNull(),
+  token: text("token").notNull().unique(),
+  expires_at: text("expires_at").notNull(),
+  used_at: text("used_at"),
+  created_at: text("created_at").notNull(),
+});
+
 // Convenience: the full set for migrations/seed tooling.
 export const schema = {
   products, customers, orders, settings, clients, formulas, remedies, admins,
   team, provenEntries, faqs, accounts, quotes, cropFormulas, cropPricingOverrides,
+  passwordResetTokens,
 };

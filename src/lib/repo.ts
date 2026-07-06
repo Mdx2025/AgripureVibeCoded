@@ -762,3 +762,35 @@ export async function setAdminCredentials(input: { email: string; name?: string;
   );
   return { id, email, role };
 }
+
+/* ---- Password reset tokens --------------------------------------------- */
+import crypto from "crypto";
+
+export async function createPasswordResetToken(email: string): Promise<string> {
+  const token = crypto.randomBytes(32).toString("hex");
+  const id = `prt-${Date.now().toString(36)}-${Math.floor(Math.random() * 1000)}`;
+  const now = new Date().toISOString();
+  const expiresAt = new Date(Date.now() + 60 * 60 * 1000).toISOString();
+  await query(
+    `INSERT INTO password_reset_tokens (id, email, token, expires_at, created_at) VALUES ($1, $2, $3, $4, $5)`,
+    [id, email.trim().toLowerCase(), token, expiresAt, now],
+  );
+  return token;
+}
+
+export async function verifyPasswordResetToken(token: string): Promise<{ email: string } | null> {
+  const rows = await query<{ email: string; expires_at: string; used_at: string | null }>(
+    `SELECT email, expires_at, used_at FROM password_reset_tokens WHERE token = $1 LIMIT 1`,
+    [token],
+  );
+  const row = rows[0];
+  if (!row || row.used_at || new Date(row.expires_at) < new Date()) return null;
+  return { email: row.email };
+}
+
+export async function consumePasswordResetToken(token: string): Promise<void> {
+  await query(`UPDATE password_reset_tokens SET used_at = $1 WHERE token = $2`, [
+    new Date().toISOString(),
+    token,
+  ]);
+}
