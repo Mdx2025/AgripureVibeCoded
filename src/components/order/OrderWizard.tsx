@@ -323,15 +323,18 @@ export default function OrderWizard({ soilSamplePrice, priceOverrides = [] }: { 
       title: "Get your custom quote",
       sub: "Where should we send your quote? This creates your AgriPure account.",
       valid:
-        customer.name.trim() !== "" && /\S+@\S+\.\S+/.test(customer.email) &&
-        customer.phone.trim() !== "" && customer.business.trim() !== "" && customer.address.trim() !== "",
+        customer.name.trim().length > 0 && customer.name.length <= 80 &&
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customer.email) && customer.email.length <= 320 &&
+        /^\+?\d{7,15}$/.test(customer.phone.replace(/[\s()-]/g, "")) &&
+        customer.business.trim().length > 0 && customer.business.length <= 120 &&
+        customer.address.trim().length > 0 && customer.address.length <= 500,
       body: (
         <div className="grid gap-5 md:grid-cols-2">
-          <input className={field} placeholder="Full name" value={customer.name} onChange={(e) => setCustomer({ ...customer, name: e.target.value })} />
-          <input className={field} placeholder="Email address" value={customer.email} onChange={(e) => setCustomer({ ...customer, email: e.target.value })} />
-          <input className={field} placeholder="Phone number" value={customer.phone} onChange={(e) => setCustomer({ ...customer, phone: e.target.value })} />
-          <input className={field} placeholder="Business name" value={customer.business} onChange={(e) => setCustomer({ ...customer, business: e.target.value })} />
-          <input className={`md:col-span-2 ${field}`} placeholder="Farm address" value={customer.address} onChange={(e) => setCustomer({ ...customer, address: e.target.value })} />
+          <input className={field} placeholder="Full name" maxLength={80} value={customer.name} onChange={(e) => setCustomer({ ...customer, name: e.target.value })} />
+          <input className={field} placeholder="Email address" type="email" maxLength={320} value={customer.email} onChange={(e) => setCustomer({ ...customer, email: e.target.value })} />
+          <input className={field} placeholder="Phone number" type="tel" maxLength={20} value={customer.phone} onChange={(e) => setCustomer({ ...customer, phone: e.target.value })} />
+          <input className={field} placeholder="Business name" maxLength={120} value={customer.business} onChange={(e) => setCustomer({ ...customer, business: e.target.value })} />
+          <input className={`md:col-span-2 ${field}`} placeholder="Farm address" maxLength={500} value={customer.address} onChange={(e) => setCustomer({ ...customer, address: e.target.value })} />
         </div>
       ),
     },

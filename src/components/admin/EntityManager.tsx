@@ -12,6 +12,12 @@ export interface Field {
   options?: string[];
   placeholder?: string;
   full?: boolean;
+  required?: boolean;
+  maxLength?: number;
+  min?: number;
+  max?: number;
+  pattern?: RegExp;
+  patternMsg?: string;
 }
 export interface Column {
   key: string;
@@ -100,6 +106,23 @@ export default function EntityManager({
       else if (f.type === "number") v = Number(v || 0);
       else if (f.type === "qa") v = Array.isArray(v) ? v.filter((x: Row) => x.q || x.a) : [];
       payload[f.key] = v ?? "";
+
+      const s = typeof v === "string" ? v.trim() : "";
+      if (f.required && f.type !== "switch" && f.type !== "qa" && !s && f.type !== "number") {
+        setBusy(false); return setError(`${f.label} is required`);
+      }
+      if (f.maxLength && s.length > f.maxLength) {
+        setBusy(false); return setError(`${f.label} must be ${f.maxLength} characters or fewer`);
+      }
+      if (f.type === "number" && f.min != null && Number(v) < f.min) {
+        setBusy(false); return setError(`${f.label} must be at least ${f.min}`);
+      }
+      if (f.type === "number" && f.max != null && Number(v) > f.max) {
+        setBusy(false); return setError(`${f.label} must be at most ${f.max}`);
+      }
+      if (f.pattern && s && !f.pattern.test(s)) {
+        setBusy(false); return setError(f.patternMsg ?? `${f.label} has an invalid format`);
+      }
     }
     const editing = open !== "new" && open !== false;
     const url = editing ? `/api/admin/${entity}/${(open as Row).id}` : `/api/admin/${entity}`;
@@ -219,7 +242,7 @@ export default function EntityManager({
                 <div key={f.key} className={f.full || f.type === "textarea" || f.type === "qa" ? "col-span-2" : ""}>
                   <label className="mb-1.5 block text-[13px] font-semibold text-fg2">{f.label}</label>
                   {f.type === "textarea" ? (
-                    <textarea rows={3} value={draft[f.key] ?? ""} placeholder={f.placeholder} onChange={(e) => setDraft({ ...draft, [f.key]: e.target.value })} className={`${field} resize-y`} />
+                    <textarea rows={3} value={draft[f.key] ?? ""} placeholder={f.placeholder} maxLength={f.maxLength} onChange={(e) => setDraft({ ...draft, [f.key]: e.target.value })} className={`${field} resize-y`} />
                   ) : f.type === "select" ? (
                     <select value={draft[f.key] ?? ""} onChange={(e) => setDraft({ ...draft, [f.key]: e.target.value })} className={field}>
                       <option value="">{f.placeholder ?? "Select…"}</option>
@@ -240,7 +263,7 @@ export default function EntityManager({
                       <button type="button" onClick={() => setDraft((d) => ({ ...d, [f.key]: [...(d[f.key] ?? []), { q: "", a: "" }] }))} className="self-start text-[13px] font-semibold text-leaf-600">+ Add question</button>
                     </div>
                   ) : (
-                    <input type={f.type === "number" ? "number" : "text"} value={draft[f.key] ?? ""} placeholder={f.placeholder} onChange={(e) => setDraft({ ...draft, [f.key]: e.target.value })} className={field} />
+                    <input type={f.type === "number" ? "number" : "text"} value={draft[f.key] ?? ""} placeholder={f.placeholder} maxLength={f.maxLength} min={f.min} max={f.max} onChange={(e) => setDraft({ ...draft, [f.key]: e.target.value })} className={field} />
                   )}
                 </div>
               ))}

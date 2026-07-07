@@ -33,10 +33,10 @@ export function ClientsManager({ initial }: { initial: Row[] }) {
         { key: "address", label: "Address" },
       ]}
       fields={[
-        { key: "company", label: "Company" },
-        { key: "clientName", label: "Client Name" },
-        { key: "email", label: "Email" },
-        { key: "address", label: "Address", type: "textarea" },
+        { key: "company", label: "Company", required: true, maxLength: 120 },
+        { key: "clientName", label: "Client Name", required: true, maxLength: 80 },
+        { key: "email", label: "Email", required: true, maxLength: 320, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, patternMsg: "Enter a valid email address" },
+        { key: "address", label: "Address", type: "textarea", maxLength: 500 },
       ]}
       emptyText="No clients found."
     />
@@ -61,16 +61,16 @@ export function FormulasManager({ initial }: { initial: Row[] }) {
         statusCol,
       ]}
       fields={[
-        { key: "name", label: "Formula Name", full: true },
-        { key: "productLine", label: "Product Line", type: "select", options: PRODUCT_LINES },
-        { key: "crop", label: "Crop", type: "select", options: CROPS },
-        { key: "description", label: "Description", type: "textarea", placeholder: "Describe when this formula should be used" },
-        { key: "targetPests", label: "Target Pests", placeholder: "Aphids, Whitefly" },
-        { key: "targetDiseases", label: "Target Diseases", placeholder: "Powdery Mildew, Rust" },
+        { key: "name", label: "Formula Name", full: true, required: true, maxLength: 120 },
+        { key: "productLine", label: "Product Line", type: "select", options: PRODUCT_LINES, required: true },
+        { key: "crop", label: "Crop", type: "select", options: CROPS, required: true },
+        { key: "description", label: "Description", type: "textarea", placeholder: "Describe when this formula should be used", maxLength: 2000 },
+        { key: "targetPests", label: "Target Pests", placeholder: "Aphids, Whitefly", maxLength: 500 },
+        { key: "targetDiseases", label: "Target Diseases", placeholder: "Powdery Mildew, Rust", maxLength: 500 },
         { key: "applicationMethod", label: "Application Method", type: "select", options: APP_METHODS },
-        { key: "dosage", label: "Dosage / Acre", placeholder: "1 gallon per 25 acres" },
-        { key: "unitPrice", label: "Unit Price", type: "number", placeholder: "0.00" },
-        { key: "remedies", label: "Remedies", placeholder: "Linked remedies" },
+        { key: "dosage", label: "Dosage / Acre", placeholder: "1 gallon per 25 acres", maxLength: 120 },
+        { key: "unitPrice", label: "Unit Price", type: "number", placeholder: "0.00", required: true, min: 0, max: 99999 },
+        { key: "remedies", label: "Remedies", placeholder: "Linked remedies", maxLength: 500 },
         { key: "status", label: "Status", type: "select", options: STATUSES },
       ]}
       emptyText="No formulas found."
@@ -90,9 +90,9 @@ export function RemediesManager({ initial }: { initial: Row[] }) {
         { key: "description", label: "Description" },
       ]}
       fields={[
-        { key: "name", label: "Name" },
+        { key: "name", label: "Name", required: true, maxLength: 120 },
         { key: "recurring", label: "Recurring", type: "switch" },
-        { key: "description", label: "Description", type: "textarea" },
+        { key: "description", label: "Description", type: "textarea", maxLength: 2000 },
         { key: "status", label: "Status", type: "select", options: STATUSES },
       ]}
       emptyText="No remedies found."
@@ -112,8 +112,8 @@ export function AdminsManager({ initial }: { initial: Row[] }) {
         { key: "dateCreated", label: "Date Created" },
       ]}
       fields={[
-        { key: "name", label: "Admin Name" },
-        { key: "email", label: "Email" },
+        { key: "name", label: "Admin Name", required: true, maxLength: 80 },
+        { key: "email", label: "Email", required: true, maxLength: 320, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, patternMsg: "Enter a valid email address" },
         { key: "status", label: "Status", type: "select", options: STATUSES },
       ]}
       emptyText="No admins found."
@@ -127,10 +127,10 @@ export function TeamManager({ initial }: { initial: Row[] }) {
       entity="team" initial={initial} addLabel="Add New Member" view="cards"
       searchKeys={["name", "role"]}
       fields={[
-        { key: "name", label: "Name" },
-        { key: "role", label: "Role" },
+        { key: "name", label: "Name", required: true, maxLength: 80 },
+        { key: "role", label: "Role", required: true, maxLength: 80 },
         { key: "status", label: "Status", type: "select", options: STATUSES },
-        { key: "sort", label: "Order", type: "number" },
+        { key: "sort", label: "Order", type: "number", min: 0, max: 999 },
       ]}
       renderCard={(m) => (
         <div className="flex flex-col items-center text-center">
@@ -153,14 +153,14 @@ export function ProvenManager({ initial }: { initial: Row[] }) {
       entity="proven" initial={initial} addLabel="Add New Entry" view="cards"
       searchKeys={["title", "linkedOrder"]}
       fields={[
-        { key: "title", label: "Title", full: true },
-        { key: "metric1Label", label: "Metric 1 Label", placeholder: "Yield" },
-        { key: "metric1Value", label: "Metric 1 Value", placeholder: "+38%" },
-        { key: "metric2Label", label: "Metric 2 Label", placeholder: "Pest Loss" },
-        { key: "metric2Value", label: "Metric 2 Value", placeholder: "-70%" },
-        { key: "linkedOrder", label: "Linked Order", placeholder: "Order 1" },
+        { key: "title", label: "Title", full: true, required: true, maxLength: 180 },
+        { key: "metric1Label", label: "Metric 1 Label", placeholder: "Yield", maxLength: 60 },
+        { key: "metric1Value", label: "Metric 1 Value", placeholder: "+38%", maxLength: 30 },
+        { key: "metric2Label", label: "Metric 2 Label", placeholder: "Pest Loss", maxLength: 60 },
+        { key: "metric2Value", label: "Metric 2 Value", placeholder: "-70%", maxLength: 30 },
+        { key: "linkedOrder", label: "Linked Order", placeholder: "Order 1", maxLength: 80 },
         { key: "status", label: "Status", type: "select", options: STATUSES },
-        { key: "description", label: "Description", type: "textarea" },
+        { key: "description", label: "Description", type: "textarea", maxLength: 2000 },
       ]}
       renderCard={(e) => (
         <div>
@@ -190,7 +190,7 @@ export function FaqsManager({ initial }: { initial: Row[] }) {
         { key: "questions", label: "Questions", render: (r) => String((r.questions ?? []).length) },
       ]}
       fields={[
-        { key: "section", label: "Section" },
+        { key: "section", label: "Section", required: true, maxLength: 120 },
         { key: "product", label: "Product", type: "select", options: ["No", "Yes"] },
         { key: "status", label: "Status", type: "select", options: STATUSES },
         { key: "questions", label: "Questions", type: "qa" },
