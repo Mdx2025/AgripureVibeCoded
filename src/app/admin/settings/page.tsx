@@ -41,7 +41,10 @@ export default function SettingsPage() {
       .finally(() => setLoading(false));
   }, []);
 
+  const emailOk = !supportEmail || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(supportEmail);
+
   const save = async () => {
+    if (!emailOk) return;
     setSaving(true);
     setSaved(false);
     await fetch("/api/settings", {
@@ -69,15 +72,16 @@ export default function SettingsPage() {
         <div className="grid grid-cols-2 gap-3.5">
           <div>
             <label className="mb-1.5 block text-[13px] text-[#7A8076]">Store name</label>
-            <input value={storeName} onChange={(e) => setStoreName(e.target.value)} className={inputCls} />
+            <input value={storeName} maxLength={120} onChange={(e) => setStoreName(e.target.value)} className={inputCls} />
           </div>
           <div>
             <label className="mb-1.5 block text-[13px] text-[#7A8076]">Support email</label>
-            <input value={supportEmail} onChange={(e) => setSupportEmail(e.target.value)} className={inputCls} />
+            <input type="email" value={supportEmail} maxLength={320} onChange={(e) => setSupportEmail(e.target.value)} className={`${inputCls} ${supportEmail && !emailOk ? "!border-[#B23A1E]" : ""}`} />
+            {supportEmail && !emailOk && <div className="mt-1 text-xs text-[#B23A1E]">Enter a valid email</div>}
           </div>
           <div className="col-span-2">
             <label className="mb-1.5 block text-[13px] text-[#7A8076]">Field office</label>
-            <input value={fieldOffice} onChange={(e) => setFieldOffice(e.target.value)} className={inputCls} />
+            <input value={fieldOffice} maxLength={300} onChange={(e) => setFieldOffice(e.target.value)} className={inputCls} />
           </div>
         </div>
       </div>
@@ -112,7 +116,7 @@ export default function SettingsPage() {
       </div>
 
       <div className="flex items-center gap-3">
-        <button onClick={save} disabled={loading || saving} className="btn-primary px-[26px] py-[13px] text-sm">
+        <button onClick={save} disabled={loading || saving || !emailOk} className="btn-primary px-[26px] py-[13px] text-sm">
           {saving ? "Saving…" : "Save changes"}
         </button>
         {saved && <span className="text-sm font-semibold text-leaf-700">Saved ✓</span>}

@@ -17,8 +17,12 @@ function SignInForm() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
 
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!emailOk) { setError("Enter a valid email address"); return; }
+    if (!password) { setError("Password is required"); return; }
     setBusy(true);
     setError("");
     const res = await signIn("credentials", { email, password, redirect: false });
@@ -37,9 +41,9 @@ function SignInForm() {
       <h1 className="mb-1 mt-6 font-display text-[26px] font-black text-forest">Dashboard sign-in</h1>
       <p className="mb-6 text-sm text-[#7A8076]">Manage orders, inventory, and customers.</p>
       <div className="flex flex-col gap-[13px]">
-        <input type="email" placeholder="Email" autoComplete="username" value={email}
+        <input type="email" placeholder="Email" autoComplete="username" maxLength={320} value={email}
           onChange={(e) => setEmail(e.target.value)} className={inputCls} />
-        <input type="password" placeholder="Password" autoComplete="current-password" value={password}
+        <input type="password" placeholder="Password" autoComplete="current-password" maxLength={128} value={password}
           onChange={(e) => setPassword(e.target.value)} className={inputCls} />
       </div>
       {error && <div className="mt-3 text-sm font-semibold text-[#B23A1E]">{error}</div>}

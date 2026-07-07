@@ -17,8 +17,12 @@ function SignInForm() {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
 
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!emailOk) { setError("Enter a valid email address"); return; }
+    if (!password) { setError("Password is required"); return; }
     setBusy(true); setError("");
     const res = await fetch("/api/account/login", {
       method: "POST", headers: { "Content-Type": "application/json" },
@@ -50,8 +54,8 @@ function SignInForm() {
           <h1 className="m-0 font-display text-[32px] font-black text-forest">Welcome back</h1>
           <p className="mb-[26px] mt-2 text-[15px] text-[#7A8076]">Sign in to your AgriPure account.</p>
           <div className="flex flex-col gap-3.5">
-            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} className={inputCls} />
-            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className={inputCls} />
+            <input type="email" placeholder="Email" maxLength={320} value={email} onChange={(e) => setEmail(e.target.value)} className={inputCls} />
+            <input type="password" placeholder="Password" maxLength={128} value={password} onChange={(e) => setPassword(e.target.value)} className={inputCls} />
           </div>
           {error && <div className="mt-3 text-sm font-semibold text-[#B23A1E]">{error}</div>}
           <button type="submit" disabled={busy} className="btn-primary mt-5 h-[52px] text-base">

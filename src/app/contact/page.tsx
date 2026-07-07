@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import { Mail, MapPin } from "lucide-react";
 import { resolveSeoMetadata } from "@/lib/repo";
+import ContactForm from "./ContactForm";
 
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   return resolveSeoMetadata("/contact");
 }
-
-const inputCls =
-  "rounded-[10px] border border-[#D9D6C7] px-[15px] py-[13px] text-[15px] outline-none focus:border-leaf";
 
 export default function ContactPage() {
   return (
@@ -48,22 +46,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <form className="rounded-[20px] border border-hair bg-white p-[30px] shadow-g-md">
-          <div className="grid grid-cols-2 gap-3.5">
-            <input placeholder="First name" className={inputCls} />
-            <input placeholder="Last name" className={inputCls} />
-            <input placeholder="Email" className={`col-span-2 ${inputCls}`} />
-            <input placeholder="Crop & acreage" className={`col-span-2 ${inputCls}`} />
-            <textarea
-              placeholder="What are you fighting this season?"
-              rows={4}
-              className={`col-span-2 resize-y ${inputCls}`}
-            />
-          </div>
-          <button type="button" className="btn-primary mt-4 h-[52px] w-full text-base">
-            Send message
-          </button>
-        </form>
+        <ContactForm />
       </div>
     </div>
   );
